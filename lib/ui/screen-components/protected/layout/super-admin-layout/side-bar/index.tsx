@@ -59,6 +59,14 @@ export default function MakeSidebar() {
 
   const navBarItems: ISidebarMenuItem[] = [
     {
+      text: t('My Website'),
+      route: 'https://multivendor.enatega.com/',
+      isParent: true,
+      icon: faUpRightFromSquare,
+      isClickable: true,
+      shouldOpenInNewTab: true,
+    },
+    {
       text: t('Home'),
       route: '/home',
       isParent: true,
@@ -72,6 +80,11 @@ export default function MakeSidebar() {
       icon: faCog,
       subMenu: useCheckAllowedRoutes([
         {
+          text: t('Vendors'),
+          route: '/general/vendors',
+          isParent: false,
+        },
+        {
           text: t('Stores'),
           route: '/general/stores',
           isParent: false,
@@ -84,6 +97,11 @@ export default function MakeSidebar() {
         {
           text: t('Users'),
           route: '/general/users',
+          isParent: false,
+        },
+        {
+          text: t('Staff'),
+          route: '/general/staff',
           isParent: false,
         },
       ]),
