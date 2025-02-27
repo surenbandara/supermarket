@@ -59,14 +59,6 @@ export default function MakeSidebar() {
 
   const navBarItems: ISidebarMenuItem[] = [
     {
-      text: t('My Website'),
-      route: 'https://multivendor.enatega.com/',
-      isParent: true,
-      icon: faUpRightFromSquare,
-      isClickable: true,
-      shouldOpenInNewTab: true,
-    },
-    {
       text: t('Home'),
       route: '/home',
       isParent: true,
