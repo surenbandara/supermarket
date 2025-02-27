@@ -91,7 +91,7 @@ export default function GrowthOverView() {
           label: t('Riders'),
           data: dashboardUsersByYear?.ridersCount ?? [],
           fill: false,
-          borderColor: documentStyle.getPropertyValue('--yello-500'),
+          borderColor: documentStyle.getPropertyValue('--yellow-500'),
           backgroundColor: documentStyle.getPropertyValue('--yellow-100'),
           tension: 0.5,
         },
