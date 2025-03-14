@@ -1,0 +1,39 @@
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+
+# dependencies
+/frontend/admin/node_modules
+/frontend/admin/.pnp
+/frontend/admin/pnp.js
+/frontend/admin/yarn/install-state.gz
+
+# testing
+/frontend/admin/coverage
+
+# next.js
+/frontend/admin/.next/
+/frontend/admin/out/
+
+# production
+/frontend/admin/build
+
+# misc
+/frontend/adminDS_Store
+/frontend/admin*.pem
+
+# debug
+/frontend/adminnpm-debug.log*
+/frontend/adminyarn-debug.log*
+/frontend/adminyarn-error.log*
+
+# local env files
+/frontend/admin.env*.local
+
+# vercel
+/frontend/admin.vercel
+
+# typescript
+/frontend/admin*.tsbuildinfo
+/frontend/adminnext-env.d.ts
+
+/frontend/admin*storybook.log
+
