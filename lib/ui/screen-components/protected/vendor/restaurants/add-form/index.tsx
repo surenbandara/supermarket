@@ -19,7 +19,6 @@ import { VendorLayoutRestaurantContext } from '@/lib/context/vendor/restaurant.c
 
 // Local components
 import RestaurantDetails from './restaurant-details';
-import RestaurantLocation from './restaurant-location';
 import RestaurantTiming from './restaurant-timing';
 import { useTranslations } from 'next-intl';
 
@@ -63,14 +62,6 @@ const VendorRestaurantsForm = ({
         <Stepper linear headerPosition="bottom" activeStep={activeIndex}>
           <StepperPanel header={t('Add Details')}>
             <RestaurantDetails
-              stepperProps={{
-                onStepChange: onHandleStepChange,
-                order: activeIndex,
-              }}
-            />
-          </StepperPanel>
-          <StepperPanel header={t('Location')}>
-            <RestaurantLocation
               stepperProps={{
                 onStepChange: onHandleStepChange,
                 order: activeIndex,

@@ -16,9 +16,7 @@ import {
   faArrowLeft,
   faCog,
   faHome,
-  faMoneyBillTrendUp,
   faRectangleList,
-  faStar,
   faStore,
 } from '@fortawesome/free-solid-svg-icons';
 
@@ -89,11 +87,6 @@ export default function MakeSidebar() {
           isParent: false,
         },
         {
-          text: t('Location'),
-          route: '/admin/store/general/location',
-          isParent: false,
-        },
-        {
           text: t('Payment'),
           route: '/admin/store/general/payment',
           isParent: false,
@@ -117,16 +110,6 @@ export default function MakeSidebar() {
           route: '/admin/store/product-management/category',
           isParent: false,
         },
-        {
-          text: t('Options'),
-          route: '/admin/store/product-management/options',
-          isParent: false,
-        },
-        {
-          text: t('Addons'),
-          route: '/admin/store/product-management/add-ons',
-          isParent: false,
-        },
       ],
     },
 
@@ -135,20 +118,6 @@ export default function MakeSidebar() {
       route: '/admin/store/orders',
       isParent: true,
       icon: faRectangleList,
-      isClickable: true,
-    },
-    {
-      text: t('Marketing'),
-      route: '/admin/store/coupons',
-      isParent: true,
-      icon: faMoneyBillTrendUp,
-      isClickable: true,
-    },
-    {
-      text: t('Reviews'),
-      route: '/admin/store/ratings',
-      isParent: true,
-      icon: faStar,
       isClickable: true,
     },
     {

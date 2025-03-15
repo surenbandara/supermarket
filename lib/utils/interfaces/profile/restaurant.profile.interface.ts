@@ -34,9 +34,6 @@ export interface IRestaurantData extends IGlobalComponentProps {
     deliveryDistance: number;
     deliveryFee: number;
   };
-  location: {
-    coordinates: number[];
-  };
   deliveryBounds: {
     coordinates: [[number]];
   };
@@ -71,10 +68,6 @@ export interface IEditRestaurant extends IGlobalComponentProps {
   address: string;
   cuisines: string[];
   image: string;
-  location: {
-    __typename: string;
-    coordinates: number[];
-  };
   logo: string;
   minimumOrder: number;
   name: string;
@@ -88,7 +81,6 @@ export interface IEditRestaurant extends IGlobalComponentProps {
   __typename: string;
   deliveryTime: number;
   isActive: boolean;
-  commissionRate: number;
   owner: {
     _id: string;
     email: string;

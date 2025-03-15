@@ -11,7 +11,6 @@ import { ProfileContext } from '@/lib/context/restaurant/profile.context';
 
 // Custom Components
 import UpdateRestaurantDetails from './update-profile-detail';
-import UpdateRestaurantLocation from './update-restaurant-location';
 import UpdateTiming from './update-timing';
 
 // Interfaces & Types
@@ -60,15 +59,6 @@ const UpdateRestaurantsProfileForm = ({
               stepperProps={{
                 onStepChange: onHandleStepChange,
                 order: activeIndex,
-              }}
-            />
-          </StepperPanel>
-          <StepperPanel header={t('Update Location')}>
-            <UpdateRestaurantLocation
-              stepperProps={{
-                onStepChange: onHandleStepChange,
-                order: activeIndex,
-                isLastStep: true,
               }}
             />
           </StepperPanel>

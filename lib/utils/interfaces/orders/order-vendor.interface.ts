@@ -38,7 +38,6 @@ export interface IExtendedOrder extends IOrder {
   paidAmount?: number;
   paymentMethod?: ReactNode;
   deliveryCharges?: number;
-  tipping?: number;
   reason?: string | null;
   taxationAmount?: number;
   itemsTitle?: string;

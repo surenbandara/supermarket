@@ -22,15 +22,6 @@ const VENDOR_GUARD = <T extends object>(Component: React.ComponentType<T>) => {
         router.replace('/authentication/login');
       }
 
-      // For STAFF => Check if VENDOR permission is given to STAFF
-      if (user && user.userType === 'STAFF') {
-        const allowed = user?.permissions?.includes('Vendors');
-
-        if (!allowed) {
-          router.replace('/forbidden');
-        }
-      }
-
       // For RESTAURANT
       if (user?.userType === 'RESTAURANT') {
         router.replace('/forbidden');

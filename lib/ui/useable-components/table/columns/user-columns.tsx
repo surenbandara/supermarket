@@ -1,5 +1,5 @@
 // Interfaces and Types
-import { IUserResponse } from '@/lib/utils/interfaces/users.interface';
+import { IUserResponse } from '@/lib/utils/interfaces/user.interface';
 
 // Icons
 import { faUser } from '@fortawesome/free-solid-svg-icons';

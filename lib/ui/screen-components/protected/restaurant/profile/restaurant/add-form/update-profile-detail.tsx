@@ -1,7 +1,6 @@
 import React, { useContext, useMemo } from 'react';
 import { Form, Formik } from 'formik';
 import { useMutation } from '@apollo/client';
-import { faEnvelope } from '@fortawesome/free-solid-svg-icons';
 
 import { ProfileContext } from '@/lib/context/restaurant/profile.context';
 import { ToastContext } from '@/lib/context/global/toast.context';
@@ -10,8 +9,6 @@ import CustomButton from '@/lib/ui/useable-components/button';
 import CustomDropdownComponent from '@/lib/ui/useable-components/custom-dropdown';
 import CustomMultiSelectComponent from '@/lib/ui/useable-components/custom-multi-select';
 import CustomTextField from '@/lib/ui/useable-components/input-field';
-import CustomIconTextField from '@/lib/ui/useable-components/input-icon-field';
-import CustomPasswordTextField from '@/lib/ui/useable-components/password-input-field';
 import CustomNumberField from '@/lib/ui/useable-components/number-input-field';
 import CustomUploadImageComponent from '@/lib/ui/useable-components/upload/upload-image';
 
@@ -98,8 +95,6 @@ export default function UpdateRestaurantDetails({
     return {
       name: restaurantData?.name ?? '',
       username: restaurantData?.username ?? '',
-      password: restaurantData?.password ?? '',
-      confirmPassword: restaurantData?.password ?? '',
       address: restaurantData?.address ?? '',
       deliveryTime: restaurantData?.deliveryTime ?? 0,
       minOrder: restaurantData?.minimumOrder ?? 0,
@@ -142,8 +137,6 @@ export default function UpdateRestaurantDetails({
             logo: data.logo,
             deliveryTime: data.deliveryTime,
             minimumOrder: data.minOrder,
-            username: data.username,
-            password: data.password,
             shopType: data.shopType?.code,
             salesTax: data.salesTax,
             orderPrefix: data.orderprefix,
@@ -188,68 +181,6 @@ export default function UpdateRestaurantDetails({
               return (
                 <Form onSubmit={handleSubmit}>
                   <div className="space-y-3 mb-2">
-                    <CustomIconTextField
-                      type="email"
-                      name="username"
-                      placeholder={t('Email')}
-                      maxLength={35}
-                      showLabel={true}
-                      iconProperties={{
-                        icon: faEnvelope,
-                        position: 'right',
-                        style: { marginTop: '1px' },
-                      }}
-                      value={values.username}
-                      onChange={handleChange}
-                      style={{
-                        borderColor: onErrorMessageMatcher(
-                          'username',
-                          errors?.username,
-                          ProfileErrors
-                        )
-                          ? 'red'
-                          : '',
-                      }}
-                    />
-
-                    <CustomPasswordTextField
-                      placeholder={t('Password')}
-                      name="password"
-                      maxLength={20}
-                      value={values.password}
-                      showLabel={true}
-                      onChange={handleChange}
-                      style={{
-                        borderColor: onErrorMessageMatcher(
-                          'password',
-                          errors?.password,
-                          ProfileErrors
-                        )
-                          ? 'red'
-                          : '',
-                      }}
-                    />
-
-                    <div>
-                      <CustomPasswordTextField
-                        placeholder={t('Confirm Password')}
-                        name="confirmPassword"
-                        maxLength={20}
-                        showLabel={true}
-                        value={values.confirmPassword ?? ''}
-                        onChange={handleChange}
-                        feedback={false}
-                        style={{
-                          borderColor: onErrorMessageMatcher(
-                            'confirmPassword',
-                            errors?.confirmPassword,
-                            ProfileErrors
-                          )
-                            ? 'red'
-                            : '',
-                        }}
-                      />
-                    </div>
 
                     <CustomTextField
                       type="text"

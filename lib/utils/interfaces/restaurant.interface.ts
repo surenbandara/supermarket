@@ -63,7 +63,6 @@ export interface IRestaurantResponse {
   deliveryTime: number;
   minimumOrder: number;
   isActive: boolean;
-  commissionRate: number;
   tax: number;
   username: string;
   owner: {
@@ -139,7 +138,6 @@ export interface ICreateRestaurant {
   __typename: string;
   deliveryTime: number;
   isActive: boolean;
-  commissionRate: number;
   owner: {
     _id: string;
     email: string;

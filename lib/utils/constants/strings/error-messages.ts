@@ -1,6 +1,4 @@
 import {
-  IAddonsErrors,
-  IBannersErrors,
   ICategoryErrors,
   IOptionErrors,
   IRiderErrors,
@@ -9,14 +7,13 @@ import {
   IVendorErrors,
   IUpdateProfileFormErrors,
   IVariationErrors,
+  IUserErrors,
 } from '@/lib/utils/interfaces/forms';
 
 import {
   IRestaurantDeliveryFormErrors,
   IRestaurantFormErrors,
 } from '@/lib/utils/interfaces/forms/restaurant.form.interface';
-import { IZoneErrors } from '../../interfaces/forms/zone.form.interface';
-import { IStaffErrors } from '../../interfaces/forms/staff.form.interface';
 import { ICuisineErrors } from '../../interfaces/forms/cuisine.form.interface';
 import { ICouponErrors } from '../../interfaces/forms/coupon.form.interface';
 import { IFoodErrors } from '../../interfaces/forms/food.form.interface';
@@ -48,8 +45,6 @@ export const VendorErrors: IVendorErrors = {
   _id: ['Required'],
   name: ['Required', 'Name cannot be only spaces'],
   email: ['Required', 'Invalid email'],
-  password: ['Required', ...PasswordErrors],
-  confirmPassword: ['Required', 'Password must match'],
   image: ['Required', 'Invalid image URL'],
   firstName: ['Required', 'Firstname cannot be only spaces'],
   lastName: ['Required', 'Lastname cannot be only spaces'],
@@ -58,9 +53,6 @@ export const VendorErrors: IVendorErrors = {
 
 export const RestaurantErrors: IRestaurantFormErrors = {
   name: ['Required', 'Name cannot be only spaces'],
-  username: ['Required', 'Invalid email'],
-  password: ['Required', ...PasswordErrors],
-  confirmPassword: ['Required', 'Password must match'],
   address: ['Required', 'Name cannot be only spaces'],
   deliveryTime: ['Required'],
   minOrder: ['Required'],
@@ -74,9 +66,6 @@ export const RestaurantErrors: IRestaurantFormErrors = {
 export const ProfileErrors: IUpdateProfileFormErrors = {
   name: ['Required', 'Name cannot be only spaces'],
   email: ['Required', 'Invalid email'],
-  username: ['Required', 'Invalid email'],
-  password: ['Required', ...PasswordErrors],
-  confirmPassword: ['Required', 'Password must match'],
   address: ['Required', 'Name cannot be only spaces'],
   deliveryTime: ['Required'],
   minOrder: ['Required'],
@@ -97,12 +86,13 @@ export const RiderErrors: IRiderErrors = {
   phone: ['Required'],
 };
 
-export const BannersErrors: IBannersErrors = {
-  title: ['Required', 'Name cannot be only spaces'],
-  description: ['Required', 'Name cannot be only spaces'],
-  action: ['Required'],
-  screen: ['Required'],
-  file: ['Required'],
+export const UaserErrors: IUserErrors = {
+  name: ['Required', 'Name cannot be only spaces'],
+  username: ['Required'],
+  password: ['Required', ...PasswordErrors],
+  confirmPassword: ['Required', 'Password must match'],
+  zone: ['Required'],
+  phone: ['Required'],
 };
 
 export const CategoryErrors: ICategoryErrors = {
@@ -119,38 +109,6 @@ export const OptionErrors: IOptionErrors = {
     'Minimum value must be greater than 0',
     'Maximum price is 99999',
   ],
-};
-
-export const AddonsErrors: IAddonsErrors = {
-  _id: [],
-  title: ['Required', 'Name cannot be only spaces'],
-  description: [],
-  quantityMinimum: [
-    'Required',
-    'Minimum value must be greater than 0',
-    'Maximum price is 99999',
-  ],
-  quantityMaximum: [
-    'Required',
-    'Minimum value must be greater than 0',
-    'Maximum price is 99999',
-  ],
-  options: ['Required', 'Option field must have at least 1 items'],
-};
-
-export const ZoneErrors: IZoneErrors = {
-  title: ['Required', 'Name cannot be only spaces'],
-  description: ['Required', 'Name cannot be only spaces'],
-};
-
-export const StaffErrors: IStaffErrors = {
-  name: ['Required', 'Name cannot be only spaces'],
-  email: ['Required'],
-  phone: ['Required'],
-  password: ['Required', ...PasswordErrors],
-  confirmPassword: ['Required', 'Password must match'],
-  isActive: ['Required'],
-  permissions: ['Required', 'Permissions field must have at least 1 items'],
 };
 
 export const CuisineErrors: ICuisineErrors = {
@@ -182,7 +140,6 @@ export const VariationErrors: IVariationErrors = {
   title: ['Required', 'Name cannot be only spaces'],
   discounted: ['Required'],
   price: ['Required', 'Minimum value must be greater than 0'],
-  addons: ['Required', 'Addons field must have at least 1 items'],
   isOutOfStock: ['Required'],
 };
 

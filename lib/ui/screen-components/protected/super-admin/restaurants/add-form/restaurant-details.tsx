@@ -1,7 +1,6 @@
 'use client';
 
 // Core
-import { faEnvelope } from '@fortawesome/free-solid-svg-icons';
 import { Form, Formik } from 'formik';
 import { useContext, useMemo } from 'react';
 
@@ -19,8 +18,6 @@ import CustomButton from '@/lib/ui/useable-components/button';
 import CustomDropdownComponent from '@/lib/ui/useable-components/custom-dropdown';
 import CustomMultiSelectComponent from '@/lib/ui/useable-components/custom-multi-select';
 import CustomTextField from '@/lib/ui/useable-components/input-field';
-import CustomIconTextField from '@/lib/ui/useable-components/input-icon-field';
-import CustomPasswordTextField from '@/lib/ui/useable-components/password-input-field';
 
 // Constants
 import { MAX_LANSDCAPE_FILE_SIZE, MAX_SQUARE_FILE_SIZE, RestaurantErrors, SHOP_TYPE } from '@/lib/utils/constants';
@@ -54,9 +51,6 @@ import { useTranslations } from 'next-intl';
 
 const initialValues: IRestaurantForm = {
   name: '',
-  username: '',
-  password: '',
-  confirmPassword: '',
   address: '',
   deliveryTime: 0,
   minOrder: 0,
@@ -155,8 +149,6 @@ export default function RestaurantDetailsForm({
             logo: data.logo,
             deliveryTime: data.deliveryTime,
             minimumOrder: data.minOrder,
-            username: data.username,
-            password: data.password,
             shopType: data.shopType?.code,
             salesTax: data.salesTax,
             cuisines: data.cuisines.map(
@@ -257,74 +249,6 @@ export default function RestaurantDetailsForm({
                           }}
                         />
                       </div>
-
-                      <div>
-                        <CustomIconTextField
-                          type="email"
-                          name="username"
-                          placeholder={t('Email')}
-                          maxLength={35}
-                          showLabel={true}
-                          iconProperties={{
-                            icon: faEnvelope,
-                            position: 'right',
-                            style: { marginTop: '1px' },
-                          }}
-                          value={values.username}
-                          onChange={handleChange}
-                          style={{
-                            borderColor: onErrorMessageMatcher(
-                              'username',
-                              errors?.username,
-                              RestaurantErrors
-                            )
-                              ? 'red'
-                              : '',
-                          }}
-                        />
-                      </div>
-
-                      <div>
-                        <CustomPasswordTextField
-                          placeholder={t('Password')}
-                          name="password"
-                          maxLength={20}
-                          value={values.password}
-                          showLabel={true}
-                          onChange={handleChange}
-                          style={{
-                            borderColor: onErrorMessageMatcher(
-                              'password',
-                              errors?.password,
-                              RestaurantErrors
-                            )
-                              ? 'red'
-                              : '',
-                          }}
-                        />
-                      </div>
-
-                      <div>
-                        <CustomPasswordTextField
-                          placeholder={t('Confirm Password')}
-                          name="confirmPassword"
-                          maxLength={20}
-                          showLabel={true}
-                          value={values.confirmPassword ?? ''}
-                          onChange={handleChange}
-                          feedback={false}
-                          style={{
-                            borderColor: onErrorMessageMatcher(
-                              'confirmPassword',
-                              errors?.confirmPassword,
-                              RestaurantErrors
-                            )
-                              ? 'red'
-                              : '',
-                          }}
-                        />
-                      </div>
-
                       <div>
                         <CustomTextField
                           placeholder={t('Address')}

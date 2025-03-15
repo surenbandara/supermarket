@@ -26,7 +26,6 @@ import { onErrorMessageMatcher } from '@/lib/utils/methods/error';
 import CustomButton from '@/lib/ui/useable-components/button';
 import CustomTextField from '@/lib/ui/useable-components/input-field';
 import CustomIconTextField from '@/lib/ui/useable-components/input-icon-field';
-import CustomPasswordTextField from '@/lib/ui/useable-components/password-input-field';
 import CustomUploadImageComponent from '@/lib/ui/useable-components/upload/upload-image';
 
 // Schema
@@ -48,8 +47,6 @@ import { useTranslations } from 'next-intl';
 const initialValues: IVendorForm = {
   // name: '',
   email: '',
-  password: '',
-  confirmPassword: '',
   image: '',
   firstName: '',
   lastName: '',
@@ -115,7 +112,6 @@ export default function VendorAddForm({
             _id: isEditingVendor && vendorId ? vendorId : '',
             name: data.firstName + ' ' + data.lastName,
             email: data.email,
-            password: data.password,
             image: data.image,
             firstName: data.firstName,
             lastName: data.lastName,
@@ -291,47 +287,6 @@ export default function VendorAddForm({
                             borderColor: onErrorMessageMatcher(
                               'phoneNumber',
                               errors?.phoneNumber,
-                              VendorErrors
-                            )
-                              ? 'red'
-                              : '',
-                          }}
-                        />
-
-                        <CustomPasswordTextField
-                          autoComplete="new-password"
-                          placeholder={t('Password')}
-                          name="password"
-                          maxLength={20}
-                          value={values.password}
-                          showLabel={true}
-                          isLoading={loading}
-                          onChange={handleChange}
-                          style={{
-                            borderColor: onErrorMessageMatcher(
-                              'password',
-                              errors?.password,
-                              VendorErrors
-                            )
-                              ? 'red'
-                              : '',
-                          }}
-                        />
-
-                        <CustomPasswordTextField
-                          autoComplete="new-password"
-                          placeholder={t('Confirm Password')}
-                          name="confirmPassword"
-                          maxLength={20}
-                          showLabel={true}
-                          isLoading={loading}
-                          value={values.confirmPassword ?? ''}
-                          onChange={handleChange}
-                          feedback={false}
-                          style={{
-                            borderColor: onErrorMessageMatcher(
-                              'confirmPassword',
-                              errors?.confirmPassword,
                               VendorErrors
                             )
                               ? 'red'

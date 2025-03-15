@@ -16,7 +16,6 @@ export const CREATE_CATEGORY = gql`
             title
             price
             discounted
-            addons
           }
           image
           isActive
@@ -46,7 +45,6 @@ export const EDIT_CATEGORY = gql`
             title
             price
             discounted
-            addons
           }
           image
           isActive
@@ -76,7 +74,6 @@ export const DELETE_CATEGORY = gql`
             title
             price
             discounted
-            addons
           }
           image
           isActive

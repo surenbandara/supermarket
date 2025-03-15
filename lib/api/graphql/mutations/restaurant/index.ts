@@ -13,7 +13,6 @@ export const CREATE_RESTAURANT = gql`
       deliveryTime
       minimumOrder
       isActive
-      commissionRate
       tax
       owner {
         _id
@@ -128,7 +127,6 @@ export const DUPLICATE_RESTAURANT = gql`
       deliveryTime
       minimumOrder
       isActive
-      commissionRate
       tax
       owner {
         _id

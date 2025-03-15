@@ -18,7 +18,6 @@ import { onErrorMessageMatcher } from '@/lib/utils/methods/error';
 // Components
 import CustomButton from '@/lib/ui/useable-components/button';
 import CustomTextField from '@/lib/ui/useable-components/input-field';
-import CustomPasswordTextField from '@/lib/ui/useable-components/password-input-field';
 import CustomUploadImageComponent from '@/lib/ui/useable-components/upload/upload-image';
 
 // Schema
@@ -34,8 +33,6 @@ import { useTranslations } from 'next-intl';
 const initialValues: IVendorForm = {
   name: '',
   email: '',
-  password: '',
-  confirmPassword: '',
   image: '',
   phoneNumber: '',
   lastName: '',
@@ -74,7 +71,6 @@ export default function VendorUpdateForms() {
             _id: vendor?._id,
             name: data?.name ?? ' ',
             email: data?.email,
-            password: data?.password,
             image: data?.image,
             lastName: data?.lastName,
             phoneNumber: `${data.phoneNumber?.toString()}`,
@@ -119,8 +115,6 @@ export default function VendorUpdateForms() {
       setFormValues({
         name: vendor?.name ?? '',
         email: vendor?.email ?? '',
-        password: vendor?.plainPassword ?? '',
-        confirmPassword: vendor?.plainPassword ?? '',
         image: vendor?.image || '',
         phoneNumber: vendor?.phoneNumber ?? '',
         lastName: vendor?.lastName ?? '',
@@ -302,58 +296,7 @@ export default function VendorUpdateForms() {
                             </div>
                           </div>
 
-                          <div className="!mt-0 grid gap-4 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2">
-                            <div>
-                              <label className="mb-[4px] text-[14px] font-medium text-[#09090B]">
-                                {t('Current Password')}
-                              </label>
-                              <CustomPasswordTextField
-                                autoComplete="new-password"
-                                placeholder=""
-                                name="confirmPassword"
-                                maxLength={20}
-                                showLabel={true}
-                                value={values.confirmPassword ?? ''}
-                                onChange={handleChange}
-                                feedback={false}
-                                style={{
-                                  borderColor: onErrorMessageMatcher(
-                                    'confirmPassword',
-                                    errors?.confirmPassword,
-                                    VendorErrors
-                                  )
-                                    ? 'red'
-                                    : '',
-                                }}
-                                className="rounded-[6px] border-[#D1D5DB]"
-                              />
-                            </div>
-                            <div>
-                              <label className="mb-[4px] text-[14px] font-medium text-[#09090B]">
-                                {' '}
-                                {t('New Password')}
-                              </label>
-                              <CustomPasswordTextField
-                                autoComplete="new-password"
-                                placeholder=""
-                                name="password"
-                                maxLength={20}
-                                value={values.password}
-                                showLabel={true}
-                                style={{
-                                  borderColor: onErrorMessageMatcher(
-                                    'password',
-                                    errors?.password,
-                                    VendorErrors
-                                  )
-                                    ? 'red'
-                                    : '',
-                                }}
-                                onChange={handleChange}
-                                className="rounded-[6px] border-[#D1D5DB]"
-                              />
-                            </div>
-                          </div>
+                  
                           <div className="mt-4 flex justify-end">
                             <CustomButton
                               className="h-10 w-[65px] border-gray-300 bg-[#18181B] text-center text-[#FAFAFA]"

@@ -21,7 +21,6 @@ export const GET_RESTAURANTS = gql`
       deliveryTime
       minimumOrder
       isActive
-      commissionRate
       username
       tax
       owner {
@@ -47,7 +46,6 @@ export const GET_CLONED_RESTAURANTS = gql`
       deliveryTime
       minimumOrder
       isActive
-      commissionRate
       username
       tax
       owner {
