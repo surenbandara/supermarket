@@ -33,14 +33,16 @@ var __importStar = (this && this.__importStar) || (function () {
     };
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
-const handlers = __importStar(require("./handlers/products"));
+const productHandlers = __importStar(require("./handlers/products"));
+const userHandlers = __importStar(require("./handlers/user"));
 const authenticate = __importStar(require("./handlers/authenticator"));
 exports.default = {
     login: authenticate.login,
     register: authenticate.register,
-    listProducts: handlers.listProducts,
-    createNewProduct: handlers.createNewProduct,
-    updateProduct: handlers.updateProduct,
-    deleteProduct: handlers.deleteProduct,
-    filterProducts: handlers.filterProducts,
+    listProducts: productHandlers.listProducts,
+    createNewProduct: productHandlers.createNewProduct,
+    updateProduct: productHandlers.updateProduct,
+    deleteProduct: productHandlers.deleteProduct,
+    filterProducts: productHandlers.filterProducts,
+    listUsers: userHandlers.listUsers
 };

@@ -50,6 +50,6 @@ userSchema.set('toObject', {
     },
 });
 
-const UserModel = mongoose.model<IUser>("User", userSchema);
+const UserModel = mongoose.model<IUser>("Users", userSchema);
 
 export default UserModel;

@@ -49,3 +49,25 @@
 2025-03-09T20:09:07.021Z error: login:: Error Invalid token verifying token for user: lka@test.com
 2025-03-09T20:11:47.526Z error: login:: error: Performing an update on the path '_id' would modify the immutable field '_id'
 2025-03-09T20:18:03.197Z error: register:: User with email lka@test.csasom is not exist
+2025-03-14T23:54:27.529Z error: ERROR::apiValidationHandler:  Missing $ref pointer "#/components/schemas/Users". Token "Users" does not exist.
+2025-03-14T23:54:43.506Z error: ERROR::apiValidationHandler:  Missing $ref pointer "#/components/schemas/Users". Token "Users" does not exist.
+2025-03-14T23:55:29.466Z error: ERROR::apiValidationHandler:  Missing $ref pointer "#/components/schemas/Users". Token "Users" does not exist.
+2025-03-14T23:55:29.616Z error: ERROR::apiValidationHandler:  Missing $ref pointer "#/components/schemas/Users". Token "Users" does not exist.
+2025-03-15T00:02:47.858Z error: ERROR::apiValidationHandler:  Missing $ref pointer "#/components/schemas/Users". Token "Users" does not exist.
+2025-03-15T00:03:00.815Z error: ERROR::apiValidationHandler:  Missing $ref pointer "#/components/schemas/Users". Token "Users" does not exist.
+2025-03-15T00:03:07.004Z error: ERROR::apiValidationHandler:  Missing $ref pointer "#/components/schemas/Users". Token "Users" does not exist.
+2025-03-15T00:05:41.078Z error: ERROR::apiValidationHandler:  Missing $ref pointer "#/components/schemas/Users". Token "Users" does not exist.
+2025-03-15T00:05:58.097Z error: ERROR::apiValidationHandler:  Missing $ref pointer "#/components/schemas/Users". Token "Users" does not exist.
+2025-03-15T00:05:58.299Z error: ERROR::apiValidationHandler:  Missing $ref pointer "#/components/schemas/Users". Token "Users" does not exist.
+2025-03-15T00:06:44.261Z error: ERROR::apiValidationHandler:  Missing $ref pointer "#/components/schemas/Users". Token "Users" does not exist.
+2025-03-15T00:09:57.726Z error: ERROR::apiValidationHandler:  openapi.validator: args.apiDoc was invalid.  See the output.
+2025-03-15T00:11:28.446Z error: ERROR::apiValidationHandler:  openapi.validator: args.apiDoc was invalid.  See the output.
+2025-03-15T00:11:29.640Z error: ERROR::apiValidationHandler:  openapi.validator: args.apiDoc was invalid.  See the output.
+2025-03-15T00:13:01.651Z error: authorizeJWT:: User not authorized with role: user
+2025-03-15T00:13:58.041Z error: login:: Error Invalid token verifying token for user: systemAdmin@gmail.com
+2025-03-15T00:14:08.876Z error: login:: Error Invalid token verifying token for user: systemAdmin@gmail.com
+2025-03-15T00:14:18.774Z error: login:: error: Cannot read properties of null (reading 'toJSON')
+2025-03-15T00:14:30.976Z error: login:: error: Cannot read properties of null (reading 'toJSON')
+2025-03-15T00:15:27.088Z error: login:: error: Cannot read properties of null (reading 'toJSON')
+2025-03-15T00:18:28.272Z error: login:: error: Cannot read properties of null (reading 'toJSON')
+2025-03-15T00:21:05.787Z error: ERROR::apiValidationHandler:  /response/0/id must be integer

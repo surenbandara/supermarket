@@ -38,5 +38,5 @@ productSchema.set('toObject', {
         return ret;
     },
 });
-const ProductModel = mongoose_1.default.model("Product", productSchema);
+const ProductModel = mongoose_1.default.model("Products", productSchema);
 exports.default = ProductModel;

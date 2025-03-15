@@ -12,7 +12,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const User_1 = __importDefault(require("../models/User"));
+const user_1 = __importDefault(require("../models/user"));
 const auth_1 = require("../utils/auth");
 const logger_1 = __importDefault(require("../utils/logger"));
 const addAdminUser = () => __awaiter(void 0, void 0, void 0, function* () {
@@ -26,11 +26,11 @@ const addAdminUser = () => __awaiter(void 0, void 0, void 0, function* () {
         profilePic: "",
         emailVerified: false
     };
-    if (yield User_1.default.findOne({ email: adminUser.email })) {
+    if (yield user_1.default.findOne({ email: adminUser.email })) {
         logger_1.default.info("Admin user already exists");
         return;
     }
-    const user = new User_1.default(adminUser);
+    const user = new user_1.default(adminUser);
     yield user.save();
 });
 const starterPack = () => __awaiter(void 0, void 0, void 0, function* () {

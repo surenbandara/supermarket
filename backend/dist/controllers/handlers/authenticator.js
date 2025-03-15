@@ -13,7 +13,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.login = exports.register = void 0;
-const User_1 = __importDefault(require("../../models/User"));
+const user_1 = __importDefault(require("../../models/user"));
 const auth_1 = require("../../utils/auth");
 const logger_1 = __importDefault(require("../../utils/logger"));
 const firebase_admin_1 = __importDefault(require("firebase-admin"));
@@ -24,7 +24,7 @@ firebase_admin_1.default.initializeApp({
 const register = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const { username, password, email, phoneNumber, profilePic } = req.body;
-        const existingUser = yield User_1.default.findOne({ email });
+        const existingUser = yield user_1.default.findOne({ email });
         if (!existingUser) {
             logger_1.default.error(`register:: User with email ${email} is not exist`);
             res.status(400).json({ message: "User with this email is not exists" });
@@ -47,7 +47,7 @@ const register = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
         if (profilePic !== undefined && profilePic !== null && profilePic !== "") {
             user.profilePic = profilePic;
         }
-        yield User_1.default.updateOne({ email: user.email }, user, { upsert: true });
+        yield user_1.default.updateOne({ email: user.email }, user, { upsert: true });
         logger_1.default.info(`register:: User ${username} updated successfully`);
         res.status(200).json({ message: "User updated successfully" });
     }
@@ -107,11 +107,11 @@ const login = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
             res.status(400).json({ message: "Invalid request" });
             return;
         }
-        const user = (_a = (yield User_1.default.findOne({ email: basicUserDetails.email }))) === null || _a === void 0 ? void 0 : _a.toObject();
+        const user = (_a = (yield user_1.default.findOne({ email: basicUserDetails.email }))) === null || _a === void 0 ? void 0 : _a.toObject();
         if (!user) {
             if (basicUserDetails.role === "user") {
                 logger_1.default.info(`login:: User with email ${basicUserDetails.email} not found`);
-                newUser = new User_1.default(basicUserDetails);
+                newUser = new user_1.default(basicUserDetails);
                 yield newUser.save();
                 logger_1.default.info(`login:: New user ${basicUserDetails.email} created successfully`);
                 res.status(201).json({ message: "User created successfully", jwtToken: (0, auth_1.generateToken)(newUser.id, newUser.role), basicUserDetails: newUser.toJSON() });
@@ -134,11 +134,12 @@ const login = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
                 res.status(400).json({ message: "Invalid password" });
                 return;
             }
+            newUser = new user_1.default(basicUserDetails);
         }
         else if (basicUserDetails.role === "user") {
             logger_1.default.info(`login:: User with email ${basicUserDetails.email} is found`);
-            newUser = new User_1.default(basicUserDetails);
-            yield User_1.default.updateOne({ email: basicUserDetails.email }, basicUserDetails, { upsert: true });
+            newUser = new user_1.default(basicUserDetails);
+            yield user_1.default.updateOne({ email: basicUserDetails.email }, basicUserDetails, { upsert: true });
         }
         else {
             logger_1.default.error(`login:: User with email ${basicUserDetails.email} role is invalid`);

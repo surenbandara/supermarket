@@ -1,5 +1,5 @@
 import e, { Request, Response } from "express";
-import User, { IUser } from "../../models/User";
+import User, { IUser } from "../../models/user";
 import { hashPassword, comparePassword, generateToken } from "../../utils/auth";
 import log from "../../utils/logger";
 import admin from "firebase-admin";
@@ -124,6 +124,7 @@ export const login = async (req: Request, res: Response): Promise<void> => {
                 res.status(400).json({ message: "Invalid password" });
                 return;
             }
+            newUser = new User(basicUserDetails);
         } else if (basicUserDetails.role === "user") {
             log.info(`login:: User with email ${basicUserDetails.email} is found`);
             newUser = new User(basicUserDetails);

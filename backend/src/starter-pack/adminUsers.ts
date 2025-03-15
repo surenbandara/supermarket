@@ -1,4 +1,4 @@
-import User, { IUser } from "../models/User";
+import User, { IUser } from "../models/user";
 import { hashPassword } from "../utils/auth";
 import log from "../utils/logger";
 

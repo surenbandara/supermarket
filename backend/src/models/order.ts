@@ -1,32 +1,44 @@
-import { Category, Shop, AdditionalData, Status, PaymentMethod, PaymentStatus } from "./common";
+import { Category, Shop, AdditionalData, OrderStatus, PaymentMethod, PaymentStatus, PriceBag } from "./common";
 import mongoose from "mongoose";
 
-export interface IOder extends mongoose.Document {
+
+export interface Oder {
     id: number;
-    productList: Map<number, number>;
+    productList: PriceBag[];
     totalPrice: number;
-    bill: string;
-    staus: Status;
+    status: OrderStatus;
     paymentMethod: PaymentMethod;
     paymentStatus: PaymentStatus;
+    userId: string;
+    userLocation: string;
     discount?: number;
     timestamp: number;
-    additionalData?: AdditionalData;
+}
+export interface IOder extends mongoose.Document {
+    id: number;
+    bill: string;
+    totalPrice: number;
+    status: OrderStatus;
+    paymentMethod: PaymentMethod;
+    paymentStatus: PaymentStatus;
+    userId: string;
+    userLocation: string;
+    discount?: number;
+    timestamp: number;
 }
 
-const productSchema = new mongoose.Schema<IProduct>(
+const orderSchema = new mongoose.Schema<IOder>(
     {
         id: { type: Number, required: true },
-        name: { type: String, required: true },
-        price: { type: Number, required: true },
-        quantity: { type: Number, required: true },
-        category: { type: String, required: true },
-        brand: { type: String, required: true },
-        shop: { type: String, required: true },
-        image: { type: String, required: false },
+        bill: { type: String, required: true },
+        totalPrice: { type: Number, required: true },
+        status: { type: String, enum: Object.values(OrderStatus), required: true },
+        paymentMethod: { type: String, enum: Object.values(PaymentMethod), required: true },
+        paymentStatus: { type: String, enum: Object.values(PaymentStatus), required: true },
+        userId: { type: String, required: true },
+        userLocation: { type: String, required: true },
         discount: { type: Number, required: false },
-        timestamp: { type: Number, required: true },
-        additionalData: { type: Object, required: false },
+        timestamp: { type: Number, required: true }
     },
     {
         strict: true,
@@ -34,12 +46,12 @@ const productSchema = new mongoose.Schema<IProduct>(
     }
 );
 
-productSchema.index({ id: 1 }, { unique: true }); 
-productSchema.index({ category: 1 });
-productSchema.index({ price: 1 });
-productSchema.index({ timestamp: -1 });
+orderSchema.index({ id: 1 }, { unique: true });
+orderSchema.index({ status: 1 });
+orderSchema.index({ totalPrice: 1 });
+orderSchema.index({ timestamp: -1 });
 
-productSchema.set('toJSON', {
+orderSchema.set('toJSON', {
     transform: (doc, ret, options) => {
         delete ret._id;
         delete ret.__v;
@@ -47,7 +59,7 @@ productSchema.set('toJSON', {
     },
 });
 
-productSchema.set('toObject', {
+orderSchema.set('toObject', {
     transform: (doc, ret, options) => {
         delete ret._id;
         delete ret.__v;
@@ -55,6 +67,6 @@ productSchema.set('toObject', {
     },
 });
 
-const ProductModel = mongoose.model<IProduct>("Product", productSchema);
+const OrderModel = mongoose.model<IOder>("Orders", orderSchema);
 
-export default ProductModel;
+export default OrderModel;

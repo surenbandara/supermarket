@@ -1,0 +1,28 @@
+version: "3.8"
+
+services:
+  backend:
+    build: ./backend
+    container_name: backend-sp
+    ports:
+      - "3000:3000"
+    depends_on:
+      - mongodb
+    environment:
+      - MONGO_URI=mongodb://mongodb:27017/test-super-market-01
+    volumes:
+      - ./backend:/app
+      - /app/node_modules
+    restart: on-failure
+
+  mongodb:
+    image: mongodb/mongodb-community-server:latest
+    container_name: mongodb-sp
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongodb_data:/data/db
+    restart: always
+
+volumes:
+  mongodb_data:

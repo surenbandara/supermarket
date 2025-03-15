@@ -16,7 +16,7 @@ const mongoose_1 = __importDefault(require("mongoose"));
 const logger_1 = __importDefault(require("./logger"));
 const dotenv_1 = __importDefault(require("dotenv"));
 dotenv_1.default.config();
-const MONGO_URI = process.env.MONGO_URI || "mongodb://localhost:27017/test-super-market";
+const MONGO_URI = process.env.MONGO_URI || "mongodb://localhost:27017/test-super-market-01";
 const connectDB = () => __awaiter(void 0, void 0, void 0, function* () {
     try {
         logger_1.default.info(`MongoDB ::::: ${MONGO_URI}`);

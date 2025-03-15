@@ -333,3 +333,134 @@
 2025-03-10T02:30:37.140Z info: Server running on port 3000
 2025-03-10T02:30:37.152Z info: Admin user already exists
 2025-03-10T02:30:37.152Z info: starterPack added successfully
+2025-03-14T22:50:32.349Z info: MongoDB ::::: mongodb://mongodb:27017/test-super-market-01
+2025-03-14T22:50:32.548Z info: MongoDB connected
+2025-03-14T22:50:32.552Z info: Server running on port 3000
+2025-03-14T22:50:32.581Z info: starterPack added successfully
+2025-03-14T23:54:11.780Z info: MongoDB ::::: mongodb://mongodb:27017/test-super-market-01
+2025-03-14T23:54:11.880Z info: MongoDB connected
+2025-03-14T23:54:11.882Z info: Server running on port 3000
+2025-03-14T23:54:11.896Z info: Admin user already exists
+2025-03-14T23:54:11.896Z info: starterPack added successfully
+2025-03-14T23:54:27.529Z error: ERROR::apiValidationHandler:  Missing $ref pointer "#/components/schemas/Users". Token "Users" does not exist.
+2025-03-14T23:54:43.506Z error: ERROR::apiValidationHandler:  Missing $ref pointer "#/components/schemas/Users". Token "Users" does not exist.
+2025-03-14T23:55:29.466Z error: ERROR::apiValidationHandler:  Missing $ref pointer "#/components/schemas/Users". Token "Users" does not exist.
+2025-03-14T23:55:29.616Z error: ERROR::apiValidationHandler:  Missing $ref pointer "#/components/schemas/Users". Token "Users" does not exist.
+2025-03-15T00:02:47.858Z error: ERROR::apiValidationHandler:  Missing $ref pointer "#/components/schemas/Users". Token "Users" does not exist.
+2025-03-15T00:03:00.815Z error: ERROR::apiValidationHandler:  Missing $ref pointer "#/components/schemas/Users". Token "Users" does not exist.
+2025-03-15T00:03:07.004Z error: ERROR::apiValidationHandler:  Missing $ref pointer "#/components/schemas/Users". Token "Users" does not exist.
+2025-03-15T00:05:41.078Z error: ERROR::apiValidationHandler:  Missing $ref pointer "#/components/schemas/Users". Token "Users" does not exist.
+2025-03-15T00:05:58.097Z error: ERROR::apiValidationHandler:  Missing $ref pointer "#/components/schemas/Users". Token "Users" does not exist.
+2025-03-15T00:05:58.299Z error: ERROR::apiValidationHandler:  Missing $ref pointer "#/components/schemas/Users". Token "Users" does not exist.
+2025-03-15T00:06:44.261Z error: ERROR::apiValidationHandler:  Missing $ref pointer "#/components/schemas/Users". Token "Users" does not exist.
+2025-03-15T00:09:50.769Z info: MongoDB ::::: mongodb://mongodb:27017/test-super-market-01
+2025-03-15T00:09:51.045Z info: MongoDB connected
+2025-03-15T00:09:51.050Z info: Server running on port 3000
+2025-03-15T00:09:51.066Z info: Admin user already exists
+2025-03-15T00:09:51.067Z info: starterPack added successfully
+2025-03-15T00:09:57.726Z error: ERROR::apiValidationHandler:  openapi.validator: args.apiDoc was invalid.  See the output.
+2025-03-15T00:11:19.977Z info: MongoDB ::::: mongodb://mongodb:27017/test-super-market-01
+2025-03-15T00:11:20.177Z info: MongoDB connected
+2025-03-15T00:11:20.180Z info: Server running on port 3000
+2025-03-15T00:11:20.198Z info: Admin user already exists
+2025-03-15T00:11:20.198Z info: starterPack added successfully
+2025-03-15T00:11:28.446Z error: ERROR::apiValidationHandler:  openapi.validator: args.apiDoc was invalid.  See the output.
+2025-03-15T00:11:29.640Z error: ERROR::apiValidationHandler:  openapi.validator: args.apiDoc was invalid.  See the output.
+2025-03-15T00:12:22.461Z info: MongoDB ::::: mongodb://mongodb:27017/test-super-market-01
+2025-03-15T00:12:22.661Z info: MongoDB connected
+2025-03-15T00:12:22.663Z info: Server running on port 3000
+2025-03-15T00:12:22.680Z info: Admin user already exists
+2025-03-15T00:12:22.680Z info: starterPack added successfully
+2025-03-15T00:12:26.811Z info: login:: User with email lakarathalaka@gmail.com not found
+2025-03-15T00:12:26.822Z info: login:: New user lakarathalaka@gmail.com created successfully
+2025-03-15T00:13:01.651Z error: authorizeJWT:: User not authorized with role: user
+2025-03-15T00:13:58.041Z error: login:: Error Invalid token verifying token for user: systemAdmin@gmail.com
+2025-03-15T00:14:08.876Z error: login:: Error Invalid token verifying token for user: systemAdmin@gmail.com
+2025-03-15T00:14:18.774Z info: login:: User systemAdmin@gmail.com logged in successfully
+2025-03-15T00:14:18.774Z error: login:: error: Cannot read properties of null (reading 'toJSON')
+2025-03-15T00:14:30.975Z info: login:: User systemAdmin@gmail.com logged in successfully
+2025-03-15T00:14:30.976Z error: login:: error: Cannot read properties of null (reading 'toJSON')
+2025-03-15T00:15:27.088Z info: login:: User systemAdmin@gmail.com logged in successfully
+2025-03-15T00:15:27.088Z error: login:: error: Cannot read properties of null (reading 'toJSON')
+2025-03-15T00:18:28.272Z info: login:: User systemAdmin@gmail.com logged in successfully
+2025-03-15T00:18:28.272Z error: login:: error: Cannot read properties of null (reading 'toJSON')
+2025-03-15T00:20:24.751Z info: MongoDB ::::: mongodb://mongodb:27017/test-super-market-01
+2025-03-15T00:20:24.947Z info: MongoDB connected
+2025-03-15T00:20:24.949Z info: Server running on port 3000
+2025-03-15T00:20:24.961Z info: Admin user already exists
+2025-03-15T00:20:24.962Z info: starterPack added successfully
+2025-03-15T00:20:30.737Z info: login:: User systemAdmin@gmail.com logged in successfully
+2025-03-15T00:21:05.779Z info: listUsers::Users fetched successfully : {
+  id: '2025-03-14T22:50:32.348Z',
+  username: 'systemAdmin',
+  password: '$2b$10$JpINCtp5kSa2eCIjyN24AuEi2wGQZWPsapAk2MqnG8Jp6fbXQFat6',
+  role: 'admin',
+  email: 'systemAdmin@gmail.com',
+  phoneNumber: '',
+  profilePic: '',
+  emailVerified: false,
+  createdAt: 2025-03-14T22:50:32.561Z,
+  updatedAt: 2025-03-14T22:50:32.561Z
+},{
+  id: 'GUAMCTtadpRtL9jqzLSsoZGEXdJ2',
+  username: 'lucky ratha',
+  role: 'user',
+  email: 'lakarathalaka@gmail.com',
+  profilePic: 'https://lh3.googleusercontent.com/a/ACg8ocLblbq939-gVaDcS06NvF7V6e7KwR11_0Jpg42kKhFM3JQTPg=s96-c',
+  emailVerified: true,
+  createdAt: 2025-03-15T00:12:26.818Z,
+  updatedAt: 2025-03-15T00:12:26.818Z
+}
+2025-03-15T00:21:05.787Z error: ERROR::apiValidationHandler:  /response/0/id must be integer
+2025-03-15T00:21:44.123Z info: MongoDB ::::: mongodb://mongodb:27017/test-super-market-01
+2025-03-15T00:21:44.320Z info: MongoDB connected
+2025-03-15T00:21:44.323Z info: Server running on port 3000
+2025-03-15T00:21:44.336Z info: Admin user already exists
+2025-03-15T00:21:44.336Z info: starterPack added successfully
+2025-03-15T00:21:47.237Z info: listUsers::Users fetched successfully : {
+  id: '2025-03-14T22:50:32.348Z',
+  username: 'systemAdmin',
+  password: '$2b$10$JpINCtp5kSa2eCIjyN24AuEi2wGQZWPsapAk2MqnG8Jp6fbXQFat6',
+  role: 'admin',
+  email: 'systemAdmin@gmail.com',
+  phoneNumber: '',
+  profilePic: '',
+  emailVerified: false,
+  createdAt: 2025-03-14T22:50:32.561Z,
+  updatedAt: 2025-03-14T22:50:32.561Z
+},{
+  id: 'GUAMCTtadpRtL9jqzLSsoZGEXdJ2',
+  username: 'lucky ratha',
+  role: 'user',
+  email: 'lakarathalaka@gmail.com',
+  profilePic: 'https://lh3.googleusercontent.com/a/ACg8ocLblbq939-gVaDcS06NvF7V6e7KwR11_0Jpg42kKhFM3JQTPg=s96-c',
+  emailVerified: true,
+  createdAt: 2025-03-15T00:12:26.818Z,
+  updatedAt: 2025-03-15T00:12:26.818Z
+}
+2025-03-15T02:19:32.197Z info: MongoDB ::::: mongodb://mongodb:27017/test-super-market-01
+2025-03-15T02:19:32.392Z info: MongoDB connected
+2025-03-15T02:19:32.394Z info: Server running on port 3000
+2025-03-15T02:19:32.405Z info: Admin user already exists
+2025-03-15T02:19:32.405Z info: starterPack added successfully
+2025-03-15T02:19:41.932Z info: listUsers::Users fetched successfully : {
+  id: '2025-03-14T22:50:32.348Z',
+  username: 'systemAdmin',
+  password: '$2b$10$JpINCtp5kSa2eCIjyN24AuEi2wGQZWPsapAk2MqnG8Jp6fbXQFat6',
+  role: 'admin',
+  email: 'systemAdmin@gmail.com',
+  phoneNumber: '',
+  profilePic: '',
+  emailVerified: false,
+  createdAt: 2025-03-14T22:50:32.561Z,
+  updatedAt: 2025-03-14T22:50:32.561Z
+},{
+  id: 'GUAMCTtadpRtL9jqzLSsoZGEXdJ2',
+  username: 'lucky ratha',
+  role: 'user',
+  email: 'lakarathalaka@gmail.com',
+  profilePic: 'https://lh3.googleusercontent.com/a/ACg8ocLblbq939-gVaDcS06NvF7V6e7KwR11_0Jpg42kKhFM3JQTPg=s96-c',
+  emailVerified: true,
+  createdAt: 2025-03-15T00:12:26.818Z,
+  updatedAt: 2025-03-15T00:12:26.818Z
+}

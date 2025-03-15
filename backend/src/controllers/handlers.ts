@@ -1,15 +1,17 @@
 import { Request, Response } from "express";
-import * as handlers from "./handlers/products";
+import * as productHandlers from "./handlers/products";
+import * as userHandlers from "./handlers/user";
 import * as authenticate from "./handlers/authenticator";
 
 export default {
 
     login:authenticate.login,
     register:authenticate.register,
-    listProducts: handlers.listProducts,
-    createNewProduct: handlers.createNewProduct,
-    updateProduct: handlers.updateProduct,
-    deleteProduct: handlers.deleteProduct,
-    filterProducts: handlers.filterProducts,
+    listProducts: productHandlers.listProducts,
+    createNewProduct: productHandlers.createNewProduct,
+    updateProduct: productHandlers.updateProduct,
+    deleteProduct: productHandlers.deleteProduct,
+    filterProducts: productHandlers.filterProducts,
+    listUsers: userHandlers.listUsers
 
 }
