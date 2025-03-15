@@ -630,3 +630,104 @@
 2025-03-15T03:39:14.791Z info: listUsers::Users fetched successfully: [{"id":"GUAMCTtadpRtL9jqzLSsoZGEXdJ2","username":"lucky ratha","role":"user","email":"lakarathalaka@gmail.com","profilePic":"https://lh3.googleusercontent.com/a/ACg8ocLblbq939-gVaDcS06NvF7V6e7KwR11_0Jpg42kKhFM3JQTPg=s96-c","createdAt":"2025-03-15T00:12:26.818Z","updatedAt":"2025-03-15T00:12:26.818Z"}]
 2025-03-15T03:39:21.240Z info: listUsers::Users fetched successfully: [{"id":"2025-03-14T22:50:32.348Z","username":"systemAdmin","role":"admin","email":"systemAdmin@gmail.com","phoneNumber":"","profilePic":"","createdAt":"2025-03-14T22:50:32.561Z","updatedAt":"2025-03-14T22:50:32.561Z"}]
 2025-03-15T03:39:28.486Z info: listUsers::Users fetched successfully: [{"id":"2025-03-14T22:50:32.348Z","username":"systemAdmin","role":"admin","email":"systemAdmin@gmail.com","phoneNumber":"","profilePic":"","createdAt":"2025-03-14T22:50:32.561Z","updatedAt":"2025-03-14T22:50:32.561Z"},{"id":"GUAMCTtadpRtL9jqzLSsoZGEXdJ2","username":"lucky ratha","role":"user","email":"lakarathalaka@gmail.com","profilePic":"https://lh3.googleusercontent.com/a/ACg8ocLblbq939-gVaDcS06NvF7V6e7KwR11_0Jpg42kKhFM3JQTPg=s96-c","createdAt":"2025-03-15T00:12:26.818Z","updatedAt":"2025-03-15T00:12:26.818Z"}]
+2025-03-15T04:07:07.384Z info: MongoDB ::::: mongodb://mongodb:27017/test-super-market-01
+2025-03-15T04:07:07.595Z info: MongoDB connected
+2025-03-15T04:07:07.598Z info: Server running on port 3000
+2025-03-15T04:07:07.612Z info: Admin user already exists
+2025-03-15T04:07:07.612Z info: starterPack added successfully
+2025-03-15T04:08:21.235Z error: ERROR::operationHandler: No handler found for this operationId 
+2025-03-15T04:10:40.773Z info: MongoDB ::::: mongodb://mongodb:27017/test-super-market-01
+2025-03-15T04:10:40.973Z info: MongoDB connected
+2025-03-15T04:10:40.975Z info: Server running on port 3000
+2025-03-15T04:10:40.986Z info: Admin user already exists
+2025-03-15T04:10:40.986Z info: starterPack added successfully
+2025-03-15T04:10:44.603Z info: listVendors::Vendors fetched successfully : 
+2025-03-15T04:16:38.460Z info: MongoDB ::::: mongodb://mongodb:27017/test-super-market-01
+2025-03-15T04:16:38.658Z info: MongoDB connected
+2025-03-15T04:16:38.661Z info: Server running on port 3000
+2025-03-15T04:16:38.672Z info: Admin user already exists
+2025-03-15T04:16:38.672Z info: starterPack added successfully
+2025-03-15T04:16:59.008Z info: listVendors::Vendors fetched successfully : 
+2025-03-15T04:17:43.688Z info: createNewVendor::Vendor created successfully : [object Object]
+2025-03-15T04:18:24.939Z error: createNewVendor:: MongoServerError: E11000 duplicate key error collection: test-super-market-01.vendors index: id_1 dup key: { id: null }
+2025-03-15T04:20:05.532Z error: createNewVendor:: MongoServerError: E11000 duplicate key error collection: test-super-market-01.vendors index: id_1 dup key: { id: null }
+2025-03-15T04:21:24.490Z info: MongoDB ::::: mongodb://mongodb:27017/test-super-market-01
+2025-03-15T04:21:24.690Z info: MongoDB connected
+2025-03-15T04:21:24.692Z info: Server running on port 3000
+2025-03-15T04:21:24.703Z info: Admin user already exists
+2025-03-15T04:21:24.703Z info: starterPack added successfully
+2025-03-15T04:21:42.055Z info: listVendors::Vendors fetched successfully : [{"name":"lakshan","email":"string","shopList":["lucky01","luckystores"],"image":"string","timestamp":1213131,"additionalData":"string","createdAt":"2025-03-15T04:17:43.680Z","updatedAt":"2025-03-15T04:17:43.680Z"}]
+2025-03-15T04:21:51.441Z info: listVendors::Vendors fetched successfully : [{"name":"lakshan","email":"string","shopList":["lucky01","luckystores"],"image":"string","timestamp":1213131,"additionalData":"string","createdAt":"2025-03-15T04:17:43.680Z","updatedAt":"2025-03-15T04:17:43.680Z"}]
+2025-03-15T04:22:24.517Z info: MongoDB ::::: mongodb://mongodb:27017/test-super-market-02
+2025-03-15T04:22:24.718Z info: MongoDB connected
+2025-03-15T04:22:24.721Z info: Server running on port 3000
+2025-03-15T04:22:24.810Z info: starterPack added successfully
+2025-03-15T04:23:19.180Z info: listVendors::Vendors fetched successfully : []
+2025-03-15T04:23:47.330Z info: createNewVendor::Vendor created successfully : {"name":"lakshan","email":"string","shopList":["sd01","st02"],"image":"string","timestamp":120,"additionalData":"string","createdAt":"2025-03-15T04:23:47.328Z","updatedAt":"2025-03-15T04:23:47.328Z"}
+2025-03-15T04:23:59.612Z error: createNewVendor:: MongoServerError: E11000 duplicate key error collection: test-super-market-02.vendors index: name_1 dup key: { name: "lakshan" }
+2025-03-15T04:27:24.050Z info: MongoDB ::::: mongodb://mongodb:27017/test-super-market-02
+2025-03-15T04:27:24.252Z info: MongoDB connected
+2025-03-15T04:27:24.254Z info: Server running on port 3000
+2025-03-15T04:27:24.267Z info: Admin user already exists
+2025-03-15T04:27:24.267Z info: starterPack added successfully
+2025-03-15T04:27:26.556Z error: createNewVendor:: MongoServerError: E11000 duplicate key error collection: test-super-market-02.vendors index: name_1 dup key: { name: "lakshan" }
+2025-03-15T04:27:44.561Z error: createNewVendor:: MongoServerError: E11000 duplicate key error collection: test-super-market-02.vendors index: name_1 dup key: { name: "lakshan" }
+2025-03-15T04:27:46.036Z error: createNewVendor:: MongoServerError: E11000 duplicate key error collection: test-super-market-02.vendors index: name_1 dup key: { name: "lakshan" }
+2025-03-15T04:27:47.474Z error: createNewVendor:: MongoServerError: E11000 duplicate key error collection: test-super-market-02.vendors index: name_1 dup key: { name: "lakshan" }
+2025-03-15T04:28:29.684Z error: ERROR::apiValidationHandler:  Unexpected number in JSON at position 95
+2025-03-15T04:28:46.956Z error: updateVendor::Vendor not found : undefined
+2025-03-15T04:29:03.774Z error: updateVendor::Vendor not found : undefined
+2025-03-15T04:30:03.772Z info: MongoDB ::::: mongodb://mongodb:27017/test-super-market-02
+2025-03-15T04:30:04.016Z info: MongoDB connected
+2025-03-15T04:30:04.018Z info: Server running on port 3000
+2025-03-15T04:30:04.035Z info: Admin user already exists
+2025-03-15T04:30:04.036Z info: starterPack added successfully
+2025-03-15T04:30:08.171Z info: updateVendor::Vendor updated successfully : {
+  name: 'lakshan',
+  email: 'string2',
+  shopList: [ 'string' ],
+  image: 'string',
+  timestamp: 2,
+  additionalData: 'string',
+  createdAt: 2025-03-15T04:23:47.328Z,
+  updatedAt: 2025-03-15T04:30:08.162Z
+}
+2025-03-15T04:30:25.312Z info: updateVendor::Vendor updated successfully : {
+  name: 'lakshan',
+  email: 'string2',
+  shopList: [ 'string' ],
+  image: 'string',
+  timestamp: 2,
+  additionalData: 'string',
+  createdAt: 2025-03-15T04:23:47.328Z,
+  updatedAt: 2025-03-15T04:30:25.307Z
+}
+2025-03-15T04:30:47.744Z info: createNewVendor::Vendor created successfully : {"name":"suren","email":"string","shopList":["sd01","st02"],"image":"string","timestamp":120,"additionalData":"string","createdAt":"2025-03-15T04:30:47.737Z","updatedAt":"2025-03-15T04:30:47.737Z"}
+2025-03-15T04:31:06.211Z error: createNewVendor:: MongoServerError: E11000 duplicate key error collection: test-super-market-02.vendors index: email_1 dup key: { email: "string" }
+2025-03-15T04:31:14.812Z info: createNewVendor::Vendor created successfully : {"name":"suren1","email":"string1","shopList":["sd01","st02"],"timestamp":1203,"createdAt":"2025-03-15T04:31:14.810Z","updatedAt":"2025-03-15T04:31:14.810Z"}
+2025-03-15T04:31:40.018Z error: createNewVendor:: MongoServerError: E11000 duplicate key error collection: test-super-market-02.vendors index: name_1 dup key: { name: "suren1" }
+2025-03-15T04:31:56.465Z error: ERROR::apiValidationHandler:  request/body must have required property 'shopList'
+2025-03-15T04:32:02.655Z error: updateVendor::Vendor not found : null
+2025-03-15T04:32:13.801Z info: updateVendor::Vendor updated successfully : {
+  name: 'suren1',
+  email: 'string12',
+  shopList: [ 'string' ],
+  timestamp: 2,
+  createdAt: 2025-03-15T04:31:14.810Z,
+  updatedAt: 2025-03-15T04:32:13.798Z
+}
+2025-03-15T04:32:29.545Z error: deleteVendor::Vendor not found : undefined
+2025-03-15T04:32:36.688Z error: deleteVendor::Vendor not found : undefined
+2025-03-15T04:33:29.896Z info: MongoDB ::::: mongodb://mongodb:27017/test-super-market-02
+2025-03-15T04:33:30.114Z info: MongoDB connected
+2025-03-15T04:33:30.116Z info: Server running on port 3000
+2025-03-15T04:33:30.125Z info: Admin user already exists
+2025-03-15T04:33:30.125Z info: starterPack added successfully
+2025-03-15T04:33:33.368Z info: deleteVendor::Vendor deleted successfully : {
+  name: 'suren1',
+  email: 'string12',
+  shopList: [ 'string' ],
+  timestamp: 2,
+  createdAt: 2025-03-15T04:31:14.810Z,
+  updatedAt: 2025-03-15T04:32:13.798Z
+}

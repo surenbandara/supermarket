@@ -1,4 +1,4 @@
-import e, { Request, Response, NextFunction } from 'express';
+import { Request, Response, NextFunction } from 'express';
 import ProductModel, { IProduct } from '../../models/product';
 import { Category, Shop } from '../../models/common';
 import log from '../../utils/logger';

@@ -77,3 +77,20 @@
 2025-03-15T03:34:12.858Z error: ERROR::apiValidationHandler:  Authorization header required
 2025-03-15T03:34:50.121Z error: ERROR::apiValidationHandler:  Unknown query parameter 'admin'
 2025-03-15T03:35:08.491Z error: ERROR::apiValidationHandler:  request/query/role must be equal to one of the allowed values: admin, user
+2025-03-15T04:08:21.235Z error: ERROR::operationHandler: No handler found for this operationId 
+2025-03-15T04:18:24.939Z error: createNewVendor:: MongoServerError: E11000 duplicate key error collection: test-super-market-01.vendors index: id_1 dup key: { id: null }
+2025-03-15T04:20:05.532Z error: createNewVendor:: MongoServerError: E11000 duplicate key error collection: test-super-market-01.vendors index: id_1 dup key: { id: null }
+2025-03-15T04:23:59.612Z error: createNewVendor:: MongoServerError: E11000 duplicate key error collection: test-super-market-02.vendors index: name_1 dup key: { name: "lakshan" }
+2025-03-15T04:27:26.556Z error: createNewVendor:: MongoServerError: E11000 duplicate key error collection: test-super-market-02.vendors index: name_1 dup key: { name: "lakshan" }
+2025-03-15T04:27:44.561Z error: createNewVendor:: MongoServerError: E11000 duplicate key error collection: test-super-market-02.vendors index: name_1 dup key: { name: "lakshan" }
+2025-03-15T04:27:46.036Z error: createNewVendor:: MongoServerError: E11000 duplicate key error collection: test-super-market-02.vendors index: name_1 dup key: { name: "lakshan" }
+2025-03-15T04:27:47.474Z error: createNewVendor:: MongoServerError: E11000 duplicate key error collection: test-super-market-02.vendors index: name_1 dup key: { name: "lakshan" }
+2025-03-15T04:28:29.684Z error: ERROR::apiValidationHandler:  Unexpected number in JSON at position 95
+2025-03-15T04:28:46.956Z error: updateVendor::Vendor not found : undefined
+2025-03-15T04:29:03.774Z error: updateVendor::Vendor not found : undefined
+2025-03-15T04:31:06.211Z error: createNewVendor:: MongoServerError: E11000 duplicate key error collection: test-super-market-02.vendors index: email_1 dup key: { email: "string" }
+2025-03-15T04:31:40.018Z error: createNewVendor:: MongoServerError: E11000 duplicate key error collection: test-super-market-02.vendors index: name_1 dup key: { name: "suren1" }
+2025-03-15T04:31:56.465Z error: ERROR::apiValidationHandler:  request/body must have required property 'shopList'
+2025-03-15T04:32:02.655Z error: updateVendor::Vendor not found : null
+2025-03-15T04:32:29.545Z error: deleteVendor::Vendor not found : undefined
+2025-03-15T04:32:36.688Z error: deleteVendor::Vendor not found : undefined

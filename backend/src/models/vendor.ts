@@ -2,7 +2,7 @@ import { Category, Shop, AdditionalData } from "./common";
 import mongoose from "mongoose";
 
 export interface IVendor extends mongoose.Document {
-    id: number;
+    // id: number;
     name: string;
     email: string;
     shopList: string[];
@@ -12,7 +12,7 @@ export interface IVendor extends mongoose.Document {
 }
 const vendorSchema = new mongoose.Schema<IVendor>(
     {
-        id: { type: Number, required: true },
+        // id: { type: Number, required: true },
         name: { type: String, required: true },
         email: { type: String, required: true },
         shopList: { type: [String], required: true },
@@ -26,7 +26,7 @@ const vendorSchema = new mongoose.Schema<IVendor>(
     }
 );
 
-vendorSchema.index({ id: 1 }, { unique: true });
+vendorSchema.index({ name: 1 }, { unique: true });
 vendorSchema.index({ email: 1 }, { unique: true });
 vendorSchema.index({ timestamp: -1 });
 

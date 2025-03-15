@@ -2,7 +2,7 @@ import { Category, Shop, AdditionalData } from "./common";
 import mongoose from "mongoose";
 
 export interface IShop extends mongoose.Document {
-    id: number;
+    // id: number;
     name: string;
     vendorId: number;
     productsList : number[];
@@ -13,7 +13,7 @@ export interface IShop extends mongoose.Document {
 
 const shopSchema = new mongoose.Schema<IShop>(
     {
-        id: { type: Number, required: true },
+        // id: { type: Number, required: true },
         name: { type: String, required: true },
         vendorId: { type: Number, required: true },
         productsList: { type: [Number], required: true },
@@ -27,7 +27,7 @@ const shopSchema = new mongoose.Schema<IShop>(
     }
 );
 
-shopSchema.index({ id: 1 }, { unique: true });
+shopSchema.index({ name: 1 }, { unique: true });
 shopSchema.index({ vendorId: 1 });
 shopSchema.index({ timestamp: -1 });
 
