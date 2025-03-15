@@ -1,0 +1,750 @@
+openapi: 3.0.0  
+info:
+  title: Super-market API
+  version: 1.0.0
+  description: API for the backend
+paths:
+  /login:
+    post:
+      summary: Login
+      operationId: login
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - email
+              oneOf:
+                - required: [password]
+                - required: [token]
+              properties:
+                email:
+                  type: string
+                password:
+                  type: string
+                token:
+                  type: string
+      responses:
+        '200':
+          description: Logged in
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                  jwtToken:
+                    type: string
+        '201':
+          description: Created new user
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                  jwtToken:
+                    type: string
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+        '500':
+          description: Failed to login
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+  /register:
+    post:
+      summary: Register
+      operationId: register
+      security:
+        - BearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - email
+              properties:
+                username:
+                  type: string
+                password:
+                  type: string
+                email:
+                  type: string
+                phoneNumber:
+                  type: string
+                profilePic:
+                  type: string
+      responses:
+        '200':
+          description: updated
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+        '500':
+          description: Failed to update
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+  /users:
+    get:
+      summary: Get all users
+      operationId: listUsers
+      security:
+        - BearerAuth: []
+      x-roles: ['admin']
+      parameters:
+        - name: role
+          in: query
+          description: Filter users by role
+          required: false
+          schema:
+            type: string
+            enum:
+              - admin
+              - user
+      responses:
+        '200':
+          description: A list of users
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/User'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+        '404':
+          description: Not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+  /product:
+    post:
+      summary: Create a new product
+      operationId: createNewProduct
+      security:
+        - BearerAuth: []
+      x-roles: ['admin']
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Product'
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Product'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+        '500':
+          description: Failed to create
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+    put:
+      summary: Update a product
+      operationId: updateProduct
+      security:
+        - BearerAuth: []
+      x-roles: ['admin']
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Product'
+      responses:
+        '200':
+          description: Updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Product'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+        '404':
+          description: Not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+        '500':
+          description: Failed to update
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+    delete:
+      summary: Delete a product
+      operationId: deleteProduct
+      security:
+        - BearerAuth: []
+      x-roles: ['admin']
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                id:
+                  type: integer
+      responses:
+        '200':
+          description: Deleted
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+        '404':
+          description: Not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+        '500':
+          description: Failed to delete
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+  /products:
+    get:
+      summary: Get all products
+      operationId: listProducts
+      security:
+        - BearerAuth: []
+      x-roles: ['admin', 'user']
+      responses:
+        '200':
+          description: A list of products
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Product'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+        '404':
+          description: Not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+    post:
+      summary: Filter products
+      operationId: filterProducts
+      security:
+        - BearerAuth: []
+      x-roles: ['admin', 'user']
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                priceRange:
+                  type: object
+                  properties:
+                    maxPrice:
+                      type: number
+                      nullable: true
+                    lowPrice:
+                      type: number
+                      nullable: true
+                category:
+                  type: array
+                  items:
+                    type: string
+                    enum:
+                      - fruits
+                      - vegetables
+                      - bakery
+                      - electronics
+                      - other
+                discount:
+                  type: boolean
+                name:
+                  type: string
+                brand:
+                  type: string
+                id:
+                  type: integer
+                shop:
+                  type: string
+                  enum:
+                    - Diwulkumbura-Supermarket
+                    - Bounty-Restaurant
+                timestamp:
+                  type: integer
+      responses:
+        '200':
+          description: A list of filtered products
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Product'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+        '404':
+          description: Not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+        '500':
+          description: Failed to filter
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+  /vendor:
+    get:
+      summary: Get Vendors
+      operationId: listVendors
+      security:
+        - BearerAuth: []
+      x-roles: ['admin']
+      parameters:
+        - name: name
+          in: query
+          description: Filter vendor by name
+          required: false
+          schema:
+            type: string
+      responses:
+        '200':
+          description: A list of vendors
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Vendor'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+        '404':
+          description: Not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+    post:
+      summary: Create a new vendor
+      operationId: createNewVendor
+      security:
+        - BearerAuth: []
+      x-roles: ['admin']
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Vendor'
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Vendor'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+        '500':
+          description: Failed to create
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+    put:
+      summary: Update a Vendor
+      operationId: updateVendor
+      security:
+        - BearerAuth: []
+      x-roles: ['admin']
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Vendor'
+      responses:
+        '200':
+          description: Updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Vendor'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+        '404':
+          description: Not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+        '500':
+          description: Failed to update
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+    delete:
+      summary: Delete a vendor
+      operationId: deleteVendor
+      security:
+        - BearerAuth: []
+      x-roles: ['admin']
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+      responses:
+        '200':
+          description: Deleted
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+        '404':
+          description: Not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+        '500':
+          description: Failed to delete
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+components:
+  securitySchemes:
+      BearerAuth:
+        type: http
+        scheme: bearer
+        bearerFormat: JWT 
+  schemas:
+    Product:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        price:
+          type: number
+        quantity:
+          type: integer
+        category:
+          type: string
+          enum:
+            - fruits
+            - food
+            - vegetables
+            - bakery
+            - electronics
+            - other
+        brand:
+          type: string
+        shop:
+          type: string
+          enum:
+            - Diwulkumbura-Supermarket
+            - Bounty-Restaurant
+        image:
+          type: string
+        discount:
+          type: number
+        timestamp:
+          type: integer
+        additionalData:
+          type: object
+          properties:
+            color:
+              type: string
+            expirationDate:
+              type: number
+            size:
+              type: string
+            description:
+              type: string
+      required:
+        - id
+        - name
+        - price
+        - quantity
+        - category
+        - brand
+        - shop
+    User:
+      type: object
+      properties:
+        id:
+          type: string
+        username:
+          type: string
+        role:
+          type: string
+        email:
+          type: string
+        phoneNumber:
+          type: string
+        profilePic:
+          type: string
+      required:
+        - id
+        - username
+        - email
+        - role
+    Vendor:
+      type: object
+      properties:
+        name:
+          type: string
+        email:
+          type: string
+        shopList:
+          type: array
+          items:
+            type: string
+        timestamp:
+          type: number
+        image:
+          type: string
+        additionalData:
+          type: string
+      required:
+        - name
+        - email
+        - shopList
+        - timestamp

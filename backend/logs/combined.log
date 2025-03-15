@@ -1,0 +1,733 @@
+2025-03-09T18:21:42.509Z info: Server running on port 3000
+2025-03-09T18:21:45.255Z info: Server running on port 3000
+2025-03-09T18:21:48.013Z info: Server running on port 3000
+2025-03-09T18:24:02.469Z info: MongoDB ::::: mongodb://mongodb:27017/test-super-market-01
+2025-03-09T18:24:05.124Z info: MongoDB ::::: mongodb://mongodb:27017/test-super-market-01
+2025-03-09T18:24:07.841Z info: MongoDB ::::: mongodb://mongodb:27017/test-super-market-01
+2025-03-09T18:24:10.833Z info: MongoDB ::::: mongodb://mongodb:27017/test-super-market-01
+2025-03-09T18:24:14.116Z info: MongoDB ::::: mongodb://mongodb:27017/test-super-market-01
+2025-03-09T18:24:18.273Z info: MongoDB ::::: mongodb://mongodb:27017/test-super-market-01
+2025-03-09T18:24:52.254Z info: MongoDB ::::: mongodb://mongodb:27017/test-super-market-01
+2025-03-09T18:24:52.452Z info: MongoDB connected
+2025-03-09T18:24:52.454Z info: Server running on port 3000
+2025-03-09T18:25:43.944Z error: login:: admin with email undefined is not existing
+2025-03-09T18:26:33.514Z error: login:: admin with email undefined is not existing
+2025-03-09T18:26:34.678Z error: login:: admin with email undefined is not existing
+2025-03-09T18:28:46.899Z info: MongoDB ::::: mongodb://mongodb:27017/test-super-market-01
+2025-03-09T18:28:47.101Z info: MongoDB connected
+2025-03-09T18:28:47.103Z info: Server running on port 3000
+2025-03-09T18:28:49.561Z info: MongoDB ::::: mongodb://mongodb:27017/test-super-market-01
+2025-03-09T18:28:49.768Z info: MongoDB connected
+2025-03-09T18:28:49.770Z info: Server running on port 3000
+2025-03-09T18:28:52.502Z info: MongoDB ::::: mongodb://mongodb:27017/test-super-market-01
+2025-03-09T18:28:52.718Z info: MongoDB connected
+2025-03-09T18:28:52.719Z info: Server running on port 3000
+2025-03-09T18:28:55.416Z info: MongoDB ::::: mongodb://mongodb:27017/test-super-market-01
+2025-03-09T18:28:55.620Z info: MongoDB connected
+2025-03-09T18:28:55.621Z info: Server running on port 3000
+2025-03-09T18:28:58.825Z info: MongoDB ::::: mongodb://mongodb:27017/test-super-market-01
+2025-03-09T18:28:59.030Z info: MongoDB connected
+2025-03-09T18:28:59.032Z info: Server running on port 3000
+2025-03-09T18:29:02.917Z info: MongoDB ::::: mongodb://mongodb:27017/test-super-market-01
+2025-03-09T18:29:03.116Z info: MongoDB connected
+2025-03-09T18:29:03.118Z info: Server running on port 3000
+2025-03-09T18:29:08.748Z info: MongoDB ::::: mongodb://mongodb:27017/test-super-market-01
+2025-03-09T18:29:08.951Z info: MongoDB connected
+2025-03-09T18:29:08.953Z info: Server running on port 3000
+2025-03-09T18:30:50.212Z info: MongoDB ::::: mongodb://mongodb:27017/test-super-market-01
+2025-03-09T18:30:50.423Z info: MongoDB connected
+2025-03-09T18:30:50.425Z info: Server running on port 3000
+2025-03-09T18:30:50.442Z info: Admin user already exists
+2025-03-09T18:30:50.442Z info: starterPack added successfully
+2025-03-09T18:30:56.349Z error: login:: admin with email undefined is not existing
+2025-03-09T18:31:29.063Z error: login:: admin with email undefined is not existing
+2025-03-09T18:31:31.027Z error: login:: admin with email undefined is not existing
+2025-03-09T18:33:31.355Z info: MongoDB ::::: mongodb://mongodb:27017/test-super-market-01
+2025-03-09T18:33:31.553Z info: MongoDB connected
+2025-03-09T18:33:31.556Z info: Server running on port 3000
+2025-03-09T18:33:31.565Z info: Admin user already exists
+2025-03-09T18:33:31.565Z info: starterPack added successfully
+2025-03-09T18:33:37.634Z info: login:: User with email undefined is undefined trying to admin@123login
+2025-03-09T18:33:37.637Z error: login:: admin with email undefined is not existing
+2025-03-09T18:36:28.519Z info: MongoDB ::::: mongodb://mongodb:27017/test-super-market-01
+2025-03-09T18:36:28.760Z info: MongoDB connected
+2025-03-09T18:36:28.762Z info: Server running on port 3000
+2025-03-09T18:36:28.774Z info: Admin user already exists
+2025-03-09T18:36:28.774Z info: starterPack added successfully
+2025-03-09T18:36:31.475Z info: login:: User with email systemAdmin@gmail.com is undefined trying to admin@123login
+2025-03-09T18:36:31.548Z info: login:: User systemAdmin@gmail.com logged in successfully
+2025-03-09T18:41:08.160Z info: MongoDB ::::: mongodb://mongodb:27017/test-super-market-01
+2025-03-09T18:41:08.380Z info: MongoDB connected
+2025-03-09T18:41:08.382Z info: Server running on port 3000
+2025-03-09T18:41:08.396Z info: Admin user already exists
+2025-03-09T18:41:08.396Z info: starterPack added successfully
+2025-03-09T18:41:15.767Z error: ERROR::apiValidationHandler:  Expected double-quoted property name in JSON at position 65
+2025-03-09T18:41:25.652Z info: login:: User with email systemAdmin@gmail.com is undefined trying to admin@123login
+2025-03-09T18:41:25.736Z info: login:: User systemAdmin@gmail.com logged in successfully
+2025-03-09T18:41:32.203Z error: ERROR::apiValidationHandler:  request/body must have required property 'password', request/body must have required property 'token', request/body must match exactly one schema in oneOf
+2025-03-09T18:42:15.562Z info: login:: User with email systemAdmin@gmail.com is admin@123 trying to undefinedlogin
+2025-03-09T18:42:15.627Z error: login:: Error Error: Decoding Firebase ID token failed. Make sure you passed the entire string JWT which represents an ID token. See https://firebase.google.com/docs/auth/admin/verify-id-tokens for details on how to retrieve an ID token. verifying token for user: systemAdmin@gmail.com
+2025-03-09T18:42:15.629Z error: login:: admin with email undefined is not existing
+2025-03-09T18:42:18.367Z info: MongoDB ::::: mongodb://mongodb:27017/test-super-market-01
+2025-03-09T18:42:18.570Z info: MongoDB connected
+2025-03-09T18:42:18.574Z info: Server running on port 3000
+2025-03-09T18:42:18.587Z info: Admin user already exists
+2025-03-09T18:42:18.588Z info: starterPack added successfully
+2025-03-09T18:43:43.648Z info: login:: User with email systemAdmin@gmail.com is admin@123 trying to undefinedlogin
+2025-03-09T18:43:43.694Z error: login:: Error Error: Decoding Firebase ID token failed. Make sure you passed the entire string JWT which represents an ID token. See https://firebase.google.com/docs/auth/admin/verify-id-tokens for details on how to retrieve an ID token. verifying token for user: systemAdmin@gmail.com
+2025-03-09T18:43:43.704Z error: login:: admin with email undefined is not existing
+2025-03-09T18:43:46.341Z info: MongoDB ::::: mongodb://mongodb:27017/test-super-market-01
+2025-03-09T18:43:46.536Z info: MongoDB connected
+2025-03-09T18:43:46.539Z info: Server running on port 3000
+2025-03-09T18:43:46.550Z info: Admin user already exists
+2025-03-09T18:43:46.550Z info: starterPack added successfully
+2025-03-09T18:49:44.923Z info: MongoDB ::::: mongodb://mongodb:27017/test-super-market-01
+2025-03-09T18:49:45.120Z info: MongoDB connected
+2025-03-09T18:49:45.123Z info: Server running on port 3000
+2025-03-09T18:49:45.146Z info: Admin user already exists
+2025-03-09T18:49:45.146Z info: starterPack added successfully
+2025-03-09T18:49:50.720Z error: login:: Error Error: Decoding Firebase ID token failed. Make sure you passed the entire string JWT which represents an ID token. See https://firebase.google.com/docs/auth/admin/verify-id-tokens for details on how to retrieve an ID token. verifying token for user: systemAdmin@gmail.com
+2025-03-09T18:49:50.727Z error: login:: admin with email undefined is not existing
+2025-03-09T18:49:53.207Z info: MongoDB ::::: mongodb://mongodb:27017/test-super-market-01
+2025-03-09T18:49:53.408Z info: MongoDB connected
+2025-03-09T18:49:53.410Z info: Server running on port 3000
+2025-03-09T18:49:53.428Z info: Admin user already exists
+2025-03-09T18:49:53.428Z info: starterPack added successfully
+2025-03-09T18:49:55.670Z error: login:: Error Error: Decoding Firebase ID token failed. Make sure you passed the entire string JWT which represents an ID token. See https://firebase.google.com/docs/auth/admin/verify-id-tokens for details on how to retrieve an ID token. verifying token for user: systemAdmin@gmail.com
+2025-03-09T18:49:55.678Z error: login:: admin with email undefined is not existing
+2025-03-09T18:49:58.214Z info: MongoDB ::::: mongodb://mongodb:27017/test-super-market-01
+2025-03-09T18:49:58.409Z info: MongoDB connected
+2025-03-09T18:49:58.412Z info: Server running on port 3000
+2025-03-09T18:49:58.420Z info: Admin user already exists
+2025-03-09T18:49:58.420Z info: starterPack added successfully
+2025-03-09T18:51:53.112Z info: MongoDB ::::: mongodb://mongodb:27017/test-super-market-01
+2025-03-09T18:51:53.310Z info: MongoDB connected
+2025-03-09T18:51:53.312Z info: Server running on port 3000
+2025-03-09T18:51:53.323Z info: Admin user already exists
+2025-03-09T18:51:53.323Z info: starterPack added successfully
+2025-03-09T18:51:55.780Z error: login:: Error Invalid token verifying token for user: systemAdmin@gmail.com
+2025-03-09T18:51:56.931Z error: login:: Error Invalid token verifying token for user: systemAdmin@gmail.com
+2025-03-09T18:51:57.565Z error: login:: Error Invalid token verifying token for user: systemAdmin@gmail.com
+2025-03-09T18:51:58.022Z error: login:: Error Invalid token verifying token for user: systemAdmin@gmail.com
+2025-03-09T18:51:58.840Z error: login:: Error Invalid token verifying token for user: systemAdmin@gmail.com
+2025-03-09T18:52:58.902Z info: login:: User with email lakarathalaka@gmail.com not found
+2025-03-09T18:52:58.915Z info: login:: New user lakarathalaka@gmail.com created successfully
+2025-03-09T18:52:58.918Z error: ERROR::apiValidationHandler:  no schema defined for status code '201' in the openapi spec
+2025-03-09T18:56:37.999Z info: MongoDB ::::: mongodb://mongodb:27017/test-super-market-01
+2025-03-09T18:56:38.211Z info: MongoDB connected
+2025-03-09T18:56:38.213Z info: Server running on port 3000
+2025-03-09T18:56:38.235Z info: Admin user already exists
+2025-03-09T18:56:38.235Z info: starterPack added successfully
+2025-03-09T18:56:44.452Z info: login:: User with email lakarathalaka@gmail.com is found
+2025-03-09T18:56:44.467Z info: login:: User lakarathalaka@gmail.com logged in successfully
+2025-03-09T19:01:23.354Z info: MongoDB ::::: mongodb://mongodb:27017/test-super-market-01
+2025-03-09T19:01:23.615Z info: MongoDB connected
+2025-03-09T19:01:23.617Z info: Server running on port 3000
+2025-03-09T19:01:23.629Z info: Admin user already exists
+2025-03-09T19:01:23.629Z info: starterPack added successfully
+2025-03-09T19:01:27.016Z info: login:: User with email lakarathalaka@gmail.com is found
+2025-03-09T19:01:27.029Z info: login:: User lakarathalaka@gmail.com logged in successfully
+2025-03-09T19:01:27.029Z error: login:: error: basicUserDetails.toObject is not a function
+2025-03-09T19:01:47.761Z info: MongoDB ::::: mongodb://mongodb:27017/test-super-market-01
+2025-03-09T19:01:47.959Z info: MongoDB connected
+2025-03-09T19:01:47.961Z info: Server running on port 3000
+2025-03-09T19:01:47.990Z info: Admin user already exists
+2025-03-09T19:01:47.991Z info: starterPack added successfully
+2025-03-09T19:01:49.821Z info: login:: User with email lakarathalaka@gmail.com is found
+2025-03-09T19:01:49.836Z info: login:: User lakarathalaka@gmail.com logged in successfully
+2025-03-09T19:01:49.836Z error: login:: error: basicUserDetails.toJSON is not a function
+2025-03-09T19:05:29.628Z info: MongoDB ::::: mongodb://mongodb:27017/test-super-market-01
+2025-03-09T19:05:29.835Z info: MongoDB connected
+2025-03-09T19:05:29.838Z info: Server running on port 3000
+2025-03-09T19:05:29.851Z info: Admin user already exists
+2025-03-09T19:05:29.852Z info: starterPack added successfully
+2025-03-09T19:05:31.833Z info: login:: User with email lakarathalaka@gmail.com is found
+2025-03-09T19:05:31.847Z info: login:: User lakarathalaka@gmail.com logged in successfully
+2025-03-09T19:06:33.147Z error: login:: Error Unathorized user token verifying token for user: lakarathalaka@gmail.com
+2025-03-09T19:06:55.816Z info: login:: User with email lka@test.com not found
+2025-03-09T19:06:55.829Z info: login:: New user lka@test.com created successfully
+2025-03-09T19:16:50.434Z info: MongoDB ::::: mongodb://mongodb:27017/test-super-market-01
+2025-03-09T19:16:50.653Z info: MongoDB connected
+2025-03-09T19:16:50.656Z info: Server running on port 3000
+2025-03-09T19:16:50.671Z info: Admin user already exists
+2025-03-09T19:16:50.671Z info: starterPack added successfully
+2025-03-09T19:16:52.710Z error: ERROR::apiValidationHandler:  openapi.validator: args.apiDoc was invalid.  See the output.
+2025-03-09T19:18:15.549Z info: MongoDB ::::: mongodb://mongodb:27017/test-super-market-01
+2025-03-09T19:18:15.741Z info: MongoDB connected
+2025-03-09T19:18:15.743Z info: Server running on port 3000
+2025-03-09T19:18:15.755Z info: Admin user already exists
+2025-03-09T19:18:15.755Z info: starterPack added successfully
+2025-03-09T19:18:16.910Z error: ERROR::apiValidationHandler:  openapi.validator: args.apiDoc was invalid.  See the output.
+2025-03-09T19:18:36.603Z info: MongoDB ::::: mongodb://mongodb:27017/test-super-market-01
+2025-03-09T19:18:36.809Z info: MongoDB connected
+2025-03-09T19:18:36.812Z info: Server running on port 3000
+2025-03-09T19:18:36.826Z info: Admin user already exists
+2025-03-09T19:18:36.826Z info: starterPack added successfully
+2025-03-09T19:18:39.545Z info: login:: User with email lka@test.com is found
+2025-03-09T19:18:39.566Z info: login:: User lka@test.com logged in successfully
+2025-03-09T19:19:26.619Z info: MongoDB ::::: mongodb://mongodb:27017/test-super-market-01
+2025-03-09T19:19:26.865Z info: MongoDB connected
+2025-03-09T19:19:26.867Z info: Server running on port 3000
+2025-03-09T19:19:26.878Z info: Admin user already exists
+2025-03-09T19:19:26.878Z info: starterPack added successfully
+2025-03-09T19:19:28.715Z error: ERROR::apiValidationHandler:  openapi.validator: args.apiDoc was invalid.  See the output.
+2025-03-09T19:19:31.370Z error: ERROR::apiValidationHandler:  openapi.validator: args.apiDoc was invalid.  See the output.
+2025-03-09T19:19:56.686Z info: MongoDB ::::: mongodb://mongodb:27017/test-super-market-01
+2025-03-09T19:19:56.879Z info: MongoDB connected
+2025-03-09T19:19:56.881Z info: Server running on port 3000
+2025-03-09T19:19:56.902Z info: Admin user already exists
+2025-03-09T19:19:56.902Z info: starterPack added successfully
+2025-03-09T19:19:58.030Z error: ERROR::apiValidationHandler:  openapi.validator: args.apiDoc was invalid.  See the output.
+2025-03-09T19:25:59.978Z info: MongoDB ::::: mongodb://mongodb:27017/test-super-market-01
+2025-03-09T19:26:00.193Z info: MongoDB connected
+2025-03-09T19:26:00.195Z info: Server running on port 3000
+2025-03-09T19:26:00.216Z info: Admin user already exists
+2025-03-09T19:26:00.216Z info: starterPack added successfully
+2025-03-09T19:26:19.390Z error: login:: admin with email  lka@test.com is not existing
+2025-03-09T19:26:28.869Z error: login:: Error Unathorized user token verifying token for user:  lka@test.com
+2025-03-09T19:27:03.434Z error: login:: Error Unathorized user token verifying token for user:  lka@test.com
+2025-03-09T19:27:42.968Z info: login:: User with email lka@test.com is found
+2025-03-09T19:27:42.983Z info: login:: User lka@test.com logged in successfully
+2025-03-09T19:28:05.891Z error: authenticateJWT:: invalid token
+2025-03-09T19:29:54.634Z info: MongoDB ::::: mongodb://mongodb:27017/test-super-market-01
+2025-03-09T19:29:54.839Z info: MongoDB connected
+2025-03-09T19:29:54.842Z info: Server running on port 3000
+2025-03-09T19:29:54.860Z info: Admin user already exists
+2025-03-09T19:29:54.861Z info: starterPack added successfully
+2025-03-09T19:29:57.442Z info: login:: User with email lka@test.com is found
+2025-03-09T19:29:57.453Z info: login:: User lka@test.com logged in successfully
+2025-03-09T19:30:24.096Z info: authenticateJWT:: User authenticated with id: [object Object]
+2025-03-09T19:30:24.097Z info: authorizeJWT:: User:XO1Wf3rrvdfZXw5TW96Pi4RjCaN2 authorized with role: user
+2025-03-09T19:30:24.103Z info: listProducts::Products fetched successfully : 
+2025-03-09T19:30:50.117Z info: login:: User with email lka@test.com is found
+2025-03-09T19:30:50.120Z info: login:: User lka@test.com logged in successfully
+2025-03-09T19:31:07.080Z info: authenticateJWT:: User authenticated with id: [object Object]
+2025-03-09T19:31:07.080Z info: authorizeJWT:: User:XO1Wf3rrvdfZXw5TW96Pi4RjCaN2 authorized with role: user
+2025-03-09T19:31:07.081Z info: listProducts::Products fetched successfully : 
+2025-03-09T19:31:15.740Z info: authenticateJWT:: User authenticated with id: [object Object]
+2025-03-09T19:31:15.740Z info: authorizeJWT:: User:XO1Wf3rrvdfZXw5TW96Pi4RjCaN2 authorized with role: user
+2025-03-09T19:31:15.742Z info: listProducts::Products fetched successfully : 
+2025-03-09T19:31:20.047Z info: authenticateJWT:: User authenticated with id: [object Object]
+2025-03-09T19:31:20.047Z info: authorizeJWT:: User:XO1Wf3rrvdfZXw5TW96Pi4RjCaN2 authorized with role: user
+2025-03-09T19:31:20.052Z info: listProducts::Products fetched successfully : 
+2025-03-09T19:46:19.894Z info: MongoDB ::::: mongodb://mongodb:27017/test-super-market-01
+2025-03-09T19:46:20.090Z info: MongoDB connected
+2025-03-09T19:46:20.092Z info: Server running on port 3000
+2025-03-09T19:46:20.105Z info: Admin user already exists
+2025-03-09T19:46:20.105Z info: starterPack added successfully
+2025-03-09T19:46:24.729Z info: login:: User with email lka@test.com is found
+2025-03-09T19:46:24.752Z info: login:: User lka@test.com logged in successfully
+2025-03-09T19:46:51.411Z info: authorizeJWT:: User:XO1Wf3rrvdfZXw5TW96Pi4RjCaN2 authorized with role: user
+2025-03-09T19:46:51.415Z info: listProducts::Products fetched successfully : 
+2025-03-09T19:47:57.167Z info: authorizeJWT:: User:XO1Wf3rrvdfZXw5TW96Pi4RjCaN2 authorized with role: user
+2025-03-09T19:47:57.171Z info: listProducts::Products fetched successfully : 
+2025-03-09T19:47:59.621Z info: authorizeJWT:: User:XO1Wf3rrvdfZXw5TW96Pi4RjCaN2 authorized with role: user
+2025-03-09T19:47:59.624Z info: listProducts::Products fetched successfully : 
+2025-03-09T19:48:12.088Z info: login:: User with email lka@test.com is found
+2025-03-09T19:48:12.093Z info: login:: User lka@test.com logged in successfully
+2025-03-09T19:48:25.206Z info: login:: User with email lka@test.com is found
+2025-03-09T19:48:25.211Z info: login:: User lka@test.com logged in successfully
+2025-03-09T19:48:53.448Z error: ERROR::apiValidationHandler:  Unexpected non-whitespace character after JSON at position 941
+2025-03-09T19:49:10.975Z error: ERROR::apiValidationHandler:  Unexpected non-whitespace character after JSON at position 941
+2025-03-09T19:49:35.761Z error: ERROR::apiValidationHandler:  request/body must match exactly one schema in oneOf
+2025-03-09T19:49:51.086Z info: login:: User with email lka@test.com is found
+2025-03-09T19:49:51.091Z info: login:: User lka@test.com logged in successfully
+2025-03-09T19:50:15.319Z info: authorizeJWT:: User:XO1Wf3rrvdfZXw5TW96Pi4RjCaN2 authorized with role: user
+2025-03-09T19:50:15.321Z info: listProducts::Products fetched successfully : 
+2025-03-09T19:50:55.009Z error: authenticateJWT:: No token provided
+2025-03-09T19:51:40.754Z info: MongoDB ::::: mongodb://mongodb:27017/test-super-market-01
+2025-03-09T19:51:40.975Z info: MongoDB connected
+2025-03-09T19:51:40.979Z info: Server running on port 3000
+2025-03-09T19:51:41.023Z info: Admin user already exists
+2025-03-09T19:51:41.024Z info: starterPack added successfully
+2025-03-09T19:51:43.877Z error: ERROR::apiValidationHandler:  Authorization header required
+2025-03-09T19:52:03.467Z info: authorizeJWT:: User:XO1Wf3rrvdfZXw5TW96Pi4RjCaN2 authorized with role: user
+2025-03-09T19:52:03.471Z info: listProducts::Products fetched successfully : 
+2025-03-09T19:52:28.019Z info: authorizeJWT:: User:XO1Wf3rrvdfZXw5TW96Pi4RjCaN2 authorized with role: user
+2025-03-09T19:52:28.114Z error: register:: error: Performing an update on the path '_id' would modify the immutable field '_id'
+2025-03-09T19:54:50.780Z info: MongoDB ::::: mongodb://mongodb:27017/test-super-market-01
+2025-03-09T19:54:50.988Z info: MongoDB connected
+2025-03-09T19:54:50.991Z info: Server running on port 3000
+2025-03-09T19:54:51.009Z info: Admin user already exists
+2025-03-09T19:54:51.010Z info: starterPack added successfully
+2025-03-09T19:54:53.988Z info: authorizeJWT:: User:XO1Wf3rrvdfZXw5TW96Pi4RjCaN2 authorized with role: user
+2025-03-09T19:54:54.082Z info: register:: User qwe updated successfully
+2025-03-09T19:55:51.289Z error: login:: Error Invalid token verifying token for user: lka@test.com
+2025-03-09T19:56:13.868Z info: authorizeJWT:: User:XO1Wf3rrvdfZXw5TW96Pi4RjCaN2 authorized with role: user
+2025-03-09T19:56:13.873Z error: register:: error: Illegal arguments: undefined, string
+2025-03-09T20:02:11.426Z info: MongoDB ::::: mongodb://mongodb:27017/test-super-market-01
+2025-03-09T20:02:11.625Z info: MongoDB connected
+2025-03-09T20:02:11.628Z info: Server running on port 3000
+2025-03-09T20:02:11.642Z info: Admin user already exists
+2025-03-09T20:02:11.643Z info: starterPack added successfully
+2025-03-09T20:02:13.028Z info: authorizeJWT:: User:XO1Wf3rrvdfZXw5TW96Pi4RjCaN2 authorized with role: user
+2025-03-09T20:02:13.043Z error: register:: error: Performing an update on the path '_id' would modify the immutable field '_id'
+2025-03-09T20:03:45.486Z info: MongoDB ::::: mongodb://mongodb:27017/test-super-market-01
+2025-03-09T20:03:45.690Z info: MongoDB connected
+2025-03-09T20:03:45.692Z info: Server running on port 3000
+2025-03-09T20:03:45.704Z info: Admin user already exists
+2025-03-09T20:03:45.704Z info: starterPack added successfully
+2025-03-09T20:03:47.723Z info: authorizeJWT:: User:XO1Wf3rrvdfZXw5TW96Pi4RjCaN2 authorized with role: user
+2025-03-09T20:03:47.738Z error: register:: error: Performing an update on the path '_id' would modify the immutable field '_id'
+2025-03-09T20:03:50.858Z info: authorizeJWT:: User:XO1Wf3rrvdfZXw5TW96Pi4RjCaN2 authorized with role: user
+2025-03-09T20:03:50.866Z error: register:: error: Performing an update on the path '_id' would modify the immutable field '_id'
+2025-03-09T20:05:36.036Z info: MongoDB ::::: mongodb://mongodb:27017/test-super-market-01
+2025-03-09T20:05:36.246Z info: MongoDB connected
+2025-03-09T20:05:36.248Z info: Server running on port 3000
+2025-03-09T20:05:36.266Z info: Admin user already exists
+2025-03-09T20:05:36.266Z info: starterPack added successfully
+2025-03-09T20:06:05.252Z info: authorizeJWT:: User:XO1Wf3rrvdfZXw5TW96Pi4RjCaN2 authorized with role: user
+2025-03-09T20:06:05.269Z error: register:: error: Performing an update on the path '_id' would modify the immutable field '_id'
+2025-03-09T20:07:30.301Z info: MongoDB ::::: mongodb://mongodb:27017/test-super-market-01
+2025-03-09T20:07:30.495Z info: MongoDB connected
+2025-03-09T20:07:30.497Z info: Server running on port 3000
+2025-03-09T20:07:30.506Z info: Admin user already exists
+2025-03-09T20:07:30.506Z info: starterPack added successfully
+2025-03-09T20:07:33.595Z info: authorizeJWT:: User:XO1Wf3rrvdfZXw5TW96Pi4RjCaN2 authorized with role: user
+2025-03-09T20:07:33.610Z info: register:: User qwe updated successfully
+2025-03-09T20:07:35.521Z info: authorizeJWT:: User:XO1Wf3rrvdfZXw5TW96Pi4RjCaN2 authorized with role: user
+2025-03-09T20:07:35.524Z info: register:: User qwe updated successfully
+2025-03-09T20:08:26.323Z info: MongoDB ::::: mongodb://mongodb:27017/test-super-market-01
+2025-03-09T20:08:26.561Z info: MongoDB connected
+2025-03-09T20:08:26.563Z info: Server running on port 3000
+2025-03-09T20:08:26.608Z info: Admin user already exists
+2025-03-09T20:08:26.608Z info: starterPack added successfully
+2025-03-09T20:08:28.879Z info: authorizeJWT:: User:XO1Wf3rrvdfZXw5TW96Pi4RjCaN2 authorized with role: user
+2025-03-09T20:08:28.888Z info: register:: User qwe updated successfully
+2025-03-09T20:08:30.275Z info: authorizeJWT:: User:XO1Wf3rrvdfZXw5TW96Pi4RjCaN2 authorized with role: user
+2025-03-09T20:08:30.281Z info: register:: User qwe updated successfully
+2025-03-09T20:08:35.490Z info: authorizeJWT:: User:XO1Wf3rrvdfZXw5TW96Pi4RjCaN2 authorized with role: user
+2025-03-09T20:08:35.500Z info: register:: User qwea updated successfully
+2025-03-09T20:08:38.943Z info: authorizeJWT:: User:XO1Wf3rrvdfZXw5TW96Pi4RjCaN2 authorized with role: user
+2025-03-09T20:08:38.949Z info: register:: User qwea updated successfully
+2025-03-09T20:08:46.793Z error: login:: Error Invalid token verifying token for user: lka@test.com
+2025-03-09T20:09:07.021Z error: login:: Error Invalid token verifying token for user: lka@test.com
+2025-03-09T20:09:25.570Z info: login:: User with email lka@test.com is found
+2025-03-09T20:09:25.582Z info: login:: User lka@test.com logged in successfully
+2025-03-09T20:11:43.540Z info: MongoDB ::::: mongodb://mongodb:27017/test-super-market-01
+2025-03-09T20:11:43.740Z info: MongoDB connected
+2025-03-09T20:11:43.742Z info: Server running on port 3000
+2025-03-09T20:11:43.760Z info: Admin user already exists
+2025-03-09T20:11:43.760Z info: starterPack added successfully
+2025-03-09T20:11:47.514Z info: login:: User with email lka@test.com is found
+2025-03-09T20:11:47.526Z error: login:: error: Performing an update on the path '_id' would modify the immutable field '_id'
+2025-03-09T20:17:45.641Z info: MongoDB ::::: mongodb://mongodb:27017/test-super-market-01
+2025-03-09T20:17:45.847Z info: MongoDB connected
+2025-03-09T20:17:45.850Z info: Server running on port 3000
+2025-03-09T20:17:45.863Z info: Admin user already exists
+2025-03-09T20:17:45.863Z info: starterPack added successfully
+2025-03-09T20:17:50.724Z info: login:: User with email lka@test.com is found
+2025-03-09T20:17:50.734Z info: login:: User lka@test.com logged in successfully
+2025-03-09T20:17:56.636Z info: authorizeJWT:: User:XO1Wf3rrvdfZXw5TW96Pi4RjCaN2 authorized with role: user
+2025-03-09T20:17:56.645Z info: register:: User qwea updated successfully
+2025-03-09T20:17:58.398Z info: authorizeJWT:: User:XO1Wf3rrvdfZXw5TW96Pi4RjCaN2 authorized with role: user
+2025-03-09T20:17:58.405Z info: register:: User qwea updated successfully
+2025-03-09T20:18:03.194Z info: authorizeJWT:: User:XO1Wf3rrvdfZXw5TW96Pi4RjCaN2 authorized with role: user
+2025-03-09T20:18:03.197Z error: register:: User with email lka@test.csasom is not exist
+2025-03-09T20:18:10.256Z info: authorizeJWT:: User:XO1Wf3rrvdfZXw5TW96Pi4RjCaN2 authorized with role: user
+2025-03-09T20:18:10.261Z info: register:: User qwesasasaa updated successfully
+2025-03-09T20:18:17.932Z info: authorizeJWT:: User:XO1Wf3rrvdfZXw5TW96Pi4RjCaN2 authorized with role: user
+2025-03-09T20:18:17.936Z info: register:: User qwesasasaa updated successfully
+2025-03-10T02:30:36.945Z info: MongoDB ::::: mongodb://mongodb:27017/test-super-market-01
+2025-03-10T02:30:37.138Z info: MongoDB connected
+2025-03-10T02:30:37.140Z info: Server running on port 3000
+2025-03-10T02:30:37.152Z info: Admin user already exists
+2025-03-10T02:30:37.152Z info: starterPack added successfully
+2025-03-14T22:50:32.349Z info: MongoDB ::::: mongodb://mongodb:27017/test-super-market-01
+2025-03-14T22:50:32.548Z info: MongoDB connected
+2025-03-14T22:50:32.552Z info: Server running on port 3000
+2025-03-14T22:50:32.581Z info: starterPack added successfully
+2025-03-14T23:54:11.780Z info: MongoDB ::::: mongodb://mongodb:27017/test-super-market-01
+2025-03-14T23:54:11.880Z info: MongoDB connected
+2025-03-14T23:54:11.882Z info: Server running on port 3000
+2025-03-14T23:54:11.896Z info: Admin user already exists
+2025-03-14T23:54:11.896Z info: starterPack added successfully
+2025-03-14T23:54:27.529Z error: ERROR::apiValidationHandler:  Missing $ref pointer "#/components/schemas/Users". Token "Users" does not exist.
+2025-03-14T23:54:43.506Z error: ERROR::apiValidationHandler:  Missing $ref pointer "#/components/schemas/Users". Token "Users" does not exist.
+2025-03-14T23:55:29.466Z error: ERROR::apiValidationHandler:  Missing $ref pointer "#/components/schemas/Users". Token "Users" does not exist.
+2025-03-14T23:55:29.616Z error: ERROR::apiValidationHandler:  Missing $ref pointer "#/components/schemas/Users". Token "Users" does not exist.
+2025-03-15T00:02:47.858Z error: ERROR::apiValidationHandler:  Missing $ref pointer "#/components/schemas/Users". Token "Users" does not exist.
+2025-03-15T00:03:00.815Z error: ERROR::apiValidationHandler:  Missing $ref pointer "#/components/schemas/Users". Token "Users" does not exist.
+2025-03-15T00:03:07.004Z error: ERROR::apiValidationHandler:  Missing $ref pointer "#/components/schemas/Users". Token "Users" does not exist.
+2025-03-15T00:05:41.078Z error: ERROR::apiValidationHandler:  Missing $ref pointer "#/components/schemas/Users". Token "Users" does not exist.
+2025-03-15T00:05:58.097Z error: ERROR::apiValidationHandler:  Missing $ref pointer "#/components/schemas/Users". Token "Users" does not exist.
+2025-03-15T00:05:58.299Z error: ERROR::apiValidationHandler:  Missing $ref pointer "#/components/schemas/Users". Token "Users" does not exist.
+2025-03-15T00:06:44.261Z error: ERROR::apiValidationHandler:  Missing $ref pointer "#/components/schemas/Users". Token "Users" does not exist.
+2025-03-15T00:09:50.769Z info: MongoDB ::::: mongodb://mongodb:27017/test-super-market-01
+2025-03-15T00:09:51.045Z info: MongoDB connected
+2025-03-15T00:09:51.050Z info: Server running on port 3000
+2025-03-15T00:09:51.066Z info: Admin user already exists
+2025-03-15T00:09:51.067Z info: starterPack added successfully
+2025-03-15T00:09:57.726Z error: ERROR::apiValidationHandler:  openapi.validator: args.apiDoc was invalid.  See the output.
+2025-03-15T00:11:19.977Z info: MongoDB ::::: mongodb://mongodb:27017/test-super-market-01
+2025-03-15T00:11:20.177Z info: MongoDB connected
+2025-03-15T00:11:20.180Z info: Server running on port 3000
+2025-03-15T00:11:20.198Z info: Admin user already exists
+2025-03-15T00:11:20.198Z info: starterPack added successfully
+2025-03-15T00:11:28.446Z error: ERROR::apiValidationHandler:  openapi.validator: args.apiDoc was invalid.  See the output.
+2025-03-15T00:11:29.640Z error: ERROR::apiValidationHandler:  openapi.validator: args.apiDoc was invalid.  See the output.
+2025-03-15T00:12:22.461Z info: MongoDB ::::: mongodb://mongodb:27017/test-super-market-01
+2025-03-15T00:12:22.661Z info: MongoDB connected
+2025-03-15T00:12:22.663Z info: Server running on port 3000
+2025-03-15T00:12:22.680Z info: Admin user already exists
+2025-03-15T00:12:22.680Z info: starterPack added successfully
+2025-03-15T00:12:26.811Z info: login:: User with email lakarathalaka@gmail.com not found
+2025-03-15T00:12:26.822Z info: login:: New user lakarathalaka@gmail.com created successfully
+2025-03-15T00:13:01.651Z error: authorizeJWT:: User not authorized with role: user
+2025-03-15T00:13:58.041Z error: login:: Error Invalid token verifying token for user: systemAdmin@gmail.com
+2025-03-15T00:14:08.876Z error: login:: Error Invalid token verifying token for user: systemAdmin@gmail.com
+2025-03-15T00:14:18.774Z info: login:: User systemAdmin@gmail.com logged in successfully
+2025-03-15T00:14:18.774Z error: login:: error: Cannot read properties of null (reading 'toJSON')
+2025-03-15T00:14:30.975Z info: login:: User systemAdmin@gmail.com logged in successfully
+2025-03-15T00:14:30.976Z error: login:: error: Cannot read properties of null (reading 'toJSON')
+2025-03-15T00:15:27.088Z info: login:: User systemAdmin@gmail.com logged in successfully
+2025-03-15T00:15:27.088Z error: login:: error: Cannot read properties of null (reading 'toJSON')
+2025-03-15T00:18:28.272Z info: login:: User systemAdmin@gmail.com logged in successfully
+2025-03-15T00:18:28.272Z error: login:: error: Cannot read properties of null (reading 'toJSON')
+2025-03-15T00:20:24.751Z info: MongoDB ::::: mongodb://mongodb:27017/test-super-market-01
+2025-03-15T00:20:24.947Z info: MongoDB connected
+2025-03-15T00:20:24.949Z info: Server running on port 3000
+2025-03-15T00:20:24.961Z info: Admin user already exists
+2025-03-15T00:20:24.962Z info: starterPack added successfully
+2025-03-15T00:20:30.737Z info: login:: User systemAdmin@gmail.com logged in successfully
+2025-03-15T00:21:05.779Z info: listUsers::Users fetched successfully : {
+  id: '2025-03-14T22:50:32.348Z',
+  username: 'systemAdmin',
+  password: '$2b$10$JpINCtp5kSa2eCIjyN24AuEi2wGQZWPsapAk2MqnG8Jp6fbXQFat6',
+  role: 'admin',
+  email: 'systemAdmin@gmail.com',
+  phoneNumber: '',
+  profilePic: '',
+  emailVerified: false,
+  createdAt: 2025-03-14T22:50:32.561Z,
+  updatedAt: 2025-03-14T22:50:32.561Z
+},{
+  id: 'GUAMCTtadpRtL9jqzLSsoZGEXdJ2',
+  username: 'lucky ratha',
+  role: 'user',
+  email: 'lakarathalaka@gmail.com',
+  profilePic: 'https://lh3.googleusercontent.com/a/ACg8ocLblbq939-gVaDcS06NvF7V6e7KwR11_0Jpg42kKhFM3JQTPg=s96-c',
+  emailVerified: true,
+  createdAt: 2025-03-15T00:12:26.818Z,
+  updatedAt: 2025-03-15T00:12:26.818Z
+}
+2025-03-15T00:21:05.787Z error: ERROR::apiValidationHandler:  /response/0/id must be integer
+2025-03-15T00:21:44.123Z info: MongoDB ::::: mongodb://mongodb:27017/test-super-market-01
+2025-03-15T00:21:44.320Z info: MongoDB connected
+2025-03-15T00:21:44.323Z info: Server running on port 3000
+2025-03-15T00:21:44.336Z info: Admin user already exists
+2025-03-15T00:21:44.336Z info: starterPack added successfully
+2025-03-15T00:21:47.237Z info: listUsers::Users fetched successfully : {
+  id: '2025-03-14T22:50:32.348Z',
+  username: 'systemAdmin',
+  password: '$2b$10$JpINCtp5kSa2eCIjyN24AuEi2wGQZWPsapAk2MqnG8Jp6fbXQFat6',
+  role: 'admin',
+  email: 'systemAdmin@gmail.com',
+  phoneNumber: '',
+  profilePic: '',
+  emailVerified: false,
+  createdAt: 2025-03-14T22:50:32.561Z,
+  updatedAt: 2025-03-14T22:50:32.561Z
+},{
+  id: 'GUAMCTtadpRtL9jqzLSsoZGEXdJ2',
+  username: 'lucky ratha',
+  role: 'user',
+  email: 'lakarathalaka@gmail.com',
+  profilePic: 'https://lh3.googleusercontent.com/a/ACg8ocLblbq939-gVaDcS06NvF7V6e7KwR11_0Jpg42kKhFM3JQTPg=s96-c',
+  emailVerified: true,
+  createdAt: 2025-03-15T00:12:26.818Z,
+  updatedAt: 2025-03-15T00:12:26.818Z
+}
+2025-03-15T02:19:32.197Z info: MongoDB ::::: mongodb://mongodb:27017/test-super-market-01
+2025-03-15T02:19:32.392Z info: MongoDB connected
+2025-03-15T02:19:32.394Z info: Server running on port 3000
+2025-03-15T02:19:32.405Z info: Admin user already exists
+2025-03-15T02:19:32.405Z info: starterPack added successfully
+2025-03-15T02:19:41.932Z info: listUsers::Users fetched successfully : {
+  id: '2025-03-14T22:50:32.348Z',
+  username: 'systemAdmin',
+  password: '$2b$10$JpINCtp5kSa2eCIjyN24AuEi2wGQZWPsapAk2MqnG8Jp6fbXQFat6',
+  role: 'admin',
+  email: 'systemAdmin@gmail.com',
+  phoneNumber: '',
+  profilePic: '',
+  emailVerified: false,
+  createdAt: 2025-03-14T22:50:32.561Z,
+  updatedAt: 2025-03-14T22:50:32.561Z
+},{
+  id: 'GUAMCTtadpRtL9jqzLSsoZGEXdJ2',
+  username: 'lucky ratha',
+  role: 'user',
+  email: 'lakarathalaka@gmail.com',
+  profilePic: 'https://lh3.googleusercontent.com/a/ACg8ocLblbq939-gVaDcS06NvF7V6e7KwR11_0Jpg42kKhFM3JQTPg=s96-c',
+  emailVerified: true,
+  createdAt: 2025-03-15T00:12:26.818Z,
+  updatedAt: 2025-03-15T00:12:26.818Z
+}
+2025-03-15T03:13:36.255Z info: MongoDB ::::: mongodb://mongodb:27017/test-super-market-01
+2025-03-15T03:13:36.463Z info: MongoDB connected
+2025-03-15T03:13:36.465Z info: Server running on port 3000
+2025-03-15T03:13:36.483Z info: Admin user already exists
+2025-03-15T03:13:36.483Z info: starterPack added successfully
+2025-03-15T03:17:03.865Z info: MongoDB ::::: mongodb://mongodb:27017/test-super-market-01
+2025-03-15T03:17:04.067Z info: MongoDB connected
+2025-03-15T03:17:04.070Z info: Server running on port 3000
+2025-03-15T03:17:04.082Z info: Admin user already exists
+2025-03-15T03:17:04.082Z info: starterPack added successfully
+2025-03-15T03:17:30.825Z info: listUsers::Users fetched successfully : {
+  id: '2025-03-14T22:50:32.348Z',
+  username: 'systemAdmin',
+  password: '$2b$10$JpINCtp5kSa2eCIjyN24AuEi2wGQZWPsapAk2MqnG8Jp6fbXQFat6',
+  role: 'admin',
+  email: 'systemAdmin@gmail.com',
+  phoneNumber: '',
+  profilePic: '',
+  emailVerified: false,
+  createdAt: 2025-03-14T22:50:32.561Z,
+  updatedAt: 2025-03-14T22:50:32.561Z
+},{
+  id: 'GUAMCTtadpRtL9jqzLSsoZGEXdJ2',
+  username: 'lucky ratha',
+  role: 'user',
+  email: 'lakarathalaka@gmail.com',
+  profilePic: 'https://lh3.googleusercontent.com/a/ACg8ocLblbq939-gVaDcS06NvF7V6e7KwR11_0Jpg42kKhFM3JQTPg=s96-c',
+  emailVerified: true,
+  createdAt: 2025-03-15T00:12:26.818Z,
+  updatedAt: 2025-03-15T00:12:26.818Z
+}
+2025-03-15T03:17:30.825Z info: [object Object]
+2025-03-15T03:20:12.654Z info: MongoDB ::::: mongodb://mongodb:27017/test-super-market-01
+2025-03-15T03:20:12.860Z info: MongoDB connected
+2025-03-15T03:20:12.863Z info: Server running on port 3000
+2025-03-15T03:20:12.874Z info: Admin user already exists
+2025-03-15T03:20:12.874Z info: starterPack added successfully
+2025-03-15T03:20:18.488Z info: listUsers::Users fetched successfully : {
+  id: '2025-03-14T22:50:32.348Z',
+  username: 'systemAdmin',
+  password: '$2b$10$JpINCtp5kSa2eCIjyN24AuEi2wGQZWPsapAk2MqnG8Jp6fbXQFat6',
+  role: 'admin',
+  email: 'systemAdmin@gmail.com',
+  phoneNumber: '',
+  profilePic: '',
+  emailVerified: false,
+  createdAt: 2025-03-14T22:50:32.561Z,
+  updatedAt: 2025-03-14T22:50:32.561Z
+},{
+  id: 'GUAMCTtadpRtL9jqzLSsoZGEXdJ2',
+  username: 'lucky ratha',
+  role: 'user',
+  email: 'lakarathalaka@gmail.com',
+  profilePic: 'https://lh3.googleusercontent.com/a/ACg8ocLblbq939-gVaDcS06NvF7V6e7KwR11_0Jpg42kKhFM3JQTPg=s96-c',
+  emailVerified: true,
+  createdAt: 2025-03-15T00:12:26.818Z,
+  updatedAt: 2025-03-15T00:12:26.818Z
+}
+2025-03-15T03:20:18.489Z info: {"role":"admin"}
+2025-03-15T03:21:54.605Z info: MongoDB ::::: mongodb://mongodb:27017/test-super-market-01
+2025-03-15T03:21:54.804Z info: MongoDB connected
+2025-03-15T03:21:54.806Z info: Server running on port 3000
+2025-03-15T03:21:54.819Z info: Admin user already exists
+2025-03-15T03:21:54.819Z info: starterPack added successfully
+2025-03-15T03:22:07.334Z info: listUsers::Users fetched successfully : {
+  id: '2025-03-14T22:50:32.348Z',
+  username: 'systemAdmin',
+  password: '$2b$10$JpINCtp5kSa2eCIjyN24AuEi2wGQZWPsapAk2MqnG8Jp6fbXQFat6',
+  role: 'admin',
+  email: 'systemAdmin@gmail.com',
+  phoneNumber: '',
+  profilePic: '',
+  emailVerified: false,
+  createdAt: 2025-03-14T22:50:32.561Z,
+  updatedAt: 2025-03-14T22:50:32.561Z
+},{
+  id: 'GUAMCTtadpRtL9jqzLSsoZGEXdJ2',
+  username: 'lucky ratha',
+  role: 'user',
+  email: 'lakarathalaka@gmail.com',
+  profilePic: 'https://lh3.googleusercontent.com/a/ACg8ocLblbq939-gVaDcS06NvF7V6e7KwR11_0Jpg42kKhFM3JQTPg=s96-c',
+  emailVerified: true,
+  createdAt: 2025-03-15T00:12:26.818Z,
+  updatedAt: 2025-03-15T00:12:26.818Z
+}
+2025-03-15T03:22:07.334Z info: {"role":"user"}
+2025-03-15T03:27:39.592Z error: ERROR::apiValidationHandler:  not found
+2025-03-15T03:33:36.035Z error: ERROR::apiValidationHandler:  not found
+2025-03-15T03:33:37.673Z error: ERROR::apiValidationHandler:  not found
+2025-03-15T03:34:12.858Z error: ERROR::apiValidationHandler:  Authorization header required
+2025-03-15T03:34:22.412Z info: listUsers::Users fetched successfully : {
+  id: '2025-03-14T22:50:32.348Z',
+  username: 'systemAdmin',
+  password: '$2b$10$JpINCtp5kSa2eCIjyN24AuEi2wGQZWPsapAk2MqnG8Jp6fbXQFat6',
+  role: 'admin',
+  email: 'systemAdmin@gmail.com',
+  phoneNumber: '',
+  profilePic: '',
+  emailVerified: false,
+  createdAt: 2025-03-14T22:50:32.561Z,
+  updatedAt: 2025-03-14T22:50:32.561Z
+},{
+  id: 'GUAMCTtadpRtL9jqzLSsoZGEXdJ2',
+  username: 'lucky ratha',
+  role: 'user',
+  email: 'lakarathalaka@gmail.com',
+  profilePic: 'https://lh3.googleusercontent.com/a/ACg8ocLblbq939-gVaDcS06NvF7V6e7KwR11_0Jpg42kKhFM3JQTPg=s96-c',
+  emailVerified: true,
+  createdAt: 2025-03-15T00:12:26.818Z,
+  updatedAt: 2025-03-15T00:12:26.818Z
+}
+2025-03-15T03:34:22.413Z info: {}
+2025-03-15T03:34:50.121Z error: ERROR::apiValidationHandler:  Unknown query parameter 'admin'
+2025-03-15T03:35:01.957Z info: listUsers::Users fetched successfully : {
+  id: '2025-03-14T22:50:32.348Z',
+  username: 'systemAdmin',
+  password: '$2b$10$JpINCtp5kSa2eCIjyN24AuEi2wGQZWPsapAk2MqnG8Jp6fbXQFat6',
+  role: 'admin',
+  email: 'systemAdmin@gmail.com',
+  phoneNumber: '',
+  profilePic: '',
+  emailVerified: false,
+  createdAt: 2025-03-14T22:50:32.561Z,
+  updatedAt: 2025-03-14T22:50:32.561Z
+},{
+  id: 'GUAMCTtadpRtL9jqzLSsoZGEXdJ2',
+  username: 'lucky ratha',
+  role: 'user',
+  email: 'lakarathalaka@gmail.com',
+  profilePic: 'https://lh3.googleusercontent.com/a/ACg8ocLblbq939-gVaDcS06NvF7V6e7KwR11_0Jpg42kKhFM3JQTPg=s96-c',
+  emailVerified: true,
+  createdAt: 2025-03-15T00:12:26.818Z,
+  updatedAt: 2025-03-15T00:12:26.818Z
+}
+2025-03-15T03:35:01.958Z info: {"role":"admin"}
+2025-03-15T03:35:08.491Z error: ERROR::apiValidationHandler:  request/query/role must be equal to one of the allowed values: admin, user
+2025-03-15T03:35:17.477Z info: listUsers::Users fetched successfully : {
+  id: '2025-03-14T22:50:32.348Z',
+  username: 'systemAdmin',
+  password: '$2b$10$JpINCtp5kSa2eCIjyN24AuEi2wGQZWPsapAk2MqnG8Jp6fbXQFat6',
+  role: 'admin',
+  email: 'systemAdmin@gmail.com',
+  phoneNumber: '',
+  profilePic: '',
+  emailVerified: false,
+  createdAt: 2025-03-14T22:50:32.561Z,
+  updatedAt: 2025-03-14T22:50:32.561Z
+},{
+  id: 'GUAMCTtadpRtL9jqzLSsoZGEXdJ2',
+  username: 'lucky ratha',
+  role: 'user',
+  email: 'lakarathalaka@gmail.com',
+  profilePic: 'https://lh3.googleusercontent.com/a/ACg8ocLblbq939-gVaDcS06NvF7V6e7KwR11_0Jpg42kKhFM3JQTPg=s96-c',
+  emailVerified: true,
+  createdAt: 2025-03-15T00:12:26.818Z,
+  updatedAt: 2025-03-15T00:12:26.818Z
+}
+2025-03-15T03:35:17.477Z info: {"role":"user"}
+2025-03-15T03:39:10.839Z info: MongoDB ::::: mongodb://mongodb:27017/test-super-market-01
+2025-03-15T03:39:11.053Z info: MongoDB connected
+2025-03-15T03:39:11.056Z info: Server running on port 3000
+2025-03-15T03:39:11.072Z info: Admin user already exists
+2025-03-15T03:39:11.073Z info: starterPack added successfully
+2025-03-15T03:39:14.791Z info: listUsers::Users fetched successfully: [{"id":"GUAMCTtadpRtL9jqzLSsoZGEXdJ2","username":"lucky ratha","role":"user","email":"lakarathalaka@gmail.com","profilePic":"https://lh3.googleusercontent.com/a/ACg8ocLblbq939-gVaDcS06NvF7V6e7KwR11_0Jpg42kKhFM3JQTPg=s96-c","createdAt":"2025-03-15T00:12:26.818Z","updatedAt":"2025-03-15T00:12:26.818Z"}]
+2025-03-15T03:39:21.240Z info: listUsers::Users fetched successfully: [{"id":"2025-03-14T22:50:32.348Z","username":"systemAdmin","role":"admin","email":"systemAdmin@gmail.com","phoneNumber":"","profilePic":"","createdAt":"2025-03-14T22:50:32.561Z","updatedAt":"2025-03-14T22:50:32.561Z"}]
+2025-03-15T03:39:28.486Z info: listUsers::Users fetched successfully: [{"id":"2025-03-14T22:50:32.348Z","username":"systemAdmin","role":"admin","email":"systemAdmin@gmail.com","phoneNumber":"","profilePic":"","createdAt":"2025-03-14T22:50:32.561Z","updatedAt":"2025-03-14T22:50:32.561Z"},{"id":"GUAMCTtadpRtL9jqzLSsoZGEXdJ2","username":"lucky ratha","role":"user","email":"lakarathalaka@gmail.com","profilePic":"https://lh3.googleusercontent.com/a/ACg8ocLblbq939-gVaDcS06NvF7V6e7KwR11_0Jpg42kKhFM3JQTPg=s96-c","createdAt":"2025-03-15T00:12:26.818Z","updatedAt":"2025-03-15T00:12:26.818Z"}]
+2025-03-15T04:07:07.384Z info: MongoDB ::::: mongodb://mongodb:27017/test-super-market-01
+2025-03-15T04:07:07.595Z info: MongoDB connected
+2025-03-15T04:07:07.598Z info: Server running on port 3000
+2025-03-15T04:07:07.612Z info: Admin user already exists
+2025-03-15T04:07:07.612Z info: starterPack added successfully
+2025-03-15T04:08:21.235Z error: ERROR::operationHandler: No handler found for this operationId 
+2025-03-15T04:10:40.773Z info: MongoDB ::::: mongodb://mongodb:27017/test-super-market-01
+2025-03-15T04:10:40.973Z info: MongoDB connected
+2025-03-15T04:10:40.975Z info: Server running on port 3000
+2025-03-15T04:10:40.986Z info: Admin user already exists
+2025-03-15T04:10:40.986Z info: starterPack added successfully
+2025-03-15T04:10:44.603Z info: listVendors::Vendors fetched successfully : 
+2025-03-15T04:16:38.460Z info: MongoDB ::::: mongodb://mongodb:27017/test-super-market-01
+2025-03-15T04:16:38.658Z info: MongoDB connected
+2025-03-15T04:16:38.661Z info: Server running on port 3000
+2025-03-15T04:16:38.672Z info: Admin user already exists
+2025-03-15T04:16:38.672Z info: starterPack added successfully
+2025-03-15T04:16:59.008Z info: listVendors::Vendors fetched successfully : 
+2025-03-15T04:17:43.688Z info: createNewVendor::Vendor created successfully : [object Object]
+2025-03-15T04:18:24.939Z error: createNewVendor:: MongoServerError: E11000 duplicate key error collection: test-super-market-01.vendors index: id_1 dup key: { id: null }
+2025-03-15T04:20:05.532Z error: createNewVendor:: MongoServerError: E11000 duplicate key error collection: test-super-market-01.vendors index: id_1 dup key: { id: null }
+2025-03-15T04:21:24.490Z info: MongoDB ::::: mongodb://mongodb:27017/test-super-market-01
+2025-03-15T04:21:24.690Z info: MongoDB connected
+2025-03-15T04:21:24.692Z info: Server running on port 3000
+2025-03-15T04:21:24.703Z info: Admin user already exists
+2025-03-15T04:21:24.703Z info: starterPack added successfully
+2025-03-15T04:21:42.055Z info: listVendors::Vendors fetched successfully : [{"name":"lakshan","email":"string","shopList":["lucky01","luckystores"],"image":"string","timestamp":1213131,"additionalData":"string","createdAt":"2025-03-15T04:17:43.680Z","updatedAt":"2025-03-15T04:17:43.680Z"}]
+2025-03-15T04:21:51.441Z info: listVendors::Vendors fetched successfully : [{"name":"lakshan","email":"string","shopList":["lucky01","luckystores"],"image":"string","timestamp":1213131,"additionalData":"string","createdAt":"2025-03-15T04:17:43.680Z","updatedAt":"2025-03-15T04:17:43.680Z"}]
+2025-03-15T04:22:24.517Z info: MongoDB ::::: mongodb://mongodb:27017/test-super-market-02
+2025-03-15T04:22:24.718Z info: MongoDB connected
+2025-03-15T04:22:24.721Z info: Server running on port 3000
+2025-03-15T04:22:24.810Z info: starterPack added successfully
+2025-03-15T04:23:19.180Z info: listVendors::Vendors fetched successfully : []
+2025-03-15T04:23:47.330Z info: createNewVendor::Vendor created successfully : {"name":"lakshan","email":"string","shopList":["sd01","st02"],"image":"string","timestamp":120,"additionalData":"string","createdAt":"2025-03-15T04:23:47.328Z","updatedAt":"2025-03-15T04:23:47.328Z"}
+2025-03-15T04:23:59.612Z error: createNewVendor:: MongoServerError: E11000 duplicate key error collection: test-super-market-02.vendors index: name_1 dup key: { name: "lakshan" }
+2025-03-15T04:27:24.050Z info: MongoDB ::::: mongodb://mongodb:27017/test-super-market-02
+2025-03-15T04:27:24.252Z info: MongoDB connected
+2025-03-15T04:27:24.254Z info: Server running on port 3000
+2025-03-15T04:27:24.267Z info: Admin user already exists
+2025-03-15T04:27:24.267Z info: starterPack added successfully
+2025-03-15T04:27:26.556Z error: createNewVendor:: MongoServerError: E11000 duplicate key error collection: test-super-market-02.vendors index: name_1 dup key: { name: "lakshan" }
+2025-03-15T04:27:44.561Z error: createNewVendor:: MongoServerError: E11000 duplicate key error collection: test-super-market-02.vendors index: name_1 dup key: { name: "lakshan" }
+2025-03-15T04:27:46.036Z error: createNewVendor:: MongoServerError: E11000 duplicate key error collection: test-super-market-02.vendors index: name_1 dup key: { name: "lakshan" }
+2025-03-15T04:27:47.474Z error: createNewVendor:: MongoServerError: E11000 duplicate key error collection: test-super-market-02.vendors index: name_1 dup key: { name: "lakshan" }
+2025-03-15T04:28:29.684Z error: ERROR::apiValidationHandler:  Unexpected number in JSON at position 95
+2025-03-15T04:28:46.956Z error: updateVendor::Vendor not found : undefined
+2025-03-15T04:29:03.774Z error: updateVendor::Vendor not found : undefined
+2025-03-15T04:30:03.772Z info: MongoDB ::::: mongodb://mongodb:27017/test-super-market-02
+2025-03-15T04:30:04.016Z info: MongoDB connected
+2025-03-15T04:30:04.018Z info: Server running on port 3000
+2025-03-15T04:30:04.035Z info: Admin user already exists
+2025-03-15T04:30:04.036Z info: starterPack added successfully
+2025-03-15T04:30:08.171Z info: updateVendor::Vendor updated successfully : {
+  name: 'lakshan',
+  email: 'string2',
+  shopList: [ 'string' ],
+  image: 'string',
+  timestamp: 2,
+  additionalData: 'string',
+  createdAt: 2025-03-15T04:23:47.328Z,
+  updatedAt: 2025-03-15T04:30:08.162Z
+}
+2025-03-15T04:30:25.312Z info: updateVendor::Vendor updated successfully : {
+  name: 'lakshan',
+  email: 'string2',
+  shopList: [ 'string' ],
+  image: 'string',
+  timestamp: 2,
+  additionalData: 'string',
+  createdAt: 2025-03-15T04:23:47.328Z,
+  updatedAt: 2025-03-15T04:30:25.307Z
+}
+2025-03-15T04:30:47.744Z info: createNewVendor::Vendor created successfully : {"name":"suren","email":"string","shopList":["sd01","st02"],"image":"string","timestamp":120,"additionalData":"string","createdAt":"2025-03-15T04:30:47.737Z","updatedAt":"2025-03-15T04:30:47.737Z"}
+2025-03-15T04:31:06.211Z error: createNewVendor:: MongoServerError: E11000 duplicate key error collection: test-super-market-02.vendors index: email_1 dup key: { email: "string" }
+2025-03-15T04:31:14.812Z info: createNewVendor::Vendor created successfully : {"name":"suren1","email":"string1","shopList":["sd01","st02"],"timestamp":1203,"createdAt":"2025-03-15T04:31:14.810Z","updatedAt":"2025-03-15T04:31:14.810Z"}
+2025-03-15T04:31:40.018Z error: createNewVendor:: MongoServerError: E11000 duplicate key error collection: test-super-market-02.vendors index: name_1 dup key: { name: "suren1" }
+2025-03-15T04:31:56.465Z error: ERROR::apiValidationHandler:  request/body must have required property 'shopList'
+2025-03-15T04:32:02.655Z error: updateVendor::Vendor not found : null
+2025-03-15T04:32:13.801Z info: updateVendor::Vendor updated successfully : {
+  name: 'suren1',
+  email: 'string12',
+  shopList: [ 'string' ],
+  timestamp: 2,
+  createdAt: 2025-03-15T04:31:14.810Z,
+  updatedAt: 2025-03-15T04:32:13.798Z
+}
+2025-03-15T04:32:29.545Z error: deleteVendor::Vendor not found : undefined
+2025-03-15T04:32:36.688Z error: deleteVendor::Vendor not found : undefined
+2025-03-15T04:33:29.896Z info: MongoDB ::::: mongodb://mongodb:27017/test-super-market-02
+2025-03-15T04:33:30.114Z info: MongoDB connected
+2025-03-15T04:33:30.116Z info: Server running on port 3000
+2025-03-15T04:33:30.125Z info: Admin user already exists
+2025-03-15T04:33:30.125Z info: starterPack added successfully
+2025-03-15T04:33:33.368Z info: deleteVendor::Vendor deleted successfully : {
+  name: 'suren1',
+  email: 'string12',
+  shopList: [ 'string' ],
+  timestamp: 2,
+  createdAt: 2025-03-15T04:31:14.810Z,
+  updatedAt: 2025-03-15T04:32:13.798Z
+}

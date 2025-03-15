@@ -1,0 +1,96 @@
+2025-03-09T18:25:43.944Z error: login:: admin with email undefined is not existing
+2025-03-09T18:26:33.514Z error: login:: admin with email undefined is not existing
+2025-03-09T18:26:34.678Z error: login:: admin with email undefined is not existing
+2025-03-09T18:30:56.349Z error: login:: admin with email undefined is not existing
+2025-03-09T18:31:29.063Z error: login:: admin with email undefined is not existing
+2025-03-09T18:31:31.027Z error: login:: admin with email undefined is not existing
+2025-03-09T18:33:37.637Z error: login:: admin with email undefined is not existing
+2025-03-09T18:41:15.767Z error: ERROR::apiValidationHandler:  Expected double-quoted property name in JSON at position 65
+2025-03-09T18:41:32.203Z error: ERROR::apiValidationHandler:  request/body must have required property 'password', request/body must have required property 'token', request/body must match exactly one schema in oneOf
+2025-03-09T18:42:15.627Z error: login:: Error Error: Decoding Firebase ID token failed. Make sure you passed the entire string JWT which represents an ID token. See https://firebase.google.com/docs/auth/admin/verify-id-tokens for details on how to retrieve an ID token. verifying token for user: systemAdmin@gmail.com
+2025-03-09T18:42:15.629Z error: login:: admin with email undefined is not existing
+2025-03-09T18:43:43.694Z error: login:: Error Error: Decoding Firebase ID token failed. Make sure you passed the entire string JWT which represents an ID token. See https://firebase.google.com/docs/auth/admin/verify-id-tokens for details on how to retrieve an ID token. verifying token for user: systemAdmin@gmail.com
+2025-03-09T18:43:43.704Z error: login:: admin with email undefined is not existing
+2025-03-09T18:49:50.720Z error: login:: Error Error: Decoding Firebase ID token failed. Make sure you passed the entire string JWT which represents an ID token. See https://firebase.google.com/docs/auth/admin/verify-id-tokens for details on how to retrieve an ID token. verifying token for user: systemAdmin@gmail.com
+2025-03-09T18:49:50.727Z error: login:: admin with email undefined is not existing
+2025-03-09T18:49:55.670Z error: login:: Error Error: Decoding Firebase ID token failed. Make sure you passed the entire string JWT which represents an ID token. See https://firebase.google.com/docs/auth/admin/verify-id-tokens for details on how to retrieve an ID token. verifying token for user: systemAdmin@gmail.com
+2025-03-09T18:49:55.678Z error: login:: admin with email undefined is not existing
+2025-03-09T18:51:55.780Z error: login:: Error Invalid token verifying token for user: systemAdmin@gmail.com
+2025-03-09T18:51:56.931Z error: login:: Error Invalid token verifying token for user: systemAdmin@gmail.com
+2025-03-09T18:51:57.565Z error: login:: Error Invalid token verifying token for user: systemAdmin@gmail.com
+2025-03-09T18:51:58.022Z error: login:: Error Invalid token verifying token for user: systemAdmin@gmail.com
+2025-03-09T18:51:58.840Z error: login:: Error Invalid token verifying token for user: systemAdmin@gmail.com
+2025-03-09T18:52:58.918Z error: ERROR::apiValidationHandler:  no schema defined for status code '201' in the openapi spec
+2025-03-09T19:01:27.029Z error: login:: error: basicUserDetails.toObject is not a function
+2025-03-09T19:01:49.836Z error: login:: error: basicUserDetails.toJSON is not a function
+2025-03-09T19:06:33.147Z error: login:: Error Unathorized user token verifying token for user: lakarathalaka@gmail.com
+2025-03-09T19:16:52.710Z error: ERROR::apiValidationHandler:  openapi.validator: args.apiDoc was invalid.  See the output.
+2025-03-09T19:18:16.910Z error: ERROR::apiValidationHandler:  openapi.validator: args.apiDoc was invalid.  See the output.
+2025-03-09T19:19:28.715Z error: ERROR::apiValidationHandler:  openapi.validator: args.apiDoc was invalid.  See the output.
+2025-03-09T19:19:31.370Z error: ERROR::apiValidationHandler:  openapi.validator: args.apiDoc was invalid.  See the output.
+2025-03-09T19:19:58.030Z error: ERROR::apiValidationHandler:  openapi.validator: args.apiDoc was invalid.  See the output.
+2025-03-09T19:26:19.390Z error: login:: admin with email  lka@test.com is not existing
+2025-03-09T19:26:28.869Z error: login:: Error Unathorized user token verifying token for user:  lka@test.com
+2025-03-09T19:27:03.434Z error: login:: Error Unathorized user token verifying token for user:  lka@test.com
+2025-03-09T19:28:05.891Z error: authenticateJWT:: invalid token
+2025-03-09T19:48:53.448Z error: ERROR::apiValidationHandler:  Unexpected non-whitespace character after JSON at position 941
+2025-03-09T19:49:10.975Z error: ERROR::apiValidationHandler:  Unexpected non-whitespace character after JSON at position 941
+2025-03-09T19:49:35.761Z error: ERROR::apiValidationHandler:  request/body must match exactly one schema in oneOf
+2025-03-09T19:50:55.009Z error: authenticateJWT:: No token provided
+2025-03-09T19:51:43.877Z error: ERROR::apiValidationHandler:  Authorization header required
+2025-03-09T19:52:28.114Z error: register:: error: Performing an update on the path '_id' would modify the immutable field '_id'
+2025-03-09T19:55:51.289Z error: login:: Error Invalid token verifying token for user: lka@test.com
+2025-03-09T19:56:13.873Z error: register:: error: Illegal arguments: undefined, string
+2025-03-09T20:02:13.043Z error: register:: error: Performing an update on the path '_id' would modify the immutable field '_id'
+2025-03-09T20:03:47.738Z error: register:: error: Performing an update on the path '_id' would modify the immutable field '_id'
+2025-03-09T20:03:50.866Z error: register:: error: Performing an update on the path '_id' would modify the immutable field '_id'
+2025-03-09T20:06:05.269Z error: register:: error: Performing an update on the path '_id' would modify the immutable field '_id'
+2025-03-09T20:08:46.793Z error: login:: Error Invalid token verifying token for user: lka@test.com
+2025-03-09T20:09:07.021Z error: login:: Error Invalid token verifying token for user: lka@test.com
+2025-03-09T20:11:47.526Z error: login:: error: Performing an update on the path '_id' would modify the immutable field '_id'
+2025-03-09T20:18:03.197Z error: register:: User with email lka@test.csasom is not exist
+2025-03-14T23:54:27.529Z error: ERROR::apiValidationHandler:  Missing $ref pointer "#/components/schemas/Users". Token "Users" does not exist.
+2025-03-14T23:54:43.506Z error: ERROR::apiValidationHandler:  Missing $ref pointer "#/components/schemas/Users". Token "Users" does not exist.
+2025-03-14T23:55:29.466Z error: ERROR::apiValidationHandler:  Missing $ref pointer "#/components/schemas/Users". Token "Users" does not exist.
+2025-03-14T23:55:29.616Z error: ERROR::apiValidationHandler:  Missing $ref pointer "#/components/schemas/Users". Token "Users" does not exist.
+2025-03-15T00:02:47.858Z error: ERROR::apiValidationHandler:  Missing $ref pointer "#/components/schemas/Users". Token "Users" does not exist.
+2025-03-15T00:03:00.815Z error: ERROR::apiValidationHandler:  Missing $ref pointer "#/components/schemas/Users". Token "Users" does not exist.
+2025-03-15T00:03:07.004Z error: ERROR::apiValidationHandler:  Missing $ref pointer "#/components/schemas/Users". Token "Users" does not exist.
+2025-03-15T00:05:41.078Z error: ERROR::apiValidationHandler:  Missing $ref pointer "#/components/schemas/Users". Token "Users" does not exist.
+2025-03-15T00:05:58.097Z error: ERROR::apiValidationHandler:  Missing $ref pointer "#/components/schemas/Users". Token "Users" does not exist.
+2025-03-15T00:05:58.299Z error: ERROR::apiValidationHandler:  Missing $ref pointer "#/components/schemas/Users". Token "Users" does not exist.
+2025-03-15T00:06:44.261Z error: ERROR::apiValidationHandler:  Missing $ref pointer "#/components/schemas/Users". Token "Users" does not exist.
+2025-03-15T00:09:57.726Z error: ERROR::apiValidationHandler:  openapi.validator: args.apiDoc was invalid.  See the output.
+2025-03-15T00:11:28.446Z error: ERROR::apiValidationHandler:  openapi.validator: args.apiDoc was invalid.  See the output.
+2025-03-15T00:11:29.640Z error: ERROR::apiValidationHandler:  openapi.validator: args.apiDoc was invalid.  See the output.
+2025-03-15T00:13:01.651Z error: authorizeJWT:: User not authorized with role: user
+2025-03-15T00:13:58.041Z error: login:: Error Invalid token verifying token for user: systemAdmin@gmail.com
+2025-03-15T00:14:08.876Z error: login:: Error Invalid token verifying token for user: systemAdmin@gmail.com
+2025-03-15T00:14:18.774Z error: login:: error: Cannot read properties of null (reading 'toJSON')
+2025-03-15T00:14:30.976Z error: login:: error: Cannot read properties of null (reading 'toJSON')
+2025-03-15T00:15:27.088Z error: login:: error: Cannot read properties of null (reading 'toJSON')
+2025-03-15T00:18:28.272Z error: login:: error: Cannot read properties of null (reading 'toJSON')
+2025-03-15T00:21:05.787Z error: ERROR::apiValidationHandler:  /response/0/id must be integer
+2025-03-15T03:27:39.592Z error: ERROR::apiValidationHandler:  not found
+2025-03-15T03:33:36.035Z error: ERROR::apiValidationHandler:  not found
+2025-03-15T03:33:37.673Z error: ERROR::apiValidationHandler:  not found
+2025-03-15T03:34:12.858Z error: ERROR::apiValidationHandler:  Authorization header required
+2025-03-15T03:34:50.121Z error: ERROR::apiValidationHandler:  Unknown query parameter 'admin'
+2025-03-15T03:35:08.491Z error: ERROR::apiValidationHandler:  request/query/role must be equal to one of the allowed values: admin, user
+2025-03-15T04:08:21.235Z error: ERROR::operationHandler: No handler found for this operationId 
+2025-03-15T04:18:24.939Z error: createNewVendor:: MongoServerError: E11000 duplicate key error collection: test-super-market-01.vendors index: id_1 dup key: { id: null }
+2025-03-15T04:20:05.532Z error: createNewVendor:: MongoServerError: E11000 duplicate key error collection: test-super-market-01.vendors index: id_1 dup key: { id: null }
+2025-03-15T04:23:59.612Z error: createNewVendor:: MongoServerError: E11000 duplicate key error collection: test-super-market-02.vendors index: name_1 dup key: { name: "lakshan" }
+2025-03-15T04:27:26.556Z error: createNewVendor:: MongoServerError: E11000 duplicate key error collection: test-super-market-02.vendors index: name_1 dup key: { name: "lakshan" }
+2025-03-15T04:27:44.561Z error: createNewVendor:: MongoServerError: E11000 duplicate key error collection: test-super-market-02.vendors index: name_1 dup key: { name: "lakshan" }
+2025-03-15T04:27:46.036Z error: createNewVendor:: MongoServerError: E11000 duplicate key error collection: test-super-market-02.vendors index: name_1 dup key: { name: "lakshan" }
+2025-03-15T04:27:47.474Z error: createNewVendor:: MongoServerError: E11000 duplicate key error collection: test-super-market-02.vendors index: name_1 dup key: { name: "lakshan" }
+2025-03-15T04:28:29.684Z error: ERROR::apiValidationHandler:  Unexpected number in JSON at position 95
+2025-03-15T04:28:46.956Z error: updateVendor::Vendor not found : undefined
+2025-03-15T04:29:03.774Z error: updateVendor::Vendor not found : undefined
+2025-03-15T04:31:06.211Z error: createNewVendor:: MongoServerError: E11000 duplicate key error collection: test-super-market-02.vendors index: email_1 dup key: { email: "string" }
+2025-03-15T04:31:40.018Z error: createNewVendor:: MongoServerError: E11000 duplicate key error collection: test-super-market-02.vendors index: name_1 dup key: { name: "suren1" }
+2025-03-15T04:31:56.465Z error: ERROR::apiValidationHandler:  request/body must have required property 'shopList'
+2025-03-15T04:32:02.655Z error: updateVendor::Vendor not found : null
+2025-03-15T04:32:29.545Z error: deleteVendor::Vendor not found : undefined
+2025-03-15T04:32:36.688Z error: deleteVendor::Vendor not found : undefined
