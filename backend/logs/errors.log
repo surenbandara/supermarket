@@ -71,3 +71,9 @@
 2025-03-15T00:15:27.088Z error: login:: error: Cannot read properties of null (reading 'toJSON')
 2025-03-15T00:18:28.272Z error: login:: error: Cannot read properties of null (reading 'toJSON')
 2025-03-15T00:21:05.787Z error: ERROR::apiValidationHandler:  /response/0/id must be integer
+2025-03-15T03:27:39.592Z error: ERROR::apiValidationHandler:  not found
+2025-03-15T03:33:36.035Z error: ERROR::apiValidationHandler:  not found
+2025-03-15T03:33:37.673Z error: ERROR::apiValidationHandler:  not found
+2025-03-15T03:34:12.858Z error: ERROR::apiValidationHandler:  Authorization header required
+2025-03-15T03:34:50.121Z error: ERROR::apiValidationHandler:  Unknown query parameter 'admin'
+2025-03-15T03:35:08.491Z error: ERROR::apiValidationHandler:  request/query/role must be equal to one of the allowed values: admin, user

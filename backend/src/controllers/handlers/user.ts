@@ -4,7 +4,9 @@ import log from '../../utils/logger';
 
 export const listUsers = async (req: Request, res: Response, next: NextFunction) => {
     try {
-        const users: IUser[] = await UserModel.find();
+        const { role } = req.query;
+        const filter = role ? { role } : {};
+        const users: IUser[] = await UserModel.find(filter);
 
         // const page = parseInt(req.query.page as string) || 1;
         // const limit = parseInt(req.query.limit as string) || 10;
@@ -21,11 +23,9 @@ export const listUsers = async (req: Request, res: Response, next: NextFunction)
         //     users: paginatedUsers,
         // });
 
-
-        // TODO remove logging users(passwords?)
-        log.info(`listUsers::Users fetched successfully : ${users}`);
         const userModels = users.map(user => new UserModel(user));
         const userJson = userModels.map(userModel => userModel.toJSON());
+        log.info(`listUsers::Users fetched successfully: ${JSON.stringify(userJson)}`);
         res.status(200).json(userJson);
     }
     catch (err: any) {

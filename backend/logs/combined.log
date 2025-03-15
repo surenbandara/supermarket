@@ -464,3 +464,169 @@
   createdAt: 2025-03-15T00:12:26.818Z,
   updatedAt: 2025-03-15T00:12:26.818Z
 }
+2025-03-15T03:13:36.255Z info: MongoDB ::::: mongodb://mongodb:27017/test-super-market-01
+2025-03-15T03:13:36.463Z info: MongoDB connected
+2025-03-15T03:13:36.465Z info: Server running on port 3000
+2025-03-15T03:13:36.483Z info: Admin user already exists
+2025-03-15T03:13:36.483Z info: starterPack added successfully
+2025-03-15T03:17:03.865Z info: MongoDB ::::: mongodb://mongodb:27017/test-super-market-01
+2025-03-15T03:17:04.067Z info: MongoDB connected
+2025-03-15T03:17:04.070Z info: Server running on port 3000
+2025-03-15T03:17:04.082Z info: Admin user already exists
+2025-03-15T03:17:04.082Z info: starterPack added successfully
+2025-03-15T03:17:30.825Z info: listUsers::Users fetched successfully : {
+  id: '2025-03-14T22:50:32.348Z',
+  username: 'systemAdmin',
+  password: '$2b$10$JpINCtp5kSa2eCIjyN24AuEi2wGQZWPsapAk2MqnG8Jp6fbXQFat6',
+  role: 'admin',
+  email: 'systemAdmin@gmail.com',
+  phoneNumber: '',
+  profilePic: '',
+  emailVerified: false,
+  createdAt: 2025-03-14T22:50:32.561Z,
+  updatedAt: 2025-03-14T22:50:32.561Z
+},{
+  id: 'GUAMCTtadpRtL9jqzLSsoZGEXdJ2',
+  username: 'lucky ratha',
+  role: 'user',
+  email: 'lakarathalaka@gmail.com',
+  profilePic: 'https://lh3.googleusercontent.com/a/ACg8ocLblbq939-gVaDcS06NvF7V6e7KwR11_0Jpg42kKhFM3JQTPg=s96-c',
+  emailVerified: true,
+  createdAt: 2025-03-15T00:12:26.818Z,
+  updatedAt: 2025-03-15T00:12:26.818Z
+}
+2025-03-15T03:17:30.825Z info: [object Object]
+2025-03-15T03:20:12.654Z info: MongoDB ::::: mongodb://mongodb:27017/test-super-market-01
+2025-03-15T03:20:12.860Z info: MongoDB connected
+2025-03-15T03:20:12.863Z info: Server running on port 3000
+2025-03-15T03:20:12.874Z info: Admin user already exists
+2025-03-15T03:20:12.874Z info: starterPack added successfully
+2025-03-15T03:20:18.488Z info: listUsers::Users fetched successfully : {
+  id: '2025-03-14T22:50:32.348Z',
+  username: 'systemAdmin',
+  password: '$2b$10$JpINCtp5kSa2eCIjyN24AuEi2wGQZWPsapAk2MqnG8Jp6fbXQFat6',
+  role: 'admin',
+  email: 'systemAdmin@gmail.com',
+  phoneNumber: '',
+  profilePic: '',
+  emailVerified: false,
+  createdAt: 2025-03-14T22:50:32.561Z,
+  updatedAt: 2025-03-14T22:50:32.561Z
+},{
+  id: 'GUAMCTtadpRtL9jqzLSsoZGEXdJ2',
+  username: 'lucky ratha',
+  role: 'user',
+  email: 'lakarathalaka@gmail.com',
+  profilePic: 'https://lh3.googleusercontent.com/a/ACg8ocLblbq939-gVaDcS06NvF7V6e7KwR11_0Jpg42kKhFM3JQTPg=s96-c',
+  emailVerified: true,
+  createdAt: 2025-03-15T00:12:26.818Z,
+  updatedAt: 2025-03-15T00:12:26.818Z
+}
+2025-03-15T03:20:18.489Z info: {"role":"admin"}
+2025-03-15T03:21:54.605Z info: MongoDB ::::: mongodb://mongodb:27017/test-super-market-01
+2025-03-15T03:21:54.804Z info: MongoDB connected
+2025-03-15T03:21:54.806Z info: Server running on port 3000
+2025-03-15T03:21:54.819Z info: Admin user already exists
+2025-03-15T03:21:54.819Z info: starterPack added successfully
+2025-03-15T03:22:07.334Z info: listUsers::Users fetched successfully : {
+  id: '2025-03-14T22:50:32.348Z',
+  username: 'systemAdmin',
+  password: '$2b$10$JpINCtp5kSa2eCIjyN24AuEi2wGQZWPsapAk2MqnG8Jp6fbXQFat6',
+  role: 'admin',
+  email: 'systemAdmin@gmail.com',
+  phoneNumber: '',
+  profilePic: '',
+  emailVerified: false,
+  createdAt: 2025-03-14T22:50:32.561Z,
+  updatedAt: 2025-03-14T22:50:32.561Z
+},{
+  id: 'GUAMCTtadpRtL9jqzLSsoZGEXdJ2',
+  username: 'lucky ratha',
+  role: 'user',
+  email: 'lakarathalaka@gmail.com',
+  profilePic: 'https://lh3.googleusercontent.com/a/ACg8ocLblbq939-gVaDcS06NvF7V6e7KwR11_0Jpg42kKhFM3JQTPg=s96-c',
+  emailVerified: true,
+  createdAt: 2025-03-15T00:12:26.818Z,
+  updatedAt: 2025-03-15T00:12:26.818Z
+}
+2025-03-15T03:22:07.334Z info: {"role":"user"}
+2025-03-15T03:27:39.592Z error: ERROR::apiValidationHandler:  not found
+2025-03-15T03:33:36.035Z error: ERROR::apiValidationHandler:  not found
+2025-03-15T03:33:37.673Z error: ERROR::apiValidationHandler:  not found
+2025-03-15T03:34:12.858Z error: ERROR::apiValidationHandler:  Authorization header required
+2025-03-15T03:34:22.412Z info: listUsers::Users fetched successfully : {
+  id: '2025-03-14T22:50:32.348Z',
+  username: 'systemAdmin',
+  password: '$2b$10$JpINCtp5kSa2eCIjyN24AuEi2wGQZWPsapAk2MqnG8Jp6fbXQFat6',
+  role: 'admin',
+  email: 'systemAdmin@gmail.com',
+  phoneNumber: '',
+  profilePic: '',
+  emailVerified: false,
+  createdAt: 2025-03-14T22:50:32.561Z,
+  updatedAt: 2025-03-14T22:50:32.561Z
+},{
+  id: 'GUAMCTtadpRtL9jqzLSsoZGEXdJ2',
+  username: 'lucky ratha',
+  role: 'user',
+  email: 'lakarathalaka@gmail.com',
+  profilePic: 'https://lh3.googleusercontent.com/a/ACg8ocLblbq939-gVaDcS06NvF7V6e7KwR11_0Jpg42kKhFM3JQTPg=s96-c',
+  emailVerified: true,
+  createdAt: 2025-03-15T00:12:26.818Z,
+  updatedAt: 2025-03-15T00:12:26.818Z
+}
+2025-03-15T03:34:22.413Z info: {}
+2025-03-15T03:34:50.121Z error: ERROR::apiValidationHandler:  Unknown query parameter 'admin'
+2025-03-15T03:35:01.957Z info: listUsers::Users fetched successfully : {
+  id: '2025-03-14T22:50:32.348Z',
+  username: 'systemAdmin',
+  password: '$2b$10$JpINCtp5kSa2eCIjyN24AuEi2wGQZWPsapAk2MqnG8Jp6fbXQFat6',
+  role: 'admin',
+  email: 'systemAdmin@gmail.com',
+  phoneNumber: '',
+  profilePic: '',
+  emailVerified: false,
+  createdAt: 2025-03-14T22:50:32.561Z,
+  updatedAt: 2025-03-14T22:50:32.561Z
+},{
+  id: 'GUAMCTtadpRtL9jqzLSsoZGEXdJ2',
+  username: 'lucky ratha',
+  role: 'user',
+  email: 'lakarathalaka@gmail.com',
+  profilePic: 'https://lh3.googleusercontent.com/a/ACg8ocLblbq939-gVaDcS06NvF7V6e7KwR11_0Jpg42kKhFM3JQTPg=s96-c',
+  emailVerified: true,
+  createdAt: 2025-03-15T00:12:26.818Z,
+  updatedAt: 2025-03-15T00:12:26.818Z
+}
+2025-03-15T03:35:01.958Z info: {"role":"admin"}
+2025-03-15T03:35:08.491Z error: ERROR::apiValidationHandler:  request/query/role must be equal to one of the allowed values: admin, user
+2025-03-15T03:35:17.477Z info: listUsers::Users fetched successfully : {
+  id: '2025-03-14T22:50:32.348Z',
+  username: 'systemAdmin',
+  password: '$2b$10$JpINCtp5kSa2eCIjyN24AuEi2wGQZWPsapAk2MqnG8Jp6fbXQFat6',
+  role: 'admin',
+  email: 'systemAdmin@gmail.com',
+  phoneNumber: '',
+  profilePic: '',
+  emailVerified: false,
+  createdAt: 2025-03-14T22:50:32.561Z,
+  updatedAt: 2025-03-14T22:50:32.561Z
+},{
+  id: 'GUAMCTtadpRtL9jqzLSsoZGEXdJ2',
+  username: 'lucky ratha',
+  role: 'user',
+  email: 'lakarathalaka@gmail.com',
+  profilePic: 'https://lh3.googleusercontent.com/a/ACg8ocLblbq939-gVaDcS06NvF7V6e7KwR11_0Jpg42kKhFM3JQTPg=s96-c',
+  emailVerified: true,
+  createdAt: 2025-03-15T00:12:26.818Z,
+  updatedAt: 2025-03-15T00:12:26.818Z
+}
+2025-03-15T03:35:17.477Z info: {"role":"user"}
+2025-03-15T03:39:10.839Z info: MongoDB ::::: mongodb://mongodb:27017/test-super-market-01
+2025-03-15T03:39:11.053Z info: MongoDB connected
+2025-03-15T03:39:11.056Z info: Server running on port 3000
+2025-03-15T03:39:11.072Z info: Admin user already exists
+2025-03-15T03:39:11.073Z info: starterPack added successfully
+2025-03-15T03:39:14.791Z info: listUsers::Users fetched successfully: [{"id":"GUAMCTtadpRtL9jqzLSsoZGEXdJ2","username":"lucky ratha","role":"user","email":"lakarathalaka@gmail.com","profilePic":"https://lh3.googleusercontent.com/a/ACg8ocLblbq939-gVaDcS06NvF7V6e7KwR11_0Jpg42kKhFM3JQTPg=s96-c","createdAt":"2025-03-15T00:12:26.818Z","updatedAt":"2025-03-15T00:12:26.818Z"}]
+2025-03-15T03:39:21.240Z info: listUsers::Users fetched successfully: [{"id":"2025-03-14T22:50:32.348Z","username":"systemAdmin","role":"admin","email":"systemAdmin@gmail.com","phoneNumber":"","profilePic":"","createdAt":"2025-03-14T22:50:32.561Z","updatedAt":"2025-03-14T22:50:32.561Z"}]
+2025-03-15T03:39:28.486Z info: listUsers::Users fetched successfully: [{"id":"2025-03-14T22:50:32.348Z","username":"systemAdmin","role":"admin","email":"systemAdmin@gmail.com","phoneNumber":"","profilePic":"","createdAt":"2025-03-14T22:50:32.561Z","updatedAt":"2025-03-14T22:50:32.561Z"},{"id":"GUAMCTtadpRtL9jqzLSsoZGEXdJ2","username":"lucky ratha","role":"user","email":"lakarathalaka@gmail.com","profilePic":"https://lh3.googleusercontent.com/a/ACg8ocLblbq939-gVaDcS06NvF7V6e7KwR11_0Jpg42kKhFM3JQTPg=s96-c","createdAt":"2025-03-15T00:12:26.818Z","updatedAt":"2025-03-15T00:12:26.818Z"}]
