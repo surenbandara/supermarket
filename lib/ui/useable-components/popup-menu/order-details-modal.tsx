@@ -61,10 +61,6 @@ const OrderDetailModal: React.FC<IOrderDetailModalProps> = ({
               <span>Tax Charges</span>
               <span>${(restaurantData.taxationAmount ?? 0)?.toFixed(2)}</span>
             </div>
-            <div className="charges-row">
-              <span>Tip</span>
-              <span>${(restaurantData.tipping ?? 0)?.toFixed(2)}</span>
-            </div>
             <div className="charges-row total-row">
               <strong>Total</strong>
               <strong>
@@ -72,8 +68,7 @@ const OrderDetailModal: React.FC<IOrderDetailModalProps> = ({
                 {(
                   restaurantData.orderAmount +
                   (restaurantData.deliveryCharges ?? 0) +
-                  (restaurantData.taxationAmount ?? 0) +
-                  (restaurantData.tipping ?? 0)
+                  (restaurantData.taxationAmount ?? 0)
                 ).toFixed(2)}
               </strong>
             </div>

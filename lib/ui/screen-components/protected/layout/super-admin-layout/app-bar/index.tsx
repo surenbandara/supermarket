@@ -3,7 +3,7 @@
 'use client';
 
 // Core
-import { usePathname, useRouter } from 'next/navigation';
+import {  useRouter } from 'next/navigation';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   useCallback,
@@ -17,11 +17,8 @@ import Image from 'next/image';
 
 // Icons
 import {
-  faBell,
   faChevronDown,
   faEllipsisV,
-  faMap,
-  faTruck,
   faRightFromBracket,
   faBars,
   faGlobe,
@@ -69,7 +66,6 @@ const AppTopbar = () => {
 
   // Hooks
   const t = useTranslations();
-  const pathname = usePathname();
   const router = useRouter();
   const [, startTransition] = useTransition();
   const currentLocale = useLocale();
@@ -89,12 +85,6 @@ const AppTopbar = () => {
     setIsMenuOpen(false);
     showSuperAdminSidebar(false);
   }, [showSuperAdminSidebar]);
-
-  const shouldShow = (permission: string) => {
-    if (user && user.userType === 'STAFF') {
-      return user?.permissions?.includes(permission);
-    } else return true;
-  };
 
   const handleClickOutside = (event: MouseEvent) => {
     // Check if the clicked target is outside the container
@@ -156,42 +146,6 @@ const AppTopbar = () => {
         </div>
       </div>
       <div className="hidden items-center space-x-5 md:flex">
-        {shouldShow('Zone') && (
-          <TextIconClickable
-            icon={faMap}
-            title={t('Zone')}
-            className={
-              pathname === '/zone'
-                ? 'rounded bg-primary-color text-white'
-                : 'bg-transparent hover:rounded hover:bg-secondary-color'
-            }
-            iconStyles={{
-              color: pathname === '/zone' ? 'white' : 'gray',
-            }}
-            onClick={() => onRedirectToPage('/zone')}
-          />
-        )}
-        {shouldShow('Dispatch') && (
-          <TextIconClickable
-            icon={faTruck}
-            title={t('Dispatch')}
-            className={
-              pathname === '/dispatch'
-                ? 'rounded bg-primary-color text-white'
-                : 'bg-transparent hover:rounded hover:bg-secondary-color'
-            }
-            iconStyles={{ color: pathname === '/dispatch' ? 'white' : 'gray' }}
-            onClick={() => onRedirectToPage('/dispatch')}
-          />
-        )}
-        {shouldShow('Notification') && (
-          <FontAwesomeIcon
-            className="cursor-pointer"
-            icon={faBell}
-            onClick={() => onRedirectToPage('/management/notifications')}
-          />
-        )}
-
         <div className="hidden items-center space-x-3 md:flex">
           <div
             className="flex items-center space-x-2 rounded-md p-2 hover:bg-[#d8d8d837]"
@@ -576,27 +530,6 @@ const AppTopbar = () => {
           ref={containerRef}
         >
           <div className="flex flex-col items-center space-y-4">
-            {shouldShow('Notification') && (
-              <FontAwesomeIcon
-                icon={faBell}
-                color="gray"
-                onClick={() => onRedirectToPage('/management/notifications')}
-              />
-            )}
-            {shouldShow('Zone') && (
-              <TextIconClickable
-                className="justify-between"
-                icon={faMap}
-                onClick={() => onRedirectToPage('/zone')}
-              />
-            )}
-            {shouldShow('Dispatch') && (
-              <TextIconClickable
-                className="justify-between"
-                icon={faTruck}
-                onClick={() => onRedirectToPage('/dispatch')}
-              />
-            )}
             {/* <TextIconClickable className="justify-between" icon={faCog} /> */}
             {/* <TextIconClickable className="justify-between" icon={faGlobe} /> */}
             <TextIconClickable

@@ -55,12 +55,6 @@ export interface IRestaurantsAddRestaurantComponentProps
   extends IGlobalComponentProps {
   stepperProps?: IStepperFormProps;
 }
-export interface IRestaurantsRestaurantLocationComponentProps
-  extends IGlobalComponentProps {
-  stepperProps?: IStepperFormProps;
-  height?: string;
-  hideControls?: boolean;
-}
 export interface IRestaurantsRestaurantDeliveryComponentProps
   extends IGlobalComponentProps {
   stepperProps?: IStepperFormProps;
@@ -92,7 +86,6 @@ export interface IRestaurantByIdResponse {
     deliveryTime: number;
     minimumOrder: number;
     isActive: boolean;
-    commissionRate: number;
     tax: number;
     username: string;
     owner: {

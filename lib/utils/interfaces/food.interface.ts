@@ -51,10 +51,6 @@ export interface IFoodVariationsAddRestaurantComponentProps
   extends IGlobalComponentProps {
   stepperProps?: IStepperFormProps;
 }
-export interface IFoodAddonsRestaurantLocationComponentProps
-  extends IGlobalComponentProps {
-  stepperProps?: IStepperFormProps;
-}
 
 /* API */
 export interface IFoodGridItem {
@@ -73,7 +69,6 @@ export interface IVariation {
   title: string;
   price: number;
   discounted: number;
-  addons: string[];
   isOutOfStock: boolean;
   __typename?: string;
 }

@@ -17,7 +17,6 @@ import { StepperPanel } from 'primereact/stepperpanel';
 // Local components
 import { RestaurantContext } from '@/lib/context/super-admin/restaurant.context';
 import RestaurantDetails from './restaurant-details';
-import RestaurantLocation from './restaurant-location';
 import RestaurantTiming from './restaurant-timing';
 import { useTranslations } from 'next-intl';
 
@@ -67,15 +66,6 @@ const RestaurantsForm = ({
               stepperProps={{
                 onStepChange: onHandleStepChange,
                 order: activeIndex,
-              }}
-            />
-          </StepperPanel>
-          <StepperPanel header={t('Location')}>
-            <RestaurantLocation
-              stepperProps={{
-                onStepChange: onHandleStepChange,
-                order: activeIndex,
-                isLastStep: false,
               }}
             />
           </StepperPanel>

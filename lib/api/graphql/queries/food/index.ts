@@ -18,7 +18,6 @@ export const GET_FOODS_BY_RESTAURANT_ID = gql`
             title
             price
             discounted
-            addons
             isOutOfStock
           }
           image

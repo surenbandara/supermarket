@@ -18,7 +18,6 @@ import {
   faCog,
   faHome,
   faSliders,
-  faUpRightFromSquare,
 } from '@fortawesome/free-solid-svg-icons';
 
 // Constants and Utiils
@@ -91,11 +90,6 @@ export default function MakeSidebar() {
           route: '/general/users',
           isParent: false,
         },
-        {
-          text: t('Staff'),
-          route: '/general/staff',
-          isParent: false,
-        },
       ]),
       shouldShow: function () {
         return this.subMenu ? this.subMenu.length > 0 : false;
@@ -118,28 +112,8 @@ export default function MakeSidebar() {
           isParent: false,
         },
         {
-          text: t('Coupons'),
-          route: '/management/coupons',
-          isParent: false,
-        },
-        {
           text: t('Cuisine'),
           route: '/management/cuisines',
-          isParent: false,
-        },
-        {
-          text: t('Banners'),
-          route: '/management/banners',
-          isParent: false,
-        },
-        {
-          text: t('Tipping'),
-          route: '/management/tippings',
-          isParent: false,
-        },
-        {
-          text: t('Commission Rate'),
-          route: '/management/commission-rates',
           isParent: false,
         },
         {

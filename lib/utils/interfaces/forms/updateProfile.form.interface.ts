@@ -3,9 +3,6 @@ import { IDropdownSelectItem } from '../global.interface';
 // Errors
 export interface IUpdateProfileFormErrors {
   name: string[];
-  username: string[];
-  password: string[];
-  confirmPassword: string[];
   address: string[];
   deliveryTime: string[];
   minOrder: string[];
@@ -20,9 +17,6 @@ export interface IUpdateProfileFormErrors {
 
 export interface IUpdateProfileForm {
   name: string;
-  username: string;
-  password: string;
-  confirmPassword: string;
   address: string;
   deliveryTime: number;
   minOrder: number;

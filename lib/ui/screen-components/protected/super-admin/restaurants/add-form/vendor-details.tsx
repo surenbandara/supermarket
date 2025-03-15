@@ -22,7 +22,6 @@ import { onErrorMessageMatcher } from '@/lib/utils/methods/error';
 import CustomButton from '@/lib/ui/useable-components/button';
 import CustomTextField from '@/lib/ui/useable-components/input-field';
 import CustomIconTextField from '@/lib/ui/useable-components/input-icon-field';
-import CustomPasswordTextField from '@/lib/ui/useable-components/password-input-field';
 import CustomUploadImageComponent from '@/lib/ui/useable-components/upload/upload-image';
 
 // Schema
@@ -43,8 +42,6 @@ const initialValues: IRestauransVendorDetailsForm = {
   _id: null,
   name: '',
   email: '',
-  password: '',
-  confirmPassword: '',
   image: '',
 };
 export default function VendorDetails({
@@ -111,8 +108,7 @@ export default function VendorDetails({
           variables: {
             vendorInput: {
               _id: '',
-              email: formData.email,
-              password: formData.password,
+              email: formData.email
             },
           },
         });
@@ -266,47 +262,6 @@ export default function VendorDetails({
                                 borderColor: onErrorMessageMatcher(
                                   'email',
                                   errors?.email,
-                                  VendorErrors
-                                )
-                                  ? 'red'
-                                  : '',
-                              }}
-                            />
-                          </div>
-
-                          <div>
-                            <CustomPasswordTextField
-                              placeholder={t('Password')}
-                              name="password"
-                              maxLength={20}
-                              value={values.password}
-                              showLabel={true}
-                              onChange={handleChange}
-                              style={{
-                                borderColor: onErrorMessageMatcher(
-                                  'password',
-                                  errors?.password,
-                                  VendorErrors
-                                )
-                                  ? 'red'
-                                  : '',
-                              }}
-                            />
-                          </div>
-
-                          <div>
-                            <CustomPasswordTextField
-                              placeholder={t('Confirm Password')}
-                              name="confirmPassword"
-                              maxLength={20}
-                              showLabel={true}
-                              value={values.confirmPassword ?? ''}
-                              onChange={handleChange}
-                              feedback={false}
-                              style={{
-                                borderColor: onErrorMessageMatcher(
-                                  'confirmPassword',
-                                  errors?.confirmPassword,
                                   VendorErrors
                                 )
                                   ? 'red'

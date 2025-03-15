@@ -9,7 +9,7 @@ import { IQueryResult } from '@/lib/utils/interfaces';
 import {
   IUserResponse,
   IUsersDataResponse,
-} from '@/lib/utils/interfaces/users.interface';
+} from '@/lib/utils/interfaces';
 
 // Components
 import { USERS_TABLE_COLUMNS } from '@/lib/ui/useable-components/table/columns/user-columns';
@@ -20,7 +20,6 @@ import Table from '@/lib/ui/useable-components/table';
 
 // GraphQL
 import { GET_USERS } from '@/lib/api/graphql';
-import { generateDummyUsers } from '@/lib/utils/dummy';
 import UsersTableHeader from '../header/table-header';
 
 export default function UsersMain() {
@@ -55,7 +54,7 @@ export default function UsersMain() {
           />
         }
         loading={loading}
-        data={data?.users || (loading ? generateDummyUsers() : [])}
+        data={data?.users || []}
         filters={filters}
         setSelectedData={setSelectedProducts}
         selectedData={selectedProducts}

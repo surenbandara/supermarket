@@ -28,7 +28,6 @@ import { StepperPanel } from 'primereact/stepperpanel';
 
 // Local components
 import RestaurantDetailsForm from './restaurant-details';
-import RestaurantLocation from './restaurant-location';
 import VendorDetails from './vendor-details';
 import RestaurantTiming from './restaurant-timing';
 import { useTranslations } from 'next-intl';
@@ -105,15 +104,6 @@ const RestaurantsForm = ({
               stepperProps={{
                 onStepChange: onHandleStepChange,
                 order: activeIndex,
-              }}
-            />
-          </StepperPanel>
-          <StepperPanel header={t('Location')}>
-            <RestaurantLocation
-              stepperProps={{
-                onStepChange: onHandleStepChange,
-                order: activeIndex,
-                isLastStep: true,
               }}
             />
           </StepperPanel>

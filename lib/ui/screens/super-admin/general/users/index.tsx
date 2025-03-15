@@ -1,12 +1,18 @@
+// Core
+
+// Components
 import UserHeader from '@/lib/ui/screen-components/protected/super-admin/users/view/header/screen-header';
-import UsersMain from '@/lib/ui/screen-components/protected/super-admin/users/view/main';
+import UserMain from '@/lib/ui/screen-components/protected/super-admin/users/view/main';
 
-export default function UsersScreen() {
+// Interfaces and Types
+
+export default function Screen() {
+
   return (
-    <div className="flex h-[90vh] flex-col overflow-auto">
-      <UserHeader />
+    <div className="screen-container">
+      <UserHeader/>
 
-      <UsersMain />
+      <UserMain />
     </div>
   );
 }

@@ -31,7 +31,6 @@ import { onErrorMessageMatcher } from '@/lib/utils/methods/error';
 // GraphQL
 import { UPDATE_RESTAURANT_DELIVERY } from '@/lib/api/graphql';
 import { ApolloError, useMutation } from '@apollo/client';
-import UpdateRestaurantLocation from './update-restaurant-location';
 import { useTranslations } from 'next-intl';
 
 export default function UpdateDelivery({
@@ -201,13 +200,6 @@ export default function UpdateDelivery({
                               ? 'red'
                               : '',
                           }}
-                        />
-                      </div>
-
-                      <div className="pt-3">
-                        <UpdateRestaurantLocation
-                          height="400px"
-                          hideControls={true}
                         />
                       </div>
 

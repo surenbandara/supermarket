@@ -1,6 +1,5 @@
 import * as Yup from 'yup';
 import { MAX_PRICE, MIN_PRICE } from '../constants';
-import { IDropdownSelectItem } from '../interfaces';
 
 export const VariationSchema = Yup.object({
   variations: Yup.array()
@@ -17,7 +16,6 @@ export const VariationSchema = Yup.object({
           .max(MAX_PRICE)
           .required('Required'),
         discounted: Yup.number().min(0).required('Required'),
-        addons: Yup.array().of(Yup.mixed<IDropdownSelectItem>()),
         isOutOfStock: Yup.boolean(),
       })
     )

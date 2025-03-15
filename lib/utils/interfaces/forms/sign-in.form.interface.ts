@@ -22,7 +22,7 @@ export interface ILoginResponse {
   email: string;
   name?: string;
   image?: string;
-  userType: 'ADMIN' | 'STAFF' | 'VENDOR' | 'RESTAURANT';
+  userType: 'ADMIN' | 'VENDOR' | 'RESTAURANT';
   userTypeId?: string;
   restaurants: ISignInOwnerRestaurants[];
   permissions?: String[];

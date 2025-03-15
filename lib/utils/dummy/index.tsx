@@ -8,26 +8,19 @@ import {
 
 // Interfaces
 import {
-  IAddon,
-  IBannersResponse,
   ICategory,
   IDropdownSelectItem,
   IFoodNew,
-  IOptions,
   IRestaurantResponse,
-  IStaffResponse,
   IStatsCardProps,
   IVendorStoreDetails,
   IZoneResponse,
 } from '../interfaces';
 import { IRiderResponse } from '../interfaces/rider.interface';
-import { IUserResponse } from '../interfaces/users.interface';
-import { ICoupon } from '../interfaces/coupons.interface';
 import { ICuisine } from '../interfaces/cuisine.interface';
 import { INotification } from '../interfaces/notification.interface';
 import { IWithDrawRequest } from '../interfaces/withdraw-request.interface';
 import { IActiveOrders } from '../interfaces/dispatch.interface';
-import { ICouponRestaurantResponse } from '../interfaces/coupons-restaurant.interface';
 
 export const dummyStatsData: IStatsCardProps[] = [
   {
@@ -138,7 +131,6 @@ export const generateDummyRestaurants = (
       slug: '',
       deliveryTime: 0,
       minimumOrder: 0,
-      commissionRate: 0,
       tax: 0,
       shopType: '',
       __typename: '',
@@ -172,42 +164,6 @@ export const generateDummyRiders = (count: number = 10): IRiderResponse[] => {
   return riders;
 };
 
-export const generateDummyCommissionRates = (
-  count: number = 10
-): IRestaurantResponse[] => {
-  const dummyCommissionRates: IRestaurantResponse[] = [];
-
-  for (let i = 0; i < count; i++) {
-    dummyCommissionRates.push({
-      _id: `restaurant_${i + 1}`,
-      unique_restaurant_id: `restaurant_${i + 1}`,
-      name: `Restaurant ${i + 1}`,
-      commissionRate: Math.floor(Math.random() * 10) + 5, // Random commission rate between 5 and 15
-      isActive: Math.random() > 0.2, // 80% chance of being active
-      __typename: 'Restaurant',
-      image: '',
-      orderPrefix: '',
-      slug: '',
-      address: '',
-      deliveryTime: Math.floor(Math.random() * 60) + 15, // Random delivery time between 15 and 75 minutes
-      minimumOrder: Math.floor(Math.random() * 20) + 5, // Random minimum order between $5 and $25
-      tax: Math.floor(Math.random() * 10) + 5, // Random tax between 5% and 15%
-      username: `restaurant${i + 1}`,
-      owner: {
-        _id: `owner_${i + 1}`,
-        email: `owner${i + 1}@example.com`,
-        isActive: true,
-        __typename: 'Owner',
-      },
-      shopType: ['Fast Food', 'Casual Dining', 'Fine Dining'][
-        Math.floor(Math.random() * 3)
-      ],
-    });
-  }
-
-  return dummyCommissionRates;
-};
-
 export const generateDummyOrderVendor = (
   count: number = 10
 ): IRestaurantResponse[] => {
@@ -218,7 +174,6 @@ export const generateDummyOrderVendor = (
       _id: `restaurant_${i + 1}`,
       unique_restaurant_id: `restaurant_${i + 1}`,
       name: `Restaurant ${i + 1}`,
-      commissionRate: Math.floor(Math.random() * 10) + 5, // Random commission rate between 5 and 15
       isActive: Math.random() > 0.2, // 80% chance of being active
       __typename: 'Restaurant',
       image: '',
@@ -257,80 +212,6 @@ export const generateDummyCategories = (count: number = 10): ICategory[] => {
   return categories;
 };
 
-export const generateDummyOptions = (count: number = 10): IOptions[] => {
-  const options: IOptions[] = [];
-
-  for (let i = 0; i < count; i++) {
-    options.push({
-      _id: `option_${i + 1}`,
-      title: `Option ${i + 1}`,
-      description: `Description for Option ${i + 1}`,
-      price: Math.floor(Math.random() * 100) + 1,
-      __typename: '',
-    });
-  }
-
-  return options;
-};
-
-export const generateDummyAddons = (count: number = 10): IAddon[] => {
-  const addons: IAddon[] = [];
-
-  for (let i = 0; i < count; i++) {
-    addons.push({
-      _id: `addon_${i + 1}`,
-      title: `Addon ${i + 1}`,
-      description: `Description for Addon ${i + 1}`,
-      quantityMinimum: 1,
-      quantityMaximum: 1,
-      __typename: 'Addon',
-      options: [],
-    });
-  }
-
-  return addons;
-};
-
-export const generateDummyUsers = (count: number = 10): IUserResponse[] => {
-  const users: IUserResponse[] = [];
-
-  for (let i = 0; i < count; i++) {
-    users.push({
-      _id: `user_${i + 1}`,
-      name: `User ${i + 1}`,
-      email: `user${i + 1}@example.com`,
-      phone: `+1${Math.floor(1000000000 + Math.random() * 9000000000)}`,
-      addresses: [],
-
-      createdAt: (
-        Date.now() - Math.floor(Math.random() * 31536000000)
-      ).toString(),
-      __typename: 'User',
-    });
-  }
-
-  return users;
-};
-
-export const generateDummyBanners = (
-  count: number = 10
-): IBannersResponse[] => {
-  const banners: IBannersResponse[] = [];
-
-  for (let i = 0; i < count; i++) {
-    banners.push({
-      _id: `banner_${i + 1}`,
-      title: `Banner ${i + 1}`,
-      description: `Description for Banner ${i + 1}`,
-      file: `https://example.com/banner${i + 1}.jpg`,
-      screen: `Screen ${(i % 3) + 1}`,
-      action: 'navigate',
-      parameters: '',
-    });
-  }
-
-  return banners;
-};
 
 export const generateDummyZones = (count: number = 10): IZoneResponse[] => {
   const zones: IZoneResponse[] = [];
@@ -349,20 +230,6 @@ export const generateDummyZones = (count: number = 10): IZoneResponse[] => {
   }
 
   return zones;
-};
-
-export const generateDummyCoupons = (count: number = 10) => {
-  const coupons: ICoupon[] = [];
-  for (let i = 0; i < count; i++) {
-    coupons.push({
-      _id: `coupon_${i + 1}`,
-      title: `coupon_${i + 1}`,
-      __typename: `coupon_${i + 1}`,
-      discount: Math.floor(Math.random() * i + 15),
-      enabled: Math.random() * 3 > 2,
-    });
-  }
-  return coupons;
 };
 
 export const generateDummyCuisines = (count: number = 10) => {
@@ -468,7 +335,6 @@ export const generateDummyFoods = (count: number = 10): IFoodNew[] => {
       variations: [
         {
           _id: `food_${i + 1}`,
-          addons: [] as IDropdownSelectItem[],
           discounted: 0,
           isOutOfStock: false,
           price: i + 23,
@@ -480,44 +346,6 @@ export const generateDummyFoods = (count: number = 10): IFoodNew[] => {
   }
 
   return foods;
-};
-
-export const generateDummyCouponsRestaurant = (
-  count: number = 10
-): ICouponRestaurantResponse[] => {
-  const coupons: ICouponRestaurantResponse[] = [];
-
-  for (let i = 0; i < count; i++) {
-    coupons.push({
-      _id: `rider_${i + 1}`,
-      title: `rider${i + 1}`,
-      discount: i + 1,
-      enabled: Math.random() > 0.5,
-      __typename: 'Rider',
-    });
-  }
-
-  return coupons;
-};
-
-export const generateDummyStaff = (count: number = 10): IStaffResponse[] => {
-  const staffs: IStaffResponse[] = [];
-
-  for (let i = 0; i < count; i++) {
-    staffs.push({
-      __typename: 'Staff',
-      _id: `staff_${i + 1}`,
-      name: `Staff ${i + 1}`,
-      email: `staff${i + 1}@example.com`, // updated email to be more realistic
-      plainPassword: `password${i + 1}`,
-      password: `password${i + 1}`,
-      phone: 1234567890 + i,
-      permissions: ['Dummy'],
-      isActive: Math.random() > 0.5,
-    });
-  }
-
-  return staffs;
 };
 
 export const generateVendorStoreDetails = (

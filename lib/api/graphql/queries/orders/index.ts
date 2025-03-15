@@ -85,19 +85,6 @@ export const GET_ORDER_BY_RESTAURANT = gql`
           price
           discounted
         }
-        addons {
-          _id
-          options {
-            _id
-            title
-            description
-            price
-          }
-          description
-          title
-          quantityMinimum
-          quantityMaximum
-        }
         specialInstructions
         isActive
         createdAt
@@ -119,7 +106,6 @@ export const GET_ORDER_BY_RESTAURANT = gql`
       isActive
       createdAt
       deliveryCharges
-      tipping
       taxationAmount
       rider {
         _id
@@ -156,19 +142,6 @@ export const GET_ORDER_BY_RESTAURANT_WITHOUT_PAGINATION = gql`
           price
           discounted
         }
-        addons {
-          _id
-          options {
-            _id
-            title
-            description
-            price
-          }
-          description
-          title
-          quantityMinimum
-          quantityMaximum
-        }
         specialInstructions
         isActive
         createdAt
@@ -190,7 +163,6 @@ export const GET_ORDER_BY_RESTAURANT_WITHOUT_PAGINATION = gql`
       isActive
       createdAt
       deliveryCharges
-      tipping
       taxationAmount
     }
   }
@@ -230,19 +202,6 @@ export const GET_ORDERS = gql`
           price
           discounted
         }
-        addons {
-          _id
-          options {
-            _id
-            title
-            description
-            price
-          }
-          description
-          title
-          quantityMinimum
-          quantityMaximum
-        }
         specialInstructions
         isActive
         createdAt
@@ -264,7 +223,6 @@ export const GET_ORDERS = gql`
       isActive
       createdAt
       deliveryCharges
-      tipping
       taxationAmount
       rider {
         _id
@@ -318,19 +276,6 @@ export const GET_ORDERS_WITHOUT_PAGINATION = gql`
           price
           discounted
         }
-        addons {
-          _id
-          options {
-            _id
-            title
-            description
-            price
-          }
-          description
-          title
-          quantityMinimum
-          quantityMaximum
-        }
         specialInstructions
         isActive
         createdAt
@@ -352,7 +297,6 @@ export const GET_ORDERS_WITHOUT_PAGINATION = gql`
       isActive
       createdAt
       deliveryCharges
-      tipping
       taxationAmount
       rider {
         _id

@@ -37,19 +37,6 @@ export const SUBSCRIPTION_PLACE_ORDER = gql`
             price
             discounted
           }
-          addons {
-            _id
-            options {
-              _id
-              title
-              description
-              price
-            }
-            description
-            title
-            quantityMinimum
-            quantityMaximum
-          }
           specialInstructions
           isActive
           createdAt

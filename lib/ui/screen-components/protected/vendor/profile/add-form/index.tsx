@@ -22,7 +22,6 @@ import { onErrorMessageMatcher } from '@/lib/utils/methods/error';
 import CustomButton from '@/lib/ui/useable-components/button';
 import CustomTextField from '@/lib/ui/useable-components/input-field';
 import CustomIconTextField from '@/lib/ui/useable-components/input-icon-field';
-import CustomPasswordTextField from '@/lib/ui/useable-components/password-input-field';
 import CustomUploadImageComponent from '@/lib/ui/useable-components/upload/upload-image';
 
 // Schema
@@ -38,8 +37,6 @@ import { useTranslations } from 'next-intl';
 const initialValues: IVendorForm = {
   name: '',
   email: '',
-  password: '',
-  confirmPassword: '',
   image: '',
 };
 
@@ -77,7 +74,6 @@ export default function VendorUpdateForm({
             _id: vendor?._id,
             name: data?.name ?? ' ',
             email: data?.email,
-            password: data?.password,
             image: data?.image,
             phoneNumber: data?.phoneNumber,
             lastName: data?.lastName,
@@ -120,8 +116,6 @@ export default function VendorUpdateForm({
       setFormValues({
         name: vendor?.name ?? '',
         email: vendor?.email ?? '',
-        password: vendor?.plainPassword ?? '',
-        confirmPassword: vendor?.plainPassword ?? '',
         image: vendor?.image || '',
         phoneNumber: vendor?.phoneNumber || '',
         lastName: vendor?.lastName || '',
@@ -199,45 +193,6 @@ export default function VendorUpdateForm({
                             borderColor: onErrorMessageMatcher(
                               'email',
                               errors?.email,
-                              VendorErrors
-                            )
-                              ? 'red'
-                              : '',
-                          }}
-                        />
-
-                        <CustomPasswordTextField
-                          autoComplete="new-password"
-                          placeholder={t('Password')}
-                          name="password"
-                          maxLength={20}
-                          value={values.password}
-                          showLabel={true}
-                          onChange={handleChange}
-                          style={{
-                            borderColor: onErrorMessageMatcher(
-                              'password',
-                              errors?.password,
-                              VendorErrors
-                            )
-                              ? 'red'
-                              : '',
-                          }}
-                        />
-
-                        <CustomPasswordTextField
-                          autoComplete="new-password"
-                          placeholder={t('Confirm Password')}
-                          name="confirmPassword"
-                          maxLength={20}
-                          showLabel={true}
-                          value={values.confirmPassword ?? ''}
-                          onChange={handleChange}
-                          feedback={false}
-                          style={{
-                            borderColor: onErrorMessageMatcher(
-                              'confirmPassword',
-                              errors?.confirmPassword,
                               VendorErrors
                             )
                               ? 'red'

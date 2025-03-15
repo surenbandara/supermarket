@@ -3,9 +3,6 @@ import { IDropdownSelectItem } from '../global.interface';
 // Errors
 export interface IRestaurantFormErrors {
   name: string[];
-  username: string[];
-  password: string[];
-  confirmPassword: string[];
   address: string[];
   deliveryTime: string[];
   minOrder: string[];
@@ -18,9 +15,6 @@ export interface IRestaurantFormErrors {
 
 export interface IRestaurantForm {
   name: string;
-  username: string;
-  password: string;
-  confirmPassword: string;
   address: string;
   deliveryTime: number;
   minOrder: number;
