@@ -21,13 +21,14 @@ export interface IVendorContextProps {
   onSetVendorFormVisible: (status: boolean, isEdit?: boolean) => void;
   vendorId: string | null;
   onSetVendorId: (val: string) => void;
-  vendorResponse: IQueryResult<IVendorResponseGraphQL | undefined, undefined>;
+  vendorResponse: IVendorResponseGraphQL | undefined;
   globalFilter: string;
   onSetGlobalFilter: (filter: string) => void;
   filtered?: IVendorReponse[];
   isEditingVendor: boolean;
   onSetEditingVendor: (status: boolean) => void;
   onResetVendor: (state: boolean) => void;
+  loading: boolean;
 }
 
 export interface IVendorHeaderComponentsProps extends IGlobalComponentProps {
