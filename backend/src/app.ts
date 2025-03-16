@@ -9,7 +9,7 @@ import { apiValidationHandler } from "./middleware/validationErrorHandler";
 import { operationHandler } from "./middleware/operationHandler";
 import authValidation from "./middleware/authentication";
 
-import starterPack from "./starter-pack/adminUsers";
+import starterPack from "./starter-pack/starter-pack";
 
 const app = express();
 app.use(express.json());

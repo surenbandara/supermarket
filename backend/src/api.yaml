@@ -1127,15 +1127,15 @@ components:
           type: integer
         additionalData:
           type: object
-          properties:
-            color:
-              type: string
-            expirationDate:
-              type: number
-            size:
-              type: string
-            description:
-              type: string
+          # properties:
+          #   color:
+          #     type: string
+          #   expirationDate:
+          #     type: number
+          #   size:
+          #     type: string
+          #   description:
+          #     type: string
       required:
         - id
         - name

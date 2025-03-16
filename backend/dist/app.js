@@ -45,7 +45,7 @@ const cors_1 = __importDefault(require("cors"));
 const validationErrorHandler_1 = require("./middleware/validationErrorHandler");
 const operationHandler_1 = require("./middleware/operationHandler");
 const authentication_1 = __importDefault(require("./middleware/authentication"));
-const adminUsers_1 = __importDefault(require("./starter-pack/adminUsers"));
+const starter_pack_1 = __importDefault(require("./starter-pack/starter-pack"));
 const app = (0, express_1.default)();
 app.use(express_1.default.json());
 app.use((0, cors_1.default)());
@@ -56,7 +56,7 @@ app.use(OpenApiValidator.middleware({
     validateRequests: true,
     validateResponses: true,
 }));
-(0, adminUsers_1.default)();
+(0, starter_pack_1.default)();
 app.use(authentication_1.default);
 app.use(operationHandler_1.operationHandler);
 app.use(validationErrorHandler_1.apiValidationHandler);

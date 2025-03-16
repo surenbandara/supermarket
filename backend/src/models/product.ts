@@ -12,7 +12,7 @@ export interface IProduct extends mongoose.Document {
     image?: string;
     discount?: number;
     timestamp: number;
-    additionalData?: AdditionalData;
+    additionalData?: object;
 }
 
 const productSchema = new mongoose.Schema<IProduct>(
