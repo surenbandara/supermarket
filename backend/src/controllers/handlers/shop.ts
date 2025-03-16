@@ -5,6 +5,7 @@ import VendorModel from '../../models/vendor';
 
 export const listShops = async (req: Request, res: Response, next: NextFunction) => {
     try {
+        //TODO: add quary support for category.
         const { name } = req.query;
         const filter = name ? { name } : {};
         const shops: IShop[] = await ShopModel.find(filter);

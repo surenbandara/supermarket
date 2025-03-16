@@ -194,7 +194,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/Product'
+              $ref: '#/components/schemas/NewProduct'
       responses:
         '201':
           description: Created
@@ -383,40 +383,56 @@ paths:
             schema:
               type: object
               properties:
+                name:
+                  type: string
+                  description: Filter by product name
                 priceRange:
                   type: object
                   properties:
-                    maxPrice:
+                    min:
                       type: number
-                      nullable: true
-                    lowPrice:
+                      description: Minimum price
+                    max:
                       type: number
-                      nullable: true
-                category:
+                      description: Maximum price
+                quantityRange:
+                  type: object
+                  properties:
+                    min:
+                      type: number
+                      description: Minimum quantity
+                    max:
+                      type: number
+                      description: Maximum quantity
+                cusine:
                   type: array
                   items:
                     type: string
-                    enum:
-                      - fruits
-                      - vegetables
-                      - bakery
-                      - electronics
-                      - other
-                discount:
-                  type: boolean
-                name:
-                  type: string
+                  description: Filter by cuisine types
                 brand:
                   type: string
-                id:
-                  type: integer
+                  description: Filter by brand name
                 shop:
                   type: string
-                  enum:
-                    - Diwulkumbura-Supermarket
-                    - Bounty-Restaurant
-                timestamp:
+                  description: Filter by shop name
+                discount:
+                  type: number
+                  description: Filter by discount percentage
+                timestampRange:
+                  type: object
+                  properties:
+                    start:
+                      type: number
+                      description: Start timestamp (milliseconds)
+                    end:
+                      type: number
+                      description: End timestamp (milliseconds)
+                limit:
                   type: integer
+                  description: Number of products per page
+                page:
+                  type: integer
+                  description: Page number for pagination
       responses:
         '200':
           description: A list of filtered products
@@ -1042,6 +1058,48 @@ components:
         scheme: bearer
         bearerFormat: JWT 
   schemas:
+    NewProduct:
+      type: object
+      properties:
+        name:
+          type: string
+        price:
+          type: number
+        quantity:
+          type: integer
+        cusine:
+          type: array
+          items:
+            type: string
+        brand:
+          type: string
+        shop:
+          type: string
+        image:
+          type: string
+        discount:
+          type: number
+        timestamp:
+          type: integer
+        additionalData:
+          type: object
+          properties:
+            color:
+              type: string
+            expirationDate:
+              type: number
+            size:
+              type: string
+            description:
+              type: string
+      required:
+        - name
+        - price
+        - quantity
+        - cusine
+        - brand
+        - shop
+        - timestamp
     Product:
       type: object
       properties:
@@ -1053,22 +1111,14 @@ components:
           type: number
         quantity:
           type: integer
-        category:
-          type: string
-          enum:
-            - fruits
-            - food
-            - vegetables
-            - bakery
-            - electronics
-            - other
+        cusine:
+          type: array
+          items:
+            type: string
         brand:
           type: string
         shop:
           type: string
-          enum:
-            - Diwulkumbura-Supermarket
-            - Bounty-Restaurant
         image:
           type: string
         discount:
@@ -1091,9 +1141,10 @@ components:
         - name
         - price
         - quantity
-        - category
+        - cusine
         - brand
         - shop
+        - timestamp
     User:
       type: object
       properties:
@@ -1146,6 +1197,11 @@ components:
           type: string
         vendorPhoneNumber:
           type: string
+        category:
+          type: string
+          enum:
+            - super-market
+            - restaurants # add more categories as needed
         timestamp:
           type: number
         image:
@@ -1165,6 +1221,11 @@ components:
           type: string
         vendorEmai:
           type: string
+        category:
+          type: string
+          enum:
+            - super-market
+            - restaurants # add more categories as needed
         vendorPhoneNumber:
           type: string
         timestamp:

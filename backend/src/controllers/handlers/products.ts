@@ -1,6 +1,5 @@
 import { Request, Response, NextFunction } from 'express';
 import ProductModel, { IProduct } from '../../models/product';
-import { Category, Shop } from '../../models/common';
 import log from '../../utils/logger';
 
 export const listProducts = async (req: Request, res: Response, next: NextFunction) => {
@@ -22,6 +21,7 @@ export const listProducts = async (req: Request, res: Response, next: NextFuncti
 export const createNewProduct = async (req: Request, res: Response, next: NextFunction) => {
     try {
         const product: IProduct = new ProductModel(req.body);
+        product.id = Date.now();
         await product.save();
         log.info(`createNewProduct::Product created successfully : ${product}`);
         res.status(201).json(product);
@@ -92,16 +92,56 @@ export const deleteProduct = async (req: Request, res: Response, next: NextFunct
 };
 
 export const filterProducts = async (req: Request, res: Response, next: NextFunction) => {
-    // try {
+    try {
+        const {
+            name,
+            priceRange,
+            quantityRange,
+            cusine,
+            brand,
+            shop,
+            discount,
+            timestampRange,
+            limit = 10,
+            page = 1
+        } = req.body;
 
-    //     res.status(200).json(products);
-    // }
-    // catch (err: any) {
-    //     console.log("ERROR::filterProducts: ", err);
-    //     res.status(500).json({
-    //         status: 500,
-    //         message: "Internal Server Error",
-    //     });
-    // }
+        const filter: any = {};
+
+        if (name) filter.name = { $regex: new RegExp(name, "i") };
+        if (priceRange?.min !== undefined || priceRange?.max !== undefined) {
+            filter.price = {};
+            if (priceRange.min !== undefined) filter.price.$gte = priceRange.min;
+            if (priceRange.max !== undefined) filter.price.$lte = priceRange.max;
+        }
+        if (quantityRange?.min !== undefined || quantityRange?.max !== undefined) {
+            filter.quantity = {};
+            if (quantityRange.min !== undefined) filter.quantity.$gte = quantityRange.min;
+            if (quantityRange.max !== undefined) filter.quantity.$lte = quantityRange.max;
+        }
+        if (cusine && cusine.length > 0) filter.cusine = { $in: cusine }; // Matches any in the array
+        if (brand) filter.brand = brand;
+        if (shop) filter.shop = shop;
+        if (discount !== undefined) filter.discount = discount;
+        if (timestampRange?.start !== undefined || timestampRange?.end !== undefined) {
+            filter.timestamp = {};
+            if (timestampRange.start !== undefined) filter.timestamp.$gte = timestampRange.start;
+            if (timestampRange.end !== undefined) filter.timestamp.$lte = timestampRange.end;
+        }
+
+        const products = await ProductModel.find(filter)
+            .sort({ timestamp: -1 }) // Sort by latest products
+            // .skip((page - 1) * limit)
+            // .limit(limit);
+
+        log.info(`filterProducts::Products fetched successfully`);
+        res.status(200).json(products);
+    } catch (err: any) {
+        log.error(`filterProducts:: ${err.message}`);
+        res.status(500).json({
+            status: 500,
+            message: "Internal Server Error",
+        });
+    }
     next();
 };

@@ -111,3 +111,10 @@
 2025-03-16T11:44:37.125Z error: ERROR::apiValidationHandler:  openapi.validator: args.apiDoc was invalid.  See the output.
 2025-03-16T11:45:46.537Z error: ERROR::apiValidationHandler:  openapi.validator: args.apiDoc was invalid.  See the output.
 2025-03-16T11:50:54.550Z error: createNewRider:: MongoServerError: E11000 duplicate key error collection: test-super-market-03.riders index: name_1 dup key: { name: "lakiya" }
+2025-03-16T12:38:40.777Z error: login:: Error Invalid token verifying token for user: lakarathalaka@gmail.com
+2025-03-16T12:39:14.632Z error: login:: Error Invalid token verifying token for user: lakarathalaka@gmail.com
+2025-03-16T12:39:44.608Z error: login:: Error Invalid token verifying token for user: lakarathalaka@gmail.com
+2025-03-16T15:01:12.361Z error: authenticateJWT:: jwt expired
+2025-03-16T15:02:20.772Z error: login:: Invalid password for user systemAdmin@gmail.com
+2025-03-16T15:08:24.996Z error: ERROR::apiValidationHandler:  Expected double-quoted property name in JSON at position 39
+2025-03-16T15:08:36.620Z error: ERROR::apiValidationHandler:  Expected double-quoted property name in JSON at position 39

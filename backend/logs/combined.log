@@ -887,3 +887,207 @@
 2025-03-16T11:53:18.210Z info: listRiders::Riders fetched successfully : [{"name":"lakiya","email":"string","phoneNumber":"string","vehicle":"string","available":true,"createdAt":"2025-03-16T11:53:15.319Z","updatedAt":"2025-03-16T11:53:15.319Z"}]
 2025-03-16T11:53:28.900Z info: createNewRider::Rider created successfully : {"name":"suren","email":"string","phoneNumber":"string","vehicle":"string","available":true,"createdAt":"2025-03-16T11:53:28.898Z","updatedAt":"2025-03-16T11:53:28.898Z"}
 2025-03-16T11:53:32.238Z info: listRiders::Riders fetched successfully : [{"name":"lakiya","email":"string","phoneNumber":"string","vehicle":"string","available":true,"createdAt":"2025-03-16T11:53:15.319Z","updatedAt":"2025-03-16T11:53:15.319Z"},{"name":"suren","email":"string","phoneNumber":"string","vehicle":"string","available":true,"createdAt":"2025-03-16T11:53:28.898Z","updatedAt":"2025-03-16T11:53:28.898Z"}]
+2025-03-16T12:37:13.411Z info: MongoDB ::::: mongodb://mongodb:27017/test-super-market-03
+2025-03-16T12:37:13.636Z info: MongoDB connected
+2025-03-16T12:37:13.640Z info: Server running on port 3000
+2025-03-16T12:37:13.654Z info: Admin user already exists
+2025-03-16T12:37:13.655Z info: starterPack added successfully
+2025-03-16T12:37:22.474Z info: listUsers::Users fetched successfully: [{"id":"2025-03-16T11:07:59.482Z","username":"systemAdmin","role":"admin","email":"systemAdmin@gmail.com","phoneNumber":"","profilePic":"","createdAt":"2025-03-16T11:07:59.702Z","updatedAt":"2025-03-16T11:07:59.702Z"}]
+2025-03-16T12:38:40.777Z error: login:: Error Invalid token verifying token for user: lakarathalaka@gmail.com
+2025-03-16T12:39:14.632Z error: login:: Error Invalid token verifying token for user: lakarathalaka@gmail.com
+2025-03-16T12:39:44.608Z error: login:: Error Invalid token verifying token for user: lakarathalaka@gmail.com
+2025-03-16T12:40:23.657Z info: login:: User with email lakarathalaka@gmail.com not found
+2025-03-16T12:40:23.686Z info: login:: New user lakarathalaka@gmail.com created successfully
+2025-03-16T12:40:48.065Z info: listUsers::Users fetched successfully: [{"id":"2025-03-16T11:07:59.482Z","username":"systemAdmin","role":"admin","email":"systemAdmin@gmail.com","phoneNumber":"","profilePic":"","createdAt":"2025-03-16T11:07:59.702Z","updatedAt":"2025-03-16T11:07:59.702Z"},{"id":"GUAMCTtadpRtL9jqzLSsoZGEXdJ2","username":"lucky ratha","role":"user","email":"lakarathalaka@gmail.com","profilePic":"https://lh3.googleusercontent.com/a/ACg8ocLblbq939-gVaDcS06NvF7V6e7KwR11_0Jpg42kKhFM3JQTPg=s96-c","createdAt":"2025-03-16T12:40:23.664Z","updatedAt":"2025-03-16T12:40:23.664Z"}]
+2025-03-16T12:43:13.783Z info: MongoDB ::::: mongodb://mongodb:27017/test-super-market-03
+2025-03-16T12:43:13.990Z info: MongoDB connected
+2025-03-16T12:43:13.993Z info: Server running on port 3000
+2025-03-16T12:43:14.011Z info: Admin user already exists
+2025-03-16T12:43:14.011Z info: starterPack added successfully
+2025-03-16T12:43:16.820Z info: listUsers::Users fetched successfully: [{"id":"2025-03-16T11:07:59.482Z","username":"systemAdmin","role":"admin","email":"systemAdmin@gmail.com","phoneNumber":"","profilePic":"","updatedAt":"2025-03-16T11:07:59.702Z"},{"id":"GUAMCTtadpRtL9jqzLSsoZGEXdJ2","username":"lucky ratha","role":"user","email":"lakarathalaka@gmail.com","profilePic":"https://lh3.googleusercontent.com/a/ACg8ocLblbq939-gVaDcS06NvF7V6e7KwR11_0Jpg42kKhFM3JQTPg=s96-c","updatedAt":"2025-03-16T12:40:23.664Z"}]
+2025-03-16T12:43:50.828Z info: MongoDB ::::: mongodb://mongodb:27017/test-super-market-03
+2025-03-16T12:43:51.048Z info: MongoDB connected
+2025-03-16T12:43:51.050Z info: Server running on port 3000
+2025-03-16T12:43:51.064Z info: Admin user already exists
+2025-03-16T12:43:51.065Z info: starterPack added successfully
+2025-03-16T12:43:52.717Z info: listUsers::Users fetched successfully: [{"id":"2025-03-16T11:07:59.482Z","username":"systemAdmin","role":"admin","email":"systemAdmin@gmail.com","phoneNumber":"","profilePic":""},{"id":"GUAMCTtadpRtL9jqzLSsoZGEXdJ2","username":"lucky ratha","role":"user","email":"lakarathalaka@gmail.com","profilePic":"https://lh3.googleusercontent.com/a/ACg8ocLblbq939-gVaDcS06NvF7V6e7KwR11_0Jpg42kKhFM3JQTPg=s96-c"}]
+2025-03-16T12:48:20.872Z info: MongoDB ::::: mongodb://mongodb:27017/test-super-market-03
+2025-03-16T12:48:21.110Z info: MongoDB connected
+2025-03-16T12:48:21.112Z info: Server running on port 3000
+2025-03-16T12:48:21.125Z info: Admin user already exists
+2025-03-16T12:48:21.204Z info: starterPack added successfully
+2025-03-16T12:48:26.737Z info: listUsers::Users fetched successfully: [{"id":"2025-03-16T11:07:59.482Z","username":"systemAdmin","role":"admin","email":"systemAdmin@gmail.com","phoneNumber":"","profilePic":""},{"id":"GUAMCTtadpRtL9jqzLSsoZGEXdJ2","username":"lucky ratha","role":"user","email":"lakarathalaka@gmail.com","profilePic":"https://lh3.googleusercontent.com/a/ACg8ocLblbq939-gVaDcS06NvF7V6e7KwR11_0Jpg42kKhFM3JQTPg=s96-c"},{"id":"2025-03-16T12:48:21.125Z","username":"lakshanSTPACK","role":"user","email":"lakshanSTPACK@gmail.com","phoneNumber":"","profilePic":""}]
+2025-03-16T12:52:32.608Z info: MongoDB ::::: mongodb://mongodb:27017/test-super-market-03
+2025-03-16T12:52:32.811Z info: MongoDB connected
+2025-03-16T12:52:32.813Z info: Server running on port 3000
+2025-03-16T12:52:32.826Z info: Admin user already exists
+2025-03-16T12:52:32.906Z info: starterPack added successfully
+2025-03-16T12:52:36.714Z info: listUsers::Users fetched successfully: [{"id":"2025-03-16T11:07:59.482Z","username":"systemAdmin","role":"admin","email":"systemAdmin@gmail.com","phoneNumber":"","profilePic":""},{"id":"GUAMCTtadpRtL9jqzLSsoZGEXdJ2","username":"lucky ratha","role":"user","email":"lakarathalaka@gmail.com","profilePic":"https://lh3.googleusercontent.com/a/ACg8ocLblbq939-gVaDcS06NvF7V6e7KwR11_0Jpg42kKhFM3JQTPg=s96-c"},{"id":"2025-03-16T12:48:21.125Z","username":"lakshanSTPACK","role":"user","email":"lakshanSTPACK@gmail.com","phoneNumber":"","profilePic":""},{"id":"2025-03-16T12:52:32.827Z","username":"lakshan1STPACK","role":"user","email":"lakshan1STPACK@gmail.com","phoneNumber":"","profilePic":""}]
+2025-03-16T12:53:07.433Z info: MongoDB ::::: mongodb://mongodb:27017/test-super-market-03
+2025-03-16T12:53:07.645Z info: MongoDB connected
+2025-03-16T12:53:07.647Z info: Server running on port 3000
+2025-03-16T12:53:07.657Z info: Admin user already exists
+2025-03-16T12:53:07.730Z info: Customer  lakshan1 user already exists
+2025-03-16T12:53:07.813Z info: starterPack added successfully
+2025-03-16T12:53:09.244Z info: listUsers::Users fetched successfully: [{"id":"2025-03-16T11:07:59.482Z","username":"systemAdmin","role":"admin","email":"systemAdmin@gmail.com","phoneNumber":"","profilePic":""},{"id":"GUAMCTtadpRtL9jqzLSsoZGEXdJ2","username":"lucky ratha","role":"user","email":"lakarathalaka@gmail.com","profilePic":"https://lh3.googleusercontent.com/a/ACg8ocLblbq939-gVaDcS06NvF7V6e7KwR11_0Jpg42kKhFM3JQTPg=s96-c"},{"id":"2025-03-16T12:48:21.125Z","username":"lakshanSTPACK","role":"user","email":"lakshanSTPACK@gmail.com","phoneNumber":"","profilePic":""},{"id":"2025-03-16T12:52:32.827Z","username":"lakshan1STPACK","role":"user","email":"lakshan1STPACK@gmail.com","phoneNumber":"","profilePic":""},{"id":"2025-03-16T12:53:07.730Z","username":"surenSTPACK","role":"user","email":"surenSTPACK@gmail.com","phoneNumber":"","profilePic":""}]
+2025-03-16T15:00:30.896Z info: MongoDB ::::: mongodb://mongodb:27017/test-super-market-03
+2025-03-16T15:00:31.100Z info: MongoDB connected
+2025-03-16T15:00:31.103Z info: Server running on port 3000
+2025-03-16T15:00:31.114Z info: Admin user already exists
+2025-03-16T15:00:31.185Z info: Customer  lakshan1 user already exists
+2025-03-16T15:00:31.257Z info: Customer  suren user already exists
+2025-03-16T15:00:31.257Z info: starterPack added successfully
+2025-03-16T15:01:12.361Z error: authenticateJWT:: jwt expired
+2025-03-16T15:02:20.772Z error: login:: Invalid password for user systemAdmin@gmail.com
+2025-03-16T15:02:43.345Z info: login:: User systemAdmin@gmail.com logged in successfully
+2025-03-16T15:03:01.652Z info: listUsers::Users fetched successfully: [{"id":"2025-03-16T11:07:59.482Z","username":"systemAdmin","role":"admin","email":"systemAdmin@gmail.com","phoneNumber":"","profilePic":""},{"id":"GUAMCTtadpRtL9jqzLSsoZGEXdJ2","username":"lucky ratha","role":"user","email":"lakarathalaka@gmail.com","profilePic":"https://lh3.googleusercontent.com/a/ACg8ocLblbq939-gVaDcS06NvF7V6e7KwR11_0Jpg42kKhFM3JQTPg=s96-c"},{"id":"2025-03-16T12:48:21.125Z","username":"lakshanSTPACK","role":"user","email":"lakshanSTPACK@gmail.com","phoneNumber":"","profilePic":""},{"id":"2025-03-16T12:52:32.827Z","username":"lakshan1STPACK","role":"user","email":"lakshan1STPACK@gmail.com","phoneNumber":"","profilePic":""},{"id":"2025-03-16T12:53:07.730Z","username":"surenSTPACK","role":"user","email":"surenSTPACK@gmail.com","phoneNumber":"","profilePic":""}]
+2025-03-16T15:03:27.389Z info: createNewProduct::Product created successfully : {
+  name: '1',
+  price: 0,
+  quantity: 0,
+  cusine: [ 'string' ],
+  brand: 'string',
+  shop: 'string',
+  image: 'string',
+  discount: 0,
+  timestamp: 0,
+  additionalData: {
+    color: 'string',
+    expirationDate: 0,
+    size: 'string',
+    description: 'string'
+  },
+  id: 1742137407380,
+  createdAt: 2025-03-16T15:03:27.382Z,
+  updatedAt: 2025-03-16T15:03:27.382Z
+}
+2025-03-16T15:03:56.948Z info: updateProduct::Product updated successfully : {
+  name: '12',
+  price: 0,
+  quantity: 0,
+  cusine: [ 'string' ],
+  brand: 'string',
+  shop: 'string',
+  image: 'string',
+  discount: 0,
+  timestamp: 0,
+  additionalData: {
+    color: 'string',
+    expirationDate: 0,
+    size: 'string',
+    description: 'string'
+  },
+  id: 1742137407380,
+  createdAt: 2025-03-16T15:03:27.382Z,
+  updatedAt: 2025-03-16T15:03:56.942Z
+}
+2025-03-16T15:05:06.728Z info: deleteProduct::Product deleted successfully : {
+  name: '12',
+  price: 0,
+  quantity: 0,
+  cusine: [ 'string' ],
+  brand: 'string',
+  shop: 'string',
+  image: 'string',
+  discount: 0,
+  timestamp: 0,
+  additionalData: {
+    color: 'string',
+    expirationDate: 0,
+    size: 'string',
+    description: 'string'
+  },
+  id: 1742137407380,
+  createdAt: 2025-03-16T15:03:27.382Z,
+  updatedAt: 2025-03-16T15:03:56.942Z
+}
+2025-03-16T15:05:14.021Z info: listProducts::Products fetched successfully : 
+2025-03-16T15:05:39.447Z info: filterProducts::Products fetched successfully
+2025-03-16T15:06:02.031Z info: createNewProduct::Product created successfully : {
+  name: '1',
+  price: 0,
+  quantity: 0,
+  cusine: [ 'string' ],
+  brand: 'string',
+  shop: 'string',
+  image: 'string',
+  discount: 0,
+  timestamp: 0,
+  additionalData: {
+    color: 'string',
+    expirationDate: 0,
+    size: 'string',
+    description: 'string'
+  },
+  id: 1742137562027,
+  createdAt: 2025-03-16T15:06:02.028Z,
+  updatedAt: 2025-03-16T15:06:02.028Z
+}
+2025-03-16T15:06:17.457Z info: createNewProduct::Product created successfully : {
+  name: '2',
+  price: 0,
+  quantity: 0,
+  cusine: [ 'nu' ],
+  brand: 'string',
+  shop: 'string',
+  image: 'string',
+  discount: 0,
+  timestamp: 0,
+  additionalData: {
+    color: 'string',
+    expirationDate: 0,
+    size: 'string',
+    description: 'string'
+  },
+  id: 1742137577454,
+  createdAt: 2025-03-16T15:06:17.455Z,
+  updatedAt: 2025-03-16T15:06:17.455Z
+}
+2025-03-16T15:06:28.821Z info: createNewProduct::Product created successfully : {
+  name: '3',
+  price: 0,
+  quantity: 0,
+  cusine: [ 'nu' ],
+  brand: 'string',
+  shop: 'lk',
+  image: 'string',
+  discount: 0,
+  timestamp: 0,
+  additionalData: {
+    color: 'string',
+    expirationDate: 0,
+    size: 'string',
+    description: 'string'
+  },
+  id: 1742137588819,
+  createdAt: 2025-03-16T15:06:28.819Z,
+  updatedAt: 2025-03-16T15:06:28.819Z
+}
+2025-03-16T15:06:41.178Z info: createNewProduct::Product created successfully : {
+  name: '4',
+  price: 0,
+  quantity: 0,
+  cusine: [ 'nu' ],
+  brand: 'lop',
+  shop: 'lk',
+  image: 'string',
+  discount: 0,
+  timestamp: 0,
+  additionalData: {
+    color: 'string',
+    expirationDate: 0,
+    size: 'string',
+    description: 'string'
+  },
+  id: 1742137601176,
+  createdAt: 2025-03-16T15:06:41.176Z,
+  updatedAt: 2025-03-16T15:06:41.176Z
+}
+2025-03-16T15:06:50.168Z info: filterProducts::Products fetched successfully
+2025-03-16T15:07:00.652Z info: filterProducts::Products fetched successfully
+2025-03-16T15:07:41.690Z info: filterProducts::Products fetched successfully
+2025-03-16T15:07:51.030Z info: filterProducts::Products fetched successfully
+2025-03-16T15:08:14.872Z info: filterProducts::Products fetched successfully
+2025-03-16T15:08:24.996Z error: ERROR::apiValidationHandler:  Expected double-quoted property name in JSON at position 39
+2025-03-16T15:08:36.620Z error: ERROR::apiValidationHandler:  Expected double-quoted property name in JSON at position 39
+2025-03-16T15:08:41.960Z info: filterProducts::Products fetched successfully

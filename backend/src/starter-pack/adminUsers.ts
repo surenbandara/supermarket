@@ -22,10 +22,30 @@ const addAdminUser = async (): Promise<void> => {
     await user.save();
 };
 
+const addUser = async (name: string): Promise<void> => {
+    const user1: IUser = {
+        id: new Date().toISOString(),
+        username: `${name}STPACK`,
+        password: await hashPassword("userSTPACK@123"),
+        role: "user",
+        email: `${name}STPACK@gmail.com`,
+        phoneNumber: "",
+        profilePic: "",
+        emailVerified: false
+    } as IUser;
+    if (await User.findOne({ email: user1.email })) {
+        log.info(`Customer  ${name} user already exists`);
+        return;
+    }
+    const user = new User(user1);
+    await user.save();
+};
 
 
 const starterPack = async (): Promise<void> => {
     await addAdminUser();
+    await addUser("lakshan1");
+    await addUser("suren");
     log.info("starterPack added successfully");
 };
 
