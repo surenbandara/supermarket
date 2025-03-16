@@ -26,14 +26,14 @@ export const listShops = async (req: Request, res: Response, next: NextFunction)
 export const createNewShop = async (req: Request, res: Response, next: NextFunction) => {
     try {
         const shop: IShop = new ShopModel(req.body);
-        if (await updateVendor(shop)) {
+        // if (await updateVendor(shop)) {
             await shop.save();
             log.info(`createNewShop::Shop created successfully : ${JSON.stringify(shop.toJSON())}`);
             res.status(201).json(shop.toJSON());
-        } else {
-            log.info(`createNewShop::Vendor is invalid : ${JSON.stringify(shop.toJSON())}`);
-            res.status(400).json({ "message": "Vendor is invalid or not existing." });
-        }
+        // } else {
+        //     log.info(`createNewShop::Vendor is invalid : ${JSON.stringify(shop.toJSON())}`);
+        //     res.status(400).json({ "message": "Vendor is invalid or not existing." });
+        // }
     }
     catch (err: any) {
         log.error(`createNewShop:: ${err}`);

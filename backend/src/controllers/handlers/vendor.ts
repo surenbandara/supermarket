@@ -25,7 +25,7 @@ export const listVendors = async (req: Request, res: Response, next: NextFunctio
 export const createNewVendor = async (req: Request, res: Response, next: NextFunction) => {
     try {
         const vendor: IVendor = new VendorModel(req.body);
-        vendor.shopList = [];
+        // vendor.shopList = [];
         await vendor.save();
         log.info(`createNewVendor::Vendor created successfully : ${JSON.stringify(vendor.toJSON())}`);
         res.status(201).json(vendor.toJSON());

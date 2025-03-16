@@ -745,7 +745,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/Shop'
+              $ref: '#/components/schemas/ModifiedShop'
       responses:
         '200':
           description: Updated
@@ -789,58 +789,58 @@ paths:
                 properties:
                   message:
                     type: string
-    delete:
-      summary: Delete a shop
-      operationId: deleteShop
-      security:
-        - BearerAuth: []
-      x-roles: ['admin']
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                name:
-                  type: string
-      responses:
-        '200':
-          description: Deleted
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  message:
-                    type: string
-        '401':
-          description: Unauthorized
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  message:
-                    type: string
-        '404':
-          description: Not found
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  message:
-                    type: string
-        '500':
-          description: Failed to delete
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  message:
-                    type: string
+    # delete:
+    #   summary: Delete a shop
+    #   operationId: deleteShop
+    #   security:
+    #     - BearerAuth: []
+    #   x-roles: ['admin']
+    #   requestBody:
+    #     required: true
+    #     content:
+    #       application/json:
+    #         schema:
+    #           type: object
+    #           properties:
+    #             name:
+    #               type: string
+    #   responses:
+    #     '200':
+    #       description: Deleted
+    #       content:
+    #         application/json:
+    #           schema:
+    #             type: object
+    #             properties:
+    #               message:
+    #                 type: string
+    #     '401':
+    #       description: Unauthorized
+    #       content:
+    #         application/json:
+    #           schema:
+    #             type: object
+    #             properties:
+    #               message:
+    #                 type: string
+    #     '404':
+    #       description: Not found
+    #       content:
+    #         application/json:
+    #           schema:
+    #             type: object
+    #             properties:
+    #               message:
+    #                 type: string
+    #     '500':
+    #       description: Failed to delete
+    #       content:
+    #         application/json:
+    #           schema:
+    #             type: object
+    #             properties:
+    #               message:
+    #                 type: string
 components:
   securitySchemes:
       BearerAuth:
@@ -948,10 +948,10 @@ components:
           type: string
         vendorName:
           type: string
-        productsList:
-          type: array
-          items:
-            type: number
+        vendorEmai:
+          type: string
+        vendorPhoneNumber:
+          type: string
         timestamp:
           type: number
         image:
@@ -961,5 +961,26 @@ components:
       required:
         - name
         - vendorName
-        - productsList
+        - vendorEmai
+        - vendorPhoneNumber
+        - timestamp
+    ModifiedShop:
+      type: object
+      properties:
+        vendorName:
+          type: string
+        vendorEmai:
+          type: string
+        vendorPhoneNumber:
+          type: string
+        timestamp:
+          type: number
+        image:
+          type: string
+        additionalData:
+          type: string
+      required:
+        - vendorName
+        - vendorEmai
+        - vendorPhoneNumber
         - timestamp
