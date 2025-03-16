@@ -4,7 +4,7 @@ import * as userHandlers from "./handlers/user";
 import * as vendorHandlers from "./handlers/vendor";
 import * as authenticate from "./handlers/authenticator";
 import * as shopHandlers from "./handlers/shop";
-
+import * as riderHandler from "./handlers/rider";
 
 export default {
 
@@ -23,6 +23,10 @@ export default {
     listShops: shopHandlers.listShops,
     createNewShop: shopHandlers.createNewShop,
     updateShop: shopHandlers.updateShop,
-    deleteShop: shopHandlers.deleteShop
+    deleteShop: shopHandlers.deleteShop,
+    listRiders: riderHandler.listRiders,
+    createNewRider: riderHandler.createNewRider,
+    updateRider: riderHandler.updateRider,
+    deleteRider: riderHandler.deleteRider
 
 }

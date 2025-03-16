@@ -828,3 +828,62 @@
   updatedAt: 2025-03-16T11:09:43.012Z
 }
 2025-03-16T11:09:51.869Z info: listShops::Shops fetched successfully : [{"name":"lakshan-shop-01","vendorName":"lakiya-ratha","vendorEmai":"string","vendorPhoneNumber":"string","timestamp":0,"image":"string","additionalData":"string","createdAt":"2025-03-16T11:08:37.478Z","updatedAt":"2025-03-16T11:09:43.012Z"}]
+2025-03-16T11:34:09.605Z info: MongoDB ::::: mongodb://mongodb:27017/test-super-market-03
+2025-03-16T11:34:09.820Z info: MongoDB connected
+2025-03-16T11:34:09.826Z info: Server running on port 3000
+2025-03-16T11:34:09.855Z info: Admin user already exists
+2025-03-16T11:34:09.856Z info: starterPack added successfully
+2025-03-16T11:36:36.503Z info: MongoDB ::::: mongodb://mongodb:27017/test-super-market-03
+2025-03-16T11:36:36.730Z info: MongoDB connected
+2025-03-16T11:36:36.731Z info: Server running on port 3000
+2025-03-16T11:36:36.748Z info: Admin user already exists
+2025-03-16T11:36:36.748Z info: starterPack added successfully
+2025-03-16T11:36:54.797Z error: ERROR::apiValidationHandler:  openapi.validator: args.apiDoc was invalid.  See the output.
+2025-03-16T11:36:56.897Z error: ERROR::apiValidationHandler:  openapi.validator: args.apiDoc was invalid.  See the output.
+2025-03-16T11:40:42.467Z info: MongoDB ::::: mongodb://mongodb:27017/test-super-market-03
+2025-03-16T11:40:42.677Z info: MongoDB connected
+2025-03-16T11:40:42.680Z info: Server running on port 3000
+2025-03-16T11:40:42.698Z info: Admin user already exists
+2025-03-16T11:40:42.698Z info: starterPack added successfully
+2025-03-16T11:40:59.594Z error: ERROR::apiValidationHandler:  openapi.validator: args.apiDoc was invalid.  See the output.
+2025-03-16T11:43:59.530Z info: MongoDB ::::: mongodb://mongodb:27017/test-super-market-03
+2025-03-16T11:43:59.735Z info: MongoDB connected
+2025-03-16T11:43:59.737Z info: Server running on port 3000
+2025-03-16T11:43:59.753Z info: Admin user already exists
+2025-03-16T11:43:59.753Z info: starterPack added successfully
+2025-03-16T11:44:06.226Z error: ERROR::apiValidationHandler:  openapi.validator: args.apiDoc was invalid.  See the output.
+2025-03-16T11:44:10.151Z error: ERROR::apiValidationHandler:  openapi.validator: args.apiDoc was invalid.  See the output.
+2025-03-16T11:44:11.314Z error: ERROR::apiValidationHandler:  openapi.validator: args.apiDoc was invalid.  See the output.
+2025-03-16T11:44:37.125Z error: ERROR::apiValidationHandler:  openapi.validator: args.apiDoc was invalid.  See the output.
+2025-03-16T11:45:46.537Z error: ERROR::apiValidationHandler:  openapi.validator: args.apiDoc was invalid.  See the output.
+2025-03-16T11:50:16.674Z info: MongoDB ::::: mongodb://mongodb:27017/test-super-market-03
+2025-03-16T11:50:16.883Z info: MongoDB connected
+2025-03-16T11:50:16.885Z info: Server running on port 3000
+2025-03-16T11:50:16.899Z info: Admin user already exists
+2025-03-16T11:50:16.899Z info: starterPack added successfully
+2025-03-16T11:50:33.330Z info: listRiders::Riders fetched successfully : []
+2025-03-16T11:50:44.856Z info: createNewRider::Rider created successfully : {"name":"lakiya","email":"string","phoneNumber":"string","vehicle":"string","available":true,"createdAt":"2025-03-16T11:50:44.848Z","updatedAt":"2025-03-16T11:50:44.848Z"}
+2025-03-16T11:50:54.550Z error: createNewRider:: MongoServerError: E11000 duplicate key error collection: test-super-market-03.riders index: name_1 dup key: { name: "lakiya" }
+2025-03-16T11:51:23.338Z info: updateRider::Rider updated successfully : {
+  name: 'lakiya',
+  email: 'string',
+  phoneNumber: 'string',
+  vehicle: 'string',
+  available: false,
+  createdAt: 2025-03-16T11:50:44.848Z,
+  updatedAt: 2025-03-16T11:51:23.331Z
+}
+2025-03-16T11:52:58.488Z info: deleteRider::Rider deleted successfully : {
+  name: 'lakiya',
+  email: 'string',
+  phoneNumber: 'string',
+  vehicle: 'string',
+  available: false,
+  createdAt: 2025-03-16T11:50:44.848Z,
+  updatedAt: 2025-03-16T11:51:23.331Z
+}
+2025-03-16T11:53:12.820Z info: listRiders::Riders fetched successfully : []
+2025-03-16T11:53:15.321Z info: createNewRider::Rider created successfully : {"name":"lakiya","email":"string","phoneNumber":"string","vehicle":"string","available":true,"createdAt":"2025-03-16T11:53:15.319Z","updatedAt":"2025-03-16T11:53:15.319Z"}
+2025-03-16T11:53:18.210Z info: listRiders::Riders fetched successfully : [{"name":"lakiya","email":"string","phoneNumber":"string","vehicle":"string","available":true,"createdAt":"2025-03-16T11:53:15.319Z","updatedAt":"2025-03-16T11:53:15.319Z"}]
+2025-03-16T11:53:28.900Z info: createNewRider::Rider created successfully : {"name":"suren","email":"string","phoneNumber":"string","vehicle":"string","available":true,"createdAt":"2025-03-16T11:53:28.898Z","updatedAt":"2025-03-16T11:53:28.898Z"}
+2025-03-16T11:53:32.238Z info: listRiders::Riders fetched successfully : [{"name":"lakiya","email":"string","phoneNumber":"string","vehicle":"string","available":true,"createdAt":"2025-03-16T11:53:15.319Z","updatedAt":"2025-03-16T11:53:15.319Z"},{"name":"suren","email":"string","phoneNumber":"string","vehicle":"string","available":true,"createdAt":"2025-03-16T11:53:28.898Z","updatedAt":"2025-03-16T11:53:28.898Z"}]

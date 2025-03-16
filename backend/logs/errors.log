@@ -102,3 +102,12 @@
 2025-03-16T10:37:27.786Z error: authenticateJWT:: invalid signature
 2025-03-16T10:37:30.616Z error: authenticateJWT:: invalid signature
 2025-03-16T11:06:57.009Z error: ERROR::apiValidationHandler:  /response/0 must have required property 'vendorEmai'
+2025-03-16T11:36:54.797Z error: ERROR::apiValidationHandler:  openapi.validator: args.apiDoc was invalid.  See the output.
+2025-03-16T11:36:56.897Z error: ERROR::apiValidationHandler:  openapi.validator: args.apiDoc was invalid.  See the output.
+2025-03-16T11:40:59.594Z error: ERROR::apiValidationHandler:  openapi.validator: args.apiDoc was invalid.  See the output.
+2025-03-16T11:44:06.226Z error: ERROR::apiValidationHandler:  openapi.validator: args.apiDoc was invalid.  See the output.
+2025-03-16T11:44:10.151Z error: ERROR::apiValidationHandler:  openapi.validator: args.apiDoc was invalid.  See the output.
+2025-03-16T11:44:11.314Z error: ERROR::apiValidationHandler:  openapi.validator: args.apiDoc was invalid.  See the output.
+2025-03-16T11:44:37.125Z error: ERROR::apiValidationHandler:  openapi.validator: args.apiDoc was invalid.  See the output.
+2025-03-16T11:45:46.537Z error: ERROR::apiValidationHandler:  openapi.validator: args.apiDoc was invalid.  See the output.
+2025-03-16T11:50:54.550Z error: createNewRider:: MongoServerError: E11000 duplicate key error collection: test-super-market-03.riders index: name_1 dup key: { name: "lakiya" }
