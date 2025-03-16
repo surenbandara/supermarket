@@ -15,7 +15,6 @@ import {
 // Icons
 import {
   faArrowLeft,
-  faHome,
   faUser,
   faStore,
 } from '@fortawesome/free-solid-svg-icons';
@@ -60,13 +59,6 @@ export default function MakeVendorSidebar() {
     routeStack.length > 0 ? routeStack[routeStack.length - 1] : null;
 
   const navBarItems: ISidebarMenuItem[] = [
-    {
-      text: t('Dashboard'),
-      route: '/admin/vendor/dashboard',
-      isParent: true,
-      icon: faHome,
-      isClickable: true,
-    },
     {
       text: t('Profile'),
       route: '/admin/vendor/profile',

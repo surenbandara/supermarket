@@ -15,7 +15,6 @@ import {
 import {
   faArrowLeft,
   faCog,
-  faHome,
   faRectangleList,
   faStore,
 } from '@fortawesome/free-solid-svg-icons';
@@ -62,14 +61,6 @@ export default function MakeSidebar() {
     routeStack.length > 0 ? routeStack[routeStack.length - 1] : null;
 
   const navBarItems: ISidebarMenuItem[] = [
-    {
-      text: t('Dashboard'),
-      route: '/admin/store/dashboard',
-      isParent: true,
-      icon: faHome,
-      isClickable: true,
-    },
-
     {
       text: t('Store'),
       route: '/admin/store/general',
@@ -122,7 +113,7 @@ export default function MakeSidebar() {
     },
     {
       text: lastRoute ? t(`Back to ${lastRoute}`) : 'Back',
-      route: lastRoute == 'Vendor' ? `/admin/vendor/dashboard` : '/home',
+      route: '/general/stores',
       isParent: true,
       icon: faArrowLeft,
       isClickable: true,
@@ -135,7 +126,7 @@ export default function MakeSidebar() {
       },
       isLastItem: true,
       shouldShow: () => {
-        return !(user?.userType === 'RESTAURANT');
+        return !(user?.basicUserDetails.role === 'RESTAURANT');
       },
     },
   ];

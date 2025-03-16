@@ -10,7 +10,7 @@ export default function GeneralPage() {
 
   // Effects
   useEffect(() => {
-    router.push('/general/vendors');
+    router.push('/general/stores');
   }, []);
 
   return <></>;

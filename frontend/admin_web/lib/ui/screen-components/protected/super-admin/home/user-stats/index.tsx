@@ -5,7 +5,7 @@ import StatsCard from '@/lib/ui/useable-components/stats-card';
 import { GET_DASHBOARD_USERS } from '@/lib/api/graphql';
 
 // Hooks
-import { api } from '@/lib/hooks/useQueryQL';
+import { useQueryGQL } from '@/lib/hooks/useQueryQL';
 
 // Icons
 import {

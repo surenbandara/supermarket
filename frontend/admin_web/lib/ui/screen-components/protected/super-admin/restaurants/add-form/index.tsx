@@ -3,22 +3,13 @@
 // Core imports
 import { useContext, useMemo, useRef } from 'react';
 
-// API and GraphQL
-import { GET_VENDORS } from '@/lib/api/graphql';
-
-// Hooks
-import { useQueryGQL } from '@/lib/hooks/useQueryQL';
-
 // Context
 import { RestaurantsContext } from '@/lib/context/super-admin/restaurants.context';
 
 // Interfaces
 import {
-  IQueryResult,
   IRestaurantsAddFormComponentProps,
-  IRestaurantsContextPropData,
-  IVendorReponse,
-  IVendorResponseGraphQL,
+  IRestaurantsContextPropData
 } from '@/lib/utils/interfaces';
 
 // PrimeReact components
@@ -28,7 +19,6 @@ import { StepperPanel } from 'primereact/stepperpanel';
 
 // Local components
 import RestaurantDetailsForm from './restaurant-details';
-import VendorDetails from './vendor-details';
 import RestaurantTiming from './restaurant-timing';
 import { useTranslations } from 'next-intl';
 
@@ -50,23 +40,6 @@ const RestaurantsForm = ({
     onSetRestaurantsContextData,
   } = useContext(RestaurantsContext);
 
-  // API
-  const vendorResponse = useQueryGQL(
-    GET_VENDORS,
-    { fetchPolicy: 'network-only' },
-    {
-      debounceMs: 300,
-    }
-  ) as IQueryResult<IVendorResponseGraphQL | undefined, undefined>;
-
-  // Memoized Data
-  const vendorsDropdown = useMemo(
-    () =>
-      vendorResponse?.data?.vendors?.map((vendorItem: IVendorReponse) => {
-        return { label: vendorItem.email, code: vendorItem._id };
-      }),
-    [vendorResponse?.data?.vendors]
-  );
 
   // Handlers
   const onHandleStepChange = (order: number) => {
@@ -90,15 +63,6 @@ const RestaurantsForm = ({
     >
       <div ref={stepperRef}>
         <Stepper linear headerPosition="bottom" activeStep={activeIndex}>
-          <StepperPanel header={t('Set Vendor')}>
-            <VendorDetails
-              vendorsDropdown={vendorsDropdown ?? []}
-              stepperProps={{
-                onStepChange: onHandleStepChange,
-                order: activeIndex,
-              }}
-            />
-          </StepperPanel>
           <StepperPanel header={t('Add Details')}>
             <RestaurantDetailsForm
               stepperProps={{

@@ -1,9 +1,8 @@
 'use client';
 
 // Core
-import { useContext, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { ApolloCache, ApolloError, useMutation } from '@apollo/client';
 
 // PrimeReact
 import { FilterMatchMode } from 'primereact/api';
@@ -13,7 +12,7 @@ import { ToastContext } from '@/lib/context/global/toast.context';
 import { RestaurantsContext } from '@/lib/context/super-admin/restaurants.context';
 
 // Custom Hooks
-import { useQueryGQL } from '@/lib/hooks/useQueryQL';
+import { api } from '@/lib/hooks/useQueryQL';
 
 // Custom Components
 import RestaurantDuplicateDialog from '../duplicate-dialog';
@@ -29,13 +28,6 @@ import {
   IRestaurantsResponseGraphQL,
 } from '@/lib/utils/interfaces';
 
-// GraphQL Queries and Mutations
-import {
-  GET_CLONED_RESTAURANTS,
-  GET_RESTAURANTS,
-  HARD_DELETE_RESTAURANT,
-} from '@/lib/api/graphql';
-
 // Method
 import { onUseLocalStorage } from '@/lib/utils/methods';
 
@@ -44,6 +36,8 @@ import { generateDummyRestaurants } from '@/lib/utils/dummy';
 import { DataTableRowClickEvent } from 'primereact/datatable';
 import { useTranslations } from 'next-intl';
 import { RESTAURANT_TABLE_COLUMNS } from '@/lib/ui/useable-components/table/columns/restaurant-column';
+import { useConfiguration } from '@/lib/hooks/useConfiguration';
+import { useUserContext } from '@/lib/hooks/useUser';
 
 export default function RestaurantsMain() {
   // Hooks
@@ -51,7 +45,7 @@ export default function RestaurantsMain() {
 
   // Context
   const { showToast } = useContext(ToastContext);
-  const { currentTab } = useContext(RestaurantsContext);
+  //const { currentTab } = useContext(RestaurantsContext);
   // Hooks
   const router = useRouter();
 
@@ -69,84 +63,36 @@ export default function RestaurantsMain() {
       matchMode: FilterMatchMode.IN,
     },
   };
+  const [isHardDeleting, setisHardDeleting] = useState<boolean>(false);
 
-  //Query
-  const { data, loading } = useQueryGQL(
-    currentTab === 'Actual' ? GET_RESTAURANTS : GET_CLONED_RESTAURANTS,
-    {},
-    {
-      fetchPolicy: 'network-only',
-      debounceMs: 300,
-    }
-  ) as IQueryResult<IRestaurantsResponseGraphQL | undefined, undefined>;
+  const [loading, setLoading] = useState<boolean>(false);
+  const [data, setData] = useState<IRestaurantResponse[]>([]);
 
-  // API
-  const [hardDeleteRestaurant, { loading: isHardDeleting }] = useMutation(
-    HARD_DELETE_RESTAURANT,
-    {
-      onCompleted: () => {
-        showToast({
-          type: 'success',
-          title: t('Store Delete'),
-          message: t(`Store has been deleted successfully`),
-          duration: 2000,
-        });
-        setDeleteId('');
-      },
-      onError: ({ networkError, graphQLErrors }: ApolloError) => {
-        showToast({
-          type: 'error',
-          title: t('Store Delete'),
-          message:
-            graphQLErrors[0]?.message ??
-            networkError?.message ??
-            t(`Store delete failed`),
-          duration: 2500,
-        });
-        setDeleteId('');
-      },
-      update: (cache: ApolloCache<unknown>): void => {
+  const {SERVER_URL} = useConfiguration();
+  const {user} = useUserContext();
+
+  useEffect(() => {
+      if (!SERVER_URL || !user?.jwtToken) return;
+    
+      const fetchData = async () => {
+        setLoading(false);
         try {
-          const cachedRestaurants =
-            currentTab === 'Actual'
-              ? data?.restaurants
-              : data?.getClonedRestaurants;
-
-          if (currentTab === 'Actual') {
-            cache.writeQuery({
-              query: GET_RESTAURANTS,
-              data: {
-                restaurants: [
-                  ...(cachedRestaurants || []).filter(
-                    (restaurant: IRestaurantResponse) =>
-                      restaurant._id !== deleteId
-                  ),
-                ],
-              },
-            });
-          } else {
-            cache.writeQuery({
-              query: GET_CLONED_RESTAURANTS,
-              data: {
-                getClonedRestaurants: [
-                  ...(cachedRestaurants || []).filter(
-                    (restaurant: IRestaurantResponse) =>
-                      restaurant._id !== deleteId
-                  ),
-                ],
-              },
-            });
-          }
+          const response = await api.get(`${SERVER_URL}/vendor`, user.jwtToken);
+          setData(response as IRestaurantResponse[]);
+        } catch (error) {
+          console.error('aaaaaaa', error);
         } finally {
-          setDeleteId('');
+          setLoading(false);
         }
-      },
-    }
-  );
+      };
+  
+      fetchData();
+    }, [user?.jwtToken]);
+
 
   const handleDelete = async (id: string) => {
     try {
-      hardDeleteRestaurant({ variables: { id: id } });
+      console.log("delete")
     } catch (err) {
       showToast({
         type: 'error',
@@ -188,9 +134,7 @@ export default function RestaurantsMain() {
     },
   ];
 
-  const _restaurants =
-    currentTab === 'Actual' ? data?.restaurants : data?.getClonedRestaurants;
-
+  const _restaurants = data;
   return (
     <div className="p-3">
       <Table

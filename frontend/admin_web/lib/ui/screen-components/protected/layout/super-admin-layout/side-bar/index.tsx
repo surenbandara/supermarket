@@ -26,6 +26,14 @@ import useCheckAllowedRoutes from '@/lib/hooks/useCheckAllowedRoutes';
 // Components
 import SidebarItem from './side-bar-item';
 import { useTranslations } from 'next-intl';
+import { faStore } from '@fortawesome/free-solid-svg-icons/faStore';
+import { faMotorcycle } from '@fortawesome/free-solid-svg-icons/faMotorcycle';
+import { faUsers } from '@fortawesome/free-solid-svg-icons/faUsers';
+import { faCogs } from '@fortawesome/free-solid-svg-icons/faCogs';
+import { faListAlt } from '@fortawesome/free-solid-svg-icons/faListAlt';
+import { faUtensils } from '@fortawesome/free-solid-svg-icons/faUtensils';
+import { faHandHoldingUsd } from '@fortawesome/free-solid-svg-icons/faHandHoldingUsd';
+import { faBell } from '@fortawesome/free-solid-svg-icons/faBell';
 
 function SuperAdminSidebar({ children }: IGlobalComponentProps) {
   // Contexts
@@ -58,79 +66,53 @@ export default function MakeSidebar() {
 
   const navBarItems: ISidebarMenuItem[] = [
     {
-      text: t('Home'),
-      route: '/home',
-      isParent: true,
-      icon: faHome,
-      isClickable: true,
+      text: t('Stores'),
+      route: '/general/stores',
+      isParent: false,
+      icon: faStore
     },
     {
-      text: t('General'),
-      route: '/general',
-      isParent: true,
-      icon: faCog,
-      subMenu: useCheckAllowedRoutes([
-        {
-          text: t('Vendors'),
-          route: '/general/vendors',
-          isParent: false,
-        },
-        {
-          text: t('Stores'),
-          route: '/general/stores',
-          isParent: false,
-        },
-        {
-          text: t('Riders'),
-          route: '/general/riders',
-          isParent: false,
-        },
-        {
-          text: t('Users'),
-          route: '/general/users',
-          isParent: false,
-        },
-      ]),
-      shouldShow: function () {
-        return this.subMenu ? this.subMenu.length > 0 : false;
-      },
+      text: t('Riders'),
+      route: '/general/riders',
+      isParent: false,
+      icon: faMotorcycle
     },
     {
-      text: t('Management'),
-      route: '/management',
-      isParent: true,
-      icon: faSliders,
-      subMenu: useCheckAllowedRoutes([
-        {
-          text: t('Configuration'),
-          route: '/management/configurations',
-          isParent: false,
-        },
-        {
-          text: t('Orders'),
-          route: '/management/orders',
-          isParent: false,
-        },
-        {
-          text: t('Cuisine'),
-          route: '/management/cuisines',
-          isParent: false,
-        },
-        {
-          text: t('Withdraw Request'),
-          route: '/management/withdraw-requests',
-          isParent: false,
-        },
-        {
-          text: t('Notification'),
-          route: '/management/notifications',
-          isParent: false,
-        },
-      ]),
-      shouldShow: function () {
-        return this.subMenu ? this.subMenu.length > 0 : false;
-      },
+      text: t('Users'),
+      route: '/general/users',
+      isParent: false,
+      icon: faUsers
     },
+    {
+      text: t('Configuration'),
+      route: '/management/configurations',
+      isParent: false,
+      icon: faCogs 
+    },
+    {
+      text: t('Orders'),
+      route: '/management/orders',
+      isParent: false,
+      icon: faListAlt 
+    },
+    {
+      text: t('Cuisine'),
+      route: '/management/cuisines',
+      isParent: false,
+      icon: faUtensils 
+    },
+    {
+      text: t('Withdraw Request'),
+      route: '/management/withdraw-requests',
+      isParent: false,
+      icon: faHandHoldingUsd 
+    },
+    {
+      text: t('Notification'),
+      route: '/management/notifications',
+      isParent: false,
+      icon: faBell 
+    }
   ];
 
   return (

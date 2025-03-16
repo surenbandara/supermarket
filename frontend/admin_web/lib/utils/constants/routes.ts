@@ -16,10 +16,6 @@ export const ROUTES = [
     route: '/management/notifications',
   },
   {
-    text: 'Vendors',
-    route: '/general/vendors',
-  },
-  {
     text: 'Stores',
     route: '/general/stores',
   },
@@ -34,5 +30,5 @@ export const ROUTES = [
 ];
 
 export const DEFAULT_ROUTES = {
-  admin: '/home'
+  admin: '/general/stores'
 };

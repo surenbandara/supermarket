@@ -62,7 +62,6 @@ export default function RestaurantCard({ restaurant }: IRestaurantCardProps) {
   const { deliveryRate } = configuration;
 
   const {
-    restaurantByOwnerResponse,
     isRestaurantModifed,
     setRestaurantModifed,
   } = useContext(RestaurantContext);
@@ -81,7 +80,7 @@ export default function RestaurantCard({ restaurant }: IRestaurantCardProps) {
           message: `${t('Store has been deleted successfully')}.`,
           duration: 2000,
         });
-        restaurantByOwnerResponse.refetch();
+        
       },
       onError: ({ networkError, graphQLErrors }: ApolloError) => {
         showToast({

@@ -288,15 +288,11 @@ const VendorAppTopbar = () => {
           aria-controls="popup_menu_right"
           aria-haspopup
         >
-          <span>{user?.name ? user?.name : vendorName ? vendorName : ''}</span>
+          <span>{user?.basicUserDetails.email ? user?.basicUserDetails.email : vendorName ? vendorName : ''}</span>
 
           <Image
             src={
-              user?.image
-                ? user.image
-                : vendorData?.getVendor?.image
-                  ? vendorData?.getVendor?.image
-                  : 'https://upload.wikimedia.org/wikipedia/commons/8/89/Portrait_Placeholder.png'
+              'https://upload.wikimedia.org/wikipedia/commons/8/89/Portrait_Placeholder.png'
             }
             alt="profile-img"
             height={32}

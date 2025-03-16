@@ -1,5 +1,5 @@
 // Core
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 // Prime React
 import { FilterMatchMode } from 'primereact/api';
@@ -15,12 +15,14 @@ import {
 import { USERS_TABLE_COLUMNS } from '@/lib/ui/useable-components/table/columns/user-columns';
 
 //Toast
-import { useQueryGQL } from '@/lib/hooks/useQueryQL';
+import { api, useQueryGQL } from '@/lib/hooks/useQueryQL';
 import Table from '@/lib/ui/useable-components/table';
 
 // GraphQL
 import { GET_USERS } from '@/lib/api/graphql';
 import UsersTableHeader from '../header/table-header';
+import { useConfiguration } from '@/lib/hooks/useConfiguration';
+import { useUserContext } from '@/lib/hooks/useUser';
 
 export default function UsersMain() {
   // State - Table
@@ -30,10 +32,35 @@ export default function UsersMain() {
     global: { value: '' as string | null, matchMode: FilterMatchMode.CONTAINS },
   });
 
-  // Query
-  const { data, loading } = useQueryGQL(GET_USERS, {
-    fetchPolicy: 'cache-and-network',
-  }) as IQueryResult<IUsersDataResponse | undefined, undefined>;
+  const [data, setData] = useState<IUserResponse[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  const {SERVER_URL} = useConfiguration();
+  const {user} = useUserContext();
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        console.log("aaaaaaaaaaaaaaaaa");
+        console.log(user)
+        console.log(SERVER_URL)
+        const response = await api.get(`${SERVER_URL}/users`, user?.jwtToken);
+        console.log(response)
+        setData(response as IUserResponse[]);
+      } catch (error) {
+        console.error("Error:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchData();
+  }, [user]); 
+
+  // // Query
+  // const { data, loading } = useQueryGQL(GET_USERS, {
+  //   fetchPolicy: 'cache-and-network',
+  // }) as IQueryResult<IUsersDataResponse | undefined, undefined>;
 
   // For global search
   const onGlobalFilterChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -54,7 +81,7 @@ export default function UsersMain() {
           />
         }
         loading={loading}
-        data={data?.users || []}
+        data={data || []}
         filters={filters}
         setSelectedData={setSelectedProducts}
         selectedData={selectedProducts}

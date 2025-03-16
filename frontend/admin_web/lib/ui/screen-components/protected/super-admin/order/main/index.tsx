@@ -1,15 +1,12 @@
 // Hooks
-import { useState, useMemo } from 'react';
+import { useState, useMemo, useEffect } from 'react';
 import { useTranslations } from 'next-intl';
-import { useQueryGQL } from '@/lib/hooks/useQueryQL';
+import { api, useQueryGQL } from '@/lib/hooks/useQueryQL';
 
 // Interfaces & Types
 import { IDateFilter, IQueryResult } from '@/lib/utils/interfaces';
 import { IOrder, IExtendedOrder } from '@/lib/utils/interfaces';
 import { TOrderRowData } from '@/lib/utils/types';
-
-// GraphQL
-import { GET_ORDERS_WITHOUT_PAGINATION } from '@/lib/api/graphql';
 
 // Components
 import OrderSuperAdminTableHeader from '../header/table-header';
@@ -22,6 +19,8 @@ import DashboardDateFilter from '@/lib/ui/useable-components/date-filter';
 // Prime React
 import { FilterMatchMode } from 'primereact/api';
 import { DataTableRowClickEvent } from 'primereact/datatable';
+import { useConfiguration } from '@/lib/hooks/useConfiguration';
+import { useUserContext } from '@/lib/hooks/useUser';
 
 export default function OrderSuperAdminMain() {
   // Hooks
@@ -40,27 +39,37 @@ export default function OrderSuperAdminMain() {
     endDate: `${new Date().getFullYear()}-${String(new Date().getMonth()).padStart(2, '0')}-${String(new Date(new Date().getFullYear(), new Date().getMonth(), 0).getDate()).padStart(2, '0')}`, // Last day of previous month
   });
 
+  const [data, setData] = useState<IOrder[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  const {SERVER_URL} = useConfiguration();
+  const {user} = useUserContext();
+  
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        console.log("aaaaaaaaaaaaaaaaa");
+        console.log(user)
+        console.log(SERVER_URL)
+        const response: any = await api.get(`${SERVER_URL}/orders`, user?.jwtToken);
+        console.log(response)
+        if (response.status == "200") {setData(response as IOrder[]);}
+      } catch (error) {
+        console.error("Error:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchData();
+  }, [user]); 
+
   const handleDateFilter = (dateFilter: IDateFilter) => {
     setDateFilter({
       ...dateFilter,
       dateKeyword: dateFilter.dateKeyword ?? '',
     });
   };
-
-  const { data, error, loading } = useQueryGQL(
-    GET_ORDERS_WITHOUT_PAGINATION,
-    {
-      dateKeyword: dateFilter.dateKeyword,
-      starting_date: dateFilter?.startDate,
-      ending_date: dateFilter?.endDate,
-    },
-    {
-      fetchPolicy: 'network-only',
-    }
-  ) as IQueryResult<
-    { allOrdersWithoutPagination: IOrder[] } | undefined,
-    undefined
-  >;
 
   console.log(data);
   const [globalFilterValue, setGlobalFilterValue] = useState('');
@@ -91,9 +100,9 @@ export default function OrderSuperAdminMain() {
   };
 
   const tableData = useMemo(() => {
-    if (!data?.allOrdersWithoutPagination) return [];
+    if (!data) return [];
 
-    return data.allOrdersWithoutPagination.map(
+    return data.map(
       (order: IOrder): IExtendedOrder => ({
         ...order,
         itemsTitle:
@@ -159,11 +168,11 @@ export default function OrderSuperAdminMain() {
         restaurantData={selectedRestaurant}
       />
 
-      {error && (
+      {/* {error && (
         <p className="text-red-500">
           {t('Error')}: {error.message}
         </p>
-      )}
+      )} */}
     </div>
   );
 }

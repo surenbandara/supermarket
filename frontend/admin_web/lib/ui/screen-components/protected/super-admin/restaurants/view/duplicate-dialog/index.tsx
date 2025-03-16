@@ -18,16 +18,13 @@ import { useQueryGQL } from '@/lib/hooks/useQueryQL';
 import {
   DUPLICATE_RESTAURANT,
   GET_CLONED_RESTAURANTS,
-  GET_VENDORS,
 } from '@/lib/api/graphql';
 
 // Interface and Types
 import {
   IDropdownSelectItem,
   IQueryResult,
-  IRestaurantDuplicateDialogComponentProps,
-  IVendorReponse,
-  IVendorResponseGraphQL,
+  IRestaurantDuplicateDialogComponentProps
 } from '@/lib/utils/interfaces';
 import { useTranslations } from 'next-intl';
 
@@ -47,15 +44,6 @@ const RestaurantDuplicateDialog = ({
     label: '',
     code: '',
   });
-
-  // API
-  const vendorResponse = useQueryGQL(
-    GET_VENDORS,
-    { fetchPolicy: 'network-only' },
-    {
-      debounceMs: 300,
-    }
-  ) as IQueryResult<IVendorResponseGraphQL | undefined, undefined>;
 
   const [duplicateRestaurant, { loading }] = useMutation(
     DUPLICATE_RESTAURANT,
@@ -93,14 +81,14 @@ const RestaurantDuplicateDialog = ({
     }
   );
 
-  // Memoized Data
-  const vendorsDropdown = useMemo(
-    () =>
-      vendorResponse?.data?.vendors?.map((vendorItem: IVendorReponse) => {
-        return { label: vendorItem.email, code: vendorItem._id };
-      }),
-    [vendorResponse?.data?.vendors]
-  );
+  // // Memoized Data
+  // const vendorsDropdown = useMemo(
+  //   () =>
+  //     vendorResponse?.data?.vendors?.map((vendorItem: IVendorReponse) => {
+  //       return { label: vendorItem.email, code: vendorItem._id };
+  //     }),
+  //   [vendorResponse?.data?.vendors]
+  // );
 
   // Handlers
   const handleDuplicate = async () => {
@@ -164,7 +152,7 @@ const RestaurantDuplicateDialog = ({
         setSelectedItem={(key: string, item: IDropdownSelectItem) =>
           setSelectedVendor(item)
         }
-        options={vendorsDropdown ?? []}
+        options={[]}
       />
     </Dialog>
   );

@@ -141,7 +141,7 @@ const AppTopbar = () => {
             <FontAwesomeIcon icon={faBars} />
           </button>
         </div>
-        <div onClick={() => onRedirectToPage('/home')}>
+        <div onClick={() => onRedirectToPage('/general/stores')}>
           <AppLogo />
         </div>
       </div>
@@ -267,13 +267,10 @@ const AppTopbar = () => {
             aria-controls="popup_menu_right"
             aria-haspopup
           >
-            <span>{user?.name ?? ''}</span>
+            <span>{user?.basicUserDetails.email ?? ''}</span>
 
             <Image
-              src={
-                user?.image
-                  ? user.image
-                  : 'https://upload.wikimedia.org/wikipedia/commons/8/89/Portrait_Placeholder.png'
+              src={'https://upload.wikimedia.org/wikipedia/commons/8/89/Portrait_Placeholder.png'
               }
               alt={t('profile-img')}
               height={32}
