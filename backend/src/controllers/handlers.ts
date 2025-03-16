@@ -3,6 +3,8 @@ import * as productHandlers from "./handlers/products";
 import * as userHandlers from "./handlers/user";
 import * as vendorHandlers from "./handlers/vendor";
 import * as authenticate from "./handlers/authenticator";
+import * as shopHandlers from "./handlers/shop";
+
 
 export default {
 
@@ -17,6 +19,10 @@ export default {
     listVendors: vendorHandlers.listVendors,
     createNewVendor: vendorHandlers.createNewVendor,
     updateVendor: vendorHandlers.updateVendor,
-    deleteVendor: vendorHandlers.deleteVendor
+    deleteVendor: vendorHandlers.deleteVendor,
+    listShops: shopHandlers.listShops,
+    createNewShop: shopHandlers.createNewShop,
+    updateShop: shopHandlers.updateShop,
+    deleteShop: shopHandlers.deleteShop
 
 }

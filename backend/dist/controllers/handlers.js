@@ -37,6 +37,7 @@ const productHandlers = __importStar(require("./handlers/products"));
 const userHandlers = __importStar(require("./handlers/user"));
 const vendorHandlers = __importStar(require("./handlers/vendor"));
 const authenticate = __importStar(require("./handlers/authenticator"));
+const shopHandlers = __importStar(require("./handlers/shop"));
 exports.default = {
     login: authenticate.login,
     register: authenticate.register,
@@ -49,5 +50,9 @@ exports.default = {
     listVendors: vendorHandlers.listVendors,
     createNewVendor: vendorHandlers.createNewVendor,
     updateVendor: vendorHandlers.updateVendor,
-    deleteVendor: vendorHandlers.deleteVendor
+    deleteVendor: vendorHandlers.deleteVendor,
+    listShops: shopHandlers.listShops,
+    createNewShop: shopHandlers.createNewShop,
+    updateShop: shopHandlers.updateShop,
+    deleteShop: shopHandlers.deleteShop
 };
