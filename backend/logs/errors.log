@@ -94,3 +94,10 @@
 2025-03-15T04:32:02.655Z error: updateVendor::Vendor not found : null
 2025-03-15T04:32:29.545Z error: deleteVendor::Vendor not found : undefined
 2025-03-15T04:32:36.688Z error: deleteVendor::Vendor not found : undefined
+2025-03-16T10:33:19.148Z error: ERROR::apiValidationHandler:  Authorization header required
+2025-03-16T10:34:51.571Z error: ERROR::apiValidationHandler:  request/body must match exactly one schema in oneOf
+2025-03-16T10:35:03.239Z error: login:: Error Unathorized user token verifying token for user: string
+2025-03-16T10:35:37.391Z error: login:: Error Unathorized user token verifying token for user: string
+2025-03-16T10:37:01.185Z error: ERROR::apiValidationHandler:  Expected ',' or '}' after property value in JSON at position 64
+2025-03-16T10:37:27.786Z error: authenticateJWT:: invalid signature
+2025-03-16T10:37:30.616Z error: authenticateJWT:: invalid signature

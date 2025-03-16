@@ -25,6 +25,7 @@ export const listVendors = async (req: Request, res: Response, next: NextFunctio
 export const createNewVendor = async (req: Request, res: Response, next: NextFunction) => {
     try {
         const vendor: IVendor = new VendorModel(req.body);
+        vendor.shopList = [];
         await vendor.save();
         log.info(`createNewVendor::Vendor created successfully : ${JSON.stringify(vendor.toJSON())}`);
         res.status(201).json(vendor.toJSON());
@@ -66,6 +67,8 @@ export const updateVendor = async (req: Request, res: Response, next: NextFuncti
     next();
 };
 
+
+//TODO: Dont allow to remove if there are shops attached to this vendor.
 export const deleteVendor = async (req: Request, res: Response, next: NextFunction) => {
     try {
         const vendorName = req.body.name;
