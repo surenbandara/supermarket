@@ -34,6 +34,7 @@ exports.listProducts = listProducts;
 const createNewProduct = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const product = new product_1.default(req.body);
+        product.id = Date.now();
         yield product.save();
         logger_1.default.info(`createNewProduct::Product created successfully : ${product}`);
         res.status(201).json(product);
@@ -96,16 +97,54 @@ const deleteProduct = (req, res, next) => __awaiter(void 0, void 0, void 0, func
 });
 exports.deleteProduct = deleteProduct;
 const filterProducts = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
-    // try {
-    //     res.status(200).json(products);
-    // }
-    // catch (err: any) {
-    //     console.log("ERROR::filterProducts: ", err);
-    //     res.status(500).json({
-    //         status: 500,
-    //         message: "Internal Server Error",
-    //     });
-    // }
+    try {
+        const { name, priceRange, quantityRange, cusine, brand, shop, discount, timestampRange, limit = 10, page = 1 } = req.body;
+        const filter = {};
+        if (name)
+            filter.name = { $regex: new RegExp(name, "i") };
+        if ((priceRange === null || priceRange === void 0 ? void 0 : priceRange.min) !== undefined || (priceRange === null || priceRange === void 0 ? void 0 : priceRange.max) !== undefined) {
+            filter.price = {};
+            if (priceRange.min !== undefined)
+                filter.price.$gte = priceRange.min;
+            if (priceRange.max !== undefined)
+                filter.price.$lte = priceRange.max;
+        }
+        if ((quantityRange === null || quantityRange === void 0 ? void 0 : quantityRange.min) !== undefined || (quantityRange === null || quantityRange === void 0 ? void 0 : quantityRange.max) !== undefined) {
+            filter.quantity = {};
+            if (quantityRange.min !== undefined)
+                filter.quantity.$gte = quantityRange.min;
+            if (quantityRange.max !== undefined)
+                filter.quantity.$lte = quantityRange.max;
+        }
+        if (cusine && cusine.length > 0)
+            filter.cusine = { $in: cusine }; // Matches any in the array
+        if (brand)
+            filter.brand = brand;
+        if (shop)
+            filter.shop = shop;
+        if (discount !== undefined)
+            filter.discount = discount;
+        if ((timestampRange === null || timestampRange === void 0 ? void 0 : timestampRange.start) !== undefined || (timestampRange === null || timestampRange === void 0 ? void 0 : timestampRange.end) !== undefined) {
+            filter.timestamp = {};
+            if (timestampRange.start !== undefined)
+                filter.timestamp.$gte = timestampRange.start;
+            if (timestampRange.end !== undefined)
+                filter.timestamp.$lte = timestampRange.end;
+        }
+        const products = yield product_1.default.find(filter)
+            .sort({ timestamp: -1 }); // Sort by latest products
+        // .skip((page - 1) * limit)
+        // .limit(limit);
+        logger_1.default.info(`filterProducts::Products fetched successfully`);
+        res.status(200).json(products);
+    }
+    catch (err) {
+        logger_1.default.error(`filterProducts:: ${err.message}`);
+        res.status(500).json({
+            status: 500,
+            message: "Internal Server Error",
+        });
+    }
     next();
 });
 exports.filterProducts = filterProducts;

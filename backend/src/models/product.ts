@@ -6,13 +6,13 @@ export interface IProduct extends mongoose.Document {
     name: string;
     price: number;
     quantity: number;
-    category: Category; //TODO: need mechanism to add new categories(shops) to Enum
+    cusine: string[];
     brand: string;
-    shop: Shop;
+    shop: string;
     image?: string;
     discount?: number;
     timestamp: number;
-    additionalData?: AdditionalData;
+    additionalData?: object;
 }
 
 const productSchema = new mongoose.Schema<IProduct>(
@@ -21,7 +21,7 @@ const productSchema = new mongoose.Schema<IProduct>(
         name: { type: String, required: true },
         price: { type: Number, required: true },
         quantity: { type: Number, required: true },
-        category: { type: String, required: true },
+        cusine: { type: [String], required: true },
         brand: { type: String, required: true },
         shop: { type: String, required: true },
         image: { type: String, required: false },
@@ -36,8 +36,13 @@ const productSchema = new mongoose.Schema<IProduct>(
 );
 
 productSchema.index({ id: 1 }, { unique: true }); 
-productSchema.index({ category: 1 });
+productSchema.index({ name: 1 });
 productSchema.index({ price: 1 });
+productSchema.index({ shop: 1 });
+productSchema.index({ cusine: 1 });
+productSchema.index({ brand: 1 });
+productSchema.index({ discount: 1 });
+
 productSchema.index({ timestamp: -1 });
 
 productSchema.set('toJSON', {
@@ -52,6 +57,8 @@ productSchema.set('toObject', {
     transform: (doc, ret, options) => {
         delete ret._id;
         delete ret.__v;
+        delete ret.createdAt;
+        delete ret.updatedAt;
         return ret;
     },
 });

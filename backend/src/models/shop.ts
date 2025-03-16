@@ -4,9 +4,11 @@ import mongoose from "mongoose";
 export interface IShop extends mongoose.Document {
     // id: number;
     name: string;
-    vendorId: number;
-    productsList : number[];
+    vendorName: string;
+    vendorEmai: string;
+    vendorPhoneNumber: string;
     timestamp: number;
+    category: string;
     image?: string;
     additionalData?: string;
 }
@@ -15,8 +17,10 @@ const shopSchema = new mongoose.Schema<IShop>(
     {
         // id: { type: Number, required: true },
         name: { type: String, required: true },
-        vendorId: { type: Number, required: true },
-        productsList: { type: [Number], required: true },
+        vendorName: { type: String, required: true },
+        vendorEmai: { type: String, required: true },
+        category: { type: String, required: true },
+        vendorPhoneNumber: { type: String, required: true },
         timestamp: { type: Number, required: true },
         image: { type: String, required: false },
         additionalData: { type: String, required: false },
@@ -28,7 +32,8 @@ const shopSchema = new mongoose.Schema<IShop>(
 );
 
 shopSchema.index({ name: 1 }, { unique: true });
-shopSchema.index({ vendorId: 1 });
+// shopSchema.index({ vendorName: 1 });
+shopSchema.index({ category: 1 });
 shopSchema.index({ timestamp: -1 });
 
 shopSchema.set('toJSON', {

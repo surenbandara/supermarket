@@ -194,7 +194,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/Product'
+              $ref: '#/components/schemas/NewProduct'
       responses:
         '201':
           description: Created
@@ -383,40 +383,56 @@ paths:
             schema:
               type: object
               properties:
+                name:
+                  type: string
+                  description: Filter by product name
                 priceRange:
                   type: object
                   properties:
-                    maxPrice:
+                    min:
                       type: number
-                      nullable: true
-                    lowPrice:
+                      description: Minimum price
+                    max:
                       type: number
-                      nullable: true
-                category:
+                      description: Maximum price
+                quantityRange:
+                  type: object
+                  properties:
+                    min:
+                      type: number
+                      description: Minimum quantity
+                    max:
+                      type: number
+                      description: Maximum quantity
+                cusine:
                   type: array
                   items:
                     type: string
-                    enum:
-                      - fruits
-                      - vegetables
-                      - bakery
-                      - electronics
-                      - other
-                discount:
-                  type: boolean
-                name:
-                  type: string
+                  description: Filter by cuisine types
                 brand:
                   type: string
-                id:
-                  type: integer
+                  description: Filter by brand name
                 shop:
                   type: string
-                  enum:
-                    - Diwulkumbura-Supermarket
-                    - Bounty-Restaurant
-                timestamp:
+                  description: Filter by shop name
+                discount:
+                  type: number
+                  description: Filter by discount percentage
+                timestampRange:
+                  type: object
+                  properties:
+                    start:
+                      type: number
+                      description: Start timestamp (milliseconds)
+                    end:
+                      type: number
+                      description: End timestamp (milliseconds)
+                limit:
                   type: integer
+                  description: Number of products per page
+                page:
+                  type: integer
+                  description: Page number for pagination
       responses:
         '200':
           description: A list of filtered products
@@ -647,6 +663,588 @@ paths:
                 properties:
                   message:
                     type: string
+  /cusine:
+    get:
+      summary: Get Cusine
+      operationId: listCusines
+      security:
+        - BearerAuth: []
+      x-roles: ['admin']
+      parameters:
+        - name: name
+          in: query
+          description: Filter cusine by name
+          required: false
+          schema:
+            type: string
+      responses:
+        '200':
+          description: A list of cusine
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Cusine'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+        '404':
+          description: Not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+    post:
+      summary: Create a new cusine
+      operationId: createNewCusine
+      security:
+        - BearerAuth: []
+      x-roles: ['admin']
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Cusine'
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Cusine'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+        '500':
+          description: Failed to create
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+    put:
+      summary: Update a Cusine
+      operationId: updateCusine
+      security:
+        - BearerAuth: []
+      x-roles: ['admin']
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ModifiedCusine'
+      responses:
+        '200':
+          description: Updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Cusine'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+        '404':
+          description: Not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+        '500':
+          description: Failed to update
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+    delete:
+      summary: Delete a Cusine
+      operationId: deleteCusine
+      security:
+        - BearerAuth: []
+      x-roles: ['admin']
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+      responses:
+        '200':
+          description: Deleted
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+        '404':
+          description: Not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+        '500':
+          description: Failed to delete
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+  /shop:
+    get:
+      summary: Get Shops
+      operationId: listShops
+      security:
+        - BearerAuth: []
+      x-roles: ['admin']
+      parameters:
+        - name: name
+          in: query
+          description: Filter shop by name
+          required: false
+          schema:
+            type: string
+      responses:
+        '200':
+          description: A list of shops
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Shop'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+        '404':
+          description: Not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+    post:
+      summary: Create a new shop
+      operationId: createNewShop
+      security:
+        - BearerAuth: []
+      x-roles: ['admin']
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Shop'
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Shop'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+        '500':
+          description: Failed to create
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+    put:
+      summary: Update a Shop
+      operationId: updateShop
+      security:
+        - BearerAuth: []
+      x-roles: ['admin']
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ModifiedShop'
+      responses:
+        '200':
+          description: Updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Shop'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+        '404':
+          description: Not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+        '500':
+          description: Failed to update
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+    # delete:
+    #   summary: Delete a shop
+    #   operationId: deleteShop
+    #   security:
+    #     - BearerAuth: []
+    #   x-roles: ['admin']
+    #   requestBody:
+    #     required: true
+    #     content:
+    #       application/json:
+    #         schema:
+    #           type: object
+    #           properties:
+    #             name:
+    #               type: string
+    #   responses:
+    #     '200':
+    #       description: Deleted
+    #       content:
+    #         application/json:
+    #           schema:
+    #             type: object
+    #             properties:
+    #               message:
+    #                 type: string
+    #     '401':
+    #       description: Unauthorized
+    #       content:
+    #         application/json:
+    #           schema:
+    #             type: object
+    #             properties:
+    #               message:
+    #                 type: string
+    #     '404':
+    #       description: Not found
+    #       content:
+    #         application/json:
+    #           schema:
+    #             type: object
+    #             properties:
+    #               message:
+    #                 type: string
+    #     '500':
+    #       description: Failed to delete
+    #       content:
+    #         application/json:
+    #           schema:
+    #             type: object
+    #             properties:
+    #               message:
+    #                 type: string
+  /rider:
+    get:
+      summary: Get Rider
+      operationId: listRiders
+      security:
+        - BearerAuth: []
+      x-roles: ['admin']
+      parameters:
+        - name: name
+          in: query
+          description: Filter Rider by name
+          required: false
+          schema:
+            type: string
+      responses:
+        '200':
+          description: A list of Riders
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Rider'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+        '404':
+          description: Not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+    post:
+      summary: Create a new Rider
+      operationId: createNewRider
+      security:
+        - BearerAuth: []
+      x-roles: ['admin']
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Rider'
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Rider'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+        '500':
+          description: Failed to create
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+    put:
+      summary: Update a Rider
+      operationId: updateRider
+      security:
+        - BearerAuth: []
+      x-roles: ['admin']
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Rider'
+      responses:
+        '200':
+          description: Updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Rider'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+        '404':
+          description: Not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+        '500':
+          description: Failed to update
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+    delete:
+      summary: Delete a Rider
+      operationId: deleteRider
+      security:
+        - BearerAuth: []
+      x-roles: ['admin']
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+      responses:
+        '200':
+          description: Deleted
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+        '404':
+          description: Not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+        '500':
+          description: Failed to delete
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
 components:
   securitySchemes:
       BearerAuth:
@@ -654,33 +1252,23 @@ components:
         scheme: bearer
         bearerFormat: JWT 
   schemas:
-    Product:
+    NewProduct:
       type: object
       properties:
-        id:
-          type: integer
         name:
           type: string
         price:
           type: number
         quantity:
           type: integer
-        category:
-          type: string
-          enum:
-            - fruits
-            - food
-            - vegetables
-            - bakery
-            - electronics
-            - other
+        cusine:
+          type: array
+          items:
+            type: string
         brand:
           type: string
         shop:
           type: string
-          enum:
-            - Diwulkumbura-Supermarket
-            - Bounty-Restaurant
         image:
           type: string
         discount:
@@ -699,13 +1287,58 @@ components:
             description:
               type: string
       required:
+        - name
+        - price
+        - quantity
+        - cusine
+        - brand
+        - shop
+        - timestamp
+    Product:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        price:
+          type: number
+        quantity:
+          type: integer
+        cusine:
+          type: array
+          items:
+            type: string
+        brand:
+          type: string
+        shop:
+          type: string
+        image:
+          type: string
+        discount:
+          type: number
+        timestamp:
+          type: integer
+        additionalData:
+          type: object
+          # properties:
+          #   color:
+          #     type: string
+          #   expirationDate:
+          #     type: number
+          #   size:
+          #     type: string
+          #   description:
+          #     type: string
+      required:
         - id
         - name
         - price
         - quantity
-        - category
+        - cusine
         - brand
         - shop
+        - timestamp
     User:
       type: object
       properties:
@@ -746,5 +1379,98 @@ components:
       required:
         - name
         - email
-        - shopList
+        - timestamp
+    Shop:
+      type: object
+      properties:
+        name:
+          type: string
+        vendorName:
+          type: string
+        vendorEmai:
+          type: string
+        vendorPhoneNumber:
+          type: string
+        category:
+          type: string
+          enum:
+            - super-market
+            - restaurants # add more categories as needed
+        timestamp:
+          type: number
+        image:
+          type: string
+        additionalData:
+          type: string
+      required:
+        - name
+        - vendorName
+        - vendorEmai
+        - vendorPhoneNumber
+        - timestamp
+    ModifiedShop:
+      type: object
+      properties:
+        vendorName:
+          type: string
+        vendorEmai:
+          type: string
+        category:
+          type: string
+          enum:
+            - super-market
+            - restaurants # add more categories as needed
+        vendorPhoneNumber:
+          type: string
+        timestamp:
+          type: number
+        image:
+          type: string
+        additionalData:
+          type: string
+      required:
+        - vendorName
+        - vendorEmai
+        - vendorPhoneNumber
+        - timestamp
+    Rider:
+      type: object
+      properties:
+        name:
+          type: string
+        email:
+          type: string
+        phoneNumber:
+          type: string
+        vehicle:
+          type: string
+        available:
+          type: boolean
+      required:
+        - name
+        - email
+        - phoneNumber
+        - vehicle
+        - available
+    Cusine:
+      type: object
+      properties:
+        name:
+          type: string
+        timestamp:
+          type: number
+      required:
+        - name
+        - timestamp
+    ModifiedCusine:
+      type: object
+      properties:
+        name:
+          type: string
+        newName:
+          type: string
+        timestamp:
+          type: number
+      required:
+        - name
         - timestamp

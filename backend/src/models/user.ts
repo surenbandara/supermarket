@@ -38,6 +38,8 @@ userSchema.set('toJSON', {
         delete ret.__v;
         delete ret.password;
         delete ret.emailVerified;
+        delete ret.createdAt;
+        delete ret.updatedAt;
         return ret;
     },
 });

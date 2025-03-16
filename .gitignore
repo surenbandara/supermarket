@@ -174,3 +174,4 @@ next-env.d.ts
 
 *storybook.log
 
+./backend/logs/*.log

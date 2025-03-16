@@ -3,6 +3,10 @@ import * as productHandlers from "./handlers/products";
 import * as userHandlers from "./handlers/user";
 import * as vendorHandlers from "./handlers/vendor";
 import * as authenticate from "./handlers/authenticator";
+import * as shopHandlers from "./handlers/shop";
+import * as riderHandler from "./handlers/rider";
+import * as cusineHandler from "./handlers/cusine";
+
 
 export default {
 
@@ -17,6 +21,18 @@ export default {
     listVendors: vendorHandlers.listVendors,
     createNewVendor: vendorHandlers.createNewVendor,
     updateVendor: vendorHandlers.updateVendor,
-    deleteVendor: vendorHandlers.deleteVendor
+    deleteVendor: vendorHandlers.deleteVendor,
+    listShops: shopHandlers.listShops,
+    createNewShop: shopHandlers.createNewShop,
+    updateShop: shopHandlers.updateShop,
+    deleteShop: shopHandlers.deleteShop,
+    listRiders: riderHandler.listRiders,
+    createNewRider: riderHandler.createNewRider,
+    updateRider: riderHandler.updateRider,
+    deleteRider: riderHandler.deleteRider,
+    listCusines: cusineHandler.listCusines,
+    createNewCusine: cusineHandler.createNewCusine,
+    updateCusine: cusineHandler.updateCusine,
+    deleteCusine: cusineHandler.deleteCusine
 
 }

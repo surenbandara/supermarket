@@ -731,3 +731,844 @@
   createdAt: 2025-03-15T04:31:14.810Z,
   updatedAt: 2025-03-15T04:32:13.798Z
 }
+2025-03-15T06:29:57.565Z info: MongoDB ::::: mongodb://mongodb:27017/test-super-market-02
+2025-03-15T06:29:57.788Z info: MongoDB connected
+2025-03-15T06:29:57.790Z info: Server running on port 3000
+2025-03-15T06:29:57.801Z info: Admin user already exists
+2025-03-15T06:29:57.802Z info: starterPack added successfully
+2025-03-15T06:30:52.805Z info: listVendors::Vendors fetched successfully : [{"name":"lakshan","email":"string2","shopList":["string"],"image":"string","timestamp":2,"additionalData":"string","createdAt":"2025-03-15T04:23:47.328Z","updatedAt":"2025-03-15T04:30:25.307Z"},{"name":"suren","email":"string","shopList":["sd01","st02"],"image":"string","timestamp":120,"additionalData":"string","createdAt":"2025-03-15T04:30:47.737Z","updatedAt":"2025-03-15T04:30:47.737Z"}]
+2025-03-15T06:31:03.807Z info: listShops::Shops fetched successfully : []
+2025-03-15T06:32:32.990Z info: createNewShop::Shop created successfully : {"name":"sttttttttt","vendorName":"lakshan","productsList":[0],"timestamp":0,"createdAt":"2025-03-15T06:32:32.987Z","updatedAt":"2025-03-15T06:32:32.987Z"}
+2025-03-15T06:33:03.078Z info: createNewShop::Vendor is invalid : {"name":"sttttttttt","vendorName":"lakshands","productsList":[0],"timestamp":0}
+2025-03-15T06:33:53.820Z info: listShops::Shops fetched successfully : [{"name":"sttttttttt","vendorName":"lakshan","productsList":[0],"timestamp":0,"createdAt":"2025-03-15T06:32:32.987Z","updatedAt":"2025-03-15T06:32:32.987Z"}]
+2025-03-15T06:33:57.697Z info: listShops::Shops fetched successfully : [{"name":"sttttttttt","vendorName":"lakshan","productsList":[0],"timestamp":0,"createdAt":"2025-03-15T06:32:32.987Z","updatedAt":"2025-03-15T06:32:32.987Z"}]
+2025-03-15T06:34:09.430Z info: createNewShop::Vendor is invalid : {"name":"qqqqqqqqqq","vendorName":"lakshand","productsList":[0],"timestamp":0}
+2025-03-15T06:34:15.432Z info: createNewShop::Shop created successfully : {"name":"qqqqqqqqqq","vendorName":"lakshan","productsList":[0],"timestamp":0,"createdAt":"2025-03-15T06:34:15.431Z","updatedAt":"2025-03-15T06:34:15.431Z"}
+2025-03-15T06:34:23.976Z info: listShops::Shops fetched successfully : [{"name":"sttttttttt","vendorName":"lakshan","productsList":[0],"timestamp":0,"createdAt":"2025-03-15T06:32:32.987Z","updatedAt":"2025-03-15T06:32:32.987Z"}]
+2025-03-15T06:34:27.478Z info: listShops::Shops fetched successfully : [{"name":"sttttttttt","vendorName":"lakshan","productsList":[0],"timestamp":0,"createdAt":"2025-03-15T06:32:32.987Z","updatedAt":"2025-03-15T06:32:32.987Z"},{"name":"qqqqqqqqqq","vendorName":"lakshan","productsList":[0],"timestamp":0,"createdAt":"2025-03-15T06:34:15.431Z","updatedAt":"2025-03-15T06:34:15.431Z"}]
+2025-03-15T06:46:10.285Z info: MongoDB ::::: mongodb://mongodb:27017/test-super-market-02
+2025-03-15T06:46:10.560Z info: MongoDB connected
+2025-03-15T06:46:10.562Z info: Server running on port 3000
+2025-03-15T06:46:10.572Z info: Admin user already exists
+2025-03-15T06:46:10.572Z info: starterPack added successfully
+2025-03-15T06:46:28.441Z info: listVendors::Vendors fetched successfully : [{"name":"lakshan","email":"string2","shopList":["string"],"image":"string","timestamp":2,"additionalData":"string","createdAt":"2025-03-15T04:23:47.328Z","updatedAt":"2025-03-15T04:30:25.307Z"},{"name":"suren","email":"string","shopList":["sd01","st02"],"image":"string","timestamp":120,"additionalData":"string","createdAt":"2025-03-15T04:30:47.737Z","updatedAt":"2025-03-15T04:30:47.737Z"}]
+2025-03-15T06:46:33.905Z info: listVendors::Vendors fetched successfully : [{"name":"lakshan","email":"string2","shopList":["string"],"image":"string","timestamp":2,"additionalData":"string","createdAt":"2025-03-15T04:23:47.328Z","updatedAt":"2025-03-15T04:30:25.307Z"}]
+2025-03-15T06:47:44.968Z info: createNewShop::Shop created successfully : {"name":"qwww","vendorName":"lakshan","productsList":[0],"timestamp":0,"createdAt":"2025-03-15T06:47:44.961Z","updatedAt":"2025-03-15T06:47:44.961Z"}
+2025-03-15T06:47:57.598Z info: listVendors::Vendors fetched successfully : [{"name":"lakshan","email":"string2","shopList":["string","qwww"],"image":"string","timestamp":2,"additionalData":"string","createdAt":"2025-03-15T04:23:47.328Z","updatedAt":"2025-03-15T06:47:44.953Z"}]
+2025-03-16T10:33:06.250Z info: MongoDB ::::: mongodb://mongodb:27017/test-super-market-02
+2025-03-16T10:33:06.465Z info: MongoDB connected
+2025-03-16T10:33:06.467Z info: Server running on port 3000
+2025-03-16T10:33:06.482Z info: Admin user already exists
+2025-03-16T10:33:06.482Z info: starterPack added successfully
+2025-03-16T10:33:19.148Z error: ERROR::apiValidationHandler:  Authorization header required
+2025-03-16T10:34:51.571Z error: ERROR::apiValidationHandler:  request/body must match exactly one schema in oneOf
+2025-03-16T10:35:03.239Z error: login:: Error Unathorized user token verifying token for user: string
+2025-03-16T10:35:37.391Z error: login:: Error Unathorized user token verifying token for user: string
+2025-03-16T10:36:01.984Z info: login:: User with email lakarathalaka@gmail.com not found
+2025-03-16T10:36:02.003Z info: login:: New user lakarathalaka@gmail.com created successfully
+2025-03-16T10:37:01.185Z error: ERROR::apiValidationHandler:  Expected ',' or '}' after property value in JSON at position 64
+2025-03-16T10:37:07.314Z info: login:: User systemAdmin@gmail.com logged in successfully
+2025-03-16T10:37:27.786Z error: authenticateJWT:: invalid signature
+2025-03-16T10:37:30.616Z error: authenticateJWT:: invalid signature
+2025-03-16T10:37:52.037Z info: listVendors::Vendors fetched successfully : [{"name":"lakshan","email":"string2","shopList":["string","qwww"],"image":"string","timestamp":2,"additionalData":"string","createdAt":"2025-03-15T04:23:47.328Z","updatedAt":"2025-03-15T06:47:44.953Z"},{"name":"suren","email":"string","shopList":["sd01","st02"],"image":"string","timestamp":120,"additionalData":"string","createdAt":"2025-03-15T04:30:47.737Z","updatedAt":"2025-03-15T04:30:47.737Z"}]
+2025-03-16T10:38:43.974Z info: listShops::Shops fetched successfully : [{"name":"sttttttttt","vendorName":"lakshan","productsList":[0],"timestamp":0,"createdAt":"2025-03-15T06:32:32.987Z","updatedAt":"2025-03-15T06:32:32.987Z"},{"name":"qqqqqqqqqq","vendorName":"lakshan","productsList":[0],"timestamp":0,"createdAt":"2025-03-15T06:34:15.431Z","updatedAt":"2025-03-15T06:34:15.431Z"},{"name":"qwww","vendorName":"lakshan","productsList":[0],"timestamp":0,"createdAt":"2025-03-15T06:47:44.961Z","updatedAt":"2025-03-15T06:47:44.961Z"}]
+2025-03-16T10:39:13.968Z info: createNewShop::Shop created successfully : {"name":"1111111111111","vendorName":"lakshan","productsList":[0],"timestamp":0,"image":"string","additionalData":"string","createdAt":"2025-03-16T10:39:13.962Z","updatedAt":"2025-03-16T10:39:13.962Z"}
+2025-03-16T10:39:29.360Z info: listShops::Shops fetched successfully : []
+2025-03-16T10:40:44.883Z info: listVendors::Vendors fetched successfully : [{"name":"lakshan","email":"string2","shopList":["string","qwww","1111111111111"],"image":"string","timestamp":2,"additionalData":"string","createdAt":"2025-03-15T04:23:47.328Z","updatedAt":"2025-03-16T10:39:13.951Z"}]
+2025-03-16T10:41:27.716Z info: listShops::Shops fetched successfully : [{"name":"1111111111111","vendorName":"lakshan","productsList":[0],"timestamp":0,"image":"string","additionalData":"string","createdAt":"2025-03-16T10:39:13.962Z","updatedAt":"2025-03-16T10:39:13.962Z"}]
+2025-03-16T10:41:52.922Z info: updateShop::Shop updated successfully : {
+  name: '1111111111111',
+  vendorName: 'suren',
+  productsList: [ 0 ],
+  timestamp: 0,
+  image: 'string',
+  additionalData: 'string',
+  createdAt: 2025-03-16T10:39:13.962Z,
+  updatedAt: 2025-03-16T10:41:52.919Z
+}
+2025-03-16T10:42:12.185Z info: listShops::Shops fetched successfully : [{"name":"1111111111111","vendorName":"suren","productsList":[0],"timestamp":0,"image":"string","additionalData":"string","createdAt":"2025-03-16T10:39:13.962Z","updatedAt":"2025-03-16T10:41:52.919Z"}]
+2025-03-16T10:42:17.875Z info: listVendors::Vendors fetched successfully : [{"name":"lakshan","email":"string2","shopList":["string","qwww","1111111111111"],"image":"string","timestamp":2,"additionalData":"string","createdAt":"2025-03-15T04:23:47.328Z","updatedAt":"2025-03-16T10:39:13.951Z"}]
+2025-03-16T10:42:23.488Z info: listVendors::Vendors fetched successfully : [{"name":"suren","email":"string","shopList":["sd01","st02"],"image":"string","timestamp":120,"additionalData":"string","createdAt":"2025-03-15T04:30:47.737Z","updatedAt":"2025-03-15T04:30:47.737Z"}]
+2025-03-16T10:42:49.647Z info: deleteShop::Shop deleted successfully : {
+  name: '1111111111111',
+  vendorName: 'suren',
+  productsList: [ 0 ],
+  timestamp: 0,
+  image: 'string',
+  additionalData: 'string',
+  createdAt: 2025-03-16T10:39:13.962Z,
+  updatedAt: 2025-03-16T10:41:52.919Z
+}
+2025-03-16T10:43:04.581Z info: listShops::Shops fetched successfully : []
+2025-03-16T11:06:13.928Z info: MongoDB ::::: mongodb://mongodb:27017/test-super-market-02
+2025-03-16T11:06:14.140Z info: MongoDB connected
+2025-03-16T11:06:14.142Z info: Server running on port 3000
+2025-03-16T11:06:14.156Z info: Admin user already exists
+2025-03-16T11:06:14.156Z info: starterPack added successfully
+2025-03-16T11:06:42.905Z info: listVendors::Vendors fetched successfully : [{"name":"lakshan","email":"string2","shopList":["string","qwww","1111111111111"],"image":"string","timestamp":2,"additionalData":"string","createdAt":"2025-03-15T04:23:47.328Z","updatedAt":"2025-03-16T10:39:13.951Z"},{"name":"suren","email":"string","shopList":["sd01","st02"],"image":"string","timestamp":120,"additionalData":"string","createdAt":"2025-03-15T04:30:47.737Z","updatedAt":"2025-03-15T04:30:47.737Z"}]
+2025-03-16T11:06:56.997Z info: listShops::Shops fetched successfully : [{"name":"sttttttttt","vendorName":"lakshan","timestamp":0,"createdAt":"2025-03-15T06:32:32.987Z","updatedAt":"2025-03-15T06:32:32.987Z"},{"name":"qqqqqqqqqq","vendorName":"lakshan","timestamp":0,"createdAt":"2025-03-15T06:34:15.431Z","updatedAt":"2025-03-15T06:34:15.431Z"},{"name":"qwww","vendorName":"lakshan","timestamp":0,"createdAt":"2025-03-15T06:47:44.961Z","updatedAt":"2025-03-15T06:47:44.961Z"}]
+2025-03-16T11:06:57.009Z error: ERROR::apiValidationHandler:  /response/0 must have required property 'vendorEmai'
+2025-03-16T11:07:59.483Z info: MongoDB ::::: mongodb://mongodb:27017/test-super-market-03
+2025-03-16T11:07:59.688Z info: MongoDB connected
+2025-03-16T11:07:59.690Z info: Server running on port 3000
+2025-03-16T11:07:59.817Z info: starterPack added successfully
+2025-03-16T11:08:03.712Z info: listShops::Shops fetched successfully : []
+2025-03-16T11:08:37.482Z info: createNewShop::Shop created successfully : {"name":"lakshan-shop-01","vendorName":"lakiya","vendorEmai":"string","vendorPhoneNumber":"string","timestamp":0,"image":"string","additionalData":"string","createdAt":"2025-03-16T11:08:37.478Z","updatedAt":"2025-03-16T11:08:37.478Z"}
+2025-03-16T11:09:06.757Z info: listShops::Shops fetched successfully : [{"name":"lakshan-shop-01","vendorName":"lakiya","vendorEmai":"string","vendorPhoneNumber":"string","timestamp":0,"image":"string","additionalData":"string","createdAt":"2025-03-16T11:08:37.478Z","updatedAt":"2025-03-16T11:08:37.478Z"}]
+2025-03-16T11:09:17.978Z info: listShops::Shops fetched successfully : [{"name":"lakshan-shop-01","vendorName":"lakiya","vendorEmai":"string","vendorPhoneNumber":"string","timestamp":0,"image":"string","additionalData":"string","createdAt":"2025-03-16T11:08:37.478Z","updatedAt":"2025-03-16T11:08:37.478Z"}]
+2025-03-16T11:09:43.018Z info: updateShop::Shop updated successfully : {
+  name: 'lakshan-shop-01',
+  vendorName: 'lakiya-ratha',
+  vendorEmai: 'string',
+  vendorPhoneNumber: 'string',
+  timestamp: 0,
+  image: 'string',
+  additionalData: 'string',
+  createdAt: 2025-03-16T11:08:37.478Z,
+  updatedAt: 2025-03-16T11:09:43.012Z
+}
+2025-03-16T11:09:51.869Z info: listShops::Shops fetched successfully : [{"name":"lakshan-shop-01","vendorName":"lakiya-ratha","vendorEmai":"string","vendorPhoneNumber":"string","timestamp":0,"image":"string","additionalData":"string","createdAt":"2025-03-16T11:08:37.478Z","updatedAt":"2025-03-16T11:09:43.012Z"}]
+2025-03-16T11:34:09.605Z info: MongoDB ::::: mongodb://mongodb:27017/test-super-market-03
+2025-03-16T11:34:09.820Z info: MongoDB connected
+2025-03-16T11:34:09.826Z info: Server running on port 3000
+2025-03-16T11:34:09.855Z info: Admin user already exists
+2025-03-16T11:34:09.856Z info: starterPack added successfully
+2025-03-16T11:36:36.503Z info: MongoDB ::::: mongodb://mongodb:27017/test-super-market-03
+2025-03-16T11:36:36.730Z info: MongoDB connected
+2025-03-16T11:36:36.731Z info: Server running on port 3000
+2025-03-16T11:36:36.748Z info: Admin user already exists
+2025-03-16T11:36:36.748Z info: starterPack added successfully
+2025-03-16T11:36:54.797Z error: ERROR::apiValidationHandler:  openapi.validator: args.apiDoc was invalid.  See the output.
+2025-03-16T11:36:56.897Z error: ERROR::apiValidationHandler:  openapi.validator: args.apiDoc was invalid.  See the output.
+2025-03-16T11:40:42.467Z info: MongoDB ::::: mongodb://mongodb:27017/test-super-market-03
+2025-03-16T11:40:42.677Z info: MongoDB connected
+2025-03-16T11:40:42.680Z info: Server running on port 3000
+2025-03-16T11:40:42.698Z info: Admin user already exists
+2025-03-16T11:40:42.698Z info: starterPack added successfully
+2025-03-16T11:40:59.594Z error: ERROR::apiValidationHandler:  openapi.validator: args.apiDoc was invalid.  See the output.
+2025-03-16T11:43:59.530Z info: MongoDB ::::: mongodb://mongodb:27017/test-super-market-03
+2025-03-16T11:43:59.735Z info: MongoDB connected
+2025-03-16T11:43:59.737Z info: Server running on port 3000
+2025-03-16T11:43:59.753Z info: Admin user already exists
+2025-03-16T11:43:59.753Z info: starterPack added successfully
+2025-03-16T11:44:06.226Z error: ERROR::apiValidationHandler:  openapi.validator: args.apiDoc was invalid.  See the output.
+2025-03-16T11:44:10.151Z error: ERROR::apiValidationHandler:  openapi.validator: args.apiDoc was invalid.  See the output.
+2025-03-16T11:44:11.314Z error: ERROR::apiValidationHandler:  openapi.validator: args.apiDoc was invalid.  See the output.
+2025-03-16T11:44:37.125Z error: ERROR::apiValidationHandler:  openapi.validator: args.apiDoc was invalid.  See the output.
+2025-03-16T11:45:46.537Z error: ERROR::apiValidationHandler:  openapi.validator: args.apiDoc was invalid.  See the output.
+2025-03-16T11:50:16.674Z info: MongoDB ::::: mongodb://mongodb:27017/test-super-market-03
+2025-03-16T11:50:16.883Z info: MongoDB connected
+2025-03-16T11:50:16.885Z info: Server running on port 3000
+2025-03-16T11:50:16.899Z info: Admin user already exists
+2025-03-16T11:50:16.899Z info: starterPack added successfully
+2025-03-16T11:50:33.330Z info: listRiders::Riders fetched successfully : []
+2025-03-16T11:50:44.856Z info: createNewRider::Rider created successfully : {"name":"lakiya","email":"string","phoneNumber":"string","vehicle":"string","available":true,"createdAt":"2025-03-16T11:50:44.848Z","updatedAt":"2025-03-16T11:50:44.848Z"}
+2025-03-16T11:50:54.550Z error: createNewRider:: MongoServerError: E11000 duplicate key error collection: test-super-market-03.riders index: name_1 dup key: { name: "lakiya" }
+2025-03-16T11:51:23.338Z info: updateRider::Rider updated successfully : {
+  name: 'lakiya',
+  email: 'string',
+  phoneNumber: 'string',
+  vehicle: 'string',
+  available: false,
+  createdAt: 2025-03-16T11:50:44.848Z,
+  updatedAt: 2025-03-16T11:51:23.331Z
+}
+2025-03-16T11:52:58.488Z info: deleteRider::Rider deleted successfully : {
+  name: 'lakiya',
+  email: 'string',
+  phoneNumber: 'string',
+  vehicle: 'string',
+  available: false,
+  createdAt: 2025-03-16T11:50:44.848Z,
+  updatedAt: 2025-03-16T11:51:23.331Z
+}
+2025-03-16T11:53:12.820Z info: listRiders::Riders fetched successfully : []
+2025-03-16T11:53:15.321Z info: createNewRider::Rider created successfully : {"name":"lakiya","email":"string","phoneNumber":"string","vehicle":"string","available":true,"createdAt":"2025-03-16T11:53:15.319Z","updatedAt":"2025-03-16T11:53:15.319Z"}
+2025-03-16T11:53:18.210Z info: listRiders::Riders fetched successfully : [{"name":"lakiya","email":"string","phoneNumber":"string","vehicle":"string","available":true,"createdAt":"2025-03-16T11:53:15.319Z","updatedAt":"2025-03-16T11:53:15.319Z"}]
+2025-03-16T11:53:28.900Z info: createNewRider::Rider created successfully : {"name":"suren","email":"string","phoneNumber":"string","vehicle":"string","available":true,"createdAt":"2025-03-16T11:53:28.898Z","updatedAt":"2025-03-16T11:53:28.898Z"}
+2025-03-16T11:53:32.238Z info: listRiders::Riders fetched successfully : [{"name":"lakiya","email":"string","phoneNumber":"string","vehicle":"string","available":true,"createdAt":"2025-03-16T11:53:15.319Z","updatedAt":"2025-03-16T11:53:15.319Z"},{"name":"suren","email":"string","phoneNumber":"string","vehicle":"string","available":true,"createdAt":"2025-03-16T11:53:28.898Z","updatedAt":"2025-03-16T11:53:28.898Z"}]
+2025-03-16T12:37:13.411Z info: MongoDB ::::: mongodb://mongodb:27017/test-super-market-03
+2025-03-16T12:37:13.636Z info: MongoDB connected
+2025-03-16T12:37:13.640Z info: Server running on port 3000
+2025-03-16T12:37:13.654Z info: Admin user already exists
+2025-03-16T12:37:13.655Z info: starterPack added successfully
+2025-03-16T12:37:22.474Z info: listUsers::Users fetched successfully: [{"id":"2025-03-16T11:07:59.482Z","username":"systemAdmin","role":"admin","email":"systemAdmin@gmail.com","phoneNumber":"","profilePic":"","createdAt":"2025-03-16T11:07:59.702Z","updatedAt":"2025-03-16T11:07:59.702Z"}]
+2025-03-16T12:38:40.777Z error: login:: Error Invalid token verifying token for user: lakarathalaka@gmail.com
+2025-03-16T12:39:14.632Z error: login:: Error Invalid token verifying token for user: lakarathalaka@gmail.com
+2025-03-16T12:39:44.608Z error: login:: Error Invalid token verifying token for user: lakarathalaka@gmail.com
+2025-03-16T12:40:23.657Z info: login:: User with email lakarathalaka@gmail.com not found
+2025-03-16T12:40:23.686Z info: login:: New user lakarathalaka@gmail.com created successfully
+2025-03-16T12:40:48.065Z info: listUsers::Users fetched successfully: [{"id":"2025-03-16T11:07:59.482Z","username":"systemAdmin","role":"admin","email":"systemAdmin@gmail.com","phoneNumber":"","profilePic":"","createdAt":"2025-03-16T11:07:59.702Z","updatedAt":"2025-03-16T11:07:59.702Z"},{"id":"GUAMCTtadpRtL9jqzLSsoZGEXdJ2","username":"lucky ratha","role":"user","email":"lakarathalaka@gmail.com","profilePic":"https://lh3.googleusercontent.com/a/ACg8ocLblbq939-gVaDcS06NvF7V6e7KwR11_0Jpg42kKhFM3JQTPg=s96-c","createdAt":"2025-03-16T12:40:23.664Z","updatedAt":"2025-03-16T12:40:23.664Z"}]
+2025-03-16T12:43:13.783Z info: MongoDB ::::: mongodb://mongodb:27017/test-super-market-03
+2025-03-16T12:43:13.990Z info: MongoDB connected
+2025-03-16T12:43:13.993Z info: Server running on port 3000
+2025-03-16T12:43:14.011Z info: Admin user already exists
+2025-03-16T12:43:14.011Z info: starterPack added successfully
+2025-03-16T12:43:16.820Z info: listUsers::Users fetched successfully: [{"id":"2025-03-16T11:07:59.482Z","username":"systemAdmin","role":"admin","email":"systemAdmin@gmail.com","phoneNumber":"","profilePic":"","updatedAt":"2025-03-16T11:07:59.702Z"},{"id":"GUAMCTtadpRtL9jqzLSsoZGEXdJ2","username":"lucky ratha","role":"user","email":"lakarathalaka@gmail.com","profilePic":"https://lh3.googleusercontent.com/a/ACg8ocLblbq939-gVaDcS06NvF7V6e7KwR11_0Jpg42kKhFM3JQTPg=s96-c","updatedAt":"2025-03-16T12:40:23.664Z"}]
+2025-03-16T12:43:50.828Z info: MongoDB ::::: mongodb://mongodb:27017/test-super-market-03
+2025-03-16T12:43:51.048Z info: MongoDB connected
+2025-03-16T12:43:51.050Z info: Server running on port 3000
+2025-03-16T12:43:51.064Z info: Admin user already exists
+2025-03-16T12:43:51.065Z info: starterPack added successfully
+2025-03-16T12:43:52.717Z info: listUsers::Users fetched successfully: [{"id":"2025-03-16T11:07:59.482Z","username":"systemAdmin","role":"admin","email":"systemAdmin@gmail.com","phoneNumber":"","profilePic":""},{"id":"GUAMCTtadpRtL9jqzLSsoZGEXdJ2","username":"lucky ratha","role":"user","email":"lakarathalaka@gmail.com","profilePic":"https://lh3.googleusercontent.com/a/ACg8ocLblbq939-gVaDcS06NvF7V6e7KwR11_0Jpg42kKhFM3JQTPg=s96-c"}]
+2025-03-16T12:48:20.872Z info: MongoDB ::::: mongodb://mongodb:27017/test-super-market-03
+2025-03-16T12:48:21.110Z info: MongoDB connected
+2025-03-16T12:48:21.112Z info: Server running on port 3000
+2025-03-16T12:48:21.125Z info: Admin user already exists
+2025-03-16T12:48:21.204Z info: starterPack added successfully
+2025-03-16T12:48:26.737Z info: listUsers::Users fetched successfully: [{"id":"2025-03-16T11:07:59.482Z","username":"systemAdmin","role":"admin","email":"systemAdmin@gmail.com","phoneNumber":"","profilePic":""},{"id":"GUAMCTtadpRtL9jqzLSsoZGEXdJ2","username":"lucky ratha","role":"user","email":"lakarathalaka@gmail.com","profilePic":"https://lh3.googleusercontent.com/a/ACg8ocLblbq939-gVaDcS06NvF7V6e7KwR11_0Jpg42kKhFM3JQTPg=s96-c"},{"id":"2025-03-16T12:48:21.125Z","username":"lakshanSTPACK","role":"user","email":"lakshanSTPACK@gmail.com","phoneNumber":"","profilePic":""}]
+2025-03-16T12:52:32.608Z info: MongoDB ::::: mongodb://mongodb:27017/test-super-market-03
+2025-03-16T12:52:32.811Z info: MongoDB connected
+2025-03-16T12:52:32.813Z info: Server running on port 3000
+2025-03-16T12:52:32.826Z info: Admin user already exists
+2025-03-16T12:52:32.906Z info: starterPack added successfully
+2025-03-16T12:52:36.714Z info: listUsers::Users fetched successfully: [{"id":"2025-03-16T11:07:59.482Z","username":"systemAdmin","role":"admin","email":"systemAdmin@gmail.com","phoneNumber":"","profilePic":""},{"id":"GUAMCTtadpRtL9jqzLSsoZGEXdJ2","username":"lucky ratha","role":"user","email":"lakarathalaka@gmail.com","profilePic":"https://lh3.googleusercontent.com/a/ACg8ocLblbq939-gVaDcS06NvF7V6e7KwR11_0Jpg42kKhFM3JQTPg=s96-c"},{"id":"2025-03-16T12:48:21.125Z","username":"lakshanSTPACK","role":"user","email":"lakshanSTPACK@gmail.com","phoneNumber":"","profilePic":""},{"id":"2025-03-16T12:52:32.827Z","username":"lakshan1STPACK","role":"user","email":"lakshan1STPACK@gmail.com","phoneNumber":"","profilePic":""}]
+2025-03-16T12:53:07.433Z info: MongoDB ::::: mongodb://mongodb:27017/test-super-market-03
+2025-03-16T12:53:07.645Z info: MongoDB connected
+2025-03-16T12:53:07.647Z info: Server running on port 3000
+2025-03-16T12:53:07.657Z info: Admin user already exists
+2025-03-16T12:53:07.730Z info: Customer  lakshan1 user already exists
+2025-03-16T12:53:07.813Z info: starterPack added successfully
+2025-03-16T12:53:09.244Z info: listUsers::Users fetched successfully: [{"id":"2025-03-16T11:07:59.482Z","username":"systemAdmin","role":"admin","email":"systemAdmin@gmail.com","phoneNumber":"","profilePic":""},{"id":"GUAMCTtadpRtL9jqzLSsoZGEXdJ2","username":"lucky ratha","role":"user","email":"lakarathalaka@gmail.com","profilePic":"https://lh3.googleusercontent.com/a/ACg8ocLblbq939-gVaDcS06NvF7V6e7KwR11_0Jpg42kKhFM3JQTPg=s96-c"},{"id":"2025-03-16T12:48:21.125Z","username":"lakshanSTPACK","role":"user","email":"lakshanSTPACK@gmail.com","phoneNumber":"","profilePic":""},{"id":"2025-03-16T12:52:32.827Z","username":"lakshan1STPACK","role":"user","email":"lakshan1STPACK@gmail.com","phoneNumber":"","profilePic":""},{"id":"2025-03-16T12:53:07.730Z","username":"surenSTPACK","role":"user","email":"surenSTPACK@gmail.com","phoneNumber":"","profilePic":""}]
+2025-03-16T15:00:30.896Z info: MongoDB ::::: mongodb://mongodb:27017/test-super-market-03
+2025-03-16T15:00:31.100Z info: MongoDB connected
+2025-03-16T15:00:31.103Z info: Server running on port 3000
+2025-03-16T15:00:31.114Z info: Admin user already exists
+2025-03-16T15:00:31.185Z info: Customer  lakshan1 user already exists
+2025-03-16T15:00:31.257Z info: Customer  suren user already exists
+2025-03-16T15:00:31.257Z info: starterPack added successfully
+2025-03-16T15:01:12.361Z error: authenticateJWT:: jwt expired
+2025-03-16T15:02:20.772Z error: login:: Invalid password for user systemAdmin@gmail.com
+2025-03-16T15:02:43.345Z info: login:: User systemAdmin@gmail.com logged in successfully
+2025-03-16T15:03:01.652Z info: listUsers::Users fetched successfully: [{"id":"2025-03-16T11:07:59.482Z","username":"systemAdmin","role":"admin","email":"systemAdmin@gmail.com","phoneNumber":"","profilePic":""},{"id":"GUAMCTtadpRtL9jqzLSsoZGEXdJ2","username":"lucky ratha","role":"user","email":"lakarathalaka@gmail.com","profilePic":"https://lh3.googleusercontent.com/a/ACg8ocLblbq939-gVaDcS06NvF7V6e7KwR11_0Jpg42kKhFM3JQTPg=s96-c"},{"id":"2025-03-16T12:48:21.125Z","username":"lakshanSTPACK","role":"user","email":"lakshanSTPACK@gmail.com","phoneNumber":"","profilePic":""},{"id":"2025-03-16T12:52:32.827Z","username":"lakshan1STPACK","role":"user","email":"lakshan1STPACK@gmail.com","phoneNumber":"","profilePic":""},{"id":"2025-03-16T12:53:07.730Z","username":"surenSTPACK","role":"user","email":"surenSTPACK@gmail.com","phoneNumber":"","profilePic":""}]
+2025-03-16T15:03:27.389Z info: createNewProduct::Product created successfully : {
+  name: '1',
+  price: 0,
+  quantity: 0,
+  cusine: [ 'string' ],
+  brand: 'string',
+  shop: 'string',
+  image: 'string',
+  discount: 0,
+  timestamp: 0,
+  additionalData: {
+    color: 'string',
+    expirationDate: 0,
+    size: 'string',
+    description: 'string'
+  },
+  id: 1742137407380,
+  createdAt: 2025-03-16T15:03:27.382Z,
+  updatedAt: 2025-03-16T15:03:27.382Z
+}
+2025-03-16T15:03:56.948Z info: updateProduct::Product updated successfully : {
+  name: '12',
+  price: 0,
+  quantity: 0,
+  cusine: [ 'string' ],
+  brand: 'string',
+  shop: 'string',
+  image: 'string',
+  discount: 0,
+  timestamp: 0,
+  additionalData: {
+    color: 'string',
+    expirationDate: 0,
+    size: 'string',
+    description: 'string'
+  },
+  id: 1742137407380,
+  createdAt: 2025-03-16T15:03:27.382Z,
+  updatedAt: 2025-03-16T15:03:56.942Z
+}
+2025-03-16T15:05:06.728Z info: deleteProduct::Product deleted successfully : {
+  name: '12',
+  price: 0,
+  quantity: 0,
+  cusine: [ 'string' ],
+  brand: 'string',
+  shop: 'string',
+  image: 'string',
+  discount: 0,
+  timestamp: 0,
+  additionalData: {
+    color: 'string',
+    expirationDate: 0,
+    size: 'string',
+    description: 'string'
+  },
+  id: 1742137407380,
+  createdAt: 2025-03-16T15:03:27.382Z,
+  updatedAt: 2025-03-16T15:03:56.942Z
+}
+2025-03-16T15:05:14.021Z info: listProducts::Products fetched successfully : 
+2025-03-16T15:05:39.447Z info: filterProducts::Products fetched successfully
+2025-03-16T15:06:02.031Z info: createNewProduct::Product created successfully : {
+  name: '1',
+  price: 0,
+  quantity: 0,
+  cusine: [ 'string' ],
+  brand: 'string',
+  shop: 'string',
+  image: 'string',
+  discount: 0,
+  timestamp: 0,
+  additionalData: {
+    color: 'string',
+    expirationDate: 0,
+    size: 'string',
+    description: 'string'
+  },
+  id: 1742137562027,
+  createdAt: 2025-03-16T15:06:02.028Z,
+  updatedAt: 2025-03-16T15:06:02.028Z
+}
+2025-03-16T15:06:17.457Z info: createNewProduct::Product created successfully : {
+  name: '2',
+  price: 0,
+  quantity: 0,
+  cusine: [ 'nu' ],
+  brand: 'string',
+  shop: 'string',
+  image: 'string',
+  discount: 0,
+  timestamp: 0,
+  additionalData: {
+    color: 'string',
+    expirationDate: 0,
+    size: 'string',
+    description: 'string'
+  },
+  id: 1742137577454,
+  createdAt: 2025-03-16T15:06:17.455Z,
+  updatedAt: 2025-03-16T15:06:17.455Z
+}
+2025-03-16T15:06:28.821Z info: createNewProduct::Product created successfully : {
+  name: '3',
+  price: 0,
+  quantity: 0,
+  cusine: [ 'nu' ],
+  brand: 'string',
+  shop: 'lk',
+  image: 'string',
+  discount: 0,
+  timestamp: 0,
+  additionalData: {
+    color: 'string',
+    expirationDate: 0,
+    size: 'string',
+    description: 'string'
+  },
+  id: 1742137588819,
+  createdAt: 2025-03-16T15:06:28.819Z,
+  updatedAt: 2025-03-16T15:06:28.819Z
+}
+2025-03-16T15:06:41.178Z info: createNewProduct::Product created successfully : {
+  name: '4',
+  price: 0,
+  quantity: 0,
+  cusine: [ 'nu' ],
+  brand: 'lop',
+  shop: 'lk',
+  image: 'string',
+  discount: 0,
+  timestamp: 0,
+  additionalData: {
+    color: 'string',
+    expirationDate: 0,
+    size: 'string',
+    description: 'string'
+  },
+  id: 1742137601176,
+  createdAt: 2025-03-16T15:06:41.176Z,
+  updatedAt: 2025-03-16T15:06:41.176Z
+}
+2025-03-16T15:06:50.168Z info: filterProducts::Products fetched successfully
+2025-03-16T15:07:00.652Z info: filterProducts::Products fetched successfully
+2025-03-16T15:07:41.690Z info: filterProducts::Products fetched successfully
+2025-03-16T15:07:51.030Z info: filterProducts::Products fetched successfully
+2025-03-16T15:08:14.872Z info: filterProducts::Products fetched successfully
+2025-03-16T15:08:24.996Z error: ERROR::apiValidationHandler:  Expected double-quoted property name in JSON at position 39
+2025-03-16T15:08:36.620Z error: ERROR::apiValidationHandler:  Expected double-quoted property name in JSON at position 39
+2025-03-16T15:08:41.960Z info: filterProducts::Products fetched successfully
+2025-03-16T15:30:55.181Z info: MongoDB ::::: mongodb://mongodb:27017/test-super-market-03
+2025-03-16T15:30:55.403Z info: MongoDB connected
+2025-03-16T15:30:55.405Z info: Server running on port 3000
+2025-03-16T15:30:55.423Z info: Admin user already exists
+2025-03-16T15:30:55.501Z info: Customer  lakshan1 user already exists
+2025-03-16T15:30:55.581Z info: Customer  suren user already exists
+2025-03-16T15:30:55.582Z info: starterPack added successfully
+2025-03-16T15:31:04.138Z info: listProducts::Products fetched successfully : {
+  name: '1',
+  price: 0,
+  quantity: 0,
+  cusine: [ 'string' ],
+  brand: 'string',
+  shop: 'string',
+  image: 'string',
+  discount: 0,
+  timestamp: 0,
+  additionalData: {
+    color: 'string',
+    expirationDate: 0,
+    size: 'string',
+    description: 'string'
+  },
+  id: 1742137562027
+},{
+  name: '2',
+  price: 0,
+  quantity: 0,
+  cusine: [ 'nu' ],
+  brand: 'string',
+  shop: 'string',
+  image: 'string',
+  discount: 0,
+  timestamp: 0,
+  additionalData: {
+    color: 'string',
+    expirationDate: 0,
+    size: 'string',
+    description: 'string'
+  },
+  id: 1742137577454
+},{
+  name: '3',
+  price: 0,
+  quantity: 0,
+  cusine: [ 'nu' ],
+  brand: 'string',
+  shop: 'lk',
+  image: 'string',
+  discount: 0,
+  timestamp: 0,
+  additionalData: {
+    color: 'string',
+    expirationDate: 0,
+    size: 'string',
+    description: 'string'
+  },
+  id: 1742137588819
+},{
+  name: '4',
+  price: 0,
+  quantity: 0,
+  cusine: [ 'nu' ],
+  brand: 'lop',
+  shop: 'lk',
+  image: 'string',
+  discount: 0,
+  timestamp: 0,
+  additionalData: {
+    color: 'string',
+    expirationDate: 0,
+    size: 'string',
+    description: 'string'
+  },
+  id: 1742137601176
+},{
+  id: 1,
+  name: 'Margherita Pizza',
+  price: 12.99,
+  quantity: 50,
+  cusine: [ 'Italian', 'Vegetarian' ],
+  brand: 'Napoli Pizzeria',
+  shop: 'Pizza Heaven',
+  image: 'https://example.com/margherita.jpg',
+  discount: 10,
+  timestamp: 1710480000000,
+  additionalData: {
+    description: 'Classic margherita pizza with fresh tomatoes and basil.'
+  }
+},{
+  id: 2,
+  name: 'Samsung Galaxy S23',
+  price: 899.99,
+  quantity: 20,
+  cusine: [],
+  brand: 'Samsung',
+  shop: 'Tech Hub',
+  image: 'https://example.com/galaxy-s23.jpg',
+  discount: 5,
+  timestamp: 1710480000000,
+  additionalData: { specs: { RAM: '8GB', Storage: '256GB' } }
+},{
+  id: 3,
+  name: 'Nike Air Force 1',
+  price: 120,
+  quantity: 100,
+  cusine: [],
+  brand: 'Nike',
+  shop: 'Sneaker World',
+  image: 'https://example.com/air-force-1.jpg',
+  discount: 15,
+  timestamp: 1710480000000,
+  additionalData: { size: [ 'US 7', 'US 8', 'US 9', 'US 10' ] }
+},{
+  id: 4,
+  name: 'Espresso Coffee',
+  price: 4.99,
+  quantity: 200,
+  cusine: [ 'Italian', 'Beverage' ],
+  brand: 'StarBrew',
+  shop: 'Coffee House',
+  image: 'https://example.com/espresso.jpg',
+  discount: 0,
+  timestamp: 1710480000000,
+  additionalData: { caffeine_content: 'High' }
+},{
+  id: 5,
+  name: 'MacBook Pro 16-inch',
+  price: 2499.99,
+  quantity: 10,
+  cusine: [],
+  brand: 'Apple',
+  shop: 'Apple Store',
+  image: 'https://example.com/macbook-pro.jpg',
+  discount: 8,
+  timestamp: 1710480000000,
+  additionalData: { specs: { Processor: 'M2 Pro', RAM: '16GB', Storage: '512GB SSD' } }
+}
+2025-03-16T15:49:13.531Z info: MongoDB ::::: mongodb://mongodb:27017/test-super-market-03
+2025-03-16T15:49:13.762Z info: MongoDB connected
+2025-03-16T15:49:13.765Z info: Server running on port 3000
+2025-03-16T15:49:13.787Z info: Admin user already exists
+2025-03-16T15:49:13.869Z info: Customer  lakshan1 user already exists
+2025-03-16T15:49:13.943Z info: Customer  suren user already exists
+2025-03-16T15:49:13.943Z info: starterPack added successfully
+2025-03-16T15:49:37.399Z info: listProducts::Products fetched successfully : {
+  name: '1',
+  price: 0,
+  quantity: 0,
+  cusine: [ 'string' ],
+  brand: 'string',
+  shop: 'string',
+  image: 'string',
+  discount: 0,
+  timestamp: 0,
+  additionalData: {
+    color: 'string',
+    expirationDate: 0,
+    size: 'string',
+    description: 'string'
+  },
+  id: 1742137562027
+},{
+  name: '2',
+  price: 0,
+  quantity: 0,
+  cusine: [ 'nu' ],
+  brand: 'string',
+  shop: 'string',
+  image: 'string',
+  discount: 0,
+  timestamp: 0,
+  additionalData: {
+    color: 'string',
+    expirationDate: 0,
+    size: 'string',
+    description: 'string'
+  },
+  id: 1742137577454
+},{
+  name: '3',
+  price: 0,
+  quantity: 0,
+  cusine: [ 'nu' ],
+  brand: 'string',
+  shop: 'lk',
+  image: 'string',
+  discount: 0,
+  timestamp: 0,
+  additionalData: {
+    color: 'string',
+    expirationDate: 0,
+    size: 'string',
+    description: 'string'
+  },
+  id: 1742137588819
+},{
+  name: '4',
+  price: 0,
+  quantity: 0,
+  cusine: [ 'nu' ],
+  brand: 'lop',
+  shop: 'lk',
+  image: 'string',
+  discount: 0,
+  timestamp: 0,
+  additionalData: {
+    color: 'string',
+    expirationDate: 0,
+    size: 'string',
+    description: 'string'
+  },
+  id: 1742137601176
+},{
+  id: 1,
+  name: 'Margherita Pizza',
+  price: 12.99,
+  quantity: 50,
+  cusine: [ 'Italian', 'Vegetarian' ],
+  brand: 'Napoli Pizzeria',
+  shop: 'Pizza Heaven',
+  image: 'https://example.com/margherita.jpg',
+  discount: 10,
+  timestamp: 1710480000000,
+  additionalData: {
+    description: 'Classic margherita pizza with fresh tomatoes and basil.'
+  }
+},{
+  id: 2,
+  name: 'Samsung Galaxy S23',
+  price: 899.99,
+  quantity: 20,
+  cusine: [],
+  brand: 'Samsung',
+  shop: 'Tech Hub',
+  image: 'https://example.com/galaxy-s23.jpg',
+  discount: 5,
+  timestamp: 1710480000000,
+  additionalData: { specs: { RAM: '8GB', Storage: '256GB' } }
+},{
+  id: 3,
+  name: 'Nike Air Force 1',
+  price: 120,
+  quantity: 100,
+  cusine: [],
+  brand: 'Nike',
+  shop: 'Sneaker World',
+  image: 'https://example.com/air-force-1.jpg',
+  discount: 15,
+  timestamp: 1710480000000,
+  additionalData: { size: [ 'US 7', 'US 8', 'US 9', 'US 10' ] }
+},{
+  id: 4,
+  name: 'Espresso Coffee',
+  price: 4.99,
+  quantity: 200,
+  cusine: [ 'Italian', 'Beverage' ],
+  brand: 'StarBrew',
+  shop: 'Coffee House',
+  image: 'https://example.com/espresso.jpg',
+  discount: 0,
+  timestamp: 1710480000000,
+  additionalData: { caffeine_content: 'High' }
+},{
+  id: 5,
+  name: 'MacBook Pro 16-inch',
+  price: 2499.99,
+  quantity: 10,
+  cusine: [],
+  brand: 'Apple',
+  shop: 'Apple Store',
+  image: 'https://example.com/macbook-pro.jpg',
+  discount: 8,
+  timestamp: 1710480000000,
+  additionalData: { specs: { Processor: 'M2 Pro', RAM: '16GB', Storage: '512GB SSD' } }
+}
+2025-03-16T15:52:15.562Z info: MongoDB ::::: mongodb://mongodb:27017/test-super-market-03
+2025-03-16T15:52:15.769Z info: MongoDB connected
+2025-03-16T15:52:15.771Z info: Server running on port 3000
+2025-03-16T15:52:15.788Z info: Admin user already exists
+2025-03-16T15:52:15.865Z info: Customer  lakshan1 user already exists
+2025-03-16T15:52:15.952Z info: Customer  suren user already exists
+2025-03-16T15:52:15.952Z info: starterPack added successfully
+2025-03-16T15:52:33.395Z info: listProducts::Products fetched successfully : {
+  name: '1',
+  price: 0,
+  quantity: 0,
+  cusine: [ 'string' ],
+  brand: 'string',
+  shop: 'string',
+  image: 'string',
+  discount: 0,
+  timestamp: 0,
+  additionalData: {
+    color: 'string',
+    expirationDate: 0,
+    size: 'string',
+    description: 'string'
+  },
+  id: 1742137562027
+},{
+  name: '2',
+  price: 0,
+  quantity: 0,
+  cusine: [ 'nu' ],
+  brand: 'string',
+  shop: 'string',
+  image: 'string',
+  discount: 0,
+  timestamp: 0,
+  additionalData: {
+    color: 'string',
+    expirationDate: 0,
+    size: 'string',
+    description: 'string'
+  },
+  id: 1742137577454
+},{
+  name: '3',
+  price: 0,
+  quantity: 0,
+  cusine: [ 'nu' ],
+  brand: 'string',
+  shop: 'lk',
+  image: 'string',
+  discount: 0,
+  timestamp: 0,
+  additionalData: {
+    color: 'string',
+    expirationDate: 0,
+    size: 'string',
+    description: 'string'
+  },
+  id: 1742137588819
+},{
+  name: '4',
+  price: 0,
+  quantity: 0,
+  cusine: [ 'nu' ],
+  brand: 'lop',
+  shop: 'lk',
+  image: 'string',
+  discount: 0,
+  timestamp: 0,
+  additionalData: {
+    color: 'string',
+    expirationDate: 0,
+    size: 'string',
+    description: 'string'
+  },
+  id: 1742137601176
+},{
+  id: 1,
+  name: 'Margherita Pizza',
+  price: 12.99,
+  quantity: 50,
+  cusine: [ 'Italian', 'Vegetarian' ],
+  brand: 'Napoli Pizzeria',
+  shop: 'Pizza Heaven',
+  image: 'https://example.com/margherita.jpg',
+  discount: 10,
+  timestamp: 1710480000000,
+  additionalData: {
+    description: 'Classic margherita pizza with fresh tomatoes and basil.'
+  }
+},{
+  id: 2,
+  name: 'Samsung Galaxy S23',
+  price: 899.99,
+  quantity: 20,
+  cusine: [],
+  brand: 'Samsung',
+  shop: 'Tech Hub',
+  image: 'https://example.com/galaxy-s23.jpg',
+  discount: 5,
+  timestamp: 1710480000000,
+  additionalData: { specs: { RAM: '8GB', Storage: '256GB' } }
+},{
+  id: 3,
+  name: 'Nike Air Force 1',
+  price: 120,
+  quantity: 100,
+  cusine: [],
+  brand: 'Nike',
+  shop: 'Sneaker World',
+  image: 'https://example.com/air-force-1.jpg',
+  discount: 15,
+  timestamp: 1710480000000,
+  additionalData: { size: [ 'US 7', 'US 8', 'US 9', 'US 10' ] }
+},{
+  id: 4,
+  name: 'Espresso Coffee',
+  price: 4.99,
+  quantity: 200,
+  cusine: [ 'Italian', 'Beverage' ],
+  brand: 'StarBrew',
+  shop: 'Coffee House',
+  image: 'https://example.com/espresso.jpg',
+  discount: 0,
+  timestamp: 1710480000000,
+  additionalData: { caffeine_content: 'High' }
+},{
+  id: 5,
+  name: 'MacBook Pro 16-inch',
+  price: 2499.99,
+  quantity: 10,
+  cusine: [],
+  brand: 'Apple',
+  shop: 'Apple Store',
+  image: 'https://example.com/macbook-pro.jpg',
+  discount: 8,
+  timestamp: 1710480000000,
+  additionalData: { specs: { Processor: 'M2 Pro', RAM: '16GB', Storage: '512GB SSD' } }
+}
+2025-03-16T15:53:08.454Z error: authenticateJWT:: jwt expired
+2025-03-16T15:53:44.792Z info: listCuisines::Cuisines fetched successfully : []
+2025-03-16T15:53:52.336Z error: createNewCuisine:: ValidationError: timestamp: Path `timestamp` is required.
+2025-03-16T15:54:08.023Z error: createNewCuisine:: ValidationError: timestamp: Path `timestamp` is required.
+2025-03-16T15:55:05.140Z info: MongoDB ::::: mongodb://mongodb:27017/test-super-market-03
+2025-03-16T15:55:05.349Z info: MongoDB connected
+2025-03-16T15:55:05.351Z info: Server running on port 3000
+2025-03-16T15:55:05.369Z info: Admin user already exists
+2025-03-16T15:55:05.444Z info: Customer  lakshan1 user already exists
+2025-03-16T15:55:05.517Z info: Customer  suren user already exists
+2025-03-16T15:55:05.517Z info: starterPack added successfully
+2025-03-16T15:55:13.884Z info: listCuisines::Cuisines fetched successfully : []
+2025-03-16T15:55:16.293Z error: ERROR::apiValidationHandler:  request/body must have required property 'timestamp'
+2025-03-16T15:55:27.619Z info: createNewCuisine::Cuisine created successfully : {"name":"staadring","timestamp":12,"createdAt":"2025-03-16T15:55:27.602Z","updatedAt":"2025-03-16T15:55:27.602Z"}
+2025-03-16T15:59:59.178Z info: MongoDB ::::: mongodb://mongodb:27017/test-super-market-03
+2025-03-16T15:59:59.386Z info: MongoDB connected
+2025-03-16T15:59:59.391Z info: Server running on port 3000
+2025-03-16T15:59:59.411Z info: Admin user already exists
+2025-03-16T15:59:59.511Z info: Customer  lakshan1 user already exists
+2025-03-16T15:59:59.587Z info: Customer  suren user already exists
+2025-03-16T15:59:59.587Z info: starterPack added successfully
+2025-03-16T16:00:16.687Z info: listCuisines::Cuisines fetched successfully : [{"name":"staadring","timestamp":12}]
+2025-03-16T16:00:41.722Z error: ERROR::apiValidationHandler:  request/body must have required property 'timestamp'
+2025-03-16T16:00:51.063Z info: updateCuisine::Cuisine updated successfully : {
+  name: 'lop',
+  timestamp: 0,
+  createdAt: 2025-03-16T15:55:27.602Z,
+  updatedAt: 2025-03-16T16:00:51.058Z
+}
+2025-03-16T16:01:00.030Z info: listCuisines::Cuisines fetched successfully : [{"name":"lop","timestamp":0}]
+2025-03-16T16:01:15.403Z info: deleteCuisine::Cuisine deleted successfully : {
+  name: 'lop',
+  timestamp: 0,
+  createdAt: 2025-03-16T15:55:27.602Z,
+  updatedAt: 2025-03-16T16:00:51.058Z
+}
+2025-03-16T16:01:23.242Z info: listCuisines::Cuisines fetched successfully : []
+2025-03-16T16:04:23.546Z info: MongoDB ::::: mongodb://mongodb:27017/test-super-market-03
+2025-03-16T16:04:23.779Z info: MongoDB connected
+2025-03-16T16:04:23.782Z info: Server running on port 3000
+2025-03-16T16:04:23.795Z info: Admin user already exists
+2025-03-16T16:04:23.868Z info: Customer  lakshan1 user already exists
+2025-03-16T16:04:23.946Z info: Customer  suren user already exists
+2025-03-16T16:04:23.947Z info: starterPack added successfully
+2025-03-16T16:04:53.767Z info: MongoDB ::::: mongodb://mongodb:27017/test-super-market-03
+2025-03-16T16:04:53.985Z info: MongoDB connected
+2025-03-16T16:04:53.987Z info: Server running on port 3000
+2025-03-16T16:04:54.015Z info: Admin user already exists
+2025-03-16T16:04:54.097Z info: Customer  lakshan1 user already exists
+2025-03-16T16:04:54.168Z info: Customer  suren user already exists
+2025-03-16T16:04:54.169Z info: starterPack added successfully
+2025-03-16T16:10:06.674Z info: MongoDB ::::: mongodb://mongodb:27017/test-super-market-03
+2025-03-16T16:10:06.883Z info: MongoDB connected
+2025-03-16T16:10:06.885Z info: Server running on port 3000
+2025-03-16T16:10:06.897Z info: Admin user already exists
+2025-03-16T16:10:06.969Z info: Customer  lakshan1 user already exists
+2025-03-16T16:10:07.050Z info: Customer  suren user already exists
+2025-03-16T16:10:07.051Z info: starterPack added successfully
+2025-03-16T16:10:10.985Z info: listCuisines::Cuisines fetched successfully : [{"name":"Italian","timestamp":1742141407051},{"name":"Vegetarian","timestamp":1742141407051},{"name":"Beverage","timestamp":1742141407051}]
+2025-03-16T16:10:26.558Z info: MongoDB ::::: mongodb://mongodb:27017/test-super-market-03
+2025-03-16T16:10:26.770Z info: MongoDB connected
+2025-03-16T16:10:26.772Z info: Server running on port 3000
+2025-03-16T16:10:26.783Z info: Admin user already exists
+2025-03-16T16:10:26.864Z info: Customer  lakshan1 user already exists
+2025-03-16T16:10:26.942Z info: Customer  suren user already exists
+2025-03-16T16:10:26.943Z info: starterPack added successfully
+2025-03-16T16:10:29.194Z info: listCuisines::Cuisines fetched successfully : [{"name":"Italian","timestamp":1742141426943},{"name":"Vegetarian","timestamp":1742141426943},{"name":"Beverage","timestamp":1742141426943}]

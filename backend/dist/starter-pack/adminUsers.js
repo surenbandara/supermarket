@@ -33,8 +33,28 @@ const addAdminUser = () => __awaiter(void 0, void 0, void 0, function* () {
     const user = new user_1.default(adminUser);
     yield user.save();
 });
+const addUser = (name) => __awaiter(void 0, void 0, void 0, function* () {
+    const user1 = {
+        id: new Date().toISOString(),
+        username: `${name}STPACK`,
+        password: yield (0, auth_1.hashPassword)("userSTPACK@123"),
+        role: "user",
+        email: `${name}STPACK@gmail.com`,
+        phoneNumber: "",
+        profilePic: "",
+        emailVerified: false
+    };
+    if (yield user_1.default.findOne({ email: user1.email })) {
+        logger_1.default.info(`Customer  ${name} user already exists`);
+        return;
+    }
+    const user = new user_1.default(user1);
+    yield user.save();
+});
 const starterPack = () => __awaiter(void 0, void 0, void 0, function* () {
     yield addAdminUser();
+    yield addUser("lakshan1");
+    yield addUser("suren");
     logger_1.default.info("starterPack added successfully");
 });
 exports.default = starterPack;

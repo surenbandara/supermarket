@@ -1,20 +1,20 @@
 import mongoose from "mongoose";
 
 export interface IRider extends mongoose.Document {
-    id: string;
-    username: string;
+    name: string;
     email: string;
-    phoneNumber?: string;
-    profilePic?: string;
-    // TODO: Add availability if needed
+    phoneNumber: string;
+    vehicle: string;
+    available: boolean; 
 }
+
 const riderSchema = new mongoose.Schema<IRider>(
     {
-        id: { type: String, required: true },
-        username: { type: String, required: true },
+        name: { type: String, required: true },
         email: { type: String, required: true },
-        phoneNumber: { type: String, required: false },
-        profilePic: { type: String, required: false }
+        phoneNumber: { type: String, required: true },
+        vehicle: { type: String, required: true },
+        available: { type: Boolean, required: true }
     },
     {
         strict: true,
@@ -22,8 +22,7 @@ const riderSchema = new mongoose.Schema<IRider>(
     }
 );
 
-riderSchema.index({ id: 1 }, { unique: true });
-riderSchema.index({ email: 1 }, { unique: true });
+riderSchema.index({ name: 1 }, { unique: true });
 
 riderSchema.set('toJSON', {
     transform: (doc, ret, options) => {
