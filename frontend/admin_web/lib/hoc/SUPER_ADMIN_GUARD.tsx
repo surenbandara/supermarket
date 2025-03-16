@@ -23,11 +23,6 @@ const SUPER_ADMIN_GUARD = <T extends object>(
       if (!isLoggedIn) {
         router.replace('/authentication/login');
       }
-
-      // For Others
-      if (user?.userType === 'RESTAURANT' || user?.userType === 'VENDOR') {
-        router.replace('/forbidden');
-      }
     }, []);
 
     return <Component {...props} />;

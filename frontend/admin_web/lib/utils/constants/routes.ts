@@ -34,7 +34,5 @@ export const ROUTES = [
 ];
 
 export const DEFAULT_ROUTES = {
-  ADMIN: '/home',
-  VENDOR: '/admin/vendor/dashboard',
-  RESTAURANT: '/admin/store/dashboard',
+  admin: '/home'
 };

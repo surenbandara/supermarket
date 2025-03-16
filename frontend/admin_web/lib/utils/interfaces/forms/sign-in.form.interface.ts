@@ -16,19 +16,12 @@ export interface ISignInOwnerRestaurants {
   address: string;
 }
 
-export interface ILoginResponse {
-  userId: string;
-  token: string;
+export interface IBasicUserDetails {
+  role: string;
   email: string;
-  name?: string;
-  image?: string;
-  userType: 'ADMIN' | 'VENDOR' | 'RESTAURANT';
-  userTypeId?: string;
-  restaurants: ISignInOwnerRestaurants[];
-  permissions?: String[];
-  __typename: string;
 }
 
-export interface IOwnerLoginDataResponse {
-  ownerLogin: ILoginResponse;
+export interface IUserLoginDataResponse {
+  jwtToken: string;
+  basicUserDetails: IBasicUserDetails;
 }
