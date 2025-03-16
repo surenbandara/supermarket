@@ -38,6 +38,7 @@ export default function VendorMain({ activeTab }: IVendorMainComponentProps) {
     onSetGlobalFilter,
     filtered,
     vendorResponse,
+    loading
   } = useContext(VendorContext);
 
   const {
@@ -48,7 +49,7 @@ export default function VendorMain({ activeTab }: IVendorMainComponentProps) {
     onSetRestaurantContextData,
   } = useContext(RestaurantContext);
 
-  const vendors = globalFilter ? filtered : vendorResponse?.data?.vendors;
+  const vendors = globalFilter ? filtered : vendorResponse?.vendors;
   const restaurants = restaurantContextData.globalFilter
     ? restaurantContextData?.filtered
     : restaurantByOwnerResponse?.data?.restaurantByOwner?.restaurants;
@@ -93,7 +94,7 @@ export default function VendorMain({ activeTab }: IVendorMainComponentProps) {
 
         {/* Vendors content */}
         <div className="pb-16">
-          {vendorResponse?.loading ? (
+          {loading ? (
             new Array(10)
               .fill(0)
               .map((_, i: number) => <CustomVendorSkeleton key={i} />)

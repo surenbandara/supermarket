@@ -83,7 +83,7 @@ export default function MakeVendorSidebar() {
     },
   ];
 
-  if (user?.userType === 'ADMIN') {
+  if (user?.basicUserDetails.role === 'admin') {
     console.log(lastRoute);
     navBarItems.push({
       text: lastRoute ? t(`Back to ${lastRoute}`) : 'Back',
