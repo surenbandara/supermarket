@@ -118,3 +118,8 @@
 2025-03-16T15:02:20.772Z error: login:: Invalid password for user systemAdmin@gmail.com
 2025-03-16T15:08:24.996Z error: ERROR::apiValidationHandler:  Expected double-quoted property name in JSON at position 39
 2025-03-16T15:08:36.620Z error: ERROR::apiValidationHandler:  Expected double-quoted property name in JSON at position 39
+2025-03-16T15:53:08.454Z error: authenticateJWT:: jwt expired
+2025-03-16T15:53:52.336Z error: createNewCuisine:: ValidationError: timestamp: Path `timestamp` is required.
+2025-03-16T15:54:08.023Z error: createNewCuisine:: ValidationError: timestamp: Path `timestamp` is required.
+2025-03-16T15:55:16.293Z error: ERROR::apiValidationHandler:  request/body must have required property 'timestamp'
+2025-03-16T16:00:41.722Z error: ERROR::apiValidationHandler:  request/body must have required property 'timestamp'

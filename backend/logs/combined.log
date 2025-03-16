@@ -1229,3 +1229,346 @@
   timestamp: 1710480000000,
   additionalData: { specs: { Processor: 'M2 Pro', RAM: '16GB', Storage: '512GB SSD' } }
 }
+2025-03-16T15:49:13.531Z info: MongoDB ::::: mongodb://mongodb:27017/test-super-market-03
+2025-03-16T15:49:13.762Z info: MongoDB connected
+2025-03-16T15:49:13.765Z info: Server running on port 3000
+2025-03-16T15:49:13.787Z info: Admin user already exists
+2025-03-16T15:49:13.869Z info: Customer  lakshan1 user already exists
+2025-03-16T15:49:13.943Z info: Customer  suren user already exists
+2025-03-16T15:49:13.943Z info: starterPack added successfully
+2025-03-16T15:49:37.399Z info: listProducts::Products fetched successfully : {
+  name: '1',
+  price: 0,
+  quantity: 0,
+  cusine: [ 'string' ],
+  brand: 'string',
+  shop: 'string',
+  image: 'string',
+  discount: 0,
+  timestamp: 0,
+  additionalData: {
+    color: 'string',
+    expirationDate: 0,
+    size: 'string',
+    description: 'string'
+  },
+  id: 1742137562027
+},{
+  name: '2',
+  price: 0,
+  quantity: 0,
+  cusine: [ 'nu' ],
+  brand: 'string',
+  shop: 'string',
+  image: 'string',
+  discount: 0,
+  timestamp: 0,
+  additionalData: {
+    color: 'string',
+    expirationDate: 0,
+    size: 'string',
+    description: 'string'
+  },
+  id: 1742137577454
+},{
+  name: '3',
+  price: 0,
+  quantity: 0,
+  cusine: [ 'nu' ],
+  brand: 'string',
+  shop: 'lk',
+  image: 'string',
+  discount: 0,
+  timestamp: 0,
+  additionalData: {
+    color: 'string',
+    expirationDate: 0,
+    size: 'string',
+    description: 'string'
+  },
+  id: 1742137588819
+},{
+  name: '4',
+  price: 0,
+  quantity: 0,
+  cusine: [ 'nu' ],
+  brand: 'lop',
+  shop: 'lk',
+  image: 'string',
+  discount: 0,
+  timestamp: 0,
+  additionalData: {
+    color: 'string',
+    expirationDate: 0,
+    size: 'string',
+    description: 'string'
+  },
+  id: 1742137601176
+},{
+  id: 1,
+  name: 'Margherita Pizza',
+  price: 12.99,
+  quantity: 50,
+  cusine: [ 'Italian', 'Vegetarian' ],
+  brand: 'Napoli Pizzeria',
+  shop: 'Pizza Heaven',
+  image: 'https://example.com/margherita.jpg',
+  discount: 10,
+  timestamp: 1710480000000,
+  additionalData: {
+    description: 'Classic margherita pizza with fresh tomatoes and basil.'
+  }
+},{
+  id: 2,
+  name: 'Samsung Galaxy S23',
+  price: 899.99,
+  quantity: 20,
+  cusine: [],
+  brand: 'Samsung',
+  shop: 'Tech Hub',
+  image: 'https://example.com/galaxy-s23.jpg',
+  discount: 5,
+  timestamp: 1710480000000,
+  additionalData: { specs: { RAM: '8GB', Storage: '256GB' } }
+},{
+  id: 3,
+  name: 'Nike Air Force 1',
+  price: 120,
+  quantity: 100,
+  cusine: [],
+  brand: 'Nike',
+  shop: 'Sneaker World',
+  image: 'https://example.com/air-force-1.jpg',
+  discount: 15,
+  timestamp: 1710480000000,
+  additionalData: { size: [ 'US 7', 'US 8', 'US 9', 'US 10' ] }
+},{
+  id: 4,
+  name: 'Espresso Coffee',
+  price: 4.99,
+  quantity: 200,
+  cusine: [ 'Italian', 'Beverage' ],
+  brand: 'StarBrew',
+  shop: 'Coffee House',
+  image: 'https://example.com/espresso.jpg',
+  discount: 0,
+  timestamp: 1710480000000,
+  additionalData: { caffeine_content: 'High' }
+},{
+  id: 5,
+  name: 'MacBook Pro 16-inch',
+  price: 2499.99,
+  quantity: 10,
+  cusine: [],
+  brand: 'Apple',
+  shop: 'Apple Store',
+  image: 'https://example.com/macbook-pro.jpg',
+  discount: 8,
+  timestamp: 1710480000000,
+  additionalData: { specs: { Processor: 'M2 Pro', RAM: '16GB', Storage: '512GB SSD' } }
+}
+2025-03-16T15:52:15.562Z info: MongoDB ::::: mongodb://mongodb:27017/test-super-market-03
+2025-03-16T15:52:15.769Z info: MongoDB connected
+2025-03-16T15:52:15.771Z info: Server running on port 3000
+2025-03-16T15:52:15.788Z info: Admin user already exists
+2025-03-16T15:52:15.865Z info: Customer  lakshan1 user already exists
+2025-03-16T15:52:15.952Z info: Customer  suren user already exists
+2025-03-16T15:52:15.952Z info: starterPack added successfully
+2025-03-16T15:52:33.395Z info: listProducts::Products fetched successfully : {
+  name: '1',
+  price: 0,
+  quantity: 0,
+  cusine: [ 'string' ],
+  brand: 'string',
+  shop: 'string',
+  image: 'string',
+  discount: 0,
+  timestamp: 0,
+  additionalData: {
+    color: 'string',
+    expirationDate: 0,
+    size: 'string',
+    description: 'string'
+  },
+  id: 1742137562027
+},{
+  name: '2',
+  price: 0,
+  quantity: 0,
+  cusine: [ 'nu' ],
+  brand: 'string',
+  shop: 'string',
+  image: 'string',
+  discount: 0,
+  timestamp: 0,
+  additionalData: {
+    color: 'string',
+    expirationDate: 0,
+    size: 'string',
+    description: 'string'
+  },
+  id: 1742137577454
+},{
+  name: '3',
+  price: 0,
+  quantity: 0,
+  cusine: [ 'nu' ],
+  brand: 'string',
+  shop: 'lk',
+  image: 'string',
+  discount: 0,
+  timestamp: 0,
+  additionalData: {
+    color: 'string',
+    expirationDate: 0,
+    size: 'string',
+    description: 'string'
+  },
+  id: 1742137588819
+},{
+  name: '4',
+  price: 0,
+  quantity: 0,
+  cusine: [ 'nu' ],
+  brand: 'lop',
+  shop: 'lk',
+  image: 'string',
+  discount: 0,
+  timestamp: 0,
+  additionalData: {
+    color: 'string',
+    expirationDate: 0,
+    size: 'string',
+    description: 'string'
+  },
+  id: 1742137601176
+},{
+  id: 1,
+  name: 'Margherita Pizza',
+  price: 12.99,
+  quantity: 50,
+  cusine: [ 'Italian', 'Vegetarian' ],
+  brand: 'Napoli Pizzeria',
+  shop: 'Pizza Heaven',
+  image: 'https://example.com/margherita.jpg',
+  discount: 10,
+  timestamp: 1710480000000,
+  additionalData: {
+    description: 'Classic margherita pizza with fresh tomatoes and basil.'
+  }
+},{
+  id: 2,
+  name: 'Samsung Galaxy S23',
+  price: 899.99,
+  quantity: 20,
+  cusine: [],
+  brand: 'Samsung',
+  shop: 'Tech Hub',
+  image: 'https://example.com/galaxy-s23.jpg',
+  discount: 5,
+  timestamp: 1710480000000,
+  additionalData: { specs: { RAM: '8GB', Storage: '256GB' } }
+},{
+  id: 3,
+  name: 'Nike Air Force 1',
+  price: 120,
+  quantity: 100,
+  cusine: [],
+  brand: 'Nike',
+  shop: 'Sneaker World',
+  image: 'https://example.com/air-force-1.jpg',
+  discount: 15,
+  timestamp: 1710480000000,
+  additionalData: { size: [ 'US 7', 'US 8', 'US 9', 'US 10' ] }
+},{
+  id: 4,
+  name: 'Espresso Coffee',
+  price: 4.99,
+  quantity: 200,
+  cusine: [ 'Italian', 'Beverage' ],
+  brand: 'StarBrew',
+  shop: 'Coffee House',
+  image: 'https://example.com/espresso.jpg',
+  discount: 0,
+  timestamp: 1710480000000,
+  additionalData: { caffeine_content: 'High' }
+},{
+  id: 5,
+  name: 'MacBook Pro 16-inch',
+  price: 2499.99,
+  quantity: 10,
+  cusine: [],
+  brand: 'Apple',
+  shop: 'Apple Store',
+  image: 'https://example.com/macbook-pro.jpg',
+  discount: 8,
+  timestamp: 1710480000000,
+  additionalData: { specs: { Processor: 'M2 Pro', RAM: '16GB', Storage: '512GB SSD' } }
+}
+2025-03-16T15:53:08.454Z error: authenticateJWT:: jwt expired
+2025-03-16T15:53:44.792Z info: listCuisines::Cuisines fetched successfully : []
+2025-03-16T15:53:52.336Z error: createNewCuisine:: ValidationError: timestamp: Path `timestamp` is required.
+2025-03-16T15:54:08.023Z error: createNewCuisine:: ValidationError: timestamp: Path `timestamp` is required.
+2025-03-16T15:55:05.140Z info: MongoDB ::::: mongodb://mongodb:27017/test-super-market-03
+2025-03-16T15:55:05.349Z info: MongoDB connected
+2025-03-16T15:55:05.351Z info: Server running on port 3000
+2025-03-16T15:55:05.369Z info: Admin user already exists
+2025-03-16T15:55:05.444Z info: Customer  lakshan1 user already exists
+2025-03-16T15:55:05.517Z info: Customer  suren user already exists
+2025-03-16T15:55:05.517Z info: starterPack added successfully
+2025-03-16T15:55:13.884Z info: listCuisines::Cuisines fetched successfully : []
+2025-03-16T15:55:16.293Z error: ERROR::apiValidationHandler:  request/body must have required property 'timestamp'
+2025-03-16T15:55:27.619Z info: createNewCuisine::Cuisine created successfully : {"name":"staadring","timestamp":12,"createdAt":"2025-03-16T15:55:27.602Z","updatedAt":"2025-03-16T15:55:27.602Z"}
+2025-03-16T15:59:59.178Z info: MongoDB ::::: mongodb://mongodb:27017/test-super-market-03
+2025-03-16T15:59:59.386Z info: MongoDB connected
+2025-03-16T15:59:59.391Z info: Server running on port 3000
+2025-03-16T15:59:59.411Z info: Admin user already exists
+2025-03-16T15:59:59.511Z info: Customer  lakshan1 user already exists
+2025-03-16T15:59:59.587Z info: Customer  suren user already exists
+2025-03-16T15:59:59.587Z info: starterPack added successfully
+2025-03-16T16:00:16.687Z info: listCuisines::Cuisines fetched successfully : [{"name":"staadring","timestamp":12}]
+2025-03-16T16:00:41.722Z error: ERROR::apiValidationHandler:  request/body must have required property 'timestamp'
+2025-03-16T16:00:51.063Z info: updateCuisine::Cuisine updated successfully : {
+  name: 'lop',
+  timestamp: 0,
+  createdAt: 2025-03-16T15:55:27.602Z,
+  updatedAt: 2025-03-16T16:00:51.058Z
+}
+2025-03-16T16:01:00.030Z info: listCuisines::Cuisines fetched successfully : [{"name":"lop","timestamp":0}]
+2025-03-16T16:01:15.403Z info: deleteCuisine::Cuisine deleted successfully : {
+  name: 'lop',
+  timestamp: 0,
+  createdAt: 2025-03-16T15:55:27.602Z,
+  updatedAt: 2025-03-16T16:00:51.058Z
+}
+2025-03-16T16:01:23.242Z info: listCuisines::Cuisines fetched successfully : []
+2025-03-16T16:04:23.546Z info: MongoDB ::::: mongodb://mongodb:27017/test-super-market-03
+2025-03-16T16:04:23.779Z info: MongoDB connected
+2025-03-16T16:04:23.782Z info: Server running on port 3000
+2025-03-16T16:04:23.795Z info: Admin user already exists
+2025-03-16T16:04:23.868Z info: Customer  lakshan1 user already exists
+2025-03-16T16:04:23.946Z info: Customer  suren user already exists
+2025-03-16T16:04:23.947Z info: starterPack added successfully
+2025-03-16T16:04:53.767Z info: MongoDB ::::: mongodb://mongodb:27017/test-super-market-03
+2025-03-16T16:04:53.985Z info: MongoDB connected
+2025-03-16T16:04:53.987Z info: Server running on port 3000
+2025-03-16T16:04:54.015Z info: Admin user already exists
+2025-03-16T16:04:54.097Z info: Customer  lakshan1 user already exists
+2025-03-16T16:04:54.168Z info: Customer  suren user already exists
+2025-03-16T16:04:54.169Z info: starterPack added successfully
+2025-03-16T16:10:06.674Z info: MongoDB ::::: mongodb://mongodb:27017/test-super-market-03
+2025-03-16T16:10:06.883Z info: MongoDB connected
+2025-03-16T16:10:06.885Z info: Server running on port 3000
+2025-03-16T16:10:06.897Z info: Admin user already exists
+2025-03-16T16:10:06.969Z info: Customer  lakshan1 user already exists
+2025-03-16T16:10:07.050Z info: Customer  suren user already exists
+2025-03-16T16:10:07.051Z info: starterPack added successfully
+2025-03-16T16:10:10.985Z info: listCuisines::Cuisines fetched successfully : [{"name":"Italian","timestamp":1742141407051},{"name":"Vegetarian","timestamp":1742141407051},{"name":"Beverage","timestamp":1742141407051}]
+2025-03-16T16:10:26.558Z info: MongoDB ::::: mongodb://mongodb:27017/test-super-market-03
+2025-03-16T16:10:26.770Z info: MongoDB connected
+2025-03-16T16:10:26.772Z info: Server running on port 3000
+2025-03-16T16:10:26.783Z info: Admin user already exists
+2025-03-16T16:10:26.864Z info: Customer  lakshan1 user already exists
+2025-03-16T16:10:26.942Z info: Customer  suren user already exists
+2025-03-16T16:10:26.943Z info: starterPack added successfully
+2025-03-16T16:10:29.194Z info: listCuisines::Cuisines fetched successfully : [{"name":"Italian","timestamp":1742141426943},{"name":"Vegetarian","timestamp":1742141426943},{"name":"Beverage","timestamp":1742141426943}]

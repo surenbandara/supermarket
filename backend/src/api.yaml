@@ -663,6 +663,200 @@ paths:
                 properties:
                   message:
                     type: string
+  /cusine:
+    get:
+      summary: Get Cusine
+      operationId: listCusines
+      security:
+        - BearerAuth: []
+      x-roles: ['admin']
+      parameters:
+        - name: name
+          in: query
+          description: Filter cusine by name
+          required: false
+          schema:
+            type: string
+      responses:
+        '200':
+          description: A list of cusine
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Cusine'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+        '404':
+          description: Not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+    post:
+      summary: Create a new cusine
+      operationId: createNewCusine
+      security:
+        - BearerAuth: []
+      x-roles: ['admin']
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Cusine'
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Cusine'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+        '500':
+          description: Failed to create
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+    put:
+      summary: Update a Cusine
+      operationId: updateCusine
+      security:
+        - BearerAuth: []
+      x-roles: ['admin']
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ModifiedCusine'
+      responses:
+        '200':
+          description: Updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Cusine'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+        '404':
+          description: Not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+        '500':
+          description: Failed to update
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+    delete:
+      summary: Delete a Cusine
+      operationId: deleteCusine
+      security:
+        - BearerAuth: []
+      x-roles: ['admin']
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+      responses:
+        '200':
+          description: Deleted
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+        '404':
+          description: Not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+        '500':
+          description: Failed to delete
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
   /shop:
     get:
       summary: Get Shops
@@ -1258,3 +1452,25 @@ components:
         - phoneNumber
         - vehicle
         - available
+    Cusine:
+      type: object
+      properties:
+        name:
+          type: string
+        timestamp:
+          type: number
+      required:
+        - name
+        - timestamp
+    ModifiedCusine:
+      type: object
+      properties:
+        name:
+          type: string
+        newName:
+          type: string
+        timestamp:
+          type: number
+      required:
+        - name
+        - timestamp

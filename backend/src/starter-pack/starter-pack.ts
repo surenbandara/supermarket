@@ -1,3 +1,4 @@
+import CuisineModel from "../models/cusine";
 import ProductModel from "../models/product";
 import User, { IUser } from "../models/user";
 import { hashPassword } from "../utils/auth";
@@ -43,16 +44,45 @@ const addUser = async (name: string): Promise<void> => {
 };
 
 const addProducts = async (): Promise<void> => {
-    ProductModel.insertMany(products)
-        .then(() => console.log("Products added successfully!"))
-        .catch(err => console.error("Error inserting products:", err));
+    const bulkOps = products.map(product => ({
+        updateOne: {
+          filter: { id: product.id }, 
+          update: { $set: product },
+          upsert: true,
+        }
+      }));
+      
+      ProductModel.bulkWrite(bulkOps)
+        .then(() => console.log("Products added or updated successfully!"))
+        .catch(err => console.error("Error inserting/updating products:", err));
 };
+
+const addCusines = async (): Promise<void> => {
+    const bulkOps = getUniqueCuisines(products).map(cusine => ({
+        updateOne: {
+          filter: { name: cusine }, 
+          update: { $set: {name: cusine, timestamp: Date.now()} },
+          upsert: true,
+        }
+      }));
+      
+      CuisineModel.bulkWrite(bulkOps)
+        .then(() => console.log("Cusines added or updated successfully!"))
+        .catch(err => console.error("Error inserting/updating Cusines:", err));
+};
+
+const getUniqueCuisines = (products: any[]) => {
+    const allCuisines = products.flatMap(product => product.cusine);
+    const uniqueCuisines = [...new Set(allCuisines)];
+    return uniqueCuisines;
+  };
 
 const starterPack = async (): Promise<void> => {
     await addAdminUser();
     await addUser("lakshan1");
     await addUser("suren");
     await addProducts();
+    await addCusines();
     log.info("starterPack added successfully");
 };
 
