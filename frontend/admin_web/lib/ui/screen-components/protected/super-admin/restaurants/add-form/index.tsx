@@ -62,25 +62,12 @@ const RestaurantsForm = ({
       className="w-full sm:w-[600px]"
     >
       <div ref={stepperRef}>
-        <Stepper linear headerPosition="bottom" activeStep={activeIndex}>
-          <StepperPanel header={t('Add Details')}>
             <RestaurantDetailsForm
               stepperProps={{
                 onStepChange: onHandleStepChange,
                 order: activeIndex,
               }}
             />
-          </StepperPanel>
-          <StepperPanel header={t('Timing')}>
-            <RestaurantTiming
-              stepperProps={{
-                onStepChange: onHandleStepChange,
-                order: activeIndex,
-                isLastStep: true,
-              }}
-            />
-          </StepperPanel>
-        </Stepper>
       </div>
     </Sidebar>
   );

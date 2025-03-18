@@ -52,15 +52,13 @@ export const VendorErrors: IVendorErrors = {
 };
 
 export const RestaurantErrors: IRestaurantFormErrors = {
-  name: ['Required', 'Name cannot be only spaces'],
-  address: ['Required', 'Name cannot be only spaces'],
-  deliveryTime: ['Required'],
-  minOrder: ['Required'],
-  salesTax: ['Required'],
-  shopType: ['Required'],
-  cuisines: ['Required', 'Cuisines field must have at least 1 items'],
-  image: ['Required', 'Invalid image URL'],
-  logo: ['Required', 'Invalid logo URL'],
+  name: ['Name is required', 'Name cannot be only spaces'],
+  vendorName: ['Vendor name is required', 'Vendor name cannot be only spaces'],
+  vendorPhoneNumber: ['Vendor phone number is required', 'Invalid phone number'],
+  vendorEmai: ['Vendor email is required', 'Invalid email format'],
+  timestamp: ['Timestamp is required'],
+  category: ['Category is required'],
+  image: ['Image is required', 'Invalid image URL'],
 };
 
 export const ProfileErrors: IUpdateProfileFormErrors = {

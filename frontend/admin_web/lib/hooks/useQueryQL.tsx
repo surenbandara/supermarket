@@ -15,7 +15,8 @@ class RestApiHandler {
 
     // Initialize default headers
     this.defaultHeaders = {
-      'Content-Type': 'application/json'
+      'Content-Type': 'application/json',
+      'Access-Control-Allow-Origin': '*'
     };
   }
 
@@ -56,6 +57,7 @@ class RestApiHandler {
     const options: RequestInit = {
       method,
       headers: this.defaultHeaders,
+      
     };
 
     if (body) {

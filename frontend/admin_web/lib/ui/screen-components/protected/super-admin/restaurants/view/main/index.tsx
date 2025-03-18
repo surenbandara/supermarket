@@ -77,7 +77,7 @@ export default function RestaurantsMain() {
       const fetchData = async () => {
         setLoading(false);
         try {
-          const response = await api.get(`${SERVER_URL}/vendor`, user.jwtToken);
+          const response = await api.get(`${SERVER_URL}/shop`, user.jwtToken);
           setData(response as IRestaurantResponse[]);
         } catch (error) {
           console.error('aaaaaaa', error);

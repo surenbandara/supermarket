@@ -1,11 +1,11 @@
 export const SHOP_TYPE = [
   {
-    label: 'Grocery',
-    code: 'grocery',
+    label: 'Supermarket',
+    code: 'super-market',
   },
   {
-    label: 'Restaurant',
-    code: 'restaurant',
+    label: 'Restaurants',
+    code: 'restaurants',
   },
 ];
 

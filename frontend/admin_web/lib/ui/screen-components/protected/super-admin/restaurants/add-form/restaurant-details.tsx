@@ -36,7 +36,7 @@ import {
 } from '@/lib/api/graphql';
 import { RestaurantsContext } from '@/lib/context/super-admin/restaurants.context';
 import { ToastContext } from '@/lib/context/global/toast.context';
-import { useQueryGQL } from '@/lib/hooks/useQueryQL';
+import { api, useQueryGQL } from '@/lib/hooks/useQueryQL';
 import CustomNumberField from '@/lib/ui/useable-components/number-input-field';
 import CustomUploadImageComponent from '@/lib/ui/useable-components/upload/upload-image';
 import {
@@ -48,18 +48,16 @@ import { toTextCase } from '@/lib/utils/methods';
 import { RestaurantSchema } from '@/lib/utils/schema/restaurant';
 import { ApolloCache, ApolloError, useMutation } from '@apollo/client';
 import { useTranslations } from 'next-intl';
+import { useConfiguration } from '@/lib/hooks/useConfiguration';
+import { useUserContext } from '@/lib/hooks/useUser';
 
 const initialValues: IRestaurantForm = {
   name: '',
-  address: '',
-  deliveryTime: 0,
-  minOrder: 0,
-  salesTax: 0.0,
-  shopType: null,
-  cuisines: [],
-  image:
-    'https://t4.ftcdn.net/jpg/04/76/57/27/240_F_476572792_zMwqHpmGal1fzh0tDJ3onkLo88IjgNbL.jpg',
-  logo: 'https://res.cloudinary.com/dc6xw0lzg/image/upload/v1735894342/dvi5fjbsgdlrzwip0whg.jpg',
+  vendorName: '',
+  vendorPhoneNumber: '',
+  vendorEmai: '',
+  timestamp: 0,
+  category: null
 };
 
 export default function RestaurantDetailsForm({
@@ -68,95 +66,25 @@ export default function RestaurantDetailsForm({
   // Hooks
   const t = useTranslations();
 
-  // Props
-  const { onStepChange, order } = stepperProps ?? {
-    onStepChange: () => {},
-    type: '',
-    order: -1,
-  };
+  const {SERVER_URL} = useConfiguration();
+  const {user} = useUserContext();
+  
   // Context
   const { showToast } = useContext(ToastContext);
-  const { restaurantsContextData, onSetRestaurantsContextData } =
+  const { restaurantsContextData, onRestaurantsFormVisible } =
     useContext(RestaurantsContext);
-
-  // API
-  // Mutation
-  const [createRestaurant] = useMutation(CREATE_RESTAURANT, {
-    onError,
-    onCompleted: ({
-      createRestaurant,
-    }: {
-      createRestaurant?: ICreateRestaurant;
-    }) => {
-      showToast({
-        type: 'success',
-        title: t('New Store'),
-        message: t(`Store has been added successfully`),
-        duration: 3000,
-      });
-
-      onSetRestaurantsContextData({
-        ...restaurantsContextData,
-        restaurant: {
-          ...restaurantsContextData?.restaurant,
-          _id: {
-            label: createRestaurant?.username ?? '',
-            code: createRestaurant?._id ?? '',
-          },
-        },
-      });
-
-      onStepChange(order + 1);
-    },
-    update: update,
-  });
-
-  const cuisineResponse = useQueryGQL(GET_CUISINES, {
-    debounceMs: 300,
-  }) as IQueryResult<IGetCuisinesData | undefined, undefined>;
-  cuisineResponse.data?.cuisines;
-
-  // Memoized Constants
-  const cuisinesDropdown = useMemo(
-    () =>
-      cuisineResponse.data?.cuisines?.map((cuisin: ICuisine) => {
-        return { label: toTextCase(cuisin.name, 'title'), code: cuisin.name };
-      }),
-    [cuisineResponse.data?.cuisines]
-  );
 
   // Handlers
   const onCreateRestaurant = async (data: IRestaurantForm) => {
     try {
-      const vendorId = restaurantsContextData?.vendor?._id?.code;
-      if (!vendorId) {
-        showToast({
-          type: 'error',
-          title: t('Create Store'),
-          message: t(`Store Creation Failed - Please select a vendor.`),
-          duration: 2500,
-        });
-        return;
-      }
-
-      await createRestaurant({
-        variables: {
-          owner: vendorId,
-          restaurant: {
-            name: data.name,
-            address: data.address,
-            image: data.image,
-            logo: data.logo,
-            deliveryTime: data.deliveryTime,
-            minimumOrder: data.minOrder,
-            shopType: data.shopType?.code,
-            salesTax: data.salesTax,
-            cuisines: data.cuisines.map(
-              (cuisin: IDropdownSelectItem) => cuisin.code
-            ),
-          },
-        },
-      });
+      console.log("sssssssssssssssssssssssssssssssssssssssssss")
+      onRestaurantsFormVisible(false);
+      const payload: any = {...data}
+      payload.timestamp = Date.now();
+      payload.email = data.vendorEmai;
+      payload.category = data.category?.code;
+      const a = await api.post(`${SERVER_URL}/shop`, JSON.stringify(payload), user?.jwtToken);
+      console.log(a);
     } catch (error) {
       showToast({
         type: 'error',
@@ -196,7 +124,7 @@ export default function RestaurantDetailsForm({
       query: GET_RESTAURANTS,
       variables: { id: restaurantId },
       data: {
-        restaurants: [...(cachedRestaurants ?? []), createRestaurant],
+        restaurants: [...(cachedRestaurants ?? [])],
       },
     });
   }
@@ -214,6 +142,7 @@ export default function RestaurantDetailsForm({
               initialValues={initialValues}
               validationSchema={RestaurantSchema}
               onSubmit={async (values) => {
+                console.log("----------------------");
                 await onCreateRestaurant(values);
               }}
               validateOnChange={false}
@@ -228,186 +157,118 @@ export default function RestaurantDetailsForm({
               }) => {
                 return (
                   <Form onSubmit={handleSubmit}>
-                    <div className="mb-2 space-y-3">
-                      <div>
-                        <CustomTextField
-                          type="text"
-                          name="name"
-                          placeholder={t('Name')}
-                          maxLength={35}
-                          value={values.name}
-                          onChange={handleChange}
-                          showLabel={true}
-                          style={{
-                            borderColor: onErrorMessageMatcher(
-                              'name',
-                              errors?.name,
-                              RestaurantErrors
-                            )
-                              ? 'red'
-                              : '',
-                          }}
-                        />
-                      </div>
-                      <div>
-                        <CustomTextField
-                          placeholder={t('Address')}
-                          name="address"
-                          type="text"
-                          maxLength={100}
-                          showLabel={true}
-                          value={values.address ?? ''}
-                          onChange={handleChange}
-                          style={{
-                            borderColor: onErrorMessageMatcher(
-                              'address',
-                              errors?.address,
-                              RestaurantErrors
-                            )
-                              ? 'red'
-                              : '',
-                          }}
-                        />
-                      </div>
-
-                      <div>
-                        <CustomNumberField
-                          suffix="m"
-                          min={0}
-                          max={500}
-                          placeholder={t('Delivery Time')}
-                          name="deliveryTime"
-                          showLabel={true}
-                          value={values.deliveryTime}
-                          onChange={setFieldValue}
-                          style={{
-                            borderColor: onErrorMessageMatcher(
-                              'deliveryTime',
-                              errors?.deliveryTime,
-                              RestaurantErrors
-                            )
-                              ? 'red'
-                              : '',
-                          }}
-                        />
-                      </div>
-
-                      <div>
-                        <CustomNumberField
-                          min={1}
-                          max={99999}
-                          placeholder={t('Min Order')}
-                          name="minOrder"
-                          showLabel={true}
-                          value={values.minOrder}
-                          onChange={setFieldValue}
-                          style={{
-                            borderColor: onErrorMessageMatcher(
-                              'minOrder',
-                              errors?.minOrder,
-                              RestaurantErrors
-                            )
-                              ? 'red'
-                              : '',
-                          }}
-                        />
-                      </div>
-                      <div>
-                        <CustomNumberField
-                          prefix="%"
-                          min={0}
-                          max={100}
-                          placeholder={t('Service Charges')}
-                          minFractionDigits={2}
-                          maxFractionDigits={2}
-                          name="salesTax"
-                          showLabel={true}
-                          value={values.salesTax}
-                          onChange={setFieldValue}
-                          style={{
-                            borderColor: onErrorMessageMatcher(
-                              'salesTax',
-                              errors?.salesTax,
-                              RestaurantErrors
-                            )
-                              ? 'red'
-                              : '',
-                          }}
-                        />
-                      </div>
-                      <div>
-                        <CustomDropdownComponent
-                          name="shopType"
-                          placeholder={t('Shop Category')}
-                          selectedItem={values.shopType}
-                          setSelectedItem={setFieldValue}
-                          options={SHOP_TYPE}
-                          showLabel={true}
-                          style={{
-                            borderColor: onErrorMessageMatcher(
-                              'shopType',
-                              errors?.shopType,
-                              RestaurantErrors
-                            )
-                              ? 'red'
-                              : '',
-                          }}
-                        />
-                      </div>
-
-                      <div>
-                        <CustomMultiSelectComponent
-                          name="cuisines"
-                          placeholder={t('Cuisines')}
-                          options={cuisinesDropdown ?? []}
-                          selectedItems={values.cuisines}
-                          setSelectedItems={setFieldValue}
-                          showLabel={true}
-                          style={{
-                            borderColor: onErrorMessageMatcher(
-                              'cuisines',
-                              errors?.cuisines as string,
-                              RestaurantErrors
-                            )
-                              ? 'red'
-                              : '',
-                          }}
-                        />
-                      </div>
-                      <div className="grid grid-cols-1 gap-4 rounded-lg border border-gray-200 p-4">
-                        <CustomUploadImageComponent
-                          key="logo"
-                          name="logo"
-                          title={t('Upload Profile Image')}
-                          onSetImageUrl={setFieldValue}
-                          style={{
-                            borderColor: onErrorMessageMatcher(
-                              'logo',
-                              errors?.logo as string,
-                              RestaurantErrors
-                            )
-                              ? 'red'
-                              : '',
-                          }}
-                          fileTypes={['image/webp', 'image/jpg', 'image/jpeg']}
-                          maxFileHeight={1080}
-                          maxFileWidth={1080}
-                          maxFileSize={MAX_SQUARE_FILE_SIZE}
-                          orientation="SQUARE"
-                          existingImageUrl={values.logo}
-                          showExistingImage={true}
-                        />
-                        <CustomUploadImageComponent
-                          key={'image'}
+                  <div className="mb-2 space-y-3">
+                    <div>
+                      <CustomTextField
+                        type="text"
+                        name="name"
+                        placeholder={'Restaurant Name'}
+                        maxLength={35}
+                        value={values.name}
+                        onChange={handleChange}
+                        showLabel={true}
+                        style={{
+                          borderColor: onErrorMessageMatcher(
+                            'name',
+                            errors?.name,
+                            RestaurantErrors
+                          )
+                            ? 'red'
+                            : '',
+                        }}
+                      />
+                    </div>
+                
+                    <div>
+                      <CustomTextField
+                        placeholder={'Vendor Name'}
+                        name="vendorName"
+                        type="text"
+                        maxLength={50}
+                        showLabel={true}
+                        value={values.vendorName ?? ''}
+                        onChange={handleChange}
+                        style={{
+                          borderColor: onErrorMessageMatcher(
+                            'vendorName',
+                            errors?.vendorName,
+                            RestaurantErrors
+                          )
+                            ? 'red'
+                            : '',
+                        }}
+                      />
+                    </div>
+                
+                    <div>
+                      <CustomTextField
+                        placeholder={'Vendor Email'}
+                        name="vendorEmai"
+                        type="email"
+                        showLabel={true}
+                        value={values.vendorEmai ?? ''}
+                        onChange={handleChange}
+                        style={{
+                          borderColor: onErrorMessageMatcher(
+                            'vendorEmai',
+                            errors?.vendorEmai,
+                            RestaurantErrors
+                          )
+                            ? 'red'
+                            : '',
+                        }}
+                      />
+                    </div>
+                
+                    <div>
+                      <CustomTextField
+                        placeholder={'Vendor Phone Number'}
+                        name="vendorPhoneNumber"
+                        type="text"
+                        showLabel={true}
+                        value={values.vendorPhoneNumber ?? ''}
+                        onChange={handleChange}
+                        style={{
+                          borderColor: onErrorMessageMatcher(
+                            'vendorPhoneNumber',
+                            errors?.vendorPhoneNumber,
+                            RestaurantErrors
+                          )
+                            ? 'red'
+                            : '',
+                        }}
+                      />
+                    </div>
+                
+                    <div>
+                      <CustomDropdownComponent
+                        name="category"
+                        placeholder={'Shop Category'}
+                        selectedItem={values.category}
+                        setSelectedItem={setFieldValue}
+                        options={SHOP_TYPE}
+                        showLabel={true}
+                        style={{
+                          borderColor: onErrorMessageMatcher(
+                            'category',
+                            errors?.category,
+                            RestaurantErrors
+                          )
+                            ? 'red'
+                            : '',
+                        }}
+                      />
+                    </div>
+                
+                    <div className="grid grid-cols-1 gap-4 rounded-lg border border-gray-200 p-4">
+                      <CustomUploadImageComponent
+                          key="image"
                           name="image"
-                          title={t('Upload Image')}
+                          title={'Upload Image'}
                           onSetImageUrl={setFieldValue}
                           style={{
-                            borderColor: onErrorMessageMatcher(
-                              'image',
-                              errors?.image as string,
-                              RestaurantErrors
-                            )
+                            borderColor: 
+                              errors?.image 
                               ? 'red'
                               : '',
                           }}
@@ -416,27 +277,20 @@ export default function RestaurantDetailsForm({
                           fileTypes={['image/webp', 'image/jpg', 'image/jpeg']}
                           maxFileHeight={841}
                           maxFileWidth={1980}
-                          maxFileSize={MAX_LANSDCAPE_FILE_SIZE}
-                          orientation="LANDSCAPE"
-                        />
-                      </div>
-
-                      <div className="mt-4 flex justify-between">
-                        <CustomButton
-                          className="h-10 w-fit border-gray-300 bg-black px-8 text-white"
-                          label={t('Back')}
-                          type="button"
-                          onClick={() => onStepChange(order - 1)}
-                        />
-                        <CustomButton
-                          className="h-10 w-fit border-gray-300 bg-black px-8 text-white"
-                          label={t('Save & Next')}
-                          type="submit"
-                          loading={isSubmitting}
-                        />
-                      </div>
+                          orientation="LANDSCAPE" maxFileSize={0}                      />
                     </div>
-                  </Form>
+                
+                    <div className="mt-4 flex justify-between">
+                      <CustomButton
+                        className="h-10 w-fit border-gray-300 bg-black px-8 text-white"
+                        label={'Submit'}
+                        type="submit"
+                        loading={isSubmitting}
+                      />
+                    </div>
+                  </div>
+                </Form>
+                
                 );
               }}
             </Formik>
