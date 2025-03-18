@@ -61,7 +61,7 @@ export class PriceBag {
         this.priceChange = priceChange;
     }
     public static toString(priceBags: PriceBag[]): string {
-        return priceBags.map(priceBag => 
+        return priceBags.map(priceBag =>
             ` {
                 productId: ${priceBag.productId},
                 quantity: ${priceBag.quantity},
@@ -70,6 +70,35 @@ export class PriceBag {
                 priceChange: ${priceBag.priceChange}
             }`
         ).join('\n');
+    }
+}
+
+export class TotalBill {
+    totalCost: number;
+    deliveryCost: number;
+    loyaltyPoints: number;
+    discount: number;
+    payableAmount: number;
+
+    constructor(totalGoods: number, deliveryCost: number, loyaltyPoints: number, discount: number) {
+        this.totalCost = totalGoods;
+        this.deliveryCost = deliveryCost;
+        this.loyaltyPoints = loyaltyPoints;
+        this.discount = discount;
+        this.payableAmount = this.calculatePayableAmount();
+    }
+
+    private calculatePayableAmount(): number {
+        return this.totalCost + this.deliveryCost - this.loyaltyPoints - this.discount;
+    }
+
+    public toString(): string {
+        return `TotalBill:
+        - Total Cost: ${this.totalCost}
+        - Delivery Cost: ${this.deliveryCost}
+        - Loyalty Points Deducted: ${this.loyaltyPoints}
+        - Discount Applied: ${this.discount}
+        - Payable Amount: ${this.payableAmount}`;
     }
 }
 
