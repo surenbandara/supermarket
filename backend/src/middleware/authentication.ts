@@ -15,7 +15,7 @@ const authenticateJWT = (req: Request, res: Response, next: NextFunction): void 
     }
 
     try {
-        const decoded = jwt.verify(token, process.env.JWT_SECRET as string) as { id: number, role: string };
+        const decoded = jwt.verify(token, process.env.JWT_SECRET as string) as { id: string, role: string };
         // log.info(`authenticateJWT:: User authenticated with id: ${decoded}`);
         req.authResult = decoded;
         next();

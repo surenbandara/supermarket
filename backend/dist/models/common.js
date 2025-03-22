@@ -17,7 +17,7 @@ var OrderStatus;
     OrderStatus["NEW"] = "NEW";
     OrderStatus["INITIATED"] = "INITIATED";
     OrderStatus["CONFIRMED"] = "CONFIRMED";
-    OrderStatus["PROCESSIONG"] = "PROCESSIONG";
+    OrderStatus["PROCESSIONG"] = "PROCESSING";
     OrderStatus["SHIPPED"] = "SHIPPED";
     OrderStatus["DELIVERED"] = "DELIVERED";
     OrderStatus["COMPLETED"] = "COMPLETED";
@@ -45,13 +45,26 @@ class PriceBag {
         this.availableQuantity = availableQuantity;
     }
     static toString(priceBags) {
-        return priceBags.map(priceBag => ` {
-                productId: ${priceBag.productId},
-                quantity: ${priceBag.quantity},
-                requestedPrice: ${priceBag.requestedPrice},
-                truePrice: ${priceBag.truePrice},
-                availableQuantity: ${priceBag.availableQuantity}
-            }`).join('\n');
+        // return priceBags.map(priceBag =>
+        //     ` {
+        //         productId: ${priceBag.productId},
+        //         quantity: ${priceBag.quantity},
+        //         requestedPrice: ${priceBag.requestedPrice},
+        //         truePrice: ${priceBag.truePrice},
+        //         availableQuantity: ${priceBag.availableQuantity}
+        //     }`
+        // ).join('\n');
+        return JSON.stringify(priceBags);
+    }
+    static fromString(input) {
+        try {
+            const parsedArray = JSON.parse(input);
+            return parsedArray.map((obj) => new PriceBag(obj.productId, obj.quantity, obj.requestedPrice, obj.truePrice, obj.availableQuantity));
+        }
+        catch (error) {
+            console.error("Error parsing PriceBag string:", error);
+            return [];
+        }
     }
 }
 exports.PriceBag = PriceBag;
@@ -66,13 +79,18 @@ class TotalBill {
     calculatePayableAmount() {
         return this.totalCost + this.deliveryCost - this.loyaltyPoints - this.discount;
     }
-    toString() {
-        return `TotalBill:
-        - Total Cost: ${this.totalCost}
-        - Delivery Cost: ${this.deliveryCost}
-        - Loyalty Points Deducted: ${this.loyaltyPoints}
-        - Discount Applied: ${this.discount}
-        - Payable Amount: ${this.payableAmount}`;
+    static toString(totalBill) {
+        return JSON.stringify(totalBill);
+    }
+    static fromString(input) {
+        try {
+            const obj = JSON.parse(input);
+            return new TotalBill(obj.totalCost, obj.deliveryCost, obj.loyaltyPoints, obj.discount);
+        }
+        catch (error) {
+            console.error("Error parsing TotalBill string:", error);
+            return null;
+        }
     }
 }
 exports.TotalBill = TotalBill;

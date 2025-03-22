@@ -24,9 +24,9 @@ export interface IOder extends mongoose.Document {
     paymentStatus: PaymentStatus;
     userId: string;
     userLocation: string;
+    timestamp: number;
     discount?: number;
     additionalNote?: string; 
-    timestamp: number;
 }
 
 const orderSchema = new mongoose.Schema<IOder>(
@@ -40,7 +40,7 @@ const orderSchema = new mongoose.Schema<IOder>(
         userId: { type: String, required: true },
         userLocation: { type: String, required: true },
         discount: { type: Number, required: false },
-        additionalNote: { type: Number, required: false },
+        additionalNote: { type: String, required: false },
         timestamp: { type: Number, required: true }
     },
     {
@@ -58,6 +58,8 @@ orderSchema.set('toJSON', {
     transform: (doc, ret, options) => {
         delete ret._id;
         delete ret.__v;
+        delete ret.createdAt;
+        delete ret.updatedAt;
         return ret;
     },
 });

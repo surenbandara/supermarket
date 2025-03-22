@@ -20,7 +20,7 @@ enum OrderStatus {
     NEW = "NEW",
     INITIATED = "INITIATED",
     CONFIRMED = "CONFIRMED",
-    PROCESSIONG = "PROCESSIONG",
+    PROCESSIONG = "PROCESSING",
     SHIPPED = "SHIPPED",
     DELIVERED = "DELIVERED",
     COMPLETED = "COMPLETED",
@@ -61,15 +61,36 @@ export class PriceBag {
         this.availableQuantity = availableQuantity;
     }
     public static toString(priceBags: PriceBag[]): string {
-        return priceBags.map(priceBag =>
-            ` {
-                productId: ${priceBag.productId},
-                quantity: ${priceBag.quantity},
-                requestedPrice: ${priceBag.requestedPrice},
-                truePrice: ${priceBag.truePrice},
-                availableQuantity: ${priceBag.availableQuantity}
-            }`
-        ).join('\n');
+        // return priceBags.map(priceBag =>
+        //     ` {
+        //         productId: ${priceBag.productId},
+        //         quantity: ${priceBag.quantity},
+        //         requestedPrice: ${priceBag.requestedPrice},
+        //         truePrice: ${priceBag.truePrice},
+        //         availableQuantity: ${priceBag.availableQuantity}
+        //     }`
+        // ).join('\n');
+        return JSON.stringify(priceBags);
+    }
+
+    public static fromString(input: string): PriceBag[] {
+        try {
+            const parsedArray = JSON.parse(input);
+
+            return parsedArray.map(
+                (obj: any) =>
+                    new PriceBag(
+                        obj.productId,
+                        obj.quantity,
+                        obj.requestedPrice,
+                        obj.truePrice,
+                        obj.availableQuantity
+                    )
+            );
+        } catch (error) {
+            console.error("Error parsing PriceBag string:", error);
+            return [];
+        }
     }
 }
 
@@ -92,13 +113,18 @@ export class TotalBill {
         return this.totalCost + this.deliveryCost - this.loyaltyPoints - this.discount;
     }
 
-    public toString(): string {
-        return `TotalBill:
-        - Total Cost: ${this.totalCost}
-        - Delivery Cost: ${this.deliveryCost}
-        - Loyalty Points Deducted: ${this.loyaltyPoints}
-        - Discount Applied: ${this.discount}
-        - Payable Amount: ${this.payableAmount}`;
+    public static toString(totalBill: TotalBill): string {
+        return JSON.stringify(totalBill);
+    }
+
+    public static fromString(input: string): TotalBill | null {
+        try {
+            const obj = JSON.parse(input);
+            return new TotalBill(obj.totalCost, obj.deliveryCost, obj.loyaltyPoints, obj.discount);
+        } catch (error) {
+            console.error("Error parsing TotalBill string:", error);
+            return null;
+        }
     }
 }
 

@@ -139,3 +139,42 @@
 2025-03-22T05:36:22.491Z error: ERROR::apiValidationHandler:  /response must have required property 'bill'
 2025-03-22T06:45:19.145Z error: ERROR::apiValidationHandler:  /response must have required property 'bill'
 2025-03-22T06:48:04.237Z error: ERROR::apiValidationHandler:  Missing $ref pointer "#/components/schemas/OrInitialOrderder". Token "OrInitialOrderder" does not exist.
+2025-03-22T12:14:57.737Z error: authenticateJWT:: jwt expired
+2025-03-22T12:14:57.738Z error: ERROR::apiValidationHandler:  response should NOT have a body
+2025-03-22T12:18:07.181Z error: authenticateJWT:: jwt expired
+2025-03-22T12:18:41.253Z error: authenticateJWT:: jwt expired
+2025-03-22T12:25:15.351Z error: ERROR::apiValidationHandler:  request/body/status must be equal to one of the allowed values: NEW, INITIATED, CONFIRMED, PROCESSIONG, SHIPPED, DELIVERED, COMPLETED, CANCELLED, RETURNED
+2025-03-22T12:25:25.845Z error: validateUser:: order userId: string and requestId: undefined not matched
+2025-03-22T12:31:28.619Z error: confirmOrder:: Invalid order status: INITIATED
+2025-03-22T12:31:40.320Z error: ERROR::apiValidationHandler:  request/body/paymentStatus must be equal to one of the allowed values: PENDING, SUCCESS, FAILED
+2025-03-22T12:32:01.415Z error: allocateProductListAndCreateBill::Transaction failed: MongoServerError: Transaction numbers are only allowed on a replica set member or mongos
+2025-03-22T12:32:01.415Z error: confirmOrder:: Allocate products process failed }
+2025-03-22T14:01:50.168Z error: createNewOrder:: ValidationError: timestamp: Path `timestamp` is required.
+2025-03-22T14:07:10.714Z error: confirmOrder:: ValidationError: additionalNote: Cast to Number failed for value "string" (type string) at path "additionalNote"
+2025-03-22T14:07:44.704Z error: confirmOrder:: ValidationError: additionalNote: Cast to Number failed for value "string" (type string) at path "additionalNote"
+2025-03-22T14:10:09.107Z error: confirmOrder:: ValidationError: additionalNote: Cast to Number failed for value "string" (type string) at path "additionalNote"
+2025-03-22T14:10:35.463Z error: confirmOrder:: ValidationError: additionalNote: Cast to Number failed for value "string" (type string) at path "additionalNote"
+2025-03-22T14:14:05.878Z error: authorizeJWT:: User not authorized with role: user
+2025-03-22T16:06:50.521Z error: authenticateJWT:: jwt expired
+2025-03-22T16:07:03.622Z error: authenticateJWT:: jwt expired
+2025-03-22T16:08:18.549Z error: ERROR::apiValidationHandler:  request/body must have required property 'productList'
+2025-03-22T16:10:24.974Z error: releaseProductList::Error occurred: TypeError: order.productList is not iterable
+2025-03-22T16:10:24.975Z error: cancelOrder:: cancel process failed }
+2025-03-22T16:28:27.628Z error: confirmOrder:: MongoServerError: E11000 duplicate key error collection: test-super-market-03.orders index: id_1 dup key: { id: 1742660790554.0 }
+2025-03-22T16:32:51.995Z error: confirmOrder:: Order exist for orderId: 1742660790554
+2025-03-22T16:33:42.292Z error: confirmOrder:: Order exist for orderId: 17426607905154
+2025-03-22T16:33:50.089Z error: confirmOrder:: Order exist for orderId: 174266107905154
+2025-03-22T16:34:16.428Z error: confirmOrder:: Order exist for orderId: 17426654
+2025-03-22T16:35:59.284Z error: ERROR::apiValidationHandler:  /response must have required property 'productList'
+2025-03-22T16:36:05.319Z error: confirmOrder:: Order exist for orderId: 17426654
+2025-03-22T16:36:09.447Z error: confirmOrder:: Order exist for orderId: 17426654
+2025-03-22T16:36:19.550Z error: ERROR::apiValidationHandler:  Expected ',' or '}' after property value in JSON at position 14
+2025-03-22T16:36:27.266Z error: ERROR::apiValidationHandler:  /response must have required property 'productList'
+2025-03-22T16:42:12.601Z error: cancelOrder:: cancel process failed }
+2025-03-22T16:49:09.042Z error: confirmOrder:: Order exist for orderId: 1742660122207905300
+2025-03-22T16:56:07.074Z error: ERROR::apiValidationHandler:  /response/0/paymentMethod must be equal to one of the allowed values: CASH, CARD, ONLINE
+2025-03-22T16:56:14.548Z error: ERROR::apiValidationHandler:  /response/0/paymentMethod must be equal to one of the allowed values: CASH, CARD, ONLINE
+2025-03-22T16:58:29.488Z error: ERROR::apiValidationHandler:  /response/4/status must be equal to one of the allowed values: NEW, INITIATED, CONFIRMED, PROCESSIONG, SHIPPED, DELIVERED, COMPLETED, CANCELLED, RETURNED
+2025-03-22T17:00:58.457Z error: ERROR::apiValidationHandler:  /response/5/status must be equal to one of the allowed values: NEW, INITIATED, CONFIRMED, PROCESSING, SHIPPED, DELIVERED, COMPLETED, CANCELLED, RETURNED
+2025-03-22T17:01:07.295Z error: ERROR::apiValidationHandler:  /response/5/status must be equal to one of the allowed values: NEW, INITIATED, CONFIRMED, PROCESSING, SHIPPED, DELIVERED, COMPLETED, CANCELLED, RETURNED
+2025-03-22T17:02:02.814Z error: ERROR::apiValidationHandler:  /response/5/status must be equal to one of the allowed values: NEW, INITIATED, CONFIRMED, PROCESSING, SHIPPED, DELIVERED, COMPLETED, CANCELLED, RETURNED

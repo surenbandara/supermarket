@@ -1482,14 +1482,37 @@ paths:
                   $ref: '#/components/schemas/Order'
         '401':
           description: Unauthorized
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
         '404':
           description: Not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
     post:
       summary: Create a new order
       operationId: requestNewOrder
       security:
         - BearerAuth: []
-      # x-roles: ['admin']  # should be user only
+      x-roles: ['user']  
       requestBody:
         required: true
         content:
@@ -1530,61 +1553,116 @@ paths:
                 properties:
                   message:
                     type: string
-    # put:
-    #   summary: Update a System Parameter
-    #   operationId: updateSystemParameter
-    #   security:
-    #     - BearerAuth: []
-    #   x-roles: ['admin']
-    #   requestBody:
-    #     required: true
-    #     content:
-    #       application/json:
-    #         schema:
-    #           $ref: '#/components/schemas/SystemParameter'
-    #   responses:
-    #     '200':
-    #       description: Updated
-    #       content:
-    #         application/json:
-    #           schema:
-    #             $ref: '#/components/schemas/SystemParameter'
-    #     '400':
-    #       description: Bad request
-    #       content:
-    #         application/json:
-    #           schema:
-    #             type: object
-    #             properties:
-    #               message:
-    #                 type: string
-    #     '401':
-    #       description: Unauthorized
-    #       content:
-    #         application/json:
-    #           schema:
-    #             type: object
-    #             properties:
-    #               message:
-    #                 type: string
-    #     '404':
-    #       description: Not found
-    #       content:
-    #         application/json:
-    #           schema:
-    #             type: object
-    #             properties:
-    #               message:
-    #                 type: string
-    #     '500':
-    #       description: Failed to update
-    #       content:
-    #         application/json:
-    #           schema:
-    #             type: object
-    #             properties:
-    #               message:
-    #                 type: string
+    put:
+      summary: Update an Order
+      operationId: confirmOrder
+      security:
+        - BearerAuth: []
+      x-roles: ['user'] 
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/InitialOrder'
+      responses:
+        '201':
+          description: Updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Order'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+        '404':
+          description: Not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+        '500':
+          description: Failed to update
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+    delete:
+      summary: Delete an Order
+      operationId: cancelOrder
+      security:
+        - BearerAuth: []
+      x-roles: ['admin']
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Order'
+      responses:
+        '201':
+          description: Updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Order'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+        '404':
+          description: Not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+        '500':
+          description: Failed to update
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
 components:
   securitySchemes:
       BearerAuth:
@@ -1920,7 +1998,7 @@ components:
         - NEW
         - INITIATED
         - CONFIRMED
-        - PROCESSIONG
+        - PROCESSING
         - SHIPPED
         - DELIVERED
         - COMPLETED

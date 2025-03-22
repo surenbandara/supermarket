@@ -72,5 +72,7 @@ exports.default = {
     updateSystemParameter: sysParaHandler.updateSystemParameter,
     deleteSystemParameter: sysParaHandler.deleteSystemParameter,
     listOrders: orderHandler.listOrders,
-    requestNewOrder: orderHandler.requestNewOrder
+    requestNewOrder: orderHandler.requestNewOrder,
+    confirmOrder: orderHandler.confirmOrder,
+    cancelOrder: orderHandler.cancelOrder
 };

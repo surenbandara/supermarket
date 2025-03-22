@@ -9,7 +9,7 @@ services:
     depends_on:
       - mongodb
     environment:
-      - MONGO_URI=mongodb://mongodb:27017/test-super-market-03
+      - MONGO_URI=mongodb://mongodb:27017/test-super-market-05
     volumes:
       - ./backend:/app
       - /app/node_modules

@@ -1,9 +1,10 @@
 import { NextFunction, Request, Response } from "express";
-import OrderModel, {Order, IOder} from "../../models/order"; 
+import OrderModel, { Order, IOder } from "../../models/order";
 import { OrderStatus, PriceBag, TotalBill } from "../../models/common";
 import log from '../../utils/logger';
 import ProductModel from "../../models/product";
 import { SysParaCache } from "../../models/sys-config";
+import mongoose from "mongoose";
 
 export const listOrders = async (req: Request, res: Response, next: NextFunction) => {
     try {
@@ -33,19 +34,17 @@ export const requestNewOrder = async (req: Request, res: Response, next: NextFun
         const order: Order = req.body as Order;
         order.id = Date.now();
         order.status = OrderStatus.NEW;
-        
-        console.log (JSON.stringify(order.productList))
+
+        console.log(JSON.stringify(order.productList))
 
         await validateProductListAndSetTotalBill(order);
-        
+
         order.status = OrderStatus.INITIATED;
 
-        
-
-        log.info(`createNewOrder::Order created successfully : ${order}`);
+        log.info(`requestNewOrder::Order requested successfully : ${order}`);
         res.status(201).json(order);
     } catch (err: any) {
-        log.error(`createNewOrder:: ${err}`);
+        log.error(`requestNewOrder:: ${err}`);
         res.status(500).json({
             status: 500,
             message: "Internal Server Error",
@@ -54,6 +53,93 @@ export const requestNewOrder = async (req: Request, res: Response, next: NextFun
     next();
 };
 
+export const confirmOrder = async (req: Request, res: Response, next: NextFunction) => {
+    try {
+        const order: Order = req.body as Order;
+        const existingOrder: Order = JSON.parse(JSON.stringify(order)) as Order;
+
+        if (!validateUser(req, order)) {
+            res.status(401).json({
+                status: 401,
+                message: "Invalid User",
+            });
+            return;
+        }
+
+        const filter: any = {};
+        if (order.id) filter.id = Number(order.id);
+        const existingOrderRecord = await OrderModel.find(filter);
+        if (existingOrderRecord.length>0) {
+            log.error(`confirmOrder:: Order exist for orderId: ${order.id}`);
+            res.status(400).json({
+                status: 400,
+                message: "Order exist for orderId",
+            });
+            return;
+        }
+
+        // validation to check unnecessary modifications. 
+        await validateProductListAndSetTotalBill(existingOrder);
+        if (order.totalPrice.payableAmount !== existingOrder.totalPrice.payableAmount) {
+            log.error(`confirmOrder:: Price difference itentified: order: ${order.totalPrice.payableAmount}, existingOrder: ${existingOrder.totalPrice.payableAmount}`);
+            res.status(400).json({
+                status: 400,
+                message: "Price difference itentified",
+            });
+            return;
+        }
+
+        if (order.status != OrderStatus.CONFIRMED) {
+            log.error(`confirmOrder:: Invalid order status: ${order.status}`);
+            res.status(400).json({
+                status: 400,
+                message: "Invalid Order Status to allocate products",
+            });
+            return;
+        }
+
+        console.log(JSON.stringify(order));
+
+        if (await allocateProductListAndCreateBill(order)) {
+            log.info(`confirmOrder:: Allocate products process successfully completed}`);
+
+            const orderRecord: IOder = new OrderModel({
+                id: order.id,
+                bill: PriceBag.toString(order.productList),
+                totalPrice: TotalBill.toString(order.totalPrice),
+                status: OrderStatus.PROCESSIONG,
+                paymentMethod: order.paymentMethod,
+                paymentStatus: order.paymentStatus,
+                userId: order.userId,
+                userLocation: order.userLocation,
+                timestamp: Date.now(),
+                discount: order?.discount,
+                additionalNote: order?.additionalNote,
+            });
+
+            await orderRecord.save();
+            log.info(`confirmOrder:: Updated order db record successfully ${JSON.stringify(orderRecord.toJSON())}}`);
+
+            res.status(201).json(orderRecord.toJSON());
+            return;
+
+        } else {
+            log.error(`confirmOrder:: Allocate products process failed }`);
+            res.status(500).json({
+                status: 500,
+                message: "Allocate products process failed",
+            });
+            return;
+        }
+    } catch (err: any) {
+        log.error(`confirmOrder:: ${err}`);
+        res.status(500).json({
+            status: 500,
+            message: "Internal Server Error",
+        });
+    }
+    next();
+};
 
 
 const validateProductListAndSetTotalBill = async (order: Order) => {
@@ -64,14 +150,14 @@ const validateProductListAndSetTotalBill = async (order: Order) => {
         const product = await ProductModel.findOne({ id: item.productId });
 
         if (!product) {
-            log.warn(`validateProductList::Product not found: ${item.productId}`);
+            log.warn(`validateProductListAndSetTotalBill::Product not found: ${item.productId}`);
             item.availableQuantity = 0;
             item.truePrice = 0;
             continue;
         }
 
         if (product.quantity < item.quantity) {
-            log.warn(`validateProductList::Insufficient stock for product: ${item.productId}`);
+            log.warn(`validateProductListAndSetTotalBill::Insufficient stock for product: ${item.productId}`);
             item.availableQuantity = product.quantity;
         } else {
             item.availableQuantity = item.quantity;
@@ -90,67 +176,150 @@ const validateProductListAndSetTotalBill = async (order: Order) => {
 };
 
 
+const allocateProductListAndCreateBill = async (order: Order) => {
+    const originalQuantities: { productId: number, originalQuantity: number }[] = [];
 
-
-
-
-
-
-
-export const createOrder = async (req: Request, res: Response) => {
     try {
-        const newOrder = new OrderModel(req.body);
-        await newOrder.save();
-        res.status(201).json({ message: "Order created successfully", order: newOrder });
-    } catch (error) {
-        res.status(500).json({ message: "Error creating order", error });
-    }
-};
+        for (const item of order.productList as PriceBag[]) {
 
-// Get an order by ID
-export const getOrderById = async (req: Request, res: Response) => {
-    try {
-        const order = await OrderModel.findOne({ id: req.params.id });
-        if (!order) {
-            return res.status(404).json({ message: "Order not found" });
+            const product = await ProductModel.findOne({ id: item.productId });
+
+            if (!product) {
+                log.warn(`allocateProductListAndCreateBill::Product not found: ${item.productId}`);
+                await rollbackProductUpdates(originalQuantities);
+                return false;
+            }
+
+            if (product.quantity < item.quantity) {
+                log.warn(`allocateProductListAndCreateBill::Insufficient stock for product: ${item.productId}`);
+                await rollbackProductUpdates(originalQuantities);
+                return false;  
+            }
+
+            originalQuantities.push({ productId: product.id, originalQuantity: product.quantity });
+
+            const updatedProduct = await ProductModel.findOneAndUpdate(
+                { id: product.id },
+                { $inc: { quantity: -item.quantity } },
+                { new: true, upsert: false }
+            );
+
+            if (!updatedProduct) {
+                log.error(`allocateProductListAndCreateBill::Failed to update product: ${item.productId}`);
+                await rollbackProductUpdates(originalQuantities);
+                return false; 
+            }
         }
-        res.json(order);
+        return true;  
     } catch (error) {
-        res.status(500).json({ message: "Error fetching order", error });
+        log.error(`allocateProductListAndCreateBill::Error occurred: ${error}`);
+        await rollbackProductUpdates(originalQuantities);
+        return false;
     }
 };
 
-
-export const updateOrderStatus = async (req: Request, res: Response) => {
-    try {
-        const { status, paymentStatus } = req.body;
-        const order = await OrderModel.findOneAndUpdate(
-            { id: req.params.id },
-            { status, paymentStatus },
+// Rollback function to revert changes made during the process
+const rollbackProductUpdates = async (originalQuantities: { productId: number, originalQuantity: number }[]) => {
+    if (originalQuantities.length === 0) {return}
+    for (const { productId, originalQuantity } of originalQuantities) {
+        await ProductModel.findOneAndUpdate(
+            { id: productId },
+            { $set: { quantity: originalQuantity } },
             { new: true }
         );
-
-        if (!order) {
-            return res.status(404).json({ message: "Order not found" });
-        }
-
-        res.json({ message: "Order updated successfully", order });
-    } catch (error) {
-        res.status(500).json({ message: "Error updating order", error });
+        log.info(`rollbackProductUpdates::Product quantity restored for product: ${productId}`);
     }
 };
 
-// Delete an order
-export const deleteOrder = async (req: Request, res: Response) => {
+
+export const validateUser = (req: Request, order: Order) => {
+    if (order.userId === req.authResult?.id) {
+        return true;
+    } else {
+        log.error(`validateUser:: order userId: ${order.userId} and requestId: ${req.authResult?.id} not matched`);
+        return false;
+    }
+};
+
+
+export const cancelOrder = async (req: Request, res: Response, next: NextFunction) => {
     try {
-        const order = await OrderModel.findOneAndDelete({ id: req.params.id });
+        const order: IOder = req.body as IOder;
 
-        if (!order) {
-            return res.status(404).json({ message: "Order not found" });
+        //// do the necessary status validations
+        // if (order.status != OrderStatus.CONFIRMED) {
+        //     log.error(`confirmOrder:: Invalid order status: ${order.status}`);
+        //     res.status(400).json({
+        //         status: 400,
+        //         message: "Invalid Order Status to allocate products",
+        //     });
+        //     return;
+        // }
+
+        if (await releaseProductList(order)) {
+            log.info(`cancelOrder:: Cancel products process successfully completed}`);
+ 
+            const orderRecord = await OrderModel.findOneAndUpdate(
+                { id: order.id },
+                { $set: { status: OrderStatus.CANCELLED } },
+                { new: true }
+            );
+
+            log.info(`cancelOrder:: Canceled: ${orderRecord?.toJSON()} order successfully}`);
+
+            res.status(201).json(orderRecord?.toJSON());
+            return;
+
+        } else {
+            log.error(`cancelOrder:: cancel process failed }`);
+            res.status(500).json({
+                status: 500,
+                message: "cancel process failed",
+            });
+            return;
         }
+    } catch (err: any) {
+        log.error(`cancelOrder:: ${err}`);
+        res.status(500).json({
+            status: 500,
+            message: "Internal Server Error",
+        });
+    }
+    next();
+};
 
-        res.json({ message: "Order deleted successfully" });
+const releaseProductList = async (order: IOder) => {
+    const originalQuantities: { productId: number, originalQuantity: number }[] = [];
+
+    try {
+        for (const item of PriceBag.fromString(order.bill) as PriceBag[]) {
+
+            const product = await ProductModel.findOne({ id: item.productId });
+
+            if (!product) {
+                log.warn(`releaseProductList::Product not found: ${item.productId}`);
+                await rollbackProductUpdates(originalQuantities);
+                return false;
+            }
+
+            originalQuantities.push({ productId: product.id, originalQuantity: product.quantity });
+
+            const updatedProduct = await ProductModel.findOneAndUpdate(
+                { id: product.id },
+                { $inc: { quantity: +item.quantity } },
+                { new: true, upsert: true }
+            );
+
+            if (!updatedProduct) {
+                log.error(`releaseProductList::Failed to update product: ${item.productId}`);
+                await rollbackProductUpdates(originalQuantities);
+                return false; 
+            }
+        }
+        return true;  
     } catch (error) {
-        res.status(500).json({ message: "Error deleting order", error });
+        log.error(`releaseProductList::Error occurred: ${error}`);
+        await rollbackProductUpdates(originalQuantities);
+        return false;
     }
 };

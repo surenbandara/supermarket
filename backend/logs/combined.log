@@ -1880,3 +1880,472 @@
   id: 1742626186312
 }
 2025-03-22T06:50:16.655Z info: createNewOrder::Order created successfully : [object Object]
+2025-03-22T12:11:17.105Z info: MongoDB ::::: mongodb://mongodb:27017/test-super-market-03
+2025-03-22T12:11:17.393Z info: MongoDB connected
+2025-03-22T12:11:17.396Z info: Server running on port 3000
+2025-03-22T12:11:17.411Z info: Admin user already exists
+2025-03-22T12:11:17.493Z info: Customer  lakshan1 user already exists
+2025-03-22T12:11:17.580Z info: Customer  suren user already exists
+2025-03-22T12:11:17.581Z info: starterPack added successfully
+2025-03-22T12:13:39.541Z info: listUsers::Users fetched successfully: [{"id":"2025-03-16T11:07:59.482Z","username":"systemAdmin","role":"admin","email":"systemAdmin@gmail.com","phoneNumber":"","profilePic":""},{"id":"GUAMCTtadpRtL9jqzLSsoZGEXdJ2","username":"lucky ratha","role":"user","email":"lakarathalaka@gmail.com","profilePic":"https://lh3.googleusercontent.com/a/ACg8ocLblbq939-gVaDcS06NvF7V6e7KwR11_0Jpg42kKhFM3JQTPg=s96-c"},{"id":"2025-03-16T12:48:21.125Z","username":"lakshanSTPACK","role":"user","email":"lakshanSTPACK@gmail.com","phoneNumber":"","profilePic":""},{"id":"2025-03-16T12:52:32.827Z","username":"lakshan1STPACK","role":"user","email":"lakshan1STPACK@gmail.com","phoneNumber":"","profilePic":""},{"id":"2025-03-16T12:53:07.730Z","username":"surenSTPACK","role":"user","email":"surenSTPACK@gmail.com","phoneNumber":"","profilePic":""}]
+2025-03-22T12:13:52.861Z info: listOrders::Orders fetched successfully
+2025-03-22T12:14:17.355Z info: requestNewOrder::Order requested successfully : [object Object]
+2025-03-22T12:14:57.737Z error: authenticateJWT:: jwt expired
+2025-03-22T12:14:57.738Z error: ERROR::apiValidationHandler:  response should NOT have a body
+2025-03-22T12:17:06.489Z info: MongoDB ::::: mongodb://mongodb:27017/test-super-market-03
+2025-03-22T12:17:06.707Z info: MongoDB connected
+2025-03-22T12:17:06.709Z info: Server running on port 3000
+2025-03-22T12:17:06.722Z info: Admin user already exists
+2025-03-22T12:17:06.803Z info: Customer  lakshan1 user already exists
+2025-03-22T12:17:06.872Z info: Customer  suren user already exists
+2025-03-22T12:17:06.873Z info: starterPack added successfully
+2025-03-22T12:18:07.181Z error: authenticateJWT:: jwt expired
+2025-03-22T12:18:41.253Z error: authenticateJWT:: jwt expired
+2025-03-22T12:19:40.729Z info: login:: User systemAdmin@gmail.com logged in successfully
+2025-03-22T12:19:59.034Z info: listOrders::Orders fetched successfully
+2025-03-22T12:20:14.769Z warn: validateProductListAndSetTotalBill::Product not found: 0
+2025-03-22T12:20:14.774Z info: requestNewOrder::Order requested successfully : [object Object]
+2025-03-22T12:23:11.247Z info: listProducts::Products fetched successfully : {
+  name: '1',
+  price: 0,
+  quantity: 0,
+  cusine: [ 'string' ],
+  brand: 'string',
+  shop: 'string',
+  image: 'string',
+  discount: 0,
+  timestamp: 0,
+  additionalData: {
+    color: 'string',
+    expirationDate: 0,
+    size: 'string',
+    description: 'string'
+  },
+  id: 1742137562027
+},{
+  name: '2',
+  price: 0,
+  quantity: 0,
+  cusine: [ 'nu' ],
+  brand: 'string',
+  shop: 'string',
+  image: 'string',
+  discount: 0,
+  timestamp: 0,
+  additionalData: {
+    color: 'string',
+    expirationDate: 0,
+    size: 'string',
+    description: 'string'
+  },
+  id: 1742137577454
+},{
+  name: '3',
+  price: 0,
+  quantity: 0,
+  cusine: [ 'nu' ],
+  brand: 'string',
+  shop: 'lk',
+  image: 'string',
+  discount: 0,
+  timestamp: 0,
+  additionalData: {
+    color: 'string',
+    expirationDate: 0,
+    size: 'string',
+    description: 'string'
+  },
+  id: 1742137588819
+},{
+  name: '4',
+  price: 0,
+  quantity: 0,
+  cusine: [ 'nu' ],
+  brand: 'lop',
+  shop: 'lk',
+  image: 'string',
+  discount: 0,
+  timestamp: 0,
+  additionalData: {
+    color: 'string',
+    expirationDate: 0,
+    size: 'string',
+    description: 'string'
+  },
+  id: 1742137601176
+},{
+  id: 1,
+  name: 'Margherita Pizza',
+  price: 12.99,
+  quantity: 50,
+  cusine: [ 'Italian', 'Vegetarian' ],
+  brand: 'Napoli Pizzeria',
+  shop: 'Pizza Heaven',
+  image: 'https://example.com/margherita.jpg',
+  discount: 10,
+  timestamp: 1710480000000,
+  additionalData: {
+    description: 'Classic margherita pizza with fresh tomatoes and basil.'
+  }
+},{
+  id: 2,
+  name: 'Samsung Galaxy S23',
+  price: 899.99,
+  quantity: 20,
+  cusine: [],
+  brand: 'Samsung',
+  shop: 'Tech Hub',
+  image: 'https://example.com/galaxy-s23.jpg',
+  discount: 5,
+  timestamp: 1710480000000,
+  additionalData: { specs: { RAM: '8GB', Storage: '256GB' } }
+},{
+  id: 3,
+  name: 'Nike Air Force 1',
+  price: 120,
+  quantity: 100,
+  cusine: [],
+  brand: 'Nike',
+  shop: 'Sneaker World',
+  image: 'https://example.com/air-force-1.jpg',
+  discount: 15,
+  timestamp: 1710480000000,
+  additionalData: { size: [ 'US 7', 'US 8', 'US 9', 'US 10' ] }
+},{
+  id: 4,
+  name: 'Espresso Coffee',
+  price: 4.99,
+  quantity: 200,
+  cusine: [ 'Italian', 'Beverage' ],
+  brand: 'StarBrew',
+  shop: 'Coffee House',
+  image: 'https://example.com/espresso.jpg',
+  discount: 0,
+  timestamp: 1710480000000,
+  additionalData: { caffeine_content: 'High' }
+},{
+  id: 5,
+  name: 'MacBook Pro 16-inch',
+  price: 2499.99,
+  quantity: 10,
+  cusine: [],
+  brand: 'Apple',
+  shop: 'Apple Store',
+  image: 'https://example.com/macbook-pro.jpg',
+  discount: 8,
+  timestamp: 1710480000000,
+  additionalData: { specs: { Processor: 'M2 Pro', RAM: '16GB', Storage: '512GB SSD' } }
+},{
+  name: 'p1',
+  price: 10,
+  quantity: 10,
+  cusine: [ 'string' ],
+  brand: 'string',
+  shop: 'string',
+  image: 'string',
+  discount: 0,
+  timestamp: 0,
+  additionalData: {
+    color: 'string',
+    expirationDate: 0,
+    size: 'string',
+    description: 'string'
+  },
+  id: 1742625862896
+},{
+  name: 'p2',
+  price: 1,
+  quantity: 10,
+  cusine: [ 'string' ],
+  brand: 'string',
+  shop: 'string',
+  image: 'string',
+  discount: 0,
+  timestamp: 0,
+  additionalData: {
+    color: 'string',
+    expirationDate: 0,
+    size: 'string',
+    description: 'string'
+  },
+  id: 1742626186312
+}
+2025-03-22T12:24:33.138Z info: requestNewOrder::Order requested successfully : [object Object]
+2025-03-22T12:25:15.351Z error: ERROR::apiValidationHandler:  request/body/status must be equal to one of the allowed values: NEW, INITIATED, CONFIRMED, PROCESSIONG, SHIPPED, DELIVERED, COMPLETED, CANCELLED, RETURNED
+2025-03-22T12:25:25.845Z error: validateUser:: order userId: string and requestId: undefined not matched
+2025-03-22T12:28:57.489Z info: login:: User with email lakarathalaka@gmail.com is found
+2025-03-22T12:28:57.499Z info: login:: User lakarathalaka@gmail.com logged in successfully
+2025-03-22T12:29:29.693Z info: requestNewOrder::Order requested successfully : [object Object]
+2025-03-22T12:30:44.129Z info: listUsers::Users fetched successfully: [{"id":"2025-03-16T11:07:59.482Z","username":"systemAdmin","role":"admin","email":"systemAdmin@gmail.com","phoneNumber":"","profilePic":""},{"id":"GUAMCTtadpRtL9jqzLSsoZGEXdJ2","username":"lucky ratha","role":"user","email":"lakarathalaka@gmail.com","profilePic":"https://lh3.googleusercontent.com/a/ACg8ocLblbq939-gVaDcS06NvF7V6e7KwR11_0Jpg42kKhFM3JQTPg=s96-c"},{"id":"2025-03-16T12:48:21.125Z","username":"lakshanSTPACK","role":"user","email":"lakshanSTPACK@gmail.com","phoneNumber":"","profilePic":""},{"id":"2025-03-16T12:52:32.827Z","username":"lakshan1STPACK","role":"user","email":"lakshan1STPACK@gmail.com","phoneNumber":"","profilePic":""},{"id":"2025-03-16T12:53:07.730Z","username":"surenSTPACK","role":"user","email":"surenSTPACK@gmail.com","phoneNumber":"","profilePic":""}]
+2025-03-22T12:31:13.024Z info: requestNewOrder::Order requested successfully : [object Object]
+2025-03-22T12:31:28.619Z error: confirmOrder:: Invalid order status: INITIATED
+2025-03-22T12:31:40.320Z error: ERROR::apiValidationHandler:  request/body/paymentStatus must be equal to one of the allowed values: PENDING, SUCCESS, FAILED
+2025-03-22T12:32:01.415Z error: allocateProductListAndCreateBill::Transaction failed: MongoServerError: Transaction numbers are only allowed on a replica set member or mongos
+2025-03-22T12:32:01.415Z error: confirmOrder:: Allocate products process failed }
+2025-03-22T12:43:12.658Z info: MongoDB ::::: mongodb://mongodb:27017/test-super-market-03
+2025-03-22T12:43:25.798Z info: MongoDB ::::: mongodb://mongodb:27017/test-super-market-03
+2025-03-22T12:43:39.044Z info: MongoDB ::::: mongodb://mongodb:27017/test-super-market-03
+2025-03-22T12:43:52.086Z info: MongoDB ::::: mongodb://mongodb:27017/test-super-market-03
+2025-03-22T12:44:05.203Z info: MongoDB ::::: mongodb://mongodb:27017/test-super-market-03
+2025-03-22T12:44:18.283Z info: MongoDB ::::: mongodb://mongodb:27017/test-super-market-03
+2025-03-22T12:44:38.658Z info: MongoDB ::::: mongodb://mongodb:27017/test-super-market-04
+2025-03-22T12:44:51.732Z info: MongoDB ::::: mongodb://mongodb:27017/test-super-market-04
+2025-03-22T12:45:04.782Z info: MongoDB ::::: mongodb://mongodb:27017/test-super-market-04
+2025-03-22T12:45:25.831Z info: MongoDB ::::: mongodb://mongodb:27017/test-super-market-03
+2025-03-22T12:45:26.054Z info: MongoDB connected
+2025-03-22T12:45:26.057Z info: Server running on port 3000
+2025-03-22T12:45:26.068Z info: Admin user already exists
+2025-03-22T12:45:26.142Z info: Customer  lakshan1 user already exists
+2025-03-22T12:45:26.215Z info: Customer  suren user already exists
+2025-03-22T12:45:26.216Z info: starterPack added successfully
+2025-03-22T14:01:33.433Z info: MongoDB ::::: mongodb://mongodb:27017/test-super-market-03
+2025-03-22T14:01:33.655Z info: MongoDB connected
+2025-03-22T14:01:33.657Z info: Server running on port 3000
+2025-03-22T14:01:33.674Z info: Admin user already exists
+2025-03-22T14:01:33.757Z info: Customer  lakshan1 user already exists
+2025-03-22T14:01:33.835Z info: Customer  suren user already exists
+2025-03-22T14:01:33.836Z info: starterPack added successfully
+2025-03-22T14:01:50.164Z info: confirmOrder:: Allocate products process successfully completed}
+2025-03-22T14:01:50.168Z error: createNewOrder:: ValidationError: timestamp: Path `timestamp` is required.
+2025-03-22T14:07:08.080Z info: MongoDB ::::: mongodb://mongodb:27017/test-super-market-03
+2025-03-22T14:07:08.340Z info: MongoDB connected
+2025-03-22T14:07:08.343Z info: Server running on port 3000
+2025-03-22T14:07:08.355Z info: Admin user already exists
+2025-03-22T14:07:08.429Z info: Customer  lakshan1 user already exists
+2025-03-22T14:07:08.502Z info: Customer  suren user already exists
+2025-03-22T14:07:08.503Z info: starterPack added successfully
+2025-03-22T14:07:10.693Z info: confirmOrder:: Allocate products process successfully completed}
+2025-03-22T14:07:10.714Z error: confirmOrder:: ValidationError: additionalNote: Cast to Number failed for value "string" (type string) at path "additionalNote"
+2025-03-22T14:07:40.251Z info: MongoDB ::::: mongodb://mongodb:27017/test-super-market-03
+2025-03-22T14:07:40.601Z info: MongoDB connected
+2025-03-22T14:07:40.604Z info: Server running on port 3000
+2025-03-22T14:07:40.620Z info: Admin user already exists
+2025-03-22T14:07:40.710Z info: Customer  lakshan1 user already exists
+2025-03-22T14:07:40.792Z info: Customer  suren user already exists
+2025-03-22T14:07:40.793Z info: starterPack added successfully
+2025-03-22T14:07:44.686Z info: confirmOrder:: Allocate products process successfully completed}
+2025-03-22T14:07:44.704Z error: confirmOrder:: ValidationError: additionalNote: Cast to Number failed for value "string" (type string) at path "additionalNote"
+2025-03-22T14:10:05.691Z info: MongoDB ::::: mongodb://mongodb:27017/test-super-market-03
+2025-03-22T14:10:05.927Z info: MongoDB connected
+2025-03-22T14:10:05.931Z info: Server running on port 3000
+2025-03-22T14:10:05.944Z info: Admin user already exists
+2025-03-22T14:10:06.020Z info: Customer  lakshan1 user already exists
+2025-03-22T14:10:06.098Z info: Customer  suren user already exists
+2025-03-22T14:10:06.099Z info: starterPack added successfully
+2025-03-22T14:10:09.090Z info: confirmOrder:: Allocate products process successfully completed}
+2025-03-22T14:10:09.107Z error: confirmOrder:: ValidationError: additionalNote: Cast to Number failed for value "string" (type string) at path "additionalNote"
+2025-03-22T14:10:32.031Z info: MongoDB ::::: mongodb://mongodb:27017/test-super-market-03
+2025-03-22T14:10:32.282Z info: MongoDB connected
+2025-03-22T14:10:32.285Z info: Server running on port 3000
+2025-03-22T14:10:32.297Z info: Admin user already exists
+2025-03-22T14:10:32.382Z info: Customer  lakshan1 user already exists
+2025-03-22T14:10:32.450Z info: Customer  suren user already exists
+2025-03-22T14:10:32.451Z info: starterPack added successfully
+2025-03-22T14:10:35.454Z info: confirmOrder:: Allocate products process successfully completed}
+2025-03-22T14:10:35.463Z error: confirmOrder:: ValidationError: additionalNote: Cast to Number failed for value "string" (type string) at path "additionalNote"
+2025-03-22T14:13:46.483Z info: MongoDB ::::: mongodb://mongodb:27017/test-super-market-03
+2025-03-22T14:13:46.716Z info: MongoDB connected
+2025-03-22T14:13:46.719Z info: Server running on port 3000
+2025-03-22T14:13:46.731Z info: Admin user already exists
+2025-03-22T14:13:46.805Z info: Customer  lakshan1 user already exists
+2025-03-22T14:13:46.882Z info: Customer  suren user already exists
+2025-03-22T14:13:46.882Z info: starterPack added successfully
+2025-03-22T14:13:50.441Z info: confirmOrder:: Allocate products process successfully completed}
+2025-03-22T14:13:50.450Z info: confirmOrder:: Updated order db record successfully [object Object]}
+2025-03-22T14:14:05.878Z error: authorizeJWT:: User not authorized with role: user
+2025-03-22T14:14:23.932Z info: listOrders::Orders fetched successfully
+2025-03-22T16:06:10.468Z info: MongoDB ::::: mongodb://mongodb:27017/test-super-market-03
+2025-03-22T16:06:10.687Z info: MongoDB connected
+2025-03-22T16:06:10.690Z info: Server running on port 3000
+2025-03-22T16:06:10.709Z info: Admin user already exists
+2025-03-22T16:06:10.788Z info: Customer  lakshan1 user already exists
+2025-03-22T16:06:10.868Z info: Customer  suren user already exists
+2025-03-22T16:06:10.869Z info: starterPack added successfully
+2025-03-22T16:06:21.521Z info: listOrders::Orders fetched successfully
+2025-03-22T16:06:50.521Z error: authenticateJWT:: jwt expired
+2025-03-22T16:07:03.622Z error: authenticateJWT:: jwt expired
+2025-03-22T16:07:45.104Z info: login:: User systemAdmin@gmail.com logged in successfully
+2025-03-22T16:08:00.291Z info: listOrders::Orders fetched successfully
+2025-03-22T16:08:18.549Z error: ERROR::apiValidationHandler:  request/body must have required property 'productList'
+2025-03-22T16:10:17.793Z info: MongoDB ::::: mongodb://mongodb:27017/test-super-market-03
+2025-03-22T16:10:18.028Z info: MongoDB connected
+2025-03-22T16:10:18.031Z info: Server running on port 3000
+2025-03-22T16:10:18.048Z info: Admin user already exists
+2025-03-22T16:10:18.122Z info: Customer  lakshan1 user already exists
+2025-03-22T16:10:18.202Z info: Customer  suren user already exists
+2025-03-22T16:10:18.202Z info: starterPack added successfully
+2025-03-22T16:10:24.974Z error: releaseProductList::Error occurred: TypeError: order.productList is not iterable
+2025-03-22T16:10:24.975Z error: cancelOrder:: cancel process failed }
+2025-03-22T16:20:00.129Z info: MongoDB ::::: mongodb://mongodb:27017/test-super-market-03
+2025-03-22T16:20:00.350Z info: MongoDB connected
+2025-03-22T16:20:00.352Z info: Server running on port 3000
+2025-03-22T16:20:00.371Z info: Admin user already exists
+2025-03-22T16:20:00.451Z info: Customer  lakshan1 user already exists
+2025-03-22T16:20:00.534Z info: Customer  suren user already exists
+2025-03-22T16:20:00.534Z info: starterPack added successfully
+2025-03-22T16:20:08.206Z info: cancelOrder:: Allocate products process successfully completed}
+2025-03-22T16:20:08.214Z info: cancelOrder:: Canceled: [object Object] order successfully}
+2025-03-22T16:21:11.227Z info: MongoDB ::::: mongodb://mongodb:27017/test-super-market-03
+2025-03-22T16:21:11.454Z info: MongoDB connected
+2025-03-22T16:21:11.456Z info: Server running on port 3000
+2025-03-22T16:21:11.469Z info: Admin user already exists
+2025-03-22T16:21:11.544Z info: Customer  lakshan1 user already exists
+2025-03-22T16:21:11.620Z info: Customer  suren user already exists
+2025-03-22T16:21:11.621Z info: starterPack added successfully
+2025-03-22T16:21:14.940Z info: cancelOrder:: Cancel products process successfully completed}
+2025-03-22T16:21:14.946Z info: cancelOrder:: Canceled: {"id":1742646673022,"bill":" {\n                productId: 3,\n                quantity: 10,\n                requestedPrice: 120,\n                truePrice: 120,\n                availableQuantity: 10\n            }","totalPrice":"[object Object]","status":"CANCELLED","paymentMethod":"CASH","paymentStatus":"PENDING","userId":"GUAMCTtadpRtL9jqzLSsoZGEXdJ2","userLocation":"string","discount":0,"additionalNote":"string","timestamp":1742652830441,"createdAt":"2025-03-22T14:13:50.444Z","updatedAt":"2025-03-22T16:21:14.941Z"} order successfully}
+2025-03-22T16:22:05.002Z info: cancelOrder:: Cancel products process successfully completed}
+2025-03-22T16:22:05.008Z info: cancelOrder:: Canceled: {"id":1742646673022,"bill":" {\n                productId: 3,\n                quantity: 10,\n                requestedPrice: 120,\n                truePrice: 120,\n                availableQuantity: 10\n            }","totalPrice":"[object Object]","status":"CANCELLED","paymentMethod":"CASH","paymentStatus":"PENDING","userId":"GUAMCTtadpRtL9jqzLSsoZGEXdJ2","userLocation":"string","discount":0,"additionalNote":"string","timestamp":1742652830441,"createdAt":"2025-03-22T14:13:50.444Z","updatedAt":"2025-03-22T16:22:05.002Z"} order successfully}
+2025-03-22T16:22:30.462Z info: MongoDB ::::: mongodb://mongodb:27017/test-super-market-03
+2025-03-22T16:22:30.681Z info: MongoDB connected
+2025-03-22T16:22:30.683Z info: Server running on port 3000
+2025-03-22T16:22:30.696Z info: Admin user already exists
+2025-03-22T16:22:30.770Z info: Customer  lakshan1 user already exists
+2025-03-22T16:22:30.854Z info: Customer  suren user already exists
+2025-03-22T16:22:30.854Z info: starterPack added successfully
+2025-03-22T16:22:37.593Z info: cancelOrder:: Cancel products process successfully completed}
+2025-03-22T16:22:37.601Z info: cancelOrder:: Canceled: [object Object] order successfully}
+2025-03-22T16:26:20.898Z info: MongoDB ::::: mongodb://mongodb:27017/test-super-market-03
+2025-03-22T16:26:21.123Z info: MongoDB connected
+2025-03-22T16:26:21.125Z info: Server running on port 3000
+2025-03-22T16:26:21.146Z info: Admin user already exists
+2025-03-22T16:26:21.227Z info: Customer  lakshan1 user already exists
+2025-03-22T16:26:21.300Z info: Customer  suren user already exists
+2025-03-22T16:26:21.301Z info: starterPack added successfully
+2025-03-22T16:26:30.560Z info: requestNewOrder::Order requested successfully : [object Object]
+2025-03-22T16:27:03.400Z info: confirmOrder:: Allocate products process successfully completed}
+2025-03-22T16:27:03.416Z info: confirmOrder:: Updated order db record successfully [object Object]}
+2025-03-22T16:28:23.483Z info: MongoDB ::::: mongodb://mongodb:27017/test-super-market-03
+2025-03-22T16:28:23.713Z info: MongoDB connected
+2025-03-22T16:28:23.715Z info: Server running on port 3000
+2025-03-22T16:28:23.739Z info: Admin user already exists
+2025-03-22T16:28:23.816Z info: Customer  lakshan1 user already exists
+2025-03-22T16:28:23.901Z info: Customer  suren user already exists
+2025-03-22T16:28:23.902Z info: starterPack added successfully
+2025-03-22T16:28:27.620Z info: confirmOrder:: Allocate products process successfully completed}
+2025-03-22T16:28:27.628Z error: confirmOrder:: MongoServerError: E11000 duplicate key error collection: test-super-market-03.orders index: id_1 dup key: { id: 1742660790554.0 }
+2025-03-22T16:32:49.485Z info: MongoDB ::::: mongodb://mongodb:27017/test-super-market-03
+2025-03-22T16:32:49.710Z info: MongoDB connected
+2025-03-22T16:32:49.713Z info: Server running on port 3000
+2025-03-22T16:32:49.729Z info: Admin user already exists
+2025-03-22T16:32:49.803Z info: Customer  lakshan1 user already exists
+2025-03-22T16:32:49.875Z info: Customer  suren user already exists
+2025-03-22T16:32:49.875Z info: starterPack added successfully
+2025-03-22T16:32:51.995Z error: confirmOrder:: Order exist for orderId: 1742660790554
+2025-03-22T16:33:42.292Z error: confirmOrder:: Order exist for orderId: 17426607905154
+2025-03-22T16:33:50.089Z error: confirmOrder:: Order exist for orderId: 174266107905154
+2025-03-22T16:34:16.428Z error: confirmOrder:: Order exist for orderId: 17426654
+2025-03-22T16:35:58.807Z info: MongoDB ::::: mongodb://mongodb:27017/test-super-market-03
+2025-03-22T16:35:59.049Z info: MongoDB connected
+2025-03-22T16:35:59.051Z info: Server running on port 3000
+2025-03-22T16:35:59.063Z info: Admin user already exists
+2025-03-22T16:35:59.149Z info: Customer  lakshan1 user already exists
+2025-03-22T16:35:59.242Z info: Customer  suren user already exists
+2025-03-22T16:35:59.243Z info: starterPack added successfully
+2025-03-22T16:35:59.262Z info: confirmOrder:: Allocate products process successfully completed}
+2025-03-22T16:35:59.272Z info: confirmOrder:: Updated order db record successfully [object Object]}
+2025-03-22T16:35:59.284Z error: ERROR::apiValidationHandler:  /response must have required property 'productList'
+2025-03-22T16:36:05.319Z error: confirmOrder:: Order exist for orderId: 17426654
+2025-03-22T16:36:09.447Z error: confirmOrder:: Order exist for orderId: 17426654
+2025-03-22T16:36:19.550Z error: ERROR::apiValidationHandler:  Expected ',' or '}' after property value in JSON at position 14
+2025-03-22T16:36:27.262Z info: confirmOrder:: Allocate products process successfully completed}
+2025-03-22T16:36:27.266Z info: confirmOrder:: Updated order db record successfully [object Object]}
+2025-03-22T16:36:27.266Z error: ERROR::apiValidationHandler:  /response must have required property 'productList'
+2025-03-22T16:38:02.311Z info: MongoDB ::::: mongodb://mongodb:27017/test-super-market-03
+2025-03-22T16:38:02.539Z info: MongoDB connected
+2025-03-22T16:38:02.541Z info: Server running on port 3000
+2025-03-22T16:38:02.561Z info: Admin user already exists
+2025-03-22T16:38:02.643Z info: Customer  lakshan1 user already exists
+2025-03-22T16:38:02.722Z info: Customer  suren user already exists
+2025-03-22T16:38:02.724Z info: starterPack added successfully
+2025-03-22T16:38:05.271Z info: confirmOrder:: Allocate products process successfully completed}
+2025-03-22T16:38:05.283Z info: confirmOrder:: Updated order db record successfully [object Object]}
+2025-03-22T16:41:03.847Z info: MongoDB ::::: mongodb://mongodb:27017/test-super-market-03
+2025-03-22T16:41:04.072Z info: MongoDB connected
+2025-03-22T16:41:04.074Z info: Server running on port 3000
+2025-03-22T16:41:04.086Z info: Admin user already exists
+2025-03-22T16:41:04.166Z info: Customer  lakshan1 user already exists
+2025-03-22T16:41:04.235Z info: Customer  suren user already exists
+2025-03-22T16:41:04.236Z info: starterPack added successfully
+2025-03-22T16:41:19.013Z info: confirmOrder:: Allocate products process successfully completed}
+2025-03-22T16:41:19.025Z info: confirmOrder:: Updated order db record successfully [object Object]}
+2025-03-22T16:42:12.601Z warn: releaseProductList::Product not found: undefined
+2025-03-22T16:42:12.601Z error: cancelOrder:: cancel process failed }
+2025-03-22T16:45:34.862Z info: MongoDB ::::: mongodb://mongodb:27017/test-super-market-03
+2025-03-22T16:45:35.085Z info: MongoDB connected
+2025-03-22T16:45:35.088Z info: Server running on port 3000
+2025-03-22T16:45:35.101Z info: Admin user already exists
+2025-03-22T16:45:35.180Z info: Customer  lakshan1 user already exists
+2025-03-22T16:45:35.253Z info: Customer  suren user already exists
+2025-03-22T16:45:35.254Z info: starterPack added successfully
+2025-03-22T16:45:37.394Z info: cancelOrder:: Cancel products process successfully completed}
+2025-03-22T16:45:37.398Z info: cancelOrder:: Canceled: [object Object] order successfully}
+2025-03-22T16:48:10.985Z info: MongoDB ::::: mongodb://mongodb:27017/test-super-market-03
+2025-03-22T16:48:11.232Z info: MongoDB connected
+2025-03-22T16:48:11.237Z info: Server running on port 3000
+2025-03-22T16:48:11.259Z info: Admin user already exists
+2025-03-22T16:48:11.333Z info: Customer  lakshan1 user already exists
+2025-03-22T16:48:11.408Z info: Customer  suren user already exists
+2025-03-22T16:48:11.408Z info: starterPack added successfully
+2025-03-22T16:48:17.335Z info: confirmOrder:: Allocate products process successfully completed}
+2025-03-22T16:48:17.350Z info: confirmOrder:: Updated order db record successfully [object Object]}
+2025-03-22T16:49:09.042Z error: confirmOrder:: Order exist for orderId: 1742660122207905300
+2025-03-22T16:49:18.745Z info: confirmOrder:: Allocate products process successfully completed}
+2025-03-22T16:49:18.749Z info: confirmOrder:: Updated order db record successfully [object Object]}
+2025-03-22T16:50:41.139Z info: MongoDB ::::: mongodb://mongodb:27017/test-super-market-03
+2025-03-22T16:50:41.381Z info: MongoDB connected
+2025-03-22T16:50:41.383Z info: Server running on port 3000
+2025-03-22T16:50:41.394Z info: Admin user already exists
+2025-03-22T16:50:41.468Z info: Customer  lakshan1 user already exists
+2025-03-22T16:50:41.541Z info: Customer  suren user already exists
+2025-03-22T16:50:41.542Z info: starterPack added successfully
+2025-03-22T16:50:49.736Z info: confirmOrder:: Allocate products process successfully completed}
+2025-03-22T16:50:49.745Z info: confirmOrder:: Updated order db record successfully {"id":174791105154,"bill":"[{\"productId\":3,\"quantity\":10,\"requestedPrice\":120,\"truePrice\":120,\"availableQuantity\":10}]","totalPrice":"{\"totalCost\":1200,\"deliveryCost\":200,\"loyaltyPoints\":0,\"discount\":15,\"payableAmount\":1385}","status":"PROCESSIONG","paymentMethod":"CASH","paymentStatus":"PENDING","userId":"GUAMCTtadpRtL9jqzLSsoZGEXdJ2","userLocation":"string","discount":0,"additionalNote":"string","timestamp":1742662249736}}
+2025-03-22T16:55:51.831Z info: MongoDB ::::: mongodb://mongodb:27017/test-super-market-03
+2025-03-22T16:55:52.051Z info: MongoDB connected
+2025-03-22T16:55:52.053Z info: Server running on port 3000
+2025-03-22T16:55:52.067Z info: Admin user already exists
+2025-03-22T16:55:52.140Z info: Customer  lakshan1 user already exists
+2025-03-22T16:55:52.215Z info: Customer  suren user already exists
+2025-03-22T16:55:52.216Z info: starterPack added successfully
+2025-03-22T16:56:07.063Z info: listOrders::Orders fetched successfully
+2025-03-22T16:56:07.074Z error: ERROR::apiValidationHandler:  /response/0/paymentMethod must be equal to one of the allowed values: CASH, CARD, ONLINE
+2025-03-22T16:56:14.548Z info: listOrders::Orders fetched successfully
+2025-03-22T16:56:14.548Z error: ERROR::apiValidationHandler:  /response/0/paymentMethod must be equal to one of the allowed values: CASH, CARD, ONLINE
+2025-03-22T16:58:13.340Z info: MongoDB ::::: mongodb://mongodb:27017/test-super-market-03
+2025-03-22T16:58:13.559Z info: MongoDB connected
+2025-03-22T16:58:13.562Z info: Server running on port 3000
+2025-03-22T16:58:13.581Z info: Admin user already exists
+2025-03-22T16:58:13.659Z info: Customer  lakshan1 user already exists
+2025-03-22T16:58:13.734Z info: Customer  suren user already exists
+2025-03-22T16:58:13.734Z info: starterPack added successfully
+2025-03-22T16:58:29.464Z info: listOrders::Orders fetched successfully
+2025-03-22T16:58:29.488Z error: ERROR::apiValidationHandler:  /response/4/status must be equal to one of the allowed values: NEW, INITIATED, CONFIRMED, PROCESSIONG, SHIPPED, DELIVERED, COMPLETED, CANCELLED, RETURNED
+2025-03-22T17:00:53.031Z info: MongoDB ::::: mongodb://mongodb:27017/test-super-market-03
+2025-03-22T17:00:53.311Z info: MongoDB connected
+2025-03-22T17:00:53.313Z info: Server running on port 3000
+2025-03-22T17:00:53.327Z info: Admin user already exists
+2025-03-22T17:00:53.403Z info: Customer  lakshan1 user already exists
+2025-03-22T17:00:53.483Z info: Customer  suren user already exists
+2025-03-22T17:00:53.483Z info: starterPack added successfully
+2025-03-22T17:00:58.440Z info: listOrders::Orders fetched successfully
+2025-03-22T17:00:58.457Z error: ERROR::apiValidationHandler:  /response/5/status must be equal to one of the allowed values: NEW, INITIATED, CONFIRMED, PROCESSING, SHIPPED, DELIVERED, COMPLETED, CANCELLED, RETURNED
+2025-03-22T17:01:07.294Z info: listOrders::Orders fetched successfully
+2025-03-22T17:01:07.295Z error: ERROR::apiValidationHandler:  /response/5/status must be equal to one of the allowed values: NEW, INITIATED, CONFIRMED, PROCESSING, SHIPPED, DELIVERED, COMPLETED, CANCELLED, RETURNED
+2025-03-22T17:02:00.008Z info: MongoDB ::::: mongodb://mongodb:27017/test-super-market-03
+2025-03-22T17:02:00.253Z info: MongoDB connected
+2025-03-22T17:02:00.256Z info: Server running on port 3000
+2025-03-22T17:02:00.278Z info: Admin user already exists
+2025-03-22T17:02:00.358Z info: Customer  lakshan1 user already exists
+2025-03-22T17:02:00.430Z info: Customer  suren user already exists
+2025-03-22T17:02:00.430Z info: starterPack added successfully
+2025-03-22T17:02:02.806Z info: listOrders::Orders fetched successfully
+2025-03-22T17:02:02.814Z error: ERROR::apiValidationHandler:  /response/5/status must be equal to one of the allowed values: NEW, INITIATED, CONFIRMED, PROCESSING, SHIPPED, DELIVERED, COMPLETED, CANCELLED, RETURNED
+2025-03-22T17:03:42.142Z info: MongoDB ::::: mongodb://mongodb:27017/test-super-market-05
+2025-03-22T17:03:42.367Z info: MongoDB connected
+2025-03-22T17:03:42.370Z info: Server running on port 3000
+2025-03-22T17:03:42.693Z info: starterPack added successfully
+2025-03-22T17:03:49.395Z info: listOrders::Orders fetched successfully
+2025-03-22T17:03:52.137Z info: listOrders::Orders fetched successfully
+2025-03-22T17:03:57.739Z info: listOrders::Orders fetched successfully
+2025-03-22T17:04:09.422Z info: listOrders::Orders fetched successfully
