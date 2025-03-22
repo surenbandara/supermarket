@@ -1,6 +1,9 @@
 import { NextFunction, Request, Response } from "express";
 import OrderModel, {Order, IOder} from "../../models/order"; 
+import { OrderStatus, PriceBag, TotalBill } from "../../models/common";
 import log from '../../utils/logger';
+import ProductModel from "../../models/product";
+import { SysParaCache } from "../../models/sys-config";
 
 export const listOrders = async (req: Request, res: Response, next: NextFunction) => {
     try {
@@ -29,7 +32,14 @@ export const requestNewOrder = async (req: Request, res: Response, next: NextFun
     try {
         const order: Order = req.body as Order;
         order.id = Date.now();
+        order.status = OrderStatus.NEW;
         
+        console.log (JSON.stringify(order.productList))
+
+        await validateProductListAndSetTotalBill(order);
+        
+        order.status = OrderStatus.INITIATED;
+
         
 
         log.info(`createNewOrder::Order created successfully : ${order}`);
@@ -46,7 +56,38 @@ export const requestNewOrder = async (req: Request, res: Response, next: NextFun
 
 
 
+const validateProductListAndSetTotalBill = async (order: Order) => {
+    let totalCost = 0;
+    let totalDiscount = 0;
+    for (const item of order.productList as PriceBag[]) {
 
+        const product = await ProductModel.findOne({ id: item.productId });
+
+        if (!product) {
+            log.warn(`validateProductList::Product not found: ${item.productId}`);
+            item.availableQuantity = 0;
+            item.truePrice = 0;
+            continue;
+        }
+
+        if (product.quantity < item.quantity) {
+            log.warn(`validateProductList::Insufficient stock for product: ${item.productId}`);
+            item.availableQuantity = product.quantity;
+        } else {
+            item.availableQuantity = item.quantity;
+        }
+        item.truePrice = product.price;
+
+        totalCost += (item.availableQuantity) * (item.truePrice);
+        totalDiscount += (product?.discount ?? 0);
+
+    }
+    let loyaltyPoints = 0;
+    let deliveryCost = await SysParaCache.getInstance().get("deliveryCost")
+    order.totalPrice = new TotalBill(totalCost, Number(deliveryCost), loyaltyPoints, totalDiscount);
+
+    return;
+};
 
 
 

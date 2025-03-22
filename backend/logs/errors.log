@@ -123,3 +123,19 @@
 2025-03-16T15:54:08.023Z error: createNewCuisine:: ValidationError: timestamp: Path `timestamp` is required.
 2025-03-16T15:55:16.293Z error: ERROR::apiValidationHandler:  request/body must have required property 'timestamp'
 2025-03-16T16:00:41.722Z error: ERROR::apiValidationHandler:  request/body must have required property 'timestamp'
+2025-03-22T04:08:30.744Z error: ERROR::apiValidationHandler:  Missing $ref pointer "#/components/schemas/SystemParameter". Token "SystemParameter" does not exist.
+2025-03-22T04:09:01.536Z error: ERROR::apiValidationHandler:  Missing $ref pointer "#/components/schemas/SystemParameter". Token "SystemParameter" does not exist.
+2025-03-22T04:23:04.334Z error: ERROR::apiValidationHandler:  openapi.validator: args.apiDoc was invalid.  See the output.
+2025-03-22T04:25:15.909Z error: ERROR::apiValidationHandler:  openapi.validator: args.apiDoc was invalid.  See the output.
+2025-03-22T04:25:58.711Z error: ERROR::apiValidationHandler:  openapi.validator: args.apiDoc was invalid.  See the output.
+2025-03-22T04:27:15.871Z error: ERROR::apiValidationHandler:  Authorization header required
+2025-03-22T04:36:06.481Z error: ERROR::apiValidationHandler:  response should NOT have a body
+2025-03-22T04:37:02.369Z error: ERROR::apiValidationHandler:  response should NOT have a body
+2025-03-22T05:32:08.290Z error: ERROR::apiValidationHandler:  no schema defined for status code '404' in the openapi spec
+2025-03-22T05:32:08.292Z error: ERROR::operationHandler: No handler found for this operationId 
+2025-03-22T05:34:29.775Z error: ERROR::apiValidationHandler:  /response must have required property 'bill'
+2025-03-22T05:35:26.908Z error: ERROR::apiValidationHandler:  /response must have required property 'bill'
+2025-03-22T05:35:36.488Z error: ERROR::apiValidationHandler:  /response must have required property 'bill'
+2025-03-22T05:36:22.491Z error: ERROR::apiValidationHandler:  /response must have required property 'bill'
+2025-03-22T06:45:19.145Z error: ERROR::apiValidationHandler:  /response must have required property 'bill'
+2025-03-22T06:48:04.237Z error: ERROR::apiValidationHandler:  Missing $ref pointer "#/components/schemas/OrInitialOrderder". Token "OrInitialOrderder" does not exist.

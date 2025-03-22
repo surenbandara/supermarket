@@ -45,20 +45,20 @@ export class PriceBag {
     quantity: number;
     requestedPrice: number;
     truePrice: number;
-    priceChange: number;
+    availableQuantity: number;
 
     constructor(
         productId: number,
         quantity: number,
         requestedPrice: number,
         truePrice: number,
-        priceChange: number
+        availableQuantity: number
     ) {
         this.productId = productId;
         this.quantity = quantity;
         this.requestedPrice = requestedPrice;
         this.truePrice = truePrice;
-        this.priceChange = priceChange;
+        this.availableQuantity = availableQuantity;
     }
     public static toString(priceBags: PriceBag[]): string {
         return priceBags.map(priceBag =>
@@ -67,7 +67,7 @@ export class PriceBag {
                 quantity: ${priceBag.quantity},
                 requestedPrice: ${priceBag.requestedPrice},
                 truePrice: ${priceBag.truePrice},
-                priceChange: ${priceBag.priceChange}
+                availableQuantity: ${priceBag.availableQuantity}
             }`
         ).join('\n');
     }

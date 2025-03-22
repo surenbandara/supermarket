@@ -1,5 +1,5 @@
 import { Request, Response, NextFunction } from 'express';
-import SysConfigModel from '../../models/sys-config';
+import SysConfigModel, {SysParaCache} from '../../models/sys-config';
 import log from '../../utils/logger';
 
 export const listSystemParameters = async (req: Request, res: Response): Promise<void> => {
@@ -43,9 +43,12 @@ export const createSystemParameter = async (req: Request, res: Response): Promis
 
 export const updateSystemParameter = async (req: Request, res: Response): Promise<void> => {
     try {
-        const { name } = req.params;
-        const { value } = req.body;
+        const { name, value } = req.body;
 
+        const cache = SysParaCache.getInstance();
+        cache.del(name);
+
+        console.log(req.body)
         if (value === undefined) {
             res.status(400).json({ message: "Value is required for update" });
             return;
@@ -71,9 +74,12 @@ export const updateSystemParameter = async (req: Request, res: Response): Promis
 
 export const deleteSystemParameter = async (req: Request, res: Response): Promise<void> => {
     try {
-        const { name } = req.params;
+        const { name } = req.body;
         const deletedParam = await SysConfigModel.findOneAndDelete({ name });
 
+        const cache = SysParaCache.getInstance();
+        cache.del(name);
+        
         if (!deletedParam) {
             res.status(404).json({ message: "System parameter not found" });
             return;

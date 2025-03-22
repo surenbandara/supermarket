@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.PaymentStatus = exports.PaymentMethod = exports.OrderStatus = exports.Category = exports.Shop = exports.PriceBag = void 0;
+exports.PaymentStatus = exports.PaymentMethod = exports.OrderStatus = exports.Category = exports.Shop = exports.TotalBill = exports.PriceBag = void 0;
 var Shop;
 (function (Shop) {
     Shop["DWLKBR_SM"] = "Diwulkumbura-Supermarket";
@@ -37,12 +37,12 @@ var PaymentStatus;
     PaymentStatus["FAILED"] = "FAILED";
 })(PaymentStatus || (exports.PaymentStatus = PaymentStatus = {}));
 class PriceBag {
-    constructor(productId, quantity, requestedPrice, truePrice, priceChange) {
+    constructor(productId, quantity, requestedPrice, truePrice, availableQuantity) {
         this.productId = productId;
         this.quantity = quantity;
         this.requestedPrice = requestedPrice;
         this.truePrice = truePrice;
-        this.priceChange = priceChange;
+        this.availableQuantity = availableQuantity;
     }
     static toString(priceBags) {
         return priceBags.map(priceBag => ` {
@@ -50,8 +50,29 @@ class PriceBag {
                 quantity: ${priceBag.quantity},
                 requestedPrice: ${priceBag.requestedPrice},
                 truePrice: ${priceBag.truePrice},
-                priceChange: ${priceBag.priceChange}
+                availableQuantity: ${priceBag.availableQuantity}
             }`).join('\n');
     }
 }
 exports.PriceBag = PriceBag;
+class TotalBill {
+    constructor(totalGoods, deliveryCost, loyaltyPoints, discount) {
+        this.totalCost = totalGoods;
+        this.deliveryCost = deliveryCost;
+        this.loyaltyPoints = loyaltyPoints;
+        this.discount = discount;
+        this.payableAmount = this.calculatePayableAmount();
+    }
+    calculatePayableAmount() {
+        return this.totalCost + this.deliveryCost - this.loyaltyPoints - this.discount;
+    }
+    toString() {
+        return `TotalBill:
+        - Total Cost: ${this.totalCost}
+        - Delivery Cost: ${this.deliveryCost}
+        - Loyalty Points Deducted: ${this.loyaltyPoints}
+        - Discount Applied: ${this.discount}
+        - Payable Amount: ${this.payableAmount}`;
+    }
+}
+exports.TotalBill = TotalBill;

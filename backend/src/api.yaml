@@ -1270,8 +1270,22 @@ paths:
                   $ref: '#/components/schemas/SystemParameter'
         '401':
           description: Unauthorized
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
         '404':
           description: Not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
     post:
       summary: Create a new System Parameter
       operationId: createSystemParameter
@@ -1293,10 +1307,31 @@ paths:
                 $ref: '#/components/schemas/SystemParameter'
         '400':
           description: Bad request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
         '401':
           description: Unauthorized
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
         '500':
           description: Failed to create
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
     put:
       summary: Update a System Parameter
       operationId: updateSystemParameter
@@ -1318,12 +1353,40 @@ paths:
                 $ref: '#/components/schemas/SystemParameter'
         '400':
           description: Bad request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
         '401':
           description: Unauthorized
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
         '404':
           description: Not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
         '500':
           description: Failed to update
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
     delete:
       summary: Delete a System Parameter
       operationId: deleteSystemParameter
@@ -1351,10 +1414,31 @@ paths:
                     type: string
         '401':
           description: Unauthorized
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
         '404':
           description: Not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
         '500':
           description: Failed to delete
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
   /orders:
     get:
       summary: Get Orders
@@ -1400,6 +1484,107 @@ paths:
           description: Unauthorized
         '404':
           description: Not found
+    post:
+      summary: Create a new order
+      operationId: requestNewOrder
+      security:
+        - BearerAuth: []
+      # x-roles: ['admin']  # should be user only
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/InitialOrder'
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InitialOrder'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+        '500':
+          description: Failed to create
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+    # put:
+    #   summary: Update a System Parameter
+    #   operationId: updateSystemParameter
+    #   security:
+    #     - BearerAuth: []
+    #   x-roles: ['admin']
+    #   requestBody:
+    #     required: true
+    #     content:
+    #       application/json:
+    #         schema:
+    #           $ref: '#/components/schemas/SystemParameter'
+    #   responses:
+    #     '200':
+    #       description: Updated
+    #       content:
+    #         application/json:
+    #           schema:
+    #             $ref: '#/components/schemas/SystemParameter'
+    #     '400':
+    #       description: Bad request
+    #       content:
+    #         application/json:
+    #           schema:
+    #             type: object
+    #             properties:
+    #               message:
+    #                 type: string
+    #     '401':
+    #       description: Unauthorized
+    #       content:
+    #         application/json:
+    #           schema:
+    #             type: object
+    #             properties:
+    #               message:
+    #                 type: string
+    #     '404':
+    #       description: Not found
+    #       content:
+    #         application/json:
+    #           schema:
+    #             type: object
+    #             properties:
+    #               message:
+    #                 type: string
+    #     '500':
+    #       description: Failed to update
+    #       content:
+    #         application/json:
+    #           schema:
+    #             type: object
+    #             properties:
+    #               message:
+    #                 type: string
 components:
   securitySchemes:
       BearerAuth:
@@ -1629,7 +1814,7 @@ components:
       required:
         - name
         - timestamp
-    systemParameter:
+    SystemParameter:
       type: object
       properties:
         name:
@@ -1763,7 +1948,7 @@ components:
         - quantity
         - requestedPrice
         - truePrice
-        - priceChange
+        - availableQuantity
       properties:
         productId:
           type: integer
@@ -1779,7 +1964,7 @@ components:
           type: number
           format: float
           description: Actual price of the product
-        priceChange:
+        availableQuantity:
           type: number
           format: float
           description: Difference between requested price and true price
@@ -1812,3 +1997,4 @@ components:
           type: number
           format: float
           description: Final amount payable after all adjustments
+

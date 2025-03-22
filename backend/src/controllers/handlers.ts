@@ -40,6 +40,7 @@ export default {
     createSystemParameter: sysParaHandler.createSystemParameter,
     updateSystemParameter: sysParaHandler.updateSystemParameter,
     deleteSystemParameter: sysParaHandler.deleteSystemParameter,
-    listOrders: orderHandler.listOrders
+    listOrders: orderHandler.listOrders,
+    requestNewOrder: orderHandler.requestNewOrder
 
 }

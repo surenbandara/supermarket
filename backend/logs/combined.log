@@ -1572,3 +1572,311 @@
 2025-03-16T16:10:26.942Z info: Customer  suren user already exists
 2025-03-16T16:10:26.943Z info: starterPack added successfully
 2025-03-16T16:10:29.194Z info: listCuisines::Cuisines fetched successfully : [{"name":"Italian","timestamp":1742141426943},{"name":"Vegetarian","timestamp":1742141426943},{"name":"Beverage","timestamp":1742141426943}]
+2025-03-22T04:08:06.517Z info: MongoDB ::::: mongodb://mongodb:27017/test-super-market-03
+2025-03-22T04:08:06.657Z info: MongoDB connected
+2025-03-22T04:08:06.659Z info: Server running on port 3000
+2025-03-22T04:08:06.680Z info: Admin user already exists
+2025-03-22T04:08:06.775Z info: Customer  lakshan1 user already exists
+2025-03-22T04:08:06.853Z info: Customer  suren user already exists
+2025-03-22T04:08:06.854Z info: starterPack added successfully
+2025-03-22T04:08:30.744Z error: ERROR::apiValidationHandler:  Missing $ref pointer "#/components/schemas/SystemParameter". Token "SystemParameter" does not exist.
+2025-03-22T04:09:01.536Z error: ERROR::apiValidationHandler:  Missing $ref pointer "#/components/schemas/SystemParameter". Token "SystemParameter" does not exist.
+2025-03-22T04:12:12.587Z info: MongoDB ::::: mongodb://mongodb:27017/test-super-market-03
+2025-03-22T04:12:12.858Z info: MongoDB connected
+2025-03-22T04:12:12.861Z info: Server running on port 3000
+2025-03-22T04:12:12.887Z info: Admin user already exists
+2025-03-22T04:12:12.998Z info: Customer  lakshan1 user already exists
+2025-03-22T04:12:13.088Z info: Customer  suren user already exists
+2025-03-22T04:12:13.088Z info: starterPack added successfully
+2025-03-22T04:23:04.334Z error: ERROR::apiValidationHandler:  openapi.validator: args.apiDoc was invalid.  See the output.
+2025-03-22T04:25:13.634Z info: MongoDB ::::: mongodb://mongodb:27017/test-super-market-03
+2025-03-22T04:25:14.321Z info: MongoDB connected
+2025-03-22T04:25:14.326Z info: Server running on port 3000
+2025-03-22T04:25:14.400Z info: Admin user already exists
+2025-03-22T04:25:14.611Z info: Customer  lakshan1 user already exists
+2025-03-22T04:25:14.801Z info: Customer  suren user already exists
+2025-03-22T04:25:14.803Z info: starterPack added successfully
+2025-03-22T04:25:15.909Z error: ERROR::apiValidationHandler:  openapi.validator: args.apiDoc was invalid.  See the output.
+2025-03-22T04:25:43.510Z info: MongoDB ::::: mongodb://mongodb:27017/test-super-market-03
+2025-03-22T04:25:43.956Z info: MongoDB connected
+2025-03-22T04:25:43.959Z info: Server running on port 3000
+2025-03-22T04:25:44.022Z info: Admin user already exists
+2025-03-22T04:25:44.194Z info: Customer  lakshan1 user already exists
+2025-03-22T04:25:44.354Z info: Customer  suren user already exists
+2025-03-22T04:25:44.356Z info: starterPack added successfully
+2025-03-22T04:25:58.711Z error: ERROR::apiValidationHandler:  openapi.validator: args.apiDoc was invalid.  See the output.
+2025-03-22T04:26:34.555Z info: MongoDB ::::: mongodb://mongodb:27017/test-super-market-03
+2025-03-22T04:26:34.829Z info: MongoDB connected
+2025-03-22T04:26:34.830Z info: Server running on port 3000
+2025-03-22T04:26:34.862Z info: Admin user already exists
+2025-03-22T04:26:34.950Z info: Customer  lakshan1 user already exists
+2025-03-22T04:26:35.051Z info: Customer  suren user already exists
+2025-03-22T04:26:35.052Z info: starterPack added successfully
+2025-03-22T04:27:15.871Z error: ERROR::apiValidationHandler:  Authorization header required
+2025-03-22T04:27:43.592Z info: listShops::Shops fetched successfully : [{"name":"lakshan-shop-01","vendorName":"lakiya-ratha","vendorEmai":"string","vendorPhoneNumber":"string","timestamp":0,"image":"string","additionalData":"string","createdAt":"2025-03-16T11:08:37.478Z","updatedAt":"2025-03-16T11:09:43.012Z"}]
+2025-03-22T04:30:00.757Z info: MongoDB ::::: mongodb://mongodb:27017/test-super-market-03
+2025-03-22T04:30:01.016Z info: MongoDB connected
+2025-03-22T04:30:01.021Z info: Server running on port 3000
+2025-03-22T04:30:01.040Z info: Admin user already exists
+2025-03-22T04:30:01.115Z info: Customer  lakshan1 user already exists
+2025-03-22T04:30:01.190Z info: Customer  suren user already exists
+2025-03-22T04:30:01.191Z info: starterPack added successfully
+2025-03-22T04:35:00.483Z info: listShops::Shops fetched successfully : [{"name":"lakshan-shop-01","vendorName":"lakiya-ratha","vendorEmai":"string","vendorPhoneNumber":"string","timestamp":0,"image":"string","additionalData":"string","createdAt":"2025-03-16T11:08:37.478Z","updatedAt":"2025-03-16T11:09:43.012Z"}]
+2025-03-22T04:36:06.481Z error: ERROR::apiValidationHandler:  response should NOT have a body
+2025-03-22T04:37:02.369Z error: ERROR::apiValidationHandler:  response should NOT have a body
+2025-03-22T04:40:02.750Z info: MongoDB ::::: mongodb://mongodb:27017/test-super-market-03
+2025-03-22T04:40:02.972Z info: MongoDB connected
+2025-03-22T04:40:02.975Z info: Server running on port 3000
+2025-03-22T04:40:02.989Z info: Admin user already exists
+2025-03-22T04:40:03.065Z info: Customer  lakshan1 user already exists
+2025-03-22T04:40:03.160Z info: Customer  suren user already exists
+2025-03-22T04:40:03.161Z info: starterPack added successfully
+2025-03-22T04:55:44.263Z info: MongoDB ::::: mongodb://mongodb:27017/test-super-market-03
+2025-03-22T04:55:44.481Z info: MongoDB connected
+2025-03-22T04:55:44.483Z info: Server running on port 3000
+2025-03-22T04:55:44.503Z info: Admin user already exists
+2025-03-22T04:55:44.578Z info: Customer  lakshan1 user already exists
+2025-03-22T04:55:44.661Z info: Customer  suren user already exists
+2025-03-22T04:55:44.662Z info: starterPack added successfully
+2025-03-22T05:17:55.183Z info: MongoDB ::::: mongodb://mongodb:27017/test-super-market-03
+2025-03-22T05:17:55.409Z info: MongoDB connected
+2025-03-22T05:17:55.412Z info: Server running on port 3000
+2025-03-22T05:17:55.429Z info: Admin user already exists
+2025-03-22T05:17:55.502Z info: Customer  lakshan1 user already exists
+2025-03-22T05:17:55.574Z info: Customer  suren user already exists
+2025-03-22T05:17:55.574Z info: starterPack added successfully
+2025-03-22T05:25:46.325Z info: MongoDB ::::: mongodb://mongodb:27017/test-super-market-03
+2025-03-22T05:25:46.915Z info: MongoDB connected
+2025-03-22T05:25:46.919Z info: Server running on port 3000
+2025-03-22T05:25:46.990Z info: Admin user already exists
+2025-03-22T05:25:47.153Z info: Customer  lakshan1 user already exists
+2025-03-22T05:25:47.278Z info: Customer  suren user already exists
+2025-03-22T05:25:47.279Z info: starterPack added successfully
+2025-03-22T05:26:11.154Z info: listOrders::Orders fetched successfully
+2025-03-22T05:29:08.815Z info: MongoDB ::::: mongodb://mongodb:27017/test-super-market-03
+2025-03-22T05:29:09.038Z info: MongoDB connected
+2025-03-22T05:29:09.040Z info: Server running on port 3000
+2025-03-22T05:29:09.055Z info: Admin user already exists
+2025-03-22T05:29:09.129Z info: Customer  lakshan1 user already exists
+2025-03-22T05:29:09.201Z info: Customer  suren user already exists
+2025-03-22T05:29:09.201Z info: starterPack added successfully
+2025-03-22T05:30:24.828Z info: listOrders::Orders fetched successfully
+2025-03-22T05:31:48.028Z info: listOrders::Orders fetched successfully
+2025-03-22T05:32:08.290Z error: ERROR::apiValidationHandler:  no schema defined for status code '404' in the openapi spec
+2025-03-22T05:32:08.292Z error: ERROR::operationHandler: No handler found for this operationId 
+2025-03-22T05:33:21.731Z info: MongoDB ::::: mongodb://mongodb:27017/test-super-market-03
+2025-03-22T05:33:21.957Z info: MongoDB connected
+2025-03-22T05:33:21.960Z info: Server running on port 3000
+2025-03-22T05:33:21.980Z info: Admin user already exists
+2025-03-22T05:33:22.061Z info: Customer  lakshan1 user already exists
+2025-03-22T05:33:22.144Z info: Customer  suren user already exists
+2025-03-22T05:33:22.145Z info: starterPack added successfully
+2025-03-22T05:34:29.766Z info: createNewOrder::Order created successfully : [object Object]
+2025-03-22T05:34:29.775Z error: ERROR::apiValidationHandler:  /response must have required property 'bill'
+2025-03-22T05:35:20.532Z info: MongoDB ::::: mongodb://mongodb:27017/test-super-market-03
+2025-03-22T05:35:21.196Z info: MongoDB connected
+2025-03-22T05:35:21.201Z info: Server running on port 3000
+2025-03-22T05:35:21.278Z info: Admin user already exists
+2025-03-22T05:35:21.557Z info: Customer  lakshan1 user already exists
+2025-03-22T05:35:21.764Z info: Customer  suren user already exists
+2025-03-22T05:35:21.766Z info: starterPack added successfully
+2025-03-22T05:35:26.895Z info: createNewOrder::Order created successfully : [object Object]
+2025-03-22T05:35:26.908Z error: ERROR::apiValidationHandler:  /response must have required property 'bill'
+2025-03-22T05:35:36.488Z info: createNewOrder::Order created successfully : [object Object]
+2025-03-22T05:35:36.488Z error: ERROR::apiValidationHandler:  /response must have required property 'bill'
+2025-03-22T05:36:22.490Z info: createNewOrder::Order created successfully : [object Object]
+2025-03-22T05:36:22.491Z error: ERROR::apiValidationHandler:  /response must have required property 'bill'
+2025-03-22T06:40:26.571Z info: MongoDB ::::: mongodb://mongodb:27017/test-super-market-03
+2025-03-22T06:40:26.807Z info: MongoDB connected
+2025-03-22T06:40:26.809Z info: Server running on port 3000
+2025-03-22T06:40:26.825Z info: Admin user already exists
+2025-03-22T06:40:26.898Z info: Customer  lakshan1 user already exists
+2025-03-22T06:40:26.969Z info: Customer  suren user already exists
+2025-03-22T06:40:26.970Z info: starterPack added successfully
+2025-03-22T06:42:27.520Z info: listOrders::Orders fetched successfully
+2025-03-22T06:42:45.414Z info: listProducts::Products fetched successfully : {
+  name: '1',
+  price: 0,
+  quantity: 0,
+  cusine: [ 'string' ],
+  brand: 'string',
+  shop: 'string',
+  image: 'string',
+  discount: 0,
+  timestamp: 0,
+  additionalData: {
+    color: 'string',
+    expirationDate: 0,
+    size: 'string',
+    description: 'string'
+  },
+  id: 1742137562027
+},{
+  name: '2',
+  price: 0,
+  quantity: 0,
+  cusine: [ 'nu' ],
+  brand: 'string',
+  shop: 'string',
+  image: 'string',
+  discount: 0,
+  timestamp: 0,
+  additionalData: {
+    color: 'string',
+    expirationDate: 0,
+    size: 'string',
+    description: 'string'
+  },
+  id: 1742137577454
+},{
+  name: '3',
+  price: 0,
+  quantity: 0,
+  cusine: [ 'nu' ],
+  brand: 'string',
+  shop: 'lk',
+  image: 'string',
+  discount: 0,
+  timestamp: 0,
+  additionalData: {
+    color: 'string',
+    expirationDate: 0,
+    size: 'string',
+    description: 'string'
+  },
+  id: 1742137588819
+},{
+  name: '4',
+  price: 0,
+  quantity: 0,
+  cusine: [ 'nu' ],
+  brand: 'lop',
+  shop: 'lk',
+  image: 'string',
+  discount: 0,
+  timestamp: 0,
+  additionalData: {
+    color: 'string',
+    expirationDate: 0,
+    size: 'string',
+    description: 'string'
+  },
+  id: 1742137601176
+},{
+  id: 1,
+  name: 'Margherita Pizza',
+  price: 12.99,
+  quantity: 50,
+  cusine: [ 'Italian', 'Vegetarian' ],
+  brand: 'Napoli Pizzeria',
+  shop: 'Pizza Heaven',
+  image: 'https://example.com/margherita.jpg',
+  discount: 10,
+  timestamp: 1710480000000,
+  additionalData: {
+    description: 'Classic margherita pizza with fresh tomatoes and basil.'
+  }
+},{
+  id: 2,
+  name: 'Samsung Galaxy S23',
+  price: 899.99,
+  quantity: 20,
+  cusine: [],
+  brand: 'Samsung',
+  shop: 'Tech Hub',
+  image: 'https://example.com/galaxy-s23.jpg',
+  discount: 5,
+  timestamp: 1710480000000,
+  additionalData: { specs: { RAM: '8GB', Storage: '256GB' } }
+},{
+  id: 3,
+  name: 'Nike Air Force 1',
+  price: 120,
+  quantity: 100,
+  cusine: [],
+  brand: 'Nike',
+  shop: 'Sneaker World',
+  image: 'https://example.com/air-force-1.jpg',
+  discount: 15,
+  timestamp: 1710480000000,
+  additionalData: { size: [ 'US 7', 'US 8', 'US 9', 'US 10' ] }
+},{
+  id: 4,
+  name: 'Espresso Coffee',
+  price: 4.99,
+  quantity: 200,
+  cusine: [ 'Italian', 'Beverage' ],
+  brand: 'StarBrew',
+  shop: 'Coffee House',
+  image: 'https://example.com/espresso.jpg',
+  discount: 0,
+  timestamp: 1710480000000,
+  additionalData: { caffeine_content: 'High' }
+},{
+  id: 5,
+  name: 'MacBook Pro 16-inch',
+  price: 2499.99,
+  quantity: 10,
+  cusine: [],
+  brand: 'Apple',
+  shop: 'Apple Store',
+  image: 'https://example.com/macbook-pro.jpg',
+  discount: 8,
+  timestamp: 1710480000000,
+  additionalData: { specs: { Processor: 'M2 Pro', RAM: '16GB', Storage: '512GB SSD' } }
+}
+2025-03-22T06:44:22.909Z info: createNewProduct::Product created successfully : {
+  name: 'p1',
+  price: 10,
+  quantity: 10,
+  cusine: [ 'string' ],
+  brand: 'string',
+  shop: 'string',
+  image: 'string',
+  discount: 0,
+  timestamp: 0,
+  additionalData: {
+    color: 'string',
+    expirationDate: 0,
+    size: 'string',
+    description: 'string'
+  },
+  id: 1742625862896
+}
+2025-03-22T06:45:19.131Z info: createNewOrder::Order created successfully : [object Object]
+2025-03-22T06:45:19.145Z error: ERROR::apiValidationHandler:  /response must have required property 'bill'
+2025-03-22T06:47:18.961Z info: MongoDB ::::: mongodb://mongodb:27017/test-super-market-03
+2025-03-22T06:47:19.066Z info: MongoDB connected
+2025-03-22T06:47:19.069Z info: Server running on port 3000
+2025-03-22T06:47:19.081Z info: Admin user already exists
+2025-03-22T06:47:19.164Z info: Customer  lakshan1 user already exists
+2025-03-22T06:47:19.233Z info: Customer  suren user already exists
+2025-03-22T06:47:19.233Z info: starterPack added successfully
+2025-03-22T06:48:04.237Z error: ERROR::apiValidationHandler:  Missing $ref pointer "#/components/schemas/OrInitialOrderder". Token "OrInitialOrderder" does not exist.
+2025-03-22T06:48:30.236Z info: MongoDB ::::: mongodb://mongodb:27017/test-super-market-03
+2025-03-22T06:48:30.454Z info: MongoDB connected
+2025-03-22T06:48:30.456Z info: Server running on port 3000
+2025-03-22T06:48:30.468Z info: Admin user already exists
+2025-03-22T06:48:30.552Z info: Customer  lakshan1 user already exists
+2025-03-22T06:48:30.621Z info: Customer  suren user already exists
+2025-03-22T06:48:30.621Z info: starterPack added successfully
+2025-03-22T06:48:35.705Z info: createNewOrder::Order created successfully : [object Object]
+2025-03-22T06:49:46.329Z info: createNewProduct::Product created successfully : {
+  name: 'p2',
+  price: 1,
+  quantity: 10,
+  cusine: [ 'string' ],
+  brand: 'string',
+  shop: 'string',
+  image: 'string',
+  discount: 0,
+  timestamp: 0,
+  additionalData: {
+    color: 'string',
+    expirationDate: 0,
+    size: 'string',
+    description: 'string'
+  },
+  id: 1742626186312
+}
+2025-03-22T06:50:16.655Z info: createNewOrder::Order created successfully : [object Object]

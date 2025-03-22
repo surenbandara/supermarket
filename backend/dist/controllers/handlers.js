@@ -40,6 +40,8 @@ const authenticate = __importStar(require("./handlers/authenticator"));
 const shopHandlers = __importStar(require("./handlers/shop"));
 const riderHandler = __importStar(require("./handlers/rider"));
 const cusineHandler = __importStar(require("./handlers/cusine"));
+const sysParaHandler = __importStar(require("./handlers/sys-parameter"));
+const orderHandler = __importStar(require("./handlers/order"));
 exports.default = {
     login: authenticate.login,
     register: authenticate.register,
@@ -64,5 +66,11 @@ exports.default = {
     listCusines: cusineHandler.listCusines,
     createNewCusine: cusineHandler.createNewCusine,
     updateCusine: cusineHandler.updateCusine,
-    deleteCusine: cusineHandler.deleteCusine
+    deleteCusine: cusineHandler.deleteCusine,
+    listSystemParameters: sysParaHandler.listSystemParameters,
+    createSystemParameter: sysParaHandler.createSystemParameter,
+    updateSystemParameter: sysParaHandler.updateSystemParameter,
+    deleteSystemParameter: sysParaHandler.deleteSystemParameter,
+    listOrders: orderHandler.listOrders,
+    requestNewOrder: orderHandler.requestNewOrder
 };
