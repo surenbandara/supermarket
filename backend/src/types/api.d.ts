@@ -9,7 +9,7 @@ declare module 'express' {
             };
         };
         authResult?: {
-            id: number;
+            id: string;
             role: string;
         };
     }

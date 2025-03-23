@@ -40,6 +40,8 @@ shopSchema.set('toJSON', {
     transform: (doc, ret, options) => {
         delete ret._id;
         delete ret.__v;
+        delete ret.createdAt;
+        delete ret.updatedAt;
         return ret;
     },
 });

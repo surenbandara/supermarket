@@ -1245,6 +1245,424 @@ paths:
                 properties:
                   message:
                     type: string
+  /system-parameters:
+    get:
+      summary: Get System Parameters
+      operationId: listSystemParameters
+      security:
+        - BearerAuth: []
+      x-roles: ['admin']
+      parameters:
+        - name: name
+          in: query
+          description: Filter System Parameters by name
+          required: false
+          schema:
+            type: string
+      responses:
+        '200':
+          description: A list of System Parameters
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SystemParameter'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+        '404':
+          description: Not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+    post:
+      summary: Create a new System Parameter
+      operationId: createSystemParameter
+      security:
+        - BearerAuth: []
+      x-roles: ['admin']
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SystemParameter'
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SystemParameter'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+        '500':
+          description: Failed to create
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+    put:
+      summary: Update a System Parameter
+      operationId: updateSystemParameter
+      security:
+        - BearerAuth: []
+      x-roles: ['admin']
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SystemParameter'
+      responses:
+        '200':
+          description: Updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SystemParameter'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+        '404':
+          description: Not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+        '500':
+          description: Failed to update
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+    delete:
+      summary: Delete a System Parameter
+      operationId: deleteSystemParameter
+      security:
+        - BearerAuth: []
+      x-roles: ['admin']
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+      responses:
+        '200':
+          description: Deleted
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+        '404':
+          description: Not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+        '500':
+          description: Failed to delete
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+  /orders:
+    get:
+      summary: Get Orders
+      operationId: listOrders
+      security:
+        - BearerAuth: []
+      x-roles: ['admin']
+      parameters:
+        - name: id
+          in: query
+          description: Filter orders by ID
+          required: false
+          schema:
+            type: integer
+        - name: userId
+          in: query
+          description: Filter orders by User ID
+          required: false
+          schema:
+            type: string
+        - name: status
+          in: query
+          description: Filter orders by status
+          required: false
+          schema:
+            type: string
+        - name: paymentStatus
+          in: query
+          description: Filter orders by payment status
+          required: false
+          schema:
+            type: string
+      responses:
+        '200':
+          description: A list of Orders
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Order'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+        '404':
+          description: Not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+    post:
+      summary: Create a new order
+      operationId: requestNewOrder
+      security:
+        - BearerAuth: []
+      x-roles: ['user']  
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/InitialOrder'
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InitialOrder'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+        '500':
+          description: Failed to create
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+    put:
+      summary: Update an Order
+      operationId: confirmOrder
+      security:
+        - BearerAuth: []
+      x-roles: ['user'] 
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/InitialOrder'
+      responses:
+        '201':
+          description: Updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Order'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+        '404':
+          description: Not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+        '500':
+          description: Failed to update
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+    delete:
+      summary: Delete an Order
+      operationId: cancelOrder
+      security:
+        - BearerAuth: []
+      x-roles: ['admin']
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Order'
+      responses:
+        '201':
+          description: Updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Order'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+        '404':
+          description: Not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+        '500':
+          description: Failed to update
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
 components:
   securitySchemes:
       BearerAuth:
@@ -1474,3 +1892,187 @@ components:
       required:
         - name
         - timestamp
+    SystemParameter:
+      type: object
+      properties:
+        name:
+          type: string
+        value:
+          oneOf:
+            - type: string
+            - type: number
+            - type: boolean
+            - type: object
+      required:
+        - name
+        - value    
+    InitialOrder:
+      type: object
+      required:
+        - id
+        - productList
+        - totalPrice
+        - status
+        - paymentMethod
+        - paymentStatus
+        - userId
+        - userLocation
+        - timestamp
+      properties:
+        id:
+          type: integer
+          description: Unique identifier for the order
+        productList:
+          type: array
+          description: List of products in the order
+          items:
+            $ref: '#/components/schemas/PriceBag'
+        totalPrice:
+          $ref: '#/components/schemas/TotalBill'
+        status:
+          $ref: '#/components/schemas/OrderStatus'
+        paymentMethod:
+          $ref: '#/components/schemas/PaymentMethod'
+        paymentStatus:
+          $ref: '#/components/schemas/PaymentStatus'
+        userId:
+          type: string
+          description: ID of the user who placed the order
+        userLocation:
+          type: string
+          description: Delivery location of the user
+        discount:
+          type: number
+          format: float
+          description: Discount applied to the order (if any)
+        additionalNote:
+          type: string
+          description: Additional notes provided by the user (if any)
+        timestamp:
+          type: integer
+          format: int64
+          description: Timestamp of when the order was placed   
+    Order:
+      type: object
+      required:
+        - id
+        - bill
+        - totalPrice
+        - status
+        - paymentMethod
+        - paymentStatus
+        - userId
+        - userLocation
+        - timestamp
+      properties:
+        id:
+          type: integer
+          description: Unique identifier for the order
+        bill:
+          type: string
+        totalPrice:
+          type: string
+        status:
+          $ref: '#/components/schemas/OrderStatus'
+        paymentMethod:
+          $ref: '#/components/schemas/PaymentMethod'
+        paymentStatus:
+          $ref: '#/components/schemas/PaymentStatus'
+        userId:
+          type: string
+          description: ID of the user who placed the order
+        userLocation:
+          type: string
+          description: Delivery location of the user
+        discount:
+          type: number
+        additionalNote:
+          type: string
+          description: Additional notes provided by the user (if any)
+        timestamp:
+          type: integer
+          description: Timestamp of when the order was placed
+    OrderStatus:
+      type: string
+      enum:
+        - NEW
+        - INITIATED
+        - CONFIRMED
+        - PROCESSING
+        - SHIPPED
+        - DELIVERED
+        - COMPLETED
+        - CANCELLED
+        - RETURNED
+      description: Current status of the order
+    PaymentMethod:
+      type: string
+      enum:
+        - CASH
+        - CARD
+        - ONLINE
+      description: Payment method used for the order
+    PaymentStatus:
+      type: string
+      enum:
+        - PENDING
+        - SUCCESS
+        - FAILED
+      description: Status of the payment
+    PriceBag:
+      type: object
+      required:
+        - productId
+        - quantity
+        - requestedPrice
+        - truePrice
+        - availableQuantity
+      properties:
+        productId:
+          type: integer
+          description: Unique identifier for the product
+        quantity:
+          type: integer
+          description: Quantity of the product in the order
+        requestedPrice:
+          type: number
+          format: float
+          description: Price requested by the customer
+        truePrice:
+          type: number
+          format: float
+          description: Actual price of the product
+        availableQuantity:
+          type: number
+          format: float
+          description: Difference between requested price and true price
+    TotalBill:
+      type: object
+      required:
+        - totalCost
+        - deliveryCost
+        - loyaltyPoints
+        - discount
+        - payableAmount
+      properties:
+        totalCost:
+          type: number
+          format: float
+          description: Total cost of goods before additional charges
+        deliveryCost:
+          type: number
+          format: float
+          description: Cost of delivery
+        loyaltyPoints:
+          type: number
+          format: float
+          description: Loyalty points deducted from total cost
+        discount:
+          type: number
+          format: float
+          description: Discount applied to the order
+        payableAmount:
+          type: number
+          format: float
+          description: Final amount payable after all adjustments
+

@@ -20,7 +20,7 @@ enum OrderStatus {
     NEW = "NEW",
     INITIATED = "INITIATED",
     CONFIRMED = "CONFIRMED",
-    PROCESSIONG = "PROCESSIONG",
+    PROCESSIONG = "PROCESSING",
     SHIPPED = "SHIPPED",
     DELIVERED = "DELIVERED",
     COMPLETED = "COMPLETED",
@@ -45,31 +45,86 @@ export class PriceBag {
     quantity: number;
     requestedPrice: number;
     truePrice: number;
-    priceChange: number;
+    availableQuantity: number;
 
     constructor(
         productId: number,
         quantity: number,
         requestedPrice: number,
         truePrice: number,
-        priceChange: number
+        availableQuantity: number
     ) {
         this.productId = productId;
         this.quantity = quantity;
         this.requestedPrice = requestedPrice;
         this.truePrice = truePrice;
-        this.priceChange = priceChange;
+        this.availableQuantity = availableQuantity;
     }
     public static toString(priceBags: PriceBag[]): string {
-        return priceBags.map(priceBag => 
-            ` {
-                productId: ${priceBag.productId},
-                quantity: ${priceBag.quantity},
-                requestedPrice: ${priceBag.requestedPrice},
-                truePrice: ${priceBag.truePrice},
-                priceChange: ${priceBag.priceChange}
-            }`
-        ).join('\n');
+        // return priceBags.map(priceBag =>
+        //     ` {
+        //         productId: ${priceBag.productId},
+        //         quantity: ${priceBag.quantity},
+        //         requestedPrice: ${priceBag.requestedPrice},
+        //         truePrice: ${priceBag.truePrice},
+        //         availableQuantity: ${priceBag.availableQuantity}
+        //     }`
+        // ).join('\n');
+        return JSON.stringify(priceBags);
+    }
+
+    public static fromString(input: string): PriceBag[] {
+        try {
+            const parsedArray = JSON.parse(input);
+
+            return parsedArray.map(
+                (obj: any) =>
+                    new PriceBag(
+                        obj.productId,
+                        obj.quantity,
+                        obj.requestedPrice,
+                        obj.truePrice,
+                        obj.availableQuantity
+                    )
+            );
+        } catch (error) {
+            console.error("Error parsing PriceBag string:", error);
+            return [];
+        }
+    }
+}
+
+export class TotalBill {
+    totalCost: number;
+    deliveryCost: number;
+    loyaltyPoints: number;
+    discount: number;
+    payableAmount: number;
+
+    constructor(totalGoods: number, deliveryCost: number, loyaltyPoints: number, discount: number) {
+        this.totalCost = totalGoods;
+        this.deliveryCost = deliveryCost;
+        this.loyaltyPoints = loyaltyPoints;
+        this.discount = discount;
+        this.payableAmount = this.calculatePayableAmount();
+    }
+
+    private calculatePayableAmount(): number {
+        return this.totalCost + this.deliveryCost - this.loyaltyPoints - this.discount;
+    }
+
+    public static toString(totalBill: TotalBill): string {
+        return JSON.stringify(totalBill);
+    }
+
+    public static fromString(input: string): TotalBill | null {
+        try {
+            const obj = JSON.parse(input);
+            return new TotalBill(obj.totalCost, obj.deliveryCost, obj.loyaltyPoints, obj.discount);
+        } catch (error) {
+            console.error("Error parsing TotalBill string:", error);
+            return null;
+        }
     }
 }
 

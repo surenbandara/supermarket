@@ -6,6 +6,8 @@ import * as authenticate from "./handlers/authenticator";
 import * as shopHandlers from "./handlers/shop";
 import * as riderHandler from "./handlers/rider";
 import * as cusineHandler from "./handlers/cusine";
+import * as sysParaHandler from "./handlers/sys-parameter";
+import * as orderHandler from "./handlers/order";
 
 
 export default {
@@ -33,6 +35,14 @@ export default {
     listCusines: cusineHandler.listCusines,
     createNewCusine: cusineHandler.createNewCusine,
     updateCusine: cusineHandler.updateCusine,
-    deleteCusine: cusineHandler.deleteCusine
+    deleteCusine: cusineHandler.deleteCusine,
+    listSystemParameters: sysParaHandler.listSystemParameters,
+    createSystemParameter: sysParaHandler.createSystemParameter,
+    updateSystemParameter: sysParaHandler.updateSystemParameter,
+    deleteSystemParameter: sysParaHandler.deleteSystemParameter,
+    listOrders: orderHandler.listOrders,
+    requestNewOrder: orderHandler.requestNewOrder,
+    confirmOrder: orderHandler.confirmOrder,
+    cancelOrder: orderHandler.cancelOrder
 
 }
