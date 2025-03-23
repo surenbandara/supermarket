@@ -2349,3 +2349,14 @@
 2025-03-22T17:03:52.137Z info: listOrders::Orders fetched successfully
 2025-03-22T17:03:57.739Z info: listOrders::Orders fetched successfully
 2025-03-22T17:04:09.422Z info: listOrders::Orders fetched successfully
+2025-03-23T03:35:27.238Z info: MongoDB ::::: mongodb://mongodb:27017/test-super-market-05
+2025-03-23T03:35:27.589Z info: MongoDB connected
+2025-03-23T03:35:27.592Z info: Server running on port 3000
+2025-03-23T03:35:27.604Z info: Admin user already exists
+2025-03-23T03:35:27.683Z info: Customer  lakshan1 user already exists
+2025-03-23T03:35:27.769Z info: Customer  suren user already exists
+2025-03-23T03:35:27.769Z info: starterPack added successfully
+2025-03-23T03:35:34.096Z info: login:: User systemAdmin@gmail.com logged in successfully
+2025-03-23T03:36:16.867Z info: listOrders::Orders fetched successfully
+2025-03-23T03:36:35.327Z info: cancelOrder:: Cancel products process successfully completed}
+2025-03-23T03:36:35.330Z info: cancelOrder:: Canceled: [object Object] order successfully}

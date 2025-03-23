@@ -247,25 +247,37 @@ export const cancelOrder = async (req: Request, res: Response, next: NextFunctio
         const order: IOder = req.body as IOder;
 
         //// do the necessary status validations
-        // if (order.status != OrderStatus.CONFIRMED) {
-        //     log.error(`confirmOrder:: Invalid order status: ${order.status}`);
-        //     res.status(400).json({
-        //         status: 400,
-        //         message: "Invalid Order Status to allocate products",
-        //     });
-        //     return;
-        // }
+        if (order.status == OrderStatus.PROCESSIONG || order.status == OrderStatus.SHIPPED || order.status == OrderStatus.DELIVERED) {
+            log.error(`confirmOrder:: Invalid order status: ${order.status}`);
+            res.status(400).json({
+                status: 400,
+                message: "Invalid Order Status to allocate products",
+            });
+            return;
+        }
 
-        if (await releaseProductList(order)) {
+        const filter: any = {};
+        if (order.id) filter.id = Number(order.id);
+        const existingOrderRecord = await OrderModel.findOne(filter);
+        if (!existingOrderRecord) {
+            log.error(`cancelOrder:: Not existing Order for orderId: ${order.id}`);
+            res.status(400).json({
+                status: 400,
+                message: "Not existing Order for orderId",
+            });
+            return;
+        }
+
+        if (await releaseProductList(existingOrderRecord)) {
             log.info(`cancelOrder:: Cancel products process successfully completed}`);
  
             const orderRecord = await OrderModel.findOneAndUpdate(
-                { id: order.id },
+                { id: existingOrderRecord.id },
                 { $set: { status: OrderStatus.CANCELLED } },
                 { new: true }
             );
 
-            log.info(`cancelOrder:: Canceled: ${orderRecord?.toJSON()} order successfully}`);
+            log.info(`cancelOrder:: Canceled: ${JSON.stringify(orderRecord?.toJSON())} order successfully}`);
 
             res.status(201).json(orderRecord?.toJSON());
             return;
