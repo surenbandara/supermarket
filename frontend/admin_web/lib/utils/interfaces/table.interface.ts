@@ -32,5 +32,5 @@ export interface IDataTableProps<T> extends IGlobalComponentProps {
 
 export interface ITableExtends extends IGlobalComponentProps {
   orderStatus?: string;
-  _id: number | string;
+  _id?: number | string;
 }

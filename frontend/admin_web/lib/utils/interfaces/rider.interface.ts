@@ -9,22 +9,21 @@ export interface IRiderResponseZone {
 }
 
 export interface IRiderResponse {
-  __typename: 'Rider';
+  __typename?: 'Rider';
   _id: string;
   name: string;
   username: string;
-  password: string;
+  password?: string;
   phone: string;
   available: boolean;
-  assigned: string[];
-  zone: IRiderResponseZone;
+  assigned?: string[];
+  zone?: IRiderResponseZone;
 }
 
 // Define the structure of the query result object
 export interface IRidersDataResponse {
   riders: IRiderResponse[];
 }
-
 export interface IRidersHeaderComponentsProps extends IGlobalComponentProps {
   setIsAddRiderVisible: React.Dispatch<React.SetStateAction<boolean>>;
 }
@@ -32,6 +31,7 @@ export interface IRidersHeaderComponentsProps extends IGlobalComponentProps {
 export interface IRidersMainComponentsProps extends IGlobalComponentProps {
   setIsAddRiderVisible: React.Dispatch<React.SetStateAction<boolean>>;
   setRider: React.Dispatch<React.SetStateAction<IRiderResponse | null>>;
+  reload: number;
 }
 
 export interface IRidersAddFormComponentProps extends IGlobalComponentProps {
@@ -39,6 +39,7 @@ export interface IRidersAddFormComponentProps extends IGlobalComponentProps {
   isAddRiderVisible: boolean;
   onHide: () => void;
   rider: IRiderResponse | null;
+  setReload: React.Dispatch<React.SetStateAction<number>>;
 }
 
 export interface IRiderHeaderProps extends IGlobalComponentProps {

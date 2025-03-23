@@ -8,7 +8,6 @@ export const PERMISSIONS = [
   { label: 'Orders', code: 'Orders' },
   { label: 'Cuisine', code: 'Cuisine' },
   { label: 'Withdraw Request', code: 'Withdraw Request' },
-  { label: 'Notification', code: 'Notification' },
   { label: 'Zone', code: 'Zone' },
   { label: 'Dispatch', code: 'Dispatch' },
 ];

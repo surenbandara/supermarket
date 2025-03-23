@@ -123,3 +123,67 @@
 2025-03-16T15:54:08.023Z error: createNewCuisine:: ValidationError: timestamp: Path `timestamp` is required.
 2025-03-16T15:55:16.293Z error: ERROR::apiValidationHandler:  request/body must have required property 'timestamp'
 2025-03-16T16:00:41.722Z error: ERROR::apiValidationHandler:  request/body must have required property 'timestamp'
+2025-03-18T16:00:29.867Z error: ERROR::apiValidationHandler:  Unexpected token '"', ""{\"name\""... is not valid JSON
+2025-03-18T16:00:30.875Z error: ERROR::apiValidationHandler:  Unexpected token '"', ""{\"name\""... is not valid JSON
+2025-03-18T16:00:31.883Z error: ERROR::apiValidationHandler:  Unexpected token '"', ""{\"name\""... is not valid JSON
+2025-03-18T18:05:11.957Z error: ERROR::apiValidationHandler:  request/body must have required property 'email'
+2025-03-18T18:05:27.255Z error: ERROR::apiValidationHandler:  request/body must have required property 'email'
+2025-03-18T18:06:05.758Z error: ERROR::apiValidationHandler:  request/body must have required property 'timestamp'
+2025-03-18T18:17:23.750Z error: ERROR::apiValidationHandler:  Authorization header required
+2025-03-18T18:18:34.058Z error: ERROR::apiValidationHandler:  Authorization header required
+2025-03-18T18:21:09.528Z error: ERROR::apiValidationHandler:  Authorization header required
+2025-03-18T18:21:14.014Z error: ERROR::apiValidationHandler:  Authorization header required
+2025-03-18T19:06:46.820Z error: ERROR::apiValidationHandler:  Authorization header required
+2025-03-18T19:06:58.833Z error: ERROR::apiValidationHandler:  Authorization header required
+2025-03-18T19:08:04.848Z error: ERROR::apiValidationHandler:  Authorization header required
+2025-03-18T19:08:18.081Z error: ERROR::apiValidationHandler:  Authorization header required
+2025-03-18T19:11:48.196Z error: ERROR::apiValidationHandler:  Authorization header required
+2025-03-18T19:12:25.339Z error: ERROR::apiValidationHandler:  Authorization header required
+2025-03-22T03:47:16.246Z error: ERROR::apiValidationHandler:  Authorization header required
+2025-03-22T03:47:46.830Z error: ERROR::apiValidationHandler:  Authorization header required
+2025-03-22T03:51:55.966Z error: ERROR::apiValidationHandler:  Authorization header required
+2025-03-22T03:54:49.235Z error: ERROR::apiValidationHandler:  Authorization header required
+2025-03-22T03:55:21.119Z error: ERROR::apiValidationHandler:  Authorization header required
+2025-03-22T04:03:56.126Z error: ERROR::apiValidationHandler:  Authorization header required
+2025-03-22T04:04:58.282Z error: ERROR::apiValidationHandler:  not found
+2025-03-22T04:08:08.465Z error: ERROR::apiValidationHandler:  Authorization header required
+2025-03-22T04:08:48.891Z error: ERROR::apiValidationHandler:  not found
+2025-03-22T04:08:56.587Z error: ERROR::apiValidationHandler:  not found
+2025-03-22T04:09:43.822Z error: ERROR::apiValidationHandler:  Authorization header required
+2025-03-22T04:10:36.277Z error: ERROR::apiValidationHandler:  Authorization header required
+2025-03-22T04:10:38.716Z error: ERROR::apiValidationHandler:  Authorization header required
+2025-03-22T04:10:52.159Z error: ERROR::apiValidationHandler:  Authorization header required
+2025-03-22T04:11:02.461Z error: ERROR::apiValidationHandler:  Authorization header required
+2025-03-22T04:11:14.496Z error: ERROR::apiValidationHandler:  not found
+2025-03-22T04:12:19.436Z error: ERROR::apiValidationHandler:  not found
+2025-03-22T04:13:23.486Z error: ERROR::apiValidationHandler:  Authorization header required
+2025-03-22T04:13:31.671Z error: ERROR::apiValidationHandler:  Authorization header required
+2025-03-22T04:13:37.570Z error: ERROR::apiValidationHandler:  Authorization header required
+2025-03-22T04:13:45.902Z error: ERROR::apiValidationHandler:  Authorization header required
+2025-03-22T04:13:49.817Z error: ERROR::apiValidationHandler:  Authorization header required
+2025-03-22T04:36:20.276Z error: ERROR::apiValidationHandler:  not found
+2025-03-22T04:38:26.669Z error: ERROR::apiValidationHandler:  not found
+2025-03-22T04:38:45.659Z error: ERROR::apiValidationHandler:  not found
+2025-03-22T04:38:51.952Z error: ERROR::apiValidationHandler:  not found
+2025-03-22T04:39:04.619Z error: ERROR::apiValidationHandler:  not found
+2025-03-22T04:39:08.561Z error: ERROR::apiValidationHandler:  not found
+2025-03-22T04:39:13.727Z error: ERROR::apiValidationHandler:  not found
+2025-03-22T04:39:16.872Z error: ERROR::apiValidationHandler:  not found
+2025-03-22T04:39:22.415Z error: ERROR::apiValidationHandler:  not found
+2025-03-22T04:39:34.529Z error: ERROR::apiValidationHandler:  not found
+2025-03-22T04:39:44.776Z error: ERROR::apiValidationHandler:  not found
+2025-03-22T04:39:49.082Z error: ERROR::apiValidationHandler:  not found
+2025-03-22T04:39:57.606Z error: ERROR::apiValidationHandler:  not found
+2025-03-22T04:40:06.867Z error: ERROR::apiValidationHandler:  not found
+2025-03-22T04:40:22.969Z error: ERROR::apiValidationHandler:  not found
+2025-03-22T04:42:39.081Z error: ERROR::apiValidationHandler:  not found
+2025-03-22T04:43:14.722Z error: ERROR::apiValidationHandler:  not found
+2025-03-22T04:43:55.273Z error: ERROR::apiValidationHandler:  not found
+2025-03-22T04:44:28.166Z error: ERROR::apiValidationHandler:  not found
+2025-03-22T04:46:09.531Z error: ERROR::apiValidationHandler:  not found
+2025-03-22T04:51:28.038Z error: ERROR::apiValidationHandler:  not found
+2025-03-22T04:58:12.641Z error: ERROR::apiValidationHandler:  not found
+2025-03-22T05:12:34.592Z error: ERROR::apiValidationHandler:  not found
+2025-03-22T05:13:08.042Z error: ERROR::apiValidationHandler:  not found
+2025-03-22T06:39:06.204Z error: ERROR::apiValidationHandler:  not found
+2025-03-22T06:40:46.339Z error: ERROR::apiValidationHandler:  not found

@@ -1,6 +1,6 @@
 // Core
 import { useMutation } from '@apollo/client';
-import { useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 
 // Prime React
 import { FilterMatchMode } from 'primereact/api';
@@ -22,20 +22,23 @@ import { RIDER_TABLE_COLUMNS } from '@/lib/ui/useable-components/table/columns/r
 import { IActionMenuItem } from '@/lib/utils/interfaces/action-menu.interface';
 
 // Hooks
-import { useQueryGQL } from '@/lib/hooks/useQueryQL';
+import { api, useQueryGQL } from '@/lib/hooks/useQueryQL';
 import useToast from '@/lib/hooks/useToast';
 
 // GraphQL and Utilities
 import { DELETE_RIDER, GET_RIDERS } from '@/lib/api/graphql';
-import { IQueryResult } from '@/lib/utils/interfaces';
+import { IQueryResult, IUserDataResponse } from '@/lib/utils/interfaces';
 
 // Data
 import { generateDummyRiders } from '@/lib/utils/dummy';
 import { useTranslations } from 'next-intl';
+import { useConfiguration } from '@/lib/hooks/useConfiguration';
+import { useUserContext } from '@/lib/hooks/useUser';
 
 export default function RidersMain({
   setIsAddRiderVisible,
   setRider,
+  reload
 }: IRidersMainComponentsProps) {
   // Hooks
   const t = useTranslations();
@@ -51,19 +54,28 @@ export default function RidersMain({
     global: { value: '' as string | null, matchMode: FilterMatchMode.CONTAINS },
   });
 
-  // Query
-  const { data, loading } = useQueryGQL(GET_RIDERS, {}) as IQueryResult<
-    IRidersDataResponse | undefined,
-    undefined
-  >;
+  const [loading, setLoading] = useState<boolean>(false);
+  const [data, setData] = useState<IRiderResponse[]>([]);
 
-  //Mutation
-  const [mutateDelete, { loading: mutationLoading }] = useMutation(
-    DELETE_RIDER,
-    {
-      refetchQueries: [{ query: GET_RIDERS }],
-    }
-  );
+  const {SERVER_URL} = useConfiguration();
+  const {user} = useUserContext();
+
+  useEffect(() => {
+        if (!SERVER_URL || !user?.jwtToken) return;
+      
+        const fetchData = async () => {
+          setLoading(true);
+          try {
+            const response = await api.get(`${SERVER_URL}/rider`, user.jwtToken);
+            setData(response as IRiderResponse[]);
+          } catch (error) {
+          } finally {
+            setLoading(false);
+          }
+        };
+    
+        fetchData();
+      }, [user?.jwtToken, reload]);
 
   // For global search
   const onGlobalFilterChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -103,7 +115,7 @@ export default function RidersMain({
             onGlobalFilterChange={onGlobalFilterChange}
           />
         }
-        data={data?.riders || (loading ? generateDummyRiders() : [])}
+        data={loading ? generateDummyRiders() : data}
         filters={filters}
         setSelectedData={setSelectedProducts}
         selectedData={selectedProducts}
@@ -111,24 +123,13 @@ export default function RidersMain({
         columns={RIDER_TABLE_COLUMNS({ menuItems })}
       />
       <CustomDialog
-        loading={mutationLoading}
+        loading={loading}
         visible={!!deleteId}
         onHide={() => {
           setDeleteId('');
         }}
         onConfirm={() => {
-          mutateDelete({
-            variables: { id: deleteId },
-            onCompleted: () => {
-              showToast({
-                type: 'success',
-                title: t('Success'),
-                message: t('Rider Deleted'),
-                duration: 3000,
-              });
-              setDeleteId('');
-            },
-          });
+          
         }}
         message={t('Are you sure you want to delete this item?')}
       />

@@ -1,5 +1,6 @@
 import { ReactNode } from 'react';
-import { IGlobalProps } from './global.interface';
+import { IGlobalComponentProps, IGlobalProps } from './global.interface';
+import { TSideBarFormPosition } from '../types/sidebar';
 
 export interface IConfigurationContextProps extends IGlobalProps {}
 
@@ -63,6 +64,40 @@ export interface IConfiguration {
   enableRestaurantDemo?: boolean;
   enableAdminDemo?: boolean;
   costType?: string;
+}
+
+export interface IConfigurationResponse {
+  __typename: 'Configuration';
+  key: string;
+  value: string;
+}
+
+// Define the structure of the query result object
+export interface IConfigurationDataResponse {
+  riders: IConfigurationResponse[];
+}
+
+export interface IConfigurationsMainComponentsProps extends IGlobalComponentProps {
+  setIsAddConfigurationVisible: React.Dispatch<React.SetStateAction<boolean>>;
+  setConfiguration: React.Dispatch<React.SetStateAction<IConfiguration | null>>;
+  reload: number;
+}
+
+export interface IConfigurationHeaderProps extends IGlobalComponentProps {
+  setIsAddConfigurationVisible: (visible: boolean) => void;
+}
+
+export interface IConfigurationAddFormComponentProps extends IGlobalComponentProps {
+  position?: TSideBarFormPosition;
+  isAddConfigurationVisible: boolean;
+  onHide: () => void;
+  configuration: IConfiguration | null;
+  setReload: React.Dispatch<React.SetStateAction<number>>;
+}
+
+export interface IConfigurationTableHeaderProps {
+  globalFilterValue: string;
+  onGlobalFilterChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
 export interface IConfigurationUnresolved {

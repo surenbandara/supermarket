@@ -23,11 +23,14 @@ import { Sidebar } from 'primereact/sidebar';
 
 // Hooks
 import { ApolloError, useMutation } from '@apollo/client';
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
 import CustomUploadImageComponent from '@/lib/ui/useable-components/upload/upload-image';
 import { onErrorMessageMatcher } from '@/lib/utils/methods';
 import { CuisineErrors, MAX_SQUARE_FILE_SIZE, SHOP_TYPE } from '@/lib/utils/constants';
 import { useTranslations } from 'next-intl';
+import { api } from '@/lib/hooks/useQueryQL';
+import { useConfiguration } from '@/lib/hooks/useConfiguration';
+import { useUserContext } from '@/lib/hooks/useUser';
 
 export default function CuisineForm({
   setVisible,
@@ -50,60 +53,69 @@ export default function CuisineForm({
     _id: isEditing.bool ? isEditing?.data?._id : '',
     name: isEditing.bool ? isEditing?.data?.name : '',
     description: isEditing.bool ? isEditing?.data?.description : '',
-    shopType: {
-      label: capitalizeFirstWord(isEditing?.data?.shopType ?? ''),
-      code: isEditing?.data?.shopType.toLocaleLowerCase() ?? '',
-    },
     image: isEditing.bool ? isEditing.data.image : '',
   };
- 
 
-  // Mutations
-  const [CreateCuisine, { loading: createCuisineLoading }] = useMutation(
-    CREATE_CUISINE,
-    {
-      onError,
-      onCompleted: () => {
-        showToast({
-          title: `${!isEditing.bool ? t('New') : t('Edit')} ${t('Cuisine')}`,
-          type: 'success',
-          message: `${t('Cuisine has been')} ${!isEditing.bool ? t('Created') : t('edited')} ${t('successfully')}`,
-          duration: 2000,
-        });
-      },
-      refetchQueries: [{ query: GET_CUISINES }],
-    }
-  );
-  console.log(isEditing.data);
+  const {SERVER_URL} = useConfiguration();
+  const {user} = useUserContext();
+  const[createCuisineLoading, setCreateCuisineLoading] = useState<boolean>(false);
+  const[editCuisineLoading, setEditCuisineLoading] = useState<boolean>(false);
 
-  const [editCuisine, { loading: editCuisineLoading }] = useMutation(
-    EDIT_CUISINE,
-    {
-      onError,
-      onCompleted: () => {
-        showToast({
-          title: `${!isEditing.bool ? t('New') : t('Edit')} ${t('Cuisine')}`,
-          type: 'success',
-          message: `${t('Cuisine has been')} ${!isEditing.bool ? t('Created') : t('edited')} ${t('successfully')}`,
-          duration: 2000,
-        });
-      },
-      refetchQueries: [{ query: GET_CUISINES }],
-    }
-  );
+  const CreateCuisine =  async (
+      formData: any
+    ) => {
+        try {
+          setCreateCuisineLoading(true);
+          await api.post(`${SERVER_URL}/cusine`, formData, user?.jwtToken);
+          showToast({
+            title: `${!isEditing.bool ? t('New') : t('Edit')} ${t('Cuisine')}`,
+            type: 'success',
+            message: `${t('Cuisine has been')} ${!isEditing.bool ? t('Created') : t('edited')} ${t('successfully')}`,
+            duration: 2000,
+          });
+          
+        }  catch (error: any) {
+          const message = 'Cusine Creation Failed!';
+          showToast({
+            type: 'error',
+            title: t('Error'),
+            message,
+            duration: 3000,
+          });
+        } finally {
+          setCreateCuisineLoading(false);
+        }
+        
 
-  // API Handlers
-  function onError({ cause, networkError }: ApolloError) {
-    showToast({
-      type: 'error',
-      title: `${isEditing.bool ? t('Edit') : t('New')}  ${t('Cuisine')}`,
-      message:
-        cause?.message ??
-        networkError?.message ??
-        ` ${t('Cuisine')} ${isEditing.bool ? t('Edition') : t('Creation')}  ${t('Failed')}`,
-      duration: 2500,
-    });
-  }
+    };
+
+    const EditCuisine =  async (
+      formData: any
+    ) => {
+        try {
+          setEditCuisineLoading(true);
+          await api.post(`${SERVER_URL}/rider`, formData, user?.jwtToken);
+          showToast({
+            title: `${!isEditing.bool ? t('New') : t('Edit')} ${t('Cuisine')}`,
+            type: 'success',
+            message: `${t('Cuisine has been')} ${!isEditing.bool ? t('Created') : t('edited')} ${t('successfully')}`,
+            duration: 2000,
+          });
+        }  catch (error: any) {
+          const message = 'Cusine Creation Failed!';
+          showToast({
+            type: 'error',
+            title: t('Error'),
+            message,
+            duration: 3000,
+          });
+        } finally {
+          setEditCuisineLoading(false);
+        }
+        
+
+    };
+
 
   return (
     <Sidebar
@@ -116,7 +128,6 @@ export default function CuisineForm({
             _id: '',
             description: '',
             name: '',
-            shopType: '',
             image: '',
           },
         });
@@ -141,30 +152,21 @@ export default function CuisineForm({
               formData = {
                 name: values.name,
                 description: values.description,
-                shopType: values.shopType.label,
+                timestamp: Date.now(),
                 image: values.image,
               };
             } else {
               formData = {
-                _id: values._id,
                 name: values.name,
                 description: values.description,
-                shopType: values.shopType.label,
+                timestamp: Date.now(),
                 image: values.image,
               };
             }
             if (!isEditing.bool) {
-              await CreateCuisine({
-                variables: {
-                  cuisineInput: formData,
-                },
-              });
+              await CreateCuisine(formData);
             } else {
-              await editCuisine({
-                variables: {
-                  cuisineInput: formData,
-                },
-              });
+              await EditCuisine(formData);
             }
 
             setVisible(false);
@@ -176,7 +178,6 @@ export default function CuisineForm({
                 _id: '',
                 description: '',
                 name: '',
-                shopType: '',
                 image: '',
               },
             });
@@ -228,24 +229,6 @@ export default function CuisineForm({
                       borderColor: onErrorMessageMatcher(
                         'description',
                         errors?.description,
-                        CuisineErrors
-                      )
-                        ? 'red'
-                        : '',
-                    }}
-                  />
-
-                  <CustomDropdownComponent
-                    name="shopType"
-                    options={SHOP_TYPE}
-                    selectedItem={values.shopType}
-                    setSelectedItem={setFieldValue}
-                    placeholder={t('Shop Category')}
-                    showLabel={true}
-                    style={{
-                      borderColor: onErrorMessageMatcher(
-                        'shopType',
-                        errors?.shopType?.code,
                         CuisineErrors
                       )
                         ? 'red'

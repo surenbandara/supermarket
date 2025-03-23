@@ -2,18 +2,16 @@ import { IDropdownSelectItem } from '../global.interface';
 
 export interface IRiderForm {
   name: string;
-  username: string;
-  password: string;
-  confirmPassword: string;
-  zone: IDropdownSelectItem | null;
-  phone: number | null;
+  email: string;
+  phoneNumber: string;
+  vehicle: string;
+  available: boolean;
 }
 
 export interface IRiderErrors {
   name: string[];
-  username: string[];
-  password: string[];
-  confirmPassword: string[];
-  zone: string[];
-  phone: string[];
+  email: string[];
+  phoneNumber: string[];
+  vehicle: string[];
+  available: string[];
 }

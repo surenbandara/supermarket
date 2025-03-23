@@ -23,6 +23,7 @@ import { GET_USERS } from '@/lib/api/graphql';
 import UsersTableHeader from '../header/table-header';
 import { useConfiguration } from '@/lib/hooks/useConfiguration';
 import { useUserContext } from '@/lib/hooks/useUser';
+import { generateDummyUsers } from '@/lib/utils/dummy';
 
 export default function UsersMain() {
   // State - Table
@@ -33,19 +34,16 @@ export default function UsersMain() {
   });
 
   const [data, setData] = useState<IUserResponse[]>([]);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
 
   const {SERVER_URL} = useConfiguration();
   const {user} = useUserContext();
 
   useEffect(() => {
     const fetchData = async () => {
+      setLoading(true);
       try {
-        console.log("aaaaaaaaaaaaaaaaa");
-        console.log(user)
-        console.log(SERVER_URL)
         const response = await api.get(`${SERVER_URL}/users`, user?.jwtToken);
-        console.log(response)
         setData(response as IUserResponse[]);
       } catch (error) {
         console.error("Error:", error);
@@ -57,10 +55,6 @@ export default function UsersMain() {
     fetchData();
   }, [user]); 
 
-  // // Query
-  // const { data, loading } = useQueryGQL(GET_USERS, {
-  //   fetchPolicy: 'cache-and-network',
-  // }) as IQueryResult<IUsersDataResponse | undefined, undefined>;
 
   // For global search
   const onGlobalFilterChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -71,6 +65,7 @@ export default function UsersMain() {
     setGlobalFilterValue(value);
   };
 
+  const _restaurants = data
   return (
     <div className="p-3">
       <Table
@@ -80,8 +75,8 @@ export default function UsersMain() {
             onGlobalFilterChange={onGlobalFilterChange}
           />
         }
+        data={loading ? generateDummyUsers() : (data ?? [])}
         loading={loading}
-        data={data || []}
         filters={filters}
         setSelectedData={setSelectedProducts}
         selectedData={selectedProducts}

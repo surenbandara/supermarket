@@ -33,30 +33,34 @@ import {
   GET_RIDERS,
   GET_ZONES,
 } from '@/lib/api/graphql';
-import { useQueryGQL } from '@/lib/hooks/useQueryQL';
+import { api, useQueryGQL } from '@/lib/hooks/useQueryQL';
 import { useMutation } from '@apollo/client';
 import CustomPhoneTextField from '@/lib/ui/useable-components/phone-input-field';
 import { useTranslations } from 'next-intl';
+import { useConfiguration } from '@/lib/hooks/useConfiguration';
+import { useUserContext } from '@/lib/hooks/useUser';
 
 export default function RiderAddForm({
   onHide,
   rider,
   position = 'right',
   isAddRiderVisible,
+  setReload
 }: IRidersAddFormComponentProps) {
   const initialValues: IRiderForm = {
     name: '',
-    username: '',
-    password: '',
-    ...rider,
-    confirmPassword: rider?.password ?? '',
-    phone: rider ? +rider.phone : null,
-    zone: rider ? { label: rider.zone.title, code: rider.zone._id } : null,
+    email: '',
+    phoneNumber: '',
+    vehicle: '',
+    available: false
   };
 
   // Hooks
   const t = useTranslations();
   const { showToast } = useToast();
+
+  const {SERVER_URL} = useConfiguration();
+  const {user} = useUserContext();
 
   // Query
   const { data } = useQueryGQL(GET_ZONES, {
@@ -70,48 +74,38 @@ export default function RiderAddForm({
   });
 
   // Form Submission
-  const handleSubmit = (
+  const handleSubmit =  async (
     values: IRiderForm,
     { resetForm }: FormikHelpers<IRiderForm>
   ) => {
-    if (data) {
-      mutate({
-        variables: {
-          riderInput: {
-            _id: rider ? rider._id : '',
-            name: values.name,
-            username: values.username,
-            password: values.password,
-            phone: values.phone?.toString(),
-            zone: values.zone?.code,
-            available: rider ? rider.available : true,
-          },
-        },
-        onCompleted: () => {
-          showToast({
-            type: 'success',
-            title: t('Success'),
-            message: rider ? t('Rider updated') : t('Rider added'),
-            duration: 3000,
-          });
-          resetForm();
-          onHide();
-        },
-        onError: (error) => {
-          let message = '';
-          try {
-            message = error.graphQLErrors[0]?.message;
-          } catch (err) {
-            message = t('ActionFailedTryAgain');
-          }
-          showToast({
-            type: 'error',
-            title: t('Error'),
-            message,
-            duration: 3000,
-          });
-        },
-      });
+    if (values) {
+      try {
+        console.log(values)
+        await api.post(`${SERVER_URL}/rider`, values, user?.jwtToken);
+        showToast({
+          type: 'success',
+          title: t('Success'),
+          message: rider ? t('Rider updated') : t('Rider added'),
+          duration: 3000,
+        });
+        setReload(Date.now())
+        resetForm();
+        onHide();
+      }  catch (error: any) {
+        let message = '';
+        try {
+          message = error;
+        } catch (err) {
+          message = t('ActionFailedTryAgain');
+        }
+        showToast({
+          type: 'error',
+          title: t('Error'),
+          message,
+          duration: 3000,
+        });
+      }
+      
     }
   };
 
@@ -137,24 +131,23 @@ export default function RiderAddForm({
                 validationSchema={RiderSchema}
                 onSubmit={handleSubmit}
                 enableReinitialize
-                validateOnChange={false} // Disable validation on change
+                validateOnChange={true} // Disable validation on change
                 validateOnBlur={false} // Disable validation on blur
               >
                 {({
                   values,
                   errors,
                   handleChange,
-                  handleSubmit,
-                  setFieldValue,
+                  handleSubmit
                 }) => {
-                  console.log({ errors });
+                  console.log(errors);
                   return (
                     <Form onSubmit={handleSubmit}>
                       <div className="space-y-4">
                         <CustomTextField
                           type="text"
                           name="name"
-                          placeholder={t('Name')}
+                          placeholder={'Name'}
                           maxLength={35}
                           value={values.name}
                           onChange={handleChange}
@@ -171,97 +164,55 @@ export default function RiderAddForm({
                         />
 
                         <CustomTextField
-                          type="text"
-                          name="username"
-                          placeholder={t('Username')}
+                          type="email"
+                          name="email"
+                          placeholder={'Email'}
                           maxLength={35}
-                          value={values.username}
+                          value={values.email}
                           onChange={handleChange}
                           showLabel={true}
                           style={{
                             borderColor: onErrorMessageMatcher(
-                              'username',
-                              errors?.username,
+                              'email',
+                              errors?.email,
                               RiderErrors
                             )
                               ? 'red'
                               : '',
                           }}
                         />
-
-                        <CustomPasswordTextField
-                          placeholder={t('Password')}
-                          name="password"
-                          maxLength={20}
-                          value={values.password}
-                          showLabel={true}
-                          onChange={handleChange}
-                          style={{
-                            borderColor: onErrorMessageMatcher(
-                              'password',
-                              errors?.password,
-                              RiderErrors
-                            )
-                              ? 'red'
-                              : '',
-                          }}
-                        />
-
-                        <CustomPasswordTextField
-                          placeholder={t('Confirm Password')}
-                          name="confirmPassword"
-                          maxLength={20}
-                          showLabel={true}
-                          value={values.confirmPassword ?? ''}
-                          onChange={handleChange}
-                          feedback={false}
-                          style={{
-                            borderColor: onErrorMessageMatcher(
-                              'confirmPassword',
-                              errors?.confirmPassword,
-                              RiderErrors
-                            )
-                              ? 'red'
-                              : '',
-                          }}
-                        />
-
-                        <CustomDropdownComponent
-                          placeholder={t('Zone')}
-                          options={
-                            data?.zones.map((val) => {
-                              return { label: val.title, code: val._id };
-                            }) || []
-                          }
-                          showLabel={true}
-                          name="zone"
-                          selectedItem={values.zone}
-                          setSelectedItem={setFieldValue}
-                          style={{
-                            borderColor: onErrorMessageMatcher(
-                              'zone',
-                              errors?.zone,
-                              RiderErrors
-                            )
-                              ? 'red'
-                              : '',
-                          }}
-                        />
-
-                        <CustomPhoneTextField
+                        <CustomTextField
                           type="text"
-                          mask="999-999-9999"
-                          placeholder={t('Phone Number')}
-                          name="phone"
+                          name="phoneNumber"
+                          placeholder={'Phone Number'}
+                          maxLength={35}
+                          value={values.phoneNumber}
+                          onChange={handleChange}
                           showLabel={true}
-                          value={values?.phone?.toString()}
-                          onChange={(code: string) => {
-                            setFieldValue('phone', code);
-                          }}
                           style={{
                             borderColor: onErrorMessageMatcher(
-                              'phone',
-                              errors?.phone,
+                              'phoneNumber',
+                              errors?.phoneNumber,
+                              RiderErrors
+                            )
+                              ? 'red'
+                              : '',
+                          }}
+                        />
+
+
+                        <CustomTextField
+                          type="text"
+                          name="vehicle"
+                          placeholder={'Vehicle'}
+                          maxLength={35}
+                          value={values.vehicle}
+                          onChange={handleChange}
+                          showLabel={true}
+                          style={{
+                            borderColor: onErrorMessageMatcher(
+                              'vehicle',
+                              errors?.vehicle,
                               RiderErrors
                             )
                               ? 'red'

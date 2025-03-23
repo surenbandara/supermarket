@@ -45,20 +45,7 @@ export const CUISINE_TABLE_COLUMNS = ({
       {
         headerName: t('Description'),
         propertyName: 'description',
-      },
-      {
-        headerName: t('Shop Category'),
-        propertyName: 'shopType',
-      },
-      {
-        headerName: t('Actions'),
-        propertyName: 'action',
-        body: (rowData: ICuisine) => (
-          <div className="three-dots">
-            <ActionMenu data={rowData} items={menuItems} />
-          </div>
-        ),
-      },
+      }
     ],
     [menuItems]
   );

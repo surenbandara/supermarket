@@ -18,6 +18,7 @@ import { ICuisineErrors } from '../../interfaces/forms/cuisine.form.interface';
 import { ICouponErrors } from '../../interfaces/forms/coupon.form.interface';
 import { IFoodErrors } from '../../interfaces/forms/food.form.interface';
 import { INoticiationErrors } from '../../interfaces/forms/notification.form.interface';
+import { IConfigurationErrors } from '../../interfaces/forms/configuration.form.interface';
 
 export const PasswordErrors = [
   'At least 6 characters',
@@ -77,11 +78,15 @@ export const ProfileErrors: IUpdateProfileFormErrors = {
 
 export const RiderErrors: IRiderErrors = {
   name: ['Required', 'Name cannot be only spaces'],
-  username: ['Required'],
-  password: ['Required', ...PasswordErrors],
-  confirmPassword: ['Required', 'Password must match'],
-  zone: ['Required'],
-  phone: ['Required'],
+  email: ['Required'],
+  phoneNumber: ['Required', ...PasswordErrors],
+  vehicle: ['Required', 'Password must match'],
+  available: ['Required']
+};
+
+export const ConfigurationErrors: IConfigurationErrors = {
+  key: ['Required'],
+  value: ['Required']
 };
 
 export const UaserErrors: IUserErrors = {

@@ -53,32 +53,6 @@ export const RESTAURANT_TABLE_COLUMNS = ({
     onError,
   });
 
-  // Handle checkbox change
-  const onHandleRestaurantStatusChange = async (
-    isActive: boolean,
-    id: string
-  ) => {
-    try {
-      setDeletingRestaurant({
-        id,
-        isActive,
-      });
-      await deleteRestaurant({ variables: { id: id } });
-    } catch (err) {
-      showToast({
-        type: 'error',
-        title: t('Store Status'),
-        message: `${t('Store marked as')} ${isActive ? t('in-active') : t('active')} ${t('failed')}`,
-        duration: 2000,
-      });
-    } finally {
-      setDeletingRestaurant({
-        ...deletingRestaurant,
-        id: '',
-      });
-    }
-  };
-
   function onError({ graphQLErrors, networkError }: ApolloError) {
     showToast({
       type: 'error',
@@ -115,30 +89,11 @@ export const RESTAURANT_TABLE_COLUMNS = ({
         );
       },
     },
-    { headerName: t('ID'), propertyName: 'unique_restaurant_id' },
     { headerName: t('Name'), propertyName: 'name' },
-    { headerName: t('Vendor'), propertyName: 'username' },
+    { headerName: t('Vendor'), propertyName: 'vendorName' },
     {
       headerName: t('Email'),
-      propertyName: 'owner.email',
-    },
-    { headerName: t('Address'), propertyName: 'address' },
-    {
-      headerName: t('Status'),
-      propertyName: 'actions',
-      body: (rowData: IRestaurantResponse) => {
-        return (
-          <CustomInputSwitch
-            className="prevent-row-click"
-            loading={rowData?._id === deletingRestaurant?.id}
-            isActive={rowData.isActive}
-            onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
-              e.stopPropagation();
-              onHandleRestaurantStatusChange(rowData.isActive, rowData._id);
-            }}
-          />
-        );
-      },
+      propertyName: 'vendorEmai',
     },
     {
       headerName: t('Actions'),

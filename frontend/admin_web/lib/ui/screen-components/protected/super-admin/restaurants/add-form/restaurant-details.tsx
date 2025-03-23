@@ -71,20 +71,25 @@ export default function RestaurantDetailsForm({
   
   // Context
   const { showToast } = useContext(ToastContext);
-  const { restaurantsContextData, onRestaurantsFormVisible } =
+  const { restaurantsContextData, onRestaurantsFormVisible, onActiveStepChange, activeIndex } =
     useContext(RestaurantsContext);
 
   // Handlers
   const onCreateRestaurant = async (data: IRestaurantForm) => {
     try {
-      console.log("sssssssssssssssssssssssssssssssssssssssssss")
       onRestaurantsFormVisible(false);
       const payload: any = {...data}
       payload.timestamp = Date.now();
       payload.email = data.vendorEmai;
       payload.category = data.category?.code;
-      const a = await api.post(`${SERVER_URL}/shop`, JSON.stringify(payload), user?.jwtToken);
-      console.log(a);
+      await api.post(`${SERVER_URL}/shop`, payload, user?.jwtToken);
+      onActiveStepChange(activeIndex+1);
+      showToast({
+        type: 'success',
+        title: t('New Store'),
+        message: t(`Store Creation Sucess`),
+        duration: 2500,
+      });
     } catch (error) {
       showToast({
         type: 'error',
@@ -142,7 +147,6 @@ export default function RestaurantDetailsForm({
               initialValues={initialValues}
               validationSchema={RestaurantSchema}
               onSubmit={async (values) => {
-                console.log("----------------------");
                 await onCreateRestaurant(values);
               }}
               validateOnChange={false}

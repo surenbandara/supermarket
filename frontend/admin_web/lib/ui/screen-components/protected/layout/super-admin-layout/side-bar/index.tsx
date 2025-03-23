@@ -67,51 +67,45 @@ export default function MakeSidebar() {
   const navBarItems: ISidebarMenuItem[] = [
     {
       text: t('Stores'),
-      route: '/general/stores',
+      route: '/stores',
       isParent: false,
       icon: faStore
     },
     {
       text: t('Riders'),
-      route: '/general/riders',
+      route: '/riders',
       isParent: false,
       icon: faMotorcycle
     },
     {
       text: t('Users'),
-      route: '/general/users',
+      route: '/users',
       isParent: false,
       icon: faUsers
     },
     {
       text: t('Configuration'),
-      route: '/management/configurations',
+      route: '/configurations',
       isParent: false,
       icon: faCogs 
     },
     {
       text: t('Orders'),
-      route: '/management/orders',
+      route: '/orders',
       isParent: false,
       icon: faListAlt 
     },
     {
       text: t('Cuisine'),
-      route: '/management/cuisines',
+      route: '/cuisines',
       isParent: false,
       icon: faUtensils 
     },
     {
       text: t('Withdraw Request'),
-      route: '/management/withdraw-requests',
+      route: '/withdraw-requests',
       isParent: false,
       icon: faHandHoldingUsd 
-    },
-    {
-      text: t('Notification'),
-      route: '/management/notifications',
-      isParent: false,
-      icon: faBell 
     }
   ];
 

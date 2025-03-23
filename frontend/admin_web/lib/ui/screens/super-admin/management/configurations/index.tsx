@@ -1,29 +1,40 @@
-// Components
-import ConfigHeader from '@/lib/ui/screen-components/protected/super-admin/configuration/view/header';
-import ConfigMain from '@/lib/ui/screen-components/protected/super-admin/configuration/view/main';
-import NoData from '@/lib/ui/useable-components/no-data';
+// Core
+import { useState } from 'react';
 
-// Hooks
-import { useConfiguration } from '@/lib/hooks/useConfiguration';
-import { useTranslations } from 'next-intl';
+// Components
+import ConfigurationHeader from '@/lib/ui/screen-components/protected/super-admin/configurations/view/header/screen-header';
+import ConfigurationsMain from '@/lib/ui/screen-components/protected/super-admin/configurations/view/main';
+
+// Interfaces and Types
+
+import ConfigurationAddForm from '@/lib/ui/screen-components/protected/super-admin/configurations/add-form';
+import { IConfiguration, IConfigurationResponse } from '@/lib/utils/interfaces';
 
 export default function ConfigurationsScreen() {
-  // Hooks
-  const t = useTranslations();
-  const { ISPAID_VERSION } = useConfiguration();
+  // State
+  const [isAddConfigurationVisible, setIsAddConfigurationVisible] = useState(false);
+  const [rider, setConfiguration] = useState<null | IConfiguration>(null);
+  const [reload, setReaload] = useState<number>(0);
+
   return (
     <div className="screen-container">
-      <ConfigHeader />
-      {ISPAID_VERSION ? (
-        <ConfigMain />
-      ) : (
-        <NoData
-          title={t('Payment Required')}
-          message={t(
-            'Please complete your purchase to gain full access to the product'
-          )}
-        />
-      )}
+      <ConfigurationHeader setIsAddConfigurationVisible={setIsAddConfigurationVisible} />
+
+      <ConfigurationsMain
+        setIsAddConfigurationVisible={setIsAddConfigurationVisible}
+        setConfiguration={setConfiguration}
+        reload={reload}
+      />
+
+      <ConfigurationAddForm
+        configuration={rider}
+        onHide={() => {
+          setIsAddConfigurationVisible(false);
+          setConfiguration(null);
+        }}
+        isAddConfigurationVisible={isAddConfigurationVisible}
+        setReload={setReaload}
+      />
     </div>
   );
 }

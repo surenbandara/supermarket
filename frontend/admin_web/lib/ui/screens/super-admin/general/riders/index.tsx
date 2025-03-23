@@ -14,6 +14,7 @@ export default function RidersScreen() {
   // State
   const [isAddRiderVisible, setIsAddRiderVisible] = useState(false);
   const [rider, setRider] = useState<null | IRiderResponse>(null);
+  const [reload, setReaload] = useState<number>(0);
 
   return (
     <div className="screen-container">
@@ -22,6 +23,7 @@ export default function RidersScreen() {
       <RidersMain
         setIsAddRiderVisible={setIsAddRiderVisible}
         setRider={setRider}
+        reload={reload}
       />
 
       <RiderAddForm
@@ -31,6 +33,7 @@ export default function RidersScreen() {
           setRider(null);
         }}
         isAddRiderVisible={isAddRiderVisible}
+        setReload={setReaload}
       />
     </div>
   );

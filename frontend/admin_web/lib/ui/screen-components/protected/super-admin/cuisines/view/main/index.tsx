@@ -26,29 +26,25 @@ import { useContext, useEffect, useState } from 'react';
 import CustomDialog from '@/lib/ui/useable-components/delete-dialog';
 import Table from '@/lib/ui/useable-components/table';
 import CuisineTableHeader from '../header/table-header';
-import { generateDummyCuisines } from '@/lib/utils/dummy';
+import { generateDummyCuisines, generateDummyCusines } from '@/lib/utils/dummy';
 import { CUISINE_TABLE_COLUMNS } from '@/lib/ui/useable-components/table/columns/cuisine-columns';
 import { useTranslations } from 'next-intl';
+import { useConfiguration } from '@/lib/hooks/useConfiguration';
+import { useUserContext } from '@/lib/hooks/useUser';
+import { api } from '@/lib/hooks/useQueryQL';
 
 export default function CuisinesMain({
   setVisible,
   isEditing,
   setIsEditing,
 }: ICuisineMainProps) {
-  // Mutations
-  const [deleteCuisine, { loading: deleteCuisineLoading }] = useMutation(
-    DELETE_CUISINE,
-    {
-      refetchQueries: [{ query: GET_CUISINES }],
-      fetchPolicy: 'network-only',
-    }
-  );
 
-  // Queries
-  const { data, fetch } = useLazyQueryQL(GET_CUISINES, {
-    onCompleted: () => setIsLoading(false),
-  }) as ILazyQueryResult<IGetCuisinesData | undefined, undefined>;
+  const [loading, setLoading] = useState<boolean>(true);
+  const [data, setData] = useState<ICuisine[]>([]);
 
+  const {SERVER_URL} = useConfiguration();
+  const {user} = useUserContext();
+  
   // Hooks
   const t = useTranslations();
   const { showToast } = useContext(ToastContext);
@@ -58,16 +54,14 @@ export default function CuisinesMain({
   const [isDeleting, setIsDeleting] = useState<IEditState<ICuisine>>({
     bool: false,
     data: {
-      _id: '',
-      __typename: '',
       description: '',
       name: '',
-      shopType: '',
       image: '',
+      _id: '',
+      __typename: ''
     },
   });
   const [selectedActions, setSelectedActions] = useState<string[]>([]);
-  const [isLoading, setIsLoading] = useState<boolean>(false);
   const [globalFilterValue, setGlobalFilterValue] = useState('');
 
   // Filters
@@ -95,12 +89,11 @@ export default function CuisinesMain({
           setIsDeleting({
             bool: false,
             data: {
-              __typename: '',
-              _id: '',
               description: '',
               name: '',
-              shopType: '',
               image: '',
+              _id: '',
+              __typename: ''
             },
           });
         }
@@ -117,12 +110,11 @@ export default function CuisinesMain({
           setIsEditing({
             bool: false,
             data: {
-              __typename: '',
-              _id: '',
               description: '',
               name: '',
-              shopType: '',
               image: '',
+              _id: '',
+              __typename: ''
             },
           });
         }
@@ -133,7 +125,7 @@ export default function CuisinesMain({
   // Handlers
   async function deleteItem() {
     try {
-      await deleteCuisine({ variables: { id: isDeleting?.data?._id } });
+      //await deleteCuisine({ variables: { id: isDeleting?.data?._id } });
       showToast({
         title: t('Delete Cuisine'),
         type: 'success',
@@ -149,11 +141,22 @@ export default function CuisinesMain({
         duration: 2000,
       });
     }
-  }
+  }data
 
   const onFetchCuisines = () => {
-    setIsLoading(true);
-    fetch();
+    setLoading(true);
+    const fetchData = async () => {
+        try {
+          const response = await api.get(`${SERVER_URL}/cusine`, user?.jwtToken);
+          setData(response as ICuisine[]);
+        } catch (error) {
+          console.error(error);
+        } finally {
+          setLoading(false);
+        }
+      };
+        
+      fetchData();
   };
 
   // UseEffects
@@ -165,15 +168,17 @@ export default function CuisinesMain({
     onFetchCuisines();
   }, []);
 
+  
+
   return (
     <div className="p-3">
       <Table
         columns={CUISINE_TABLE_COLUMNS({ menuItems })}
-        data={data?.cuisines || (isLoading ? generateDummyCuisines() : [])}
+        data={loading ? generateDummyCusines() : data}
         selectedData={selectedData}
         setSelectedData={(e) => setSelectedData(e as ICuisine[])}
         filters={filters}
-        loading={isLoading}
+        loading={loading}
         header={
           <CuisineTableHeader
             globalFilterValue={globalFilterValue}
@@ -190,7 +195,7 @@ export default function CuisinesMain({
           setIsEditing({ bool: false, data: { ...isEditing.data } });
         }}
         visible={isDeleting.bool}
-        loading={deleteCuisineLoading}
+        loading={loading}
         message={t('Are you sure to delete the cuisine?')}
       />
     </div>

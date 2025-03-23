@@ -14,11 +14,19 @@ import starterPack from "./starter-pack/starter-pack";
 const app = express();
 app.use(express.json());
 app.use(cors({
-    origin: "*",
+    origin: "http://localhost:3001",  // Allow your frontend domain
     methods: ["GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"],
-    allowedHeaders: ["Content-Type", "Authorization"],
+    allowedHeaders: ["Content-Type", "Authorization"],  // REMOVE 'Access-Control-Allow-Credentials'
     credentials: true
 }));
+
+app.options("*", (req, res) => {
+    res.header("Access-Control-Allow-Origin", "http://localhost:3001");
+    res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, PATCH, OPTIONS");
+    res.header("Access-Control-Allow-Headers", "Content-Type, Authorization");
+    res.header("Access-Control-Allow-Credentials", "true");
+    res.sendStatus(204);
+});
 
 
 const apiSpec = yaml.load(fs.readFileSync("./src/api.yaml", "utf8")) as any;
@@ -27,7 +35,7 @@ app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(apiSpec));
 app.use(
     OpenApiValidator.middleware({
         apiSpec,
-        validateRequests: true,
+        validateRequests: false,
         validateResponses: true,
     })
 );

@@ -70,24 +70,29 @@ export default function RestaurantsMain() {
 
   const {SERVER_URL} = useConfiguration();
   const {user} = useUserContext();
+  const { activeIndex } =
+    useContext(RestaurantsContext);
 
   useEffect(() => {
       if (!SERVER_URL || !user?.jwtToken) return;
     
       const fetchData = async () => {
-        setLoading(false);
+        console.log(data.length);
+        if (data.length == 0) {
+          setLoading(true);
+        }
         try {
           const response = await api.get(`${SERVER_URL}/shop`, user.jwtToken);
           setData(response as IRestaurantResponse[]);
         } catch (error) {
-          console.error('aaaaaaa', error);
+          console.error(error);
         } finally {
           setLoading(false);
         }
       };
   
       fetchData();
-    }, [user?.jwtToken]);
+    }, [user?.jwtToken, activeIndex]);
 
 
   const handleDelete = async (id: string) => {
@@ -106,21 +111,9 @@ export default function RestaurantsMain() {
   // Constants
   const menuItems: IActionMenuItem<IRestaurantResponse>[] = [
     {
-      label: t('View'),
+      label: t('Edit'),
       command: (data?: IRestaurantResponse) => {
         if (data) {
-          onUseLocalStorage('save', 'restaurantId', data?._id);
-          const routeStack = ['Admin'];
-          onUseLocalStorage('save', 'routeStack', JSON.stringify(routeStack));
-          router.push(`/admin/store/`);
-        }
-      },
-    },
-    {
-      label: t('Duplicate'),
-      command: (data?: IRestaurantResponse) => {
-        if (data) {
-          setDuplicateId(data._id);
         }
       },
     },
@@ -128,10 +121,9 @@ export default function RestaurantsMain() {
       label: t('Delete'),
       command: (data?: IRestaurantResponse) => {
         if (data) {
-          setDeleteId(data._id);
         }
       },
-    },
+    }
   ];
 
   const _restaurants = data;
@@ -152,18 +144,6 @@ export default function RestaurantsMain() {
         selectedData={selectedProducts}
         columns={RESTAURANT_TABLE_COLUMNS({ menuItems })}
         loading={loading}
-        handleRowClick={(event: DataTableRowClickEvent) => {
-          const target = event.originalEvent.target as HTMLElement | null;
-
-          if (target?.closest('.prevent-row-click')) {
-            return;
-          }
-
-          onUseLocalStorage('save', 'restaurantId', event.data._id);
-          const routeStack = ['Admin'];
-          onUseLocalStorage('save', 'routeStack', JSON.stringify(routeStack));
-          router.push(`/admin/store/`);
-        }}
       />
 
       <CustomDialog
