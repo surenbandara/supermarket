@@ -1,169 +1,121 @@
-'use client';
-
 // Core
+import { useMutation } from '@apollo/client';
 import { useContext, useEffect, useState } from 'react';
-import { useRouter } from 'next/navigation';
 
-// PrimeReact
+// Prime React
 import { FilterMatchMode } from 'primereact/api';
 
-// Context
-import { ToastContext } from '@/lib/context/global/toast.context';
-import { RestaurantsContext } from '@/lib/context/super-admin/restaurants.context';
-
-// Custom Hooks
-import { api } from '@/lib/hooks/useQueryQL';
-
-// Custom Components
-import RestaurantDuplicateDialog from '../duplicate-dialog';
-import RestaurantsTableHeader from '../header/table-header';
-import Table from '@/lib/ui/useable-components/table';
+// UI Components
 import CustomDialog from '@/lib/ui/useable-components/delete-dialog';
+import Table from '@/lib/ui/useable-components/table';
 
-// Constants and Interfaces
-import {
-  IActionMenuItem,
-  IQueryResult,
-  IRestaurantResponse,
-  IRestaurantsResponseGraphQL,
-} from '@/lib/utils/interfaces';
+// Utilities and Data
+import { IActionMenuItem } from '@/lib/utils/interfaces/action-menu.interface';
 
-// Method
-import { onUseLocalStorage } from '@/lib/utils/methods';
+// Hooks
+import { api, useQueryGQL } from '@/lib/hooks/useQueryQL';
+import useToast from '@/lib/hooks/useToast';
 
-// Dummy
+// GraphQL and Utilities
+import { IQueryResult, IRestaurantResponse, IUserDataResponse } from '@/lib/utils/interfaces';
+
+// Data
 import { generateDummyRestaurants } from '@/lib/utils/dummy';
-import { DataTableRowClickEvent } from 'primereact/datatable';
 import { useTranslations } from 'next-intl';
-import { RESTAURANT_TABLE_COLUMNS } from '@/lib/ui/useable-components/table/columns/restaurant-column';
 import { useConfiguration } from '@/lib/hooks/useConfiguration';
 import { useUserContext } from '@/lib/hooks/useUser';
+import { RESTAURANT_TABLE_COLUMNS } from '@/lib/ui/useable-components/table/columns/restaurant-column';
+import RestaurantsTableHeader from '../header/table-header';
 
-export default function RestaurantsMain() {
+export default function RestaurantsMain({
+  setIsAddRestaurantVisible,
+  setRestaurant,
+  reload
+}: any) {
   // Hooks
   const t = useTranslations();
+  const { showToast } = useToast();
 
-  // Context
-  const { showToast } = useContext(ToastContext);
-  //const { currentTab } = useContext(RestaurantsContext);
-  // Hooks
-  const router = useRouter();
-
+  // State - Table
   const [deleteId, setDeleteId] = useState('');
-  const [duplicateId, setDuplicateId] = useState('');
-  const [selectedProducts, setSelectedProducts] = useState<
-    IRestaurantResponse[]
-  >([]);
+  const [selectedProducts, setSelectedProducts] = useState<IRestaurantResponse[]>(
+    []
+  );
   const [globalFilterValue, setGlobalFilterValue] = useState('');
-  const [selectedActions, setSelectedActions] = useState<string[]>([]);
-  const filters = {
-    global: { value: globalFilterValue, matchMode: FilterMatchMode.CONTAINS },
-    action: {
-      value: selectedActions.length > 0 ? selectedActions : null,
-      matchMode: FilterMatchMode.IN,
-    },
-  };
-  const [isHardDeleting, setisHardDeleting] = useState<boolean>(false);
+  const [filters, setFilters] = useState({
+    global: { value: '' as string | null, matchMode: FilterMatchMode.CONTAINS },
+  });
 
   const [loading, setLoading] = useState<boolean>(false);
   const [data, setData] = useState<IRestaurantResponse[]>([]);
 
   const {SERVER_URL} = useConfiguration();
   const {user} = useUserContext();
-  const { activeIndex } =
-    useContext(RestaurantsContext);
 
   useEffect(() => {
-      if (!SERVER_URL || !user?.jwtToken) return;
-    
-      const fetchData = async () => {
-        console.log(data.length);
-        if (data.length == 0) {
+        if (!SERVER_URL || !user?.jwtToken) return;
+      
+        const fetchData = async () => {
           setLoading(true);
-        }
-        try {
-          const response = await api.get(`${SERVER_URL}/shop`, user.jwtToken);
-          setData(response as IRestaurantResponse[]);
-        } catch (error) {
-          console.error(error);
-        } finally {
-          setLoading(false);
-        }
-      };
-  
-      fetchData();
-    }, [user?.jwtToken, activeIndex]);
+          try {
+            const response = await api.get(`${SERVER_URL}/shop`, user.jwtToken);
+            setData(response as IRestaurantResponse[]);
+          } catch (error) {
+          } finally {
+            setLoading(false);
+          }
+        };
+    
+        fetchData();
+      }, [user?.jwtToken, reload]);
 
-
-  const handleDelete = async (id: string) => {
-    try {
-      console.log("delete")
-    } catch (err) {
-      showToast({
-        type: 'error',
-        title: t('Store Delete'),
-        message: t(`Store delete failed`),
-      });
-      setDeleteId('');
-    }
+  // For global search
+  const onGlobalFilterChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value;
+    const _filters = { ...filters };
+    _filters['global'].value = value;
+    setFilters(_filters);
+    setGlobalFilterValue(value);
   };
 
-  // Constants
   const menuItems: IActionMenuItem<IRestaurantResponse>[] = [
     {
       label: t('Edit'),
       command: (data?: IRestaurantResponse) => {
         if (data) {
-        }
-      },
-    },
-    {
-      label: t('Delete'),
-      command: (data?: IRestaurantResponse) => {
-        if (data) {
+          setIsAddRestaurantVisible(true);
+          setRestaurant(data);
         }
       },
     }
   ];
 
-  const _restaurants = data;
   return (
     <div className="p-3">
       <Table
         header={
           <RestaurantsTableHeader
             globalFilterValue={globalFilterValue}
-            onGlobalFilterChange={(e) => setGlobalFilterValue(e.target.value)}
-            selectedActions={selectedActions}
-            setSelectedActions={setSelectedActions}
+            onGlobalFilterChange={onGlobalFilterChange}
           />
         }
-        data={loading ? generateDummyRestaurants() : (_restaurants ?? [])}
+        data={loading ? generateDummyRestaurants() : data}
         filters={filters}
         setSelectedData={setSelectedProducts}
         selectedData={selectedProducts}
-        columns={RESTAURANT_TABLE_COLUMNS({ menuItems })}
         loading={loading}
+        columns={RESTAURANT_TABLE_COLUMNS({ menuItems })}
       />
-
       <CustomDialog
-        loading={isHardDeleting}
+        loading={loading}
         visible={!!deleteId}
         onHide={() => {
           setDeleteId('');
         }}
         onConfirm={() => {
-          handleDelete(deleteId);
+          
         }}
-        message={t('Are you sure you want to delete this store?')}
-      />
-
-      <RestaurantDuplicateDialog
-        restaurantId={duplicateId}
-        visible={!!duplicateId}
-        onHide={() => {
-          setDuplicateId('');
-        }}
+        message={t('Are you sure you want to delete this item?')}
       />
     </div>
   );

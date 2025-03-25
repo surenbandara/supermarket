@@ -22,6 +22,10 @@ export const ROUTES = [
   {
     text: 'Users',
     route: '/users',
+  },
+  {
+    text: 'Products',
+    route: '/products',
   }
 ];
 

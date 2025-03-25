@@ -9,15 +9,12 @@ export interface IRiderResponseZone {
 }
 
 export interface IRiderResponse {
-  __typename?: 'Rider';
   _id: string;
   name: string;
-  username: string;
-  password?: string;
-  phone: string;
+  email: string;
+  phoneNumber: string;
+  vehicle: string;
   available: boolean;
-  assigned?: string[];
-  zone?: IRiderResponseZone;
 }
 
 // Define the structure of the query result object
@@ -50,18 +47,11 @@ export interface IRidersTableHeaderProps {
   onGlobalFilterChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 export interface IRiderReponse {
-  _id: string;
   name: string;
-  username: string;
-  password: string;
-  phone: string;
+  email: string;
+  phoneNumber: string;
+  vehicle: string;
   available: boolean;
-  zone: {
-    _id: string;
-    title: string;
-    __typename: 'Zone';
-  };
-  __typename: 'Rider';
 }
 
 export interface IRidersResponseGraphQL {

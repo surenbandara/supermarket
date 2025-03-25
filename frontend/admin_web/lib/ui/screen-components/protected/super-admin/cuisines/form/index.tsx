@@ -37,6 +37,8 @@ export default function CuisineForm({
   setIsEditing,
   isEditing,
   visible,
+  setCuisine,
+  setReaload
 }: IAddCuisineProps) {
   // Utility function to capitalize the first word of a string
   const capitalizeFirstWord = (str: string): string => {
@@ -66,13 +68,25 @@ export default function CuisineForm({
     ) => {
         try {
           setCreateCuisineLoading(true);
-          await api.post(`${SERVER_URL}/cusine`, formData, user?.jwtToken);
-          showToast({
-            title: `${!isEditing.bool ? t('New') : t('Edit')} ${t('Cuisine')}`,
-            type: 'success',
-            message: `${t('Cuisine has been')} ${!isEditing.bool ? t('Created') : t('edited')} ${t('successfully')}`,
-            duration: 2000,
-          });
+          let response: any = await api.post(`${SERVER_URL}/cusine`, formData, user?.jwtToken);
+          
+          if (Object.keys(response).length != 0 && response.status != 400) {
+            showToast({
+              type: 'success',
+              title: t('Success'),
+              message:  `${t('New')} ${t('Cuisine')}`,
+              duration: 3000,
+            });
+            setReaload(Date.now()) 
+          } else {
+            const message = t('ActionFailedTryAgain');
+            showToast({
+              type: 'error',
+              title: t('Error'),
+              message,
+              duration: 3000,
+            });
+          }
           
         }  catch (error: any) {
           const message = 'Cusine Creation Failed!';
@@ -94,13 +108,25 @@ export default function CuisineForm({
     ) => {
         try {
           setEditCuisineLoading(true);
-          await api.post(`${SERVER_URL}/rider`, formData, user?.jwtToken);
-          showToast({
-            title: `${!isEditing.bool ? t('New') : t('Edit')} ${t('Cuisine')}`,
-            type: 'success',
-            message: `${t('Cuisine has been')} ${!isEditing.bool ? t('Created') : t('edited')} ${t('successfully')}`,
-            duration: 2000,
-          });
+          let response: any = await api.put(`${SERVER_URL}/cusine`, formData, user?.jwtToken);
+          
+          if (Object.keys(response).length != 0 && response.status != 400) {
+            showToast({
+              type: 'success',
+              title: t('Success'),
+              message:  `${t('Edit')} ${t('Cuisine')}`,
+              duration: 3000,
+            });
+            setReaload(Date.now()) 
+          } else {
+            const message = t('ActionFailedTryAgain');
+            showToast({
+              type: 'error',
+              title: t('Error'),
+              message,
+              duration: 3000,
+            });
+          }
         }  catch (error: any) {
           const message = 'Cusine Creation Failed!';
           showToast({
@@ -238,7 +264,7 @@ export default function CuisineForm({
 
                   <CustomUploadImageComponent
                     name="image"
-                    error={touched.image && errors.image ? errors.image : ''}
+                    error=''
                     onSetImageUrl={setFieldValue}
                     title={t('Upload Image')}
                     existingImageUrl={

@@ -1,7 +1,7 @@
 import * as Yup from 'yup';
 
 export const ConfigurationSchema = Yup.object().shape({
-  key: Yup.string()
+  name: Yup.string()
     .max(35)
     .trim()
     .required('Required'),

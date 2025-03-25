@@ -45,6 +45,12 @@ export const CUISINE_TABLE_COLUMNS = ({
       {
         headerName: t('Description'),
         propertyName: 'description',
+      },
+      {
+        propertyName: 'actions',
+        body: (rider: ICuisine) => (
+          <ActionMenu items={menuItems} data={rider} />
+        ),
       }
     ],
     [menuItems]

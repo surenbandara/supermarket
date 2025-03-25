@@ -19,6 +19,7 @@ import { ICouponErrors } from '../../interfaces/forms/coupon.form.interface';
 import { IFoodErrors } from '../../interfaces/forms/food.form.interface';
 import { INoticiationErrors } from '../../interfaces/forms/notification.form.interface';
 import { IConfigurationErrors } from '../../interfaces/forms/configuration.form.interface';
+import { IProductErrors } from '../../interfaces/forms/product.form.interface';
 
 export const PasswordErrors = [
   'At least 6 characters',
@@ -84,8 +85,23 @@ export const RiderErrors: IRiderErrors = {
   available: ['Required']
 };
 
+export const ProductErrors: IProductErrors = {
+  id: ['Required'],
+  name: ['Required', 'Name cannot be only spaces', 'Name cannot be longer than 100 characters'],
+  price: ['Required', 'Price must be a positive number'],
+  quantity: ['Required', 'Quantity must be a positive number'],
+  cuisine: ['Required', 'At least one cuisine type is required'],
+  brand: ['Required', 'Brand cannot be longer than 50 characters'],
+  shop: ['Required', 'Shop cannot be longer than 50 characters'],
+  timestamp: ['Required'],
+  image: ['Invalid image URL'],
+  discount: ['Discount must be a positive number'],
+  additionalData: ['Invalid additional data'],
+  available: ['Required']
+};
+
 export const ConfigurationErrors: IConfigurationErrors = {
-  key: ['Required'],
+  name: ['Required'],
   value: ['Required']
 };
 

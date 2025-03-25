@@ -9,6 +9,8 @@ import {
 // Interfaces
 import {
   ICategory,
+  IConfiguration,
+  IConfigurationResponse,
   IDropdownSelectItem,
   IFoodNew,
   IRestaurantResponse,
@@ -21,6 +23,7 @@ import { IRiderResponse } from '../interfaces/rider.interface';
 import { ICuisine } from '../interfaces/cuisine.interface';
 import { IWithDrawRequest } from '../interfaces/withdraw-request.interface';
 import { IActiveOrders } from '../interfaces/dispatch.interface';
+import { IProductResponse } from '../interfaces/product.interface';
 
 export const dummyStatsData: IStatsCardProps[] = [
   {
@@ -146,9 +149,51 @@ export const generateDummyRiders = (
     restaurants.push({
       _id: `${i}`,
       name: '',
-      username: '',
-      phone: '',
+      email: '',
+      phoneNumber: '',
+      vehicle: '',
       available: false
+    });
+  }
+
+  return restaurants;
+};
+
+
+export const generateDummyProducts = (
+  count: number = 10
+): IProductResponse[] => {
+  const restaurants: IProductResponse[] = [];
+  for (let i = 0; i < count; i++) {
+    restaurants.push({
+      _id: `${i}`,
+      id: 0,
+      name: '',
+      price: 0,
+      quantity: 0,
+      cuisine: [],
+      brand: '',
+      shop: '',
+      timestamp: 0,
+      image: '',
+      discount: 0
+    });
+  }
+
+  return restaurants;
+};
+
+export const generateDummyConfiguration = (
+  count: number = 10
+): IConfiguration[] => {
+  const restaurants: IConfiguration[] = [];
+  for (let i = 0; i < count; i++) {
+    restaurants.push({
+      _id: `${i}`,
+      deliveryRate: 0,
+      googleMapLibraries: '',
+      twilioEnabled: false,
+      name: ''
     });
   }
 

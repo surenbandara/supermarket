@@ -24,6 +24,8 @@ export interface IAddCuisineProps {
       data: ICuisine;
     }>
   >;
+  setCuisine: Dispatch<SetStateAction<null | ICuisine>>;
+  setReaload: Dispatch<SetStateAction<number>>;
   isEditing: IEditState<ICuisine>;
   visible: boolean;
 }

@@ -62,7 +62,7 @@ export const RIDER_TABLE_COLUMNS = ({
       propertyName: 'available',
       body: (rider: IRiderResponse) => (
         <CustomInputSwitch
-          loading={rider._id === selectedRider.id }
+          loading={rider.name === selectedRider.id }
           isActive={rider.available}
           onChange={async () => {
             await onHandleBannerStatusChange(!rider.available, rider);
@@ -70,11 +70,12 @@ export const RIDER_TABLE_COLUMNS = ({
         />
       ),
     },
+    { headerName: t('Vehicle'), propertyName: 'vehicle' },
     {
       propertyName: 'actions',
       body: (rider: IRiderResponse) => (
         <ActionMenu items={menuItems} data={rider} />
       ),
-    },
+    }
   ];
 };

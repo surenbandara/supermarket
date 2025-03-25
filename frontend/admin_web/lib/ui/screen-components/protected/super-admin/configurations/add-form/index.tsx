@@ -35,9 +35,9 @@ export default function ConfigurationAddForm({
   position = 'right',
   isAddConfigurationVisible,
   setReload
-}: IConfigurationAddFormComponentProps) {
-  const initialValues: IConfigurationForm = {
-    key: '',
+}: any) {
+  const initialValues: any = configuration ?? {
+    name: '',
     value: ''
   };
 
@@ -52,19 +52,35 @@ export default function ConfigurationAddForm({
 
   // Form Submission
   const handleSubmit =  async (
-    values: IConfigurationForm,
+    values: any,
     { resetForm }: FormikHelpers<IConfigurationForm>
   ) => {
     if (values) {
       try {
         setLoading(true);
-        await api.post(`${SERVER_URL}/configurations`, values, user?.jwtToken);
-        showToast({
-          type: 'success',
-          title: t('Success'),
-          message: configuration ? t('Configuration updated') : t('Configuration added'),
-          duration: 3000,
-        });
+        let response: any;
+        if (configuration) {
+          response = await api.put(`${SERVER_URL}/system-parameters`, values, user?.jwtToken);
+        } else {
+          response= await api.post(`${SERVER_URL}/system-parameters`, values, user?.jwtToken);
+        }
+        if (Object.keys(response).length != 0 && response.status != 400) {
+          showToast({
+            type: 'success',
+            title: t('Success'),
+            message: configuration ? t('Configuration updated') : t('Configuration added'),
+            duration: 3000,
+          });
+          setReload(Date.now()) 
+        } else {
+          const message = t('ActionFailedTryAgain');
+          showToast({
+            type: 'error',
+            title: t('Error'),
+            message,
+            duration: 3000,
+          });
+        } 
         setLoading(false);
         setReload(Date.now())
         resetForm();
@@ -109,8 +125,8 @@ export default function ConfigurationAddForm({
                 validationSchema={ConfigurationSchema}
                 onSubmit={handleSubmit}
                 enableReinitialize
-                validateOnChange={true} // Disable validation on change
-                validateOnBlur={false} // Disable validation on blur
+                validateOnChange={true} 
+                validateOnBlur={false} 
               >
                 {({
                   values,
@@ -124,16 +140,16 @@ export default function ConfigurationAddForm({
                       <div className="space-y-4">
                         <CustomTextField
                           type="text"
-                          name="key"
-                          placeholder={'Key'}
+                          name="name"
+                          placeholder={'Name'}
                           maxLength={35}
-                          value={values.key}
+                          value={values.name}
                           onChange={handleChange}
                           showLabel={true}
                           style={{
                             borderColor: onErrorMessageMatcher(
-                              'key',
-                              errors?.key,
+                              'name',
+                              errors?.name,
                               ConfigurationErrors
                             )
                               ? 'red'

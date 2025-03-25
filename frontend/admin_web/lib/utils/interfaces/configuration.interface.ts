@@ -64,11 +64,12 @@ export interface IConfiguration {
   enableRestaurantDemo?: boolean;
   enableAdminDemo?: boolean;
   costType?: string;
+  name: string;
 }
 
 export interface IConfigurationResponse {
   __typename: 'Configuration';
-  key: string;
+  name: string;
   value: string;
 }
 

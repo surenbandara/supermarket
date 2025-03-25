@@ -17,6 +17,7 @@ import {
 import {
   faCog,
   faHome,
+  faShoppingBag,
   faSliders,
 } from '@fortawesome/free-solid-svg-icons';
 
@@ -70,6 +71,12 @@ export default function MakeSidebar() {
       route: '/stores',
       isParent: false,
       icon: faStore
+    },
+    {
+      text: t('Products'),
+      route: '/products',
+      isParent: false,
+      icon: faShoppingBag
     },
     {
       text: t('Riders'),

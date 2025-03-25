@@ -96,7 +96,10 @@ export const RESTAURANT_TABLE_COLUMNS = ({
       propertyName: 'vendorEmai',
     },
     {
-      headerName: t('Actions'),
+      headerName: t('Category'),
+      propertyName: 'category',
+    },
+    {
       propertyName: 'actions',
       body: (rowData: IRestaurantResponse) => (
         <ActionMenu items={menuItems} data={rowData} />

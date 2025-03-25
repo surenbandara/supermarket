@@ -32,18 +32,24 @@ import { useTranslations } from 'next-intl';
 import { useConfiguration } from '@/lib/hooks/useConfiguration';
 import { useUserContext } from '@/lib/hooks/useUser';
 import { api } from '@/lib/hooks/useQueryQL';
+import { CuisineContext } from '@/lib/context/global/cuisine-context';
+import { useCusineContext } from '@/lib/hooks/useCuisine';
 
 export default function CuisinesMain({
   setVisible,
   isEditing,
   setIsEditing,
-}: ICuisineMainProps) {
+  cuisine,
+  reload,
+  setReaload
+}: any) {
 
   const [loading, setLoading] = useState<boolean>(true);
   const [data, setData] = useState<ICuisine[]>([]);
 
   const {SERVER_URL} = useConfiguration();
   const {user} = useUserContext();
+  const {setCuisines} = useCusineContext();
   
   // Hooks
   const t = useTranslations();
@@ -64,15 +70,14 @@ export default function CuisinesMain({
   const [selectedActions, setSelectedActions] = useState<string[]>([]);
   const [globalFilterValue, setGlobalFilterValue] = useState('');
 
-  // Filters
   const filters = {
     global: { value: globalFilterValue, matchMode: FilterMatchMode.CONTAINS },
     shopType: {
       value:
         selectedActions.length === 0 || selectedActions.length === 2
-          ? null // No filter when none or both are selected
+          ? null 
           : selectedActions,
-      matchMode: FilterMatchMode.IN, // Use "IN" to filter based on multiple values
+      matchMode: FilterMatchMode.IN,
     },
   };
 
@@ -122,16 +127,27 @@ export default function CuisinesMain({
     },
   ];
 
-  // Handlers
   async function deleteItem() {
     try {
-      //await deleteCuisine({ variables: { id: isDeleting?.data?._id } });
-      showToast({
-        title: t('Delete Cuisine'),
-        type: 'success',
-        message: t('Cuisine has been deleted successfully'),
-        duration: 2000,
-      });
+      let response: any = await api.delete(`${SERVER_URL}/cusine`, {name: isDeleting?.data?.name}, user?.jwtToken);
+      
+      if (Object.keys(response).length != 0 && response.status != 400) {
+        showToast({
+          title: t('Delete Cuisine'),
+          type: 'success',
+          message: t('Cuisine has been deleted successfully'),
+          duration: 2000,
+        });
+        setReaload(Date.now()) 
+      } else {
+        const message = t('ActionFailedTryAgain');
+        showToast({
+          type: 'error',
+          title: t('Error'),
+          message,
+          duration: 3000,
+        });
+      }
       setIsDeleting({ bool: false, data: { ...isDeleting.data } });
     } catch (err) {
       showToast({
@@ -148,7 +164,9 @@ export default function CuisinesMain({
     const fetchData = async () => {
         try {
           const response = await api.get(`${SERVER_URL}/cusine`, user?.jwtToken);
+          console.log("66666666666666666666666");
           setData(response as ICuisine[]);
+          setCuisines(response as ICuisine[]);
         } catch (error) {
           console.error(error);
         } finally {
@@ -166,7 +184,7 @@ export default function CuisinesMain({
 
   useEffect(() => {
     onFetchCuisines();
-  }, []);
+  }, [reload]);
 
   
 

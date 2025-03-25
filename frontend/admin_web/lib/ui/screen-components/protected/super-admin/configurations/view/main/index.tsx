@@ -21,8 +21,9 @@ import { useTranslations } from 'next-intl';
 import { useConfiguration } from '@/lib/hooks/useConfiguration';
 import { useUserContext } from '@/lib/hooks/useUser';
 import { IConfiguration, IConfigurationResponse, IConfigurationsMainComponentsProps } from '@/lib/utils/interfaces';
-import { CATEGORY_TABLE_COLUMNS } from '@/lib/ui/useable-components/table/columns/category-columns';
+import {  CONFIGURATION_TABLE_COLUMNS } from '@/lib/ui/useable-components/table/columns/configuration-columns';
 import ConfigurationTableHeader from '../header/table-header';
+import { generateDummyConfiguration } from '@/lib/utils/dummy';
 
 export default function RidersMain({
   setIsAddConfigurationVisible,
@@ -46,27 +47,29 @@ export default function RidersMain({
   const [loading, setLoading] = useState<boolean>(false);
   const [data, setData] = useState<IConfiguration[]>([]);
 
+  const [deleteReload, setDeleteReload] = useState<number>(0);
+
   const {SERVER_URL} = useConfiguration();
   const {user} = useUserContext();
 
+  const fetchData = async () => {
+    setLoading(true);
+    try {
+      const response = await api.get(`${SERVER_URL}/system-parameters`, user?.jwtToken);
+      setData(response as IConfiguration[]);
+    } catch (error) {
+      console.error(error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
   useEffect(() => {
         if (!SERVER_URL || !user?.jwtToken) return;
-      
-        const fetchData = async () => {
-          setLoading(false);
-          try {
-            const response = await api.get(`${SERVER_URL}/configurations`, user.jwtToken);
-            setData(response as IConfiguration[]);
-          } catch (error) {
-            console.error(error);
-          } finally {
-            setData([]);
-            setLoading(false);
-          }
-        };
     
         fetchData();
       }, [user?.jwtToken, reload]);
+
   // For global search
   const onGlobalFilterChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
@@ -75,6 +78,10 @@ export default function RidersMain({
     setFilters(_filters);
     setGlobalFilterValue(value);
   };
+
+  useEffect(() => {
+    fetchData();
+  }, [deleteReload]);
 
   const menuItems: IActionMenuItem<IConfiguration>[] = [
     {
@@ -90,7 +97,7 @@ export default function RidersMain({
       label: t('Delete'),
       command: (data?: IConfiguration) => {
         if (data) {
-          setDeleteId(data._id);
+          setDeleteId(data.name);
         }
       },
     },
@@ -105,12 +112,12 @@ export default function RidersMain({
             onGlobalFilterChange={onGlobalFilterChange}
           />
         }
-        data={data}
+        data={loading ? generateDummyConfiguration() : data}
         filters={filters}
         setSelectedData={setSelectedProducts}
         selectedData={selectedProducts}
         loading={loading}
-        columns={CATEGORY_TABLE_COLUMNS({ menuItems })}
+        columns={CONFIGURATION_TABLE_COLUMNS({ menuItems })}
       />
       <CustomDialog
         loading={loading}
@@ -118,10 +125,29 @@ export default function RidersMain({
         onHide={() => {
           setDeleteId('');
         }}
-        onConfirm={() => {
+        onConfirm={async () => {
+          const response: any = await api.delete(`${SERVER_URL}/system-parameters`, {name: deleteId}, user?.jwtToken);
+          if (Object.keys(response).length != 0 && response.status != 400) {
+            showToast({
+              type: 'success',
+              title: t('Success'),
+              message: 'Configuration deleted',
+              duration: 3000,
+            }); 
+            setDeleteReload(deleteReload+1);
+          } else {
+            const message = t('ActionFailedTryAgain');
+            showToast({
+              type: 'error',
+              title: t('Error'),
+              message,
+              duration: 3000,
+            });
+          }
+          setDeleteId('');
           
         }}
-        message={t('Are you sure you want to delete this item?')}
+        message={t('Are you sure you want to delete this parameter?')}
       />
     </div>
   );

@@ -5,7 +5,7 @@ import { Form, Formik, FormikHelpers } from 'formik';
 import { Sidebar } from 'primereact/sidebar';
 
 // Interface and Types
-import { IQueryResult } from '@/lib/utils/interfaces';
+import { IQueryResult, IRiderReponse } from '@/lib/utils/interfaces';
 import { IRiderForm } from '@/lib/utils/interfaces/forms';
 import {
   IRidersAddFormComponentProps,
@@ -46,8 +46,8 @@ export default function RiderAddForm({
   position = 'right',
   isAddRiderVisible,
   setReload
-}: IRidersAddFormComponentProps) {
-  const initialValues: IRiderForm = {
+}: any) {
+  const initialValues: IRiderReponse = rider ?? {
     name: '',
     email: '',
     phoneNumber: '',
@@ -79,20 +79,35 @@ export default function RiderAddForm({
     { resetForm }: FormikHelpers<IRiderForm>
   ) => {
     if (values) {
+      let message = '';
       try {
-        console.log(values)
-        await api.post(`${SERVER_URL}/rider`, values, user?.jwtToken);
-        showToast({
-          type: 'success',
-          title: t('Success'),
-          message: rider ? t('Rider updated') : t('Rider added'),
-          duration: 3000,
-        });
-        setReload(Date.now())
+        let response: any;
+        if (rider) {
+          response = await api.put(`${SERVER_URL}/rider`, values, user?.jwtToken);
+        } else {
+          response= await api.post(`${SERVER_URL}/rider`, values, user?.jwtToken);
+        }
+        
+        if (Object.keys(response).length != 0 && response.status != 400) {
+          showToast({
+            type: 'success',
+            title: t('Success'),
+            message: rider ? t('Rider updated') : t('Rider added'),
+            duration: 3000,
+          });
+          setReload(Date.now()) 
+        } else {
+          message = t('ActionFailedTryAgain');
+          showToast({
+            type: 'error',
+            title: t('Error'),
+            message,
+            duration: 3000,
+          });
+        }
         resetForm();
         onHide();
       }  catch (error: any) {
-        let message = '';
         try {
           message = error;
         } catch (err) {

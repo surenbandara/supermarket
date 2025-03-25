@@ -25,6 +25,7 @@ import './global.css';
 
 // Apollo
 import { useSetupApollo } from '@/lib/hooks/useSetApollo';
+import { CuisineProvider } from '@/lib/context/global/cuisine-context';
 
 export default function RootLayout({
   children,
@@ -51,9 +52,11 @@ export default function RootLayout({
             <ConfigurationProvider>
               <LayoutProvider>
                 <UserProvider>
-                  <SidebarProvider>
-                    <ToastProvider>{children}</ToastProvider>
-                  </SidebarProvider>
+                  <CuisineProvider>
+                    <SidebarProvider>
+                      <ToastProvider>{children}</ToastProvider>
+                    </SidebarProvider>
+                  </CuisineProvider>
                 </UserProvider>
               </LayoutProvider>
             </ConfigurationProvider>

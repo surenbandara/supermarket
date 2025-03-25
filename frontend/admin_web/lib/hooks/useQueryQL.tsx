@@ -67,6 +67,10 @@ class RestApiHandler {
     
     if (!response.ok) {
       console.log(`Request failed with status ${response.status}`);
+      if (response.status == 401) {
+        const router = useRouter();
+        router.push('/authentication/login')
+      }
     }
 
     return await response.json();
@@ -97,9 +101,9 @@ class RestApiHandler {
   }
 
   // DELETE method
-  async delete(url: string, token?: string) {
+  async delete(url: string, body: any, token?: string) {
     if (token){this.setToken(token);}
-    return await this.debouncedRequest(url, 'DELETE', null, this.retries, this.retryDelayMs);
+    return await this.debouncedRequest(url, 'DELETE', body, this.retries, this.retryDelayMs);
   }
 }
 
@@ -119,6 +123,7 @@ import {
 import { WatchQueryFetchPolicy } from '@apollo/client/core/watchQueryOptions';
 import { useCallback, useState } from 'react';
 import { retryQuery } from '../utils/methods';
+import { useRouter } from 'next/router';
 
 export const useQueryGQL = <
   T extends DocumentNode,

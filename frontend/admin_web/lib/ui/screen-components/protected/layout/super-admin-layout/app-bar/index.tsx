@@ -143,7 +143,7 @@ const AppTopbar = () => {
             <FontAwesomeIcon icon={faBars} />
           </button>
         </div>
-        <div onClick={() => onRedirectToPage('/general/stores')}>
+        <div onClick={() => onRedirectToPage('/stores')}>
           <AppLogo />
         </div>
       </div>

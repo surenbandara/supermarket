@@ -1,8 +1,10 @@
 // Custom Components
 import CustomTextField from '@/lib/ui/useable-components/input-field';
+
+// Interfaces
 import { useTranslations } from 'next-intl';
 
-export default function RestaurantsTableHeader({
+export default function ProductsTableHeader({
   globalFilterValue,
   onGlobalFilterChange,
 }: any) {
@@ -15,12 +17,12 @@ export default function RestaurantsTableHeader({
         <div className="w-60">
           <CustomTextField
             type="text"
-            name="riderFilter"
+            name="productFilter"
             maxLength={35}
             showLabel={false}
             value={globalFilterValue}
             onChange={onGlobalFilterChange}
-            placeholder={t('Keyword Search')}
+            placeholder={t('Keyword Search for Products')}
           />
         </div>
       </div>

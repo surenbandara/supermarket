@@ -48,11 +48,7 @@ export default function OrderSuperAdminMain() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        console.log("aaaaaaaaaaaaaaaaa");
-        console.log(user)
-        console.log(SERVER_URL)
         const response: any = await api.get(`${SERVER_URL}/orders`, user?.jwtToken);
-        console.log(response)
         if (response.status == "200") {setData(response as IOrder[]);}
       } catch (error) {
         console.error("Error:", error);
