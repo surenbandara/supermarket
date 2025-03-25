@@ -4,6 +4,8 @@
 /frontend/admin_web/node_modules/
 /frontend/admin_web/.next/
 
+/frontend/app/node_modules/
+/frontend/app/.next/
 
 # Logs
 /backend/logs
