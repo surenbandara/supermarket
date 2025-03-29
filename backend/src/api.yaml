@@ -1531,6 +1531,12 @@ paths:
           required: false
           schema:
             type: string
+        - name: timestamp
+          in: query
+          description: Filter orders by timestamp
+          required: false
+          schema:
+            type: integer
       responses:
         '200':
           description: A list of Orders

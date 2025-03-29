@@ -14,6 +14,7 @@ export const listOrders = async (req: Request, res: Response, next: NextFunction
         if (req.query.userId) filter.userId = req.query.userId;
         if (req.query.status) filter.status = req.query.status;
         if (req.query.paymentStatus) filter.paymentStatus = req.query.paymentStatus;
+        if (req.query.timestamp) filter.timestamp = { $gte: new Date(req.query.timestamp as string) };
 
         const orders = await OrderModel.find(filter).sort({ timestamp: -1 });
 

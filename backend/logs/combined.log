@@ -2388,3 +2388,14 @@
 2025-03-29T11:35:02.866Z info: changeOrderStatus:: Order status updated successfully for orderId: 174791105157
 2025-03-29T11:35:11.182Z info: listOrders::Orders fetched successfully
 2025-03-29T11:35:24.634Z error: ERROR::apiValidationHandler:  request/body/status must be equal to one of the allowed values: NEW, INITIATED, CONFIRMED, PROCESSING, SHIPPED, DELIVERED, COMPLETED, CANCELLED, RETURNED
+2025-03-29T11:44:39.775Z info: MongoDB ::::: mongodb://mongodb:27017/test-super-market-05
+2025-03-29T11:44:39.995Z info: MongoDB connected
+2025-03-29T11:44:39.997Z info: Server running on port 3000
+2025-03-29T11:44:40.009Z info: Admin user already exists
+2025-03-29T11:44:40.090Z info: Customer  lakshan1 user already exists
+2025-03-29T11:44:40.159Z info: Customer  suren user already exists
+2025-03-29T11:44:40.159Z info: starterPack added successfully
+2025-03-29T11:45:50.331Z info: listOrders::Orders fetched successfully
+2025-03-29T11:46:10.450Z info: listOrders::Orders fetched successfully
+2025-03-29T11:47:13.580Z info: listOrders::Orders fetched successfully
+2025-03-29T11:47:30.524Z info: listOrders::Orders fetched successfully
