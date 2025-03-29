@@ -1880,6 +1880,8 @@ components:
           enum:
             - super-market
             - restaurants # add more categories as needed
+        available:
+          type: boolean
         timestamp:
           type: number
         image:
@@ -1892,6 +1894,7 @@ components:
         - vendorEmai
         - vendorPhoneNumber
         - timestamp
+        - available
     ModifiedShop:
       type: object
       properties:

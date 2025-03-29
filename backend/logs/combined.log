@@ -2399,3 +2399,15 @@
 2025-03-29T11:46:10.450Z info: listOrders::Orders fetched successfully
 2025-03-29T11:47:13.580Z info: listOrders::Orders fetched successfully
 2025-03-29T11:47:30.524Z info: listOrders::Orders fetched successfully
+2025-03-29T13:49:34.315Z info: MongoDB ::::: mongodb://mongodb:27017/test-super-market-05
+2025-03-29T13:49:34.556Z info: MongoDB connected
+2025-03-29T13:49:34.559Z info: Server running on port 3000
+2025-03-29T13:49:34.573Z info: Admin user already exists
+2025-03-29T13:49:34.647Z info: Customer  lakshan1 user already exists
+2025-03-29T13:49:34.724Z info: Customer  suren user already exists
+2025-03-29T13:49:34.725Z info: starterPack added successfully
+2025-03-29T13:49:52.006Z error: authenticateJWT:: jwt expired
+2025-03-29T13:50:09.543Z info: login:: User systemAdmin@gmail.com logged in successfully
+2025-03-29T13:50:26.701Z info: listShops::Shops fetched successfully : []
+2025-03-29T13:50:43.257Z info: createNewShop::Shop created successfully : {"name":"string","vendorName":"string","vendorEmai":"string","category":"super-market","available":true,"vendorPhoneNumber":"string","timestamp":0,"image":"string","additionalData":"string"}
+2025-03-29T13:51:01.091Z info: listShops::Shops fetched successfully : [{"name":"string","vendorName":"string","vendorEmai":"string","category":"super-market","available":true,"vendorPhoneNumber":"string","timestamp":0,"image":"string","additionalData":"string"}]

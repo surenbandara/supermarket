@@ -179,3 +179,4 @@
 2025-03-22T17:01:07.295Z error: ERROR::apiValidationHandler:  /response/5/status must be equal to one of the allowed values: NEW, INITIATED, CONFIRMED, PROCESSING, SHIPPED, DELIVERED, COMPLETED, CANCELLED, RETURNED
 2025-03-22T17:02:02.814Z error: ERROR::apiValidationHandler:  /response/5/status must be equal to one of the allowed values: NEW, INITIATED, CONFIRMED, PROCESSING, SHIPPED, DELIVERED, COMPLETED, CANCELLED, RETURNED
 2025-03-29T11:35:24.634Z error: ERROR::apiValidationHandler:  request/body/status must be equal to one of the allowed values: NEW, INITIATED, CONFIRMED, PROCESSING, SHIPPED, DELIVERED, COMPLETED, CANCELLED, RETURNED
+2025-03-29T13:49:52.006Z error: authenticateJWT:: jwt expired
