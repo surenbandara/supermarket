@@ -74,5 +74,6 @@ exports.default = {
     listOrders: orderHandler.listOrders,
     requestNewOrder: orderHandler.requestNewOrder,
     confirmOrder: orderHandler.confirmOrder,
-    cancelOrder: orderHandler.cancelOrder
+    cancelOrder: orderHandler.cancelOrder,
+    changeOrderStatus: orderHandler.changeOrderStatus,
 };

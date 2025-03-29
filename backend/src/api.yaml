@@ -1439,6 +1439,66 @@ paths:
                 properties:
                   message:
                     type: string
+  /order:
+    post:
+      summary: Change order status
+      operationId: changeOrderStatus
+      security:
+        - BearerAuth: []
+      x-roles: ['admin']  
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - id
+                - status
+              properties:
+                id:
+                  type: integer
+                status:
+                  $ref: '#/components/schemas/OrderStatus'
+                paymentStatus:
+                  $ref: '#/components/schemas/PaymentStatus'
+      responses:
+        '200':
+          description: Created
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+        '500':
+          description: Failed to create
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
   /orders:
     get:
       summary: Get Orders

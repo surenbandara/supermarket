@@ -2360,3 +2360,31 @@
 2025-03-23T03:36:16.867Z info: listOrders::Orders fetched successfully
 2025-03-23T03:36:35.327Z info: cancelOrder:: Cancel products process successfully completed}
 2025-03-23T03:36:35.330Z info: cancelOrder:: Canceled: [object Object] order successfully}
+2025-03-29T09:40:59.820Z info: MongoDB ::::: mongodb://mongodb:27017/test-super-market-05
+2025-03-29T09:41:00.035Z info: MongoDB connected
+2025-03-29T09:41:00.037Z info: Server running on port 3000
+2025-03-29T09:41:00.048Z info: Admin user already exists
+2025-03-29T09:41:00.122Z info: Customer  lakshan1 user already exists
+2025-03-29T09:41:00.194Z info: Customer  suren user already exists
+2025-03-29T09:41:00.195Z info: starterPack added successfully
+2025-03-29T10:49:51.510Z info: MongoDB ::::: mongodb://mongodb:27017/test-super-market-05
+2025-03-29T10:49:51.914Z info: MongoDB connected
+2025-03-29T10:49:51.916Z info: Server running on port 3000
+2025-03-29T10:49:51.955Z info: Admin user already exists
+2025-03-29T10:49:52.030Z info: Customer  lakshan1 user already exists
+2025-03-29T10:49:52.107Z info: Customer  suren user already exists
+2025-03-29T10:49:52.108Z info: starterPack added successfully
+2025-03-29T11:30:33.036Z info: MongoDB ::::: mongodb://mongodb:27017/test-super-market-05
+2025-03-29T11:30:33.256Z info: MongoDB connected
+2025-03-29T11:30:33.259Z info: Server running on port 3000
+2025-03-29T11:30:33.271Z info: Admin user already exists
+2025-03-29T11:30:33.352Z info: Customer  lakshan1 user already exists
+2025-03-29T11:30:33.420Z info: Customer  suren user already exists
+2025-03-29T11:30:33.421Z info: starterPack added successfully
+2025-03-29T11:32:42.163Z info: login:: User systemAdmin@gmail.com logged in successfully
+2025-03-29T11:33:11.482Z info: listOrders::Orders fetched successfully
+2025-03-29T11:34:19.401Z info: changeOrderStatus:: Order status updated successfully for orderId: 174791105157
+2025-03-29T11:34:35.996Z info: listOrders::Orders fetched successfully
+2025-03-29T11:35:02.866Z info: changeOrderStatus:: Order status updated successfully for orderId: 174791105157
+2025-03-29T11:35:11.182Z info: listOrders::Orders fetched successfully
+2025-03-29T11:35:24.634Z error: ERROR::apiValidationHandler:  request/body/status must be equal to one of the allowed values: NEW, INITIATED, CONFIRMED, PROCESSING, SHIPPED, DELIVERED, COMPLETED, CANCELLED, RETURNED

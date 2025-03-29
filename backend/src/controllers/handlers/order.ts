@@ -69,7 +69,7 @@ export const confirmOrder = async (req: Request, res: Response, next: NextFuncti
         const filter: any = {};
         if (order.id) filter.id = Number(order.id);
         const existingOrderRecord = await OrderModel.find(filter);
-        if (existingOrderRecord.length>0) {
+        if (existingOrderRecord.length > 0) {
             log.error(`confirmOrder:: Order exist for orderId: ${order.id}`);
             res.status(400).json({
                 status: 400,
@@ -107,7 +107,7 @@ export const confirmOrder = async (req: Request, res: Response, next: NextFuncti
                 id: order.id,
                 bill: PriceBag.toString(order.productList),
                 totalPrice: TotalBill.toString(order.totalPrice),
-                status: OrderStatus.PROCESSIONG,
+                status: OrderStatus.CONFIRMED,
                 paymentMethod: order.paymentMethod,
                 paymentStatus: order.paymentStatus,
                 userId: order.userId,
@@ -193,7 +193,7 @@ const allocateProductListAndCreateBill = async (order: Order) => {
             if (product.quantity < item.quantity) {
                 log.warn(`allocateProductListAndCreateBill::Insufficient stock for product: ${item.productId}`);
                 await rollbackProductUpdates(originalQuantities);
-                return false;  
+                return false;
             }
 
             originalQuantities.push({ productId: product.id, originalQuantity: product.quantity });
@@ -207,10 +207,10 @@ const allocateProductListAndCreateBill = async (order: Order) => {
             if (!updatedProduct) {
                 log.error(`allocateProductListAndCreateBill::Failed to update product: ${item.productId}`);
                 await rollbackProductUpdates(originalQuantities);
-                return false; 
+                return false;
             }
         }
-        return true;  
+        return true;
     } catch (error) {
         log.error(`allocateProductListAndCreateBill::Error occurred: ${error}`);
         await rollbackProductUpdates(originalQuantities);
@@ -220,7 +220,7 @@ const allocateProductListAndCreateBill = async (order: Order) => {
 
 // Rollback function to revert changes made during the process
 const rollbackProductUpdates = async (originalQuantities: { productId: number, originalQuantity: number }[]) => {
-    if (originalQuantities.length === 0) {return}
+    if (originalQuantities.length === 0) { return }
     for (const { productId, originalQuantity } of originalQuantities) {
         await ProductModel.findOneAndUpdate(
             { id: productId },
@@ -270,7 +270,7 @@ export const cancelOrder = async (req: Request, res: Response, next: NextFunctio
 
         if (await releaseProductList(existingOrderRecord)) {
             log.info(`cancelOrder:: Cancel products process successfully completed}`);
- 
+
             const orderRecord = await OrderModel.findOneAndUpdate(
                 { id: existingOrderRecord.id },
                 { $set: { status: OrderStatus.CANCELLED } },
@@ -325,13 +325,48 @@ const releaseProductList = async (order: IOder) => {
             if (!updatedProduct) {
                 log.error(`releaseProductList::Failed to update product: ${item.productId}`);
                 await rollbackProductUpdates(originalQuantities);
-                return false; 
+                return false;
             }
         }
-        return true;  
+        return true;
     } catch (error) {
         log.error(`releaseProductList::Error occurred: ${error}`);
         await rollbackProductUpdates(originalQuantities);
         return false;
     }
+};
+
+export const changeOrderStatus = async (req: Request, res: Response, next: NextFunction) => {
+    try {
+        const { id, status, paymentStatus } = req.body;
+
+        const existingOrderRecord = await OrderModel.findOne({ id: Number(id) });
+        if (!existingOrderRecord) {
+            log.error(`changeOrderStatus:: Order does not exist for orderId: ${id}`);
+            res.status(400).json({
+                status: 400,
+                message: "Order does not exist for orderId",
+            });
+            return;
+        }
+
+        existingOrderRecord.status = status;
+        if (paymentStatus) {
+            existingOrderRecord.paymentStatus = paymentStatus;
+        }
+
+        await existingOrderRecord.save();
+        log.info(`changeOrderStatus:: Order status updated successfully for orderId: ${id}`);
+
+        res.status(200).json({ message: "Order status updated successfully" });
+        return;
+
+    } catch (err: any) {
+        log.error(`changeOrderStatus:: ${err}`);
+        res.status(500).json({
+            status: 500,
+            message: "Internal Server Error",
+        });
+    }
+    next();
 };
