@@ -20,6 +20,9 @@ const navigationOptions = (props) => ({
   headerTitleAlign: 'left',
   headerTitle: (headerProp) => (
     <></>
-  )
+  ),
+  headerLeft:  () => (
+    <></>
+   ) 
 })
 export default navigationOptions

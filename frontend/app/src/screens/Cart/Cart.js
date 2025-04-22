@@ -483,12 +483,12 @@ function Cart(props) {
                   marginTop: 10
                 }}
               >
-                <SpecialInstructions
+                {/* <SpecialInstructions
                   instructions={instructions}
                   onSubmitInstructions={setInstructions}
                   theme={currentTheme}
                   t={t}
-                />
+                /> */}
               </View>
               <View
                 style={{

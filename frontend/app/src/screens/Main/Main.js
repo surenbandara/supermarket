@@ -26,7 +26,6 @@ import {
   getCuisines,
   restaurantListPreview
 } from '../../apollo/queries'
-import { selectAddress } from '../../apollo/mutations'
 import { scale } from '../../utils/scaling'
 import styles from './styles'
 import { useNavigation, useFocusEffect } from '@react-navigation/native'
@@ -38,21 +37,16 @@ import { LocationContext } from '../../context/Location'
 import analytics from '../../utils/analytics'
 import { useTranslation } from 'react-i18next'
 import MainRestaurantCard from '../../components/Main/MainRestaurantCard/MainRestaurantCard'
-import { TopBrands } from '../../components/Main/TopBrands'
 import CustomHomeIcon from '../../assets/SVG/imageComponents/CustomHomeIcon'
 import CustomOtherIcon from '../../assets/SVG/imageComponents/CustomOtherIcon'
 import CustomWorkIcon from '../../assets/SVG/imageComponents/CustomWorkIcon'
 import useHomeRestaurants from '../../ui/hooks/useRestaurantOrderInfo'
-import ErrorView from '../../components/ErrorView/ErrorView'
 import ActiveOrders from '../../components/Main/ActiveOrders/ActiveOrders'
 import MainLoadingUI from '../../components/Main/LoadingUI/MainLoadingUI'
-import TopBrandsLoadingUI from '../../components/Main/LoadingUI/TopBrandsLoadingUI'
-import Banner from '../../components/Main/Banner/Banner'
 import Spinner from '../../components/Spinner/Spinner'
 import CustomApartmentIcon from '../../assets/SVG/imageComponents/CustomApartmentIcon'
 import MainModalize from '../../components/Main/Modalize/MainModalize'
 import CollectionCard from '../../components/CollectionCard/CollectionCard'
-import { sortRestaurantsByOpenStatus } from '../../utils/customFunctions'
 import { IMAGE_LINK } from '../../utils/constants'
 import useGeocoding from '../../ui/hooks/useGeocoding'
 import ForceUpdate from '../../components/Update/ForceUpdate'
@@ -182,7 +176,6 @@ function Main(props) {
     const restaurant = []
     const shop = []
     for(chunk of restaurantsManager.getShopData() ) {
-      console.log('44444 ', chunk);
       map.set(chunk.category, [...map.get(chunk.category), chunk])
       if (chunk.category == 'restaurants') {
         restaurant.push(chunk.name);
@@ -202,9 +195,6 @@ function Main(props) {
       map.set(key, [...map.get(key), product])
       }
     }
-    console.log('00000000',map)
-    console.log(dataStructure);
-    console.log('999999999999',map.get('super-market-data') )
     setDataStructure(map);
     setLoading(false);
   }
@@ -263,10 +253,6 @@ function Main(props) {
       setBusy(true);
       
       const { error, coords } = await getCurrentLocation();
-      console.log("getCurrentLocation result:", { error, coords });
-      console.log("coords", coords);
-      console.log("coords", coords.latitude);
-      console.log("coords", coords.longitude);
   
       if (!coords || !coords.latitude || !coords.longitude) {
         console.error("Invalid coordinates:", coords);
@@ -281,9 +267,6 @@ function Main(props) {
       try {
         // Fetch the address using the geocoding hook
         const { formattedAddress, city } = await getAddress(coords.latitude, coords.longitude);
-  
-        console.log('Formatted address:', formattedAddress);
-        console.log('City:', city);
   
         let address = formattedAddress || 'Unknown Address';
   
