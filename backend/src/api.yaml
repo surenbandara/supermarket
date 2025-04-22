@@ -863,7 +863,7 @@ paths:
       operationId: listShops
       security:
         - BearerAuth: []
-      x-roles: ['admin']
+      x-roles: ['admin', 'user']
       parameters:
         - name: name
           in: query
@@ -1251,7 +1251,7 @@ paths:
       operationId: listSystemParameters
       security:
         - BearerAuth: []
-      x-roles: ['admin']
+      x-roles: ['admin', 'user']
       parameters:
         - name: name
           in: query
@@ -1445,7 +1445,7 @@ paths:
       operationId: listOrders
       security:
         - BearerAuth: []
-      x-roles: ['admin']
+      x-roles: ['admin', 'user']
       parameters:
         - name: id
           in: query

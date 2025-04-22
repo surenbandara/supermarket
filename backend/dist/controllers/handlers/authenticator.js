@@ -70,11 +70,13 @@ const login = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
                     decodedToken = yield firebase_admin_1.default.auth().verifyIdToken(token);
                 }
                 catch (error) {
+                    console.log(`login:: Error ${error} verifying token for user: ${email}`);
                     logger_1.default.error(`login:: Error Invalid token verifying token for user: ${email}`);
                     res.status(401).json({ message: `Invalid token` });
                     return;
                 }
                 if (!decodedToken || !decodedToken.email) {
+                    console.log(`login:: Error ${decodedToken} verifying token for user: ${email}`);
                     logger_1.default.error(`login:: Error Invalid token verifying token for user: ${email}`);
                     res.status(401).json({ message: `Invalid token` });
                     return;

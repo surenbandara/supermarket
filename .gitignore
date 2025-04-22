@@ -6,6 +6,22 @@
 
 /frontend/app/node_modules/
 /frontend/app/.next/
+# OSX
+#
+/frontend/app/.DS_Store
+
+# Android/IntelliJ
+#
+/frontend/app/build/
+/frontend/app/.idea
+/frontend/app/.gradle
+/frontend/app/local.properties
+/frontend/app/*.iml
+/frontend/app/*.hprof
+
+# Bundle artifacts
+/frontend/app/*.jsbundle
+
 
 # Logs
 /backend/logs
