@@ -3,6 +3,7 @@ import { IUserLoginDataResponse } from '@/lib/utils/interfaces';
 import { APP_NAME } from '@/lib/utils/constants';
 import { useConfiguration } from '@/lib/hooks/useConfiguration';
 import { onUseLocalStorage } from '@/lib/utils/methods';
+import router from 'next/router';
 
 interface IUserContext {
   user: IUserLoginDataResponse | null;
@@ -20,8 +21,29 @@ export const UserProvider: React.FC<{ children: React.ReactNode }> = ({ children
     const savedUser = localStorage.getItem(`user-${APP_NAME}`);
     if (savedUser) {
       setUser(JSON.parse(savedUser));
+      validateToken(JSON.parse(savedUser).jwtToken)
     }
   }, []);
+
+  const validateToken = async (token: string) => {
+    try {
+      const response = await fetch(`${SERVER_URL}/validate-token`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${token}`,
+        },
+      });
+
+      if (!response.ok) {
+        throw new Error('Token is invalid');
+      }
+    } catch (error) {
+      console.error('Token validation failed:', error);
+      // Redirect to login page if token is invalid
+      //router.push('authentication/login');
+    }
+  };
 
   const onLogin = async (email: string, password: string): Promise<IUserLoginDataResponse> => {
     try {

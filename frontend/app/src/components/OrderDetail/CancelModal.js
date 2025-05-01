@@ -14,7 +14,6 @@ export const CancelModal = ({
   modalVisible,
   setModalVisible,
   cancelOrder,
-  loading,
   orderStatus
 }) => {
   const { t } = useTranslation()
@@ -29,6 +28,7 @@ export const CancelModal = ({
   const handleCancelOrder = async () => {
     setIsCancelling(true)
     await cancelOrder()
+    setIsCancelling(false)
   }
 
   return (

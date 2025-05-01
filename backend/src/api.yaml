@@ -1558,7 +1558,7 @@ paths:
       operationId: confirmOrder
       security:
         - BearerAuth: []
-      x-roles: ['user'] 
+      x-roles: ['user', 'admin'] 
       requestBody:
         required: true
         content:
@@ -1613,7 +1613,7 @@ paths:
       operationId: cancelOrder
       security:
         - BearerAuth: []
-      x-roles: ['admin']
+      x-roles: ['admin', 'user']
       requestBody:
         required: true
         content:

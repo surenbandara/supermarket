@@ -47,7 +47,7 @@ const operationHandler_1 = require("./middleware/operationHandler");
 const authentication_1 = __importDefault(require("./middleware/authentication"));
 const starter_pack_1 = __importDefault(require("./starter-pack/starter-pack"));
 const app = (0, express_1.default)();
-app.use(express_1.default.json());
+app.use(express_1.default.json({ limit: '10mb' }));
 app.use((0, cors_1.default)({
     origin: "http://localhost:3001", // Allow your frontend domain
     methods: ["GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"],

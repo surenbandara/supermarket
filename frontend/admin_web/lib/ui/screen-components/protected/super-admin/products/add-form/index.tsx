@@ -31,6 +31,7 @@ import { useCusineContext } from '@/lib/hooks/useCuisine';
 import { IDropdownSelectItem } from '@/lib/utils/interfaces';
 import { SelectItem } from 'primereact/selectitem';
 import TagSelectorComponent from '@/lib/ui/useable-components/tag-selector';
+import { useState } from 'react';
 
 export default function ProductAddForm({
   onHide,
@@ -57,20 +58,21 @@ export default function ProductAddForm({
   const {SERVER_URL} = useConfiguration();
   const {user} = useUserContext();
   const {cusines} = useCusineContext();
+  const [imageUri, setImageUri] = useState<string>('');
 
 
   // Form Submission
   const handleSubmit =  async (
     values: IProductForm,
     { resetForm }: FormikHelpers<IProductForm>
-  ) => {
+  ) => 
+    {
     if (values) {
       let message = '';
       try {
         let payload: any = values;
         payload.cusine = [(values?.cusine as any).code]
-        console.log("DDDDDDDDDDDDDDDDDDDDDDDDDD");
-        console.log(payload);
+        payload.image = imageUri;
         let response: any;
         if (product) {
           response = await api.put(`${SERVER_URL}/product`, payload, user?.jwtToken);
@@ -278,7 +280,7 @@ export default function ProductAddForm({
       <CustomUploadImageComponent
           name="image"
           error=''
-          onSetImageUrl={setFieldValue}
+          onSetImageUrl={setImageUri}
           title={t('Upload Image')}
           existingImageUrl={
             product ? product.image : ''

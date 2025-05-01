@@ -1,5 +1,6 @@
 // Core
 import { useContext, useState } from 'react';
+import Image from 'next/image';
 
 // Custom Components
 import ActionMenu from '@/lib/ui/useable-components/action-menu';
@@ -21,6 +22,24 @@ export const PRODUCT_TABLE_COLUMNS = ({
 
   return [
     { headerName: t('Name'), propertyName: 'name' },
+    {
+          headerName: t('Image'),
+          propertyName: 'image',
+          body: (product: IProductResponse) => {
+            return (
+              <Image
+                width={30}
+                height={30}
+                alt={t('Store')}
+                src={
+                  product.image
+                    ? product.image
+                    : 'https://images.unsplash.com/photo-1595418917831-ef942bd9f9ec?q=80&w=2670&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'
+                }
+              />
+            );
+          },
+        },
     { headerName: t('Price'), propertyName: 'price' }, 
     { headerName: t('Quantity'), propertyName: 'quantity' }, 
     { headerName: t('Brand'), propertyName: 'brand' },

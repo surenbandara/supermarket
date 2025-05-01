@@ -11,7 +11,8 @@ import {
   TouchableOpacity,
   StatusBar,
   Platform,
-  Alert
+  Alert,
+  ActivityIndicator
 } from 'react-native'
 import { useQuery } from '@apollo/client'
 import gql from 'graphql-tag'
@@ -40,8 +41,10 @@ import navigationService from '../../routes/navigationService'
 import { useTranslation } from 'react-i18next'
 import WouldYouLikeToAddThese from './Section'
 import { SpecialInstructions } from '../../components/Cart/SpecialInstructions'
+import { InfoModal } from '../../components/Cart/InfoModal'
 import { isOpen } from '../../utils/customFunctions'
 import { FlashMessage } from '../../ui/FlashMessage/FlashMessage'
+import { restaurantsManager } from '../../ui/hooks'
 import Animated, {
   useAnimatedStyle,
   useSharedValue,
@@ -86,6 +89,8 @@ function Cart(props) {
   const isCartEmpty = cart?.length === 0
   const cartLength = !isCartEmpty ? cart?.length : 0
   const { loading, data } = useRestaurant(cartRestaurant)
+  const [orderSubmitting, setOrderSubmitting] = useState(false);
+  const [itemUnavailable, setItemUnavailable] = useState(false);
 
   const { loading: loadingTip, data: dataTip } = useQuery(TIPPING, {
     fetchPolicy: 'network-only'
@@ -112,7 +117,7 @@ function Cart(props) {
   useEffect(() => {
     animateQuantityChange()
   }, [addQuantity, removeQuantity])
-
+  
   const coupon =
     props?.route.params && props?.route.params.coupon
       ? props?.route.params.coupon
@@ -262,6 +267,53 @@ function Cart(props) {
       { cancelable: true }
     )
   }
+
+  async function orderProcessing() {
+
+      setOrderSubmitting(true);
+      const date = Date.now();
+      const order = {
+        id: `${date}`, 
+        productList: cart.map((item) => ({
+          productId: item._id,
+          quantity: item.quantity,
+          requestedPrice: item.price,
+          truePrice: item.price,
+          availableQuantity: 0
+        })),
+      totalPrice: calculateTotal(), 
+      status: "NEW", 
+      paymentMethod: "CASH", 
+      paymentStatus : "PENDING",
+      userId: restaurantsManager.user.id, 
+      userLocation: `${location.latitude},${location.longitude}`,
+      timestamp: date
+      }
+
+      console.log('Order submitted');
+
+      const response = await restaurantsManager.submitOrder(order);
+      setOrderSubmitting(false);
+      console.log('Order response:', response);
+      if (response.status === true) {
+        let availability = true;
+        for(let i of response.payload.productList) {
+          if (i.quantity > i.availableQuantity) {
+            availability = false;
+            break;
+          }
+        }
+
+        if (availability == false) {
+          setItemUnavailable(true);
+          return;
+        } else {
+          navigation.navigate('Checkout', { "order": response.payload });
+        }
+      }
+     
+    }
+
 
   function calculatePrice(delivery = 0, withDiscount) {
     let itemTotal = 0
@@ -574,22 +626,18 @@ function Cart(props) {
                   </TextDefault>
                 </View>
                 {
-                //isLoggedIn && profile ?
+                  
+                
                 (
                   <TouchableOpacity
                     activeOpacity={0.7}
-                    onPress={() => {
-                      if(calculateTotal() < minimumOrder )
-                      {
-                        FlashMessage({
-                          message: t("OrderPriceValidation")
-                        })
-                        return 
-                      }
-                      navigation.navigate('Checkout')
-                    }}
+                    onPress={() => orderProcessing()}
                     style={styles(currentTheme).button}
+                    disabled={orderSubmitting}
                   >
+                     {orderSubmitting ? (
+                      <ActivityIndicator color={currentTheme.white} />
+                    ) :
                     <TextDefault
                       textColor={currentTheme.white}
                       style={styles().checkoutBtn}
@@ -599,33 +647,21 @@ function Cart(props) {
                     >
                       {t('checkoutBtn')}
                     </TextDefault>
+}
                   </TouchableOpacity>
                 ) 
-                // : (
-                //   <TouchableOpacity
-                //     activeOpacity={0.7}
-                //     onPress={() => {
-                //       props?.navigation.navigate({ name: 'CreateAccount' })
-                //     }}
-                //     style={styles(currentTheme).button}
-                //   >
-                //     <TextDefault
-                //       textColor={currentTheme.white}
-                //       style={{ width: '100%', textAlign:'center'}}
-                //       H5
-                //       bolder
-                //       center
-                //       isRTL
-                //     >
-                //       {t('loginOrSignUp')}
-                //     </TextDefault>
-                //   </TouchableOpacity>
-                // )
+               
                 }
               </View>
             </View>
           </>
         )}
+
+        <InfoModal
+                theme={currentTheme}
+                modalVisible={itemUnavailable}
+                setModalVisible={setItemUnavailable}
+              />
       </View>
     </>
   )

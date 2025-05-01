@@ -1,5 +1,5 @@
 // Hooks
-import { useState, useMemo, useEffect } from 'react';
+import { useState, useMemo, useEffect, useRef } from 'react';
 import { useTranslations } from 'next-intl';
 import { api, useQueryGQL } from '@/lib/hooks/useQueryQL';
 
@@ -21,6 +21,8 @@ import { FilterMatchMode } from 'primereact/api';
 import { DataTableRowClickEvent } from 'primereact/datatable';
 import { useConfiguration } from '@/lib/hooks/useConfiguration';
 import { useUserContext } from '@/lib/hooks/useUser';
+import { AnyARecord } from 'dns';
+import { useManagerContext } from '@/lib/hooks/useManager';
 
 export default function OrderSuperAdminMain() {
   // Hooks
@@ -39,17 +41,41 @@ export default function OrderSuperAdminMain() {
     endDate: `${new Date().getFullYear()}-${String(new Date().getMonth()).padStart(2, '0')}-${String(new Date(new Date().getFullYear(), new Date().getMonth(), 0).getDate()).padStart(2, '0')}`, // Last day of previous month
   });
 
-  const [data, setData] = useState<IOrder[]>([]);
+  const [data, setData] = useState<any[]>([]);
+
   const [loading, setLoading] = useState(true);
+  const [timerCount, setTimerCount] = useState<number>(0);
+
+  const timerRef = useRef<NodeJS.Timeout | null>(null);
 
   const {SERVER_URL} = useConfiguration();
   const {user} = useUserContext();
+  const {orders, setOrders, shops, setShops, products, setsProducts} = useManagerContext();
   
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response: any = await api.get(`${SERVER_URL}/orders`, user?.jwtToken);
-        if (response.status == "200") {setData(response as IOrder[]);}
+        let orders: any = await api.get(`${SERVER_URL}/orders`, user?.jwtToken);
+        const products: any = await api.get(`${SERVER_URL}/products`, user?.jwtToken);
+        const shops: any = await api.get(`${SERVER_URL}/shop`, user?.jwtToken);
+
+
+        orders = orders.map((item: any) => {
+          const totalPrice = JSON.parse(item.totalPrice);
+          const bills = JSON.parse(item.bill).map((billItem: any) => ({
+            ...billItem,
+            product: (products as any[]).find((product) => product.id === billItem.productId)
+          }));
+  
+          return {
+            ...item,
+            totalPrice,
+            bill: bills
+          };
+        });
+        setData(orders as IOrder[]);
+        setShops(shops as any[]);
+        setsProducts(products as any[]);
       } catch (error) {
         console.error("Error:", error);
       } finally {
@@ -58,7 +84,97 @@ export default function OrderSuperAdminMain() {
     };
 
     fetchData();
+    
+
+    const timer = setInterval(() => {
+      console.log('Timer event fired');
+      setOrders([]);
+      orderFetch(undefined);
+      setTimerCount((prev) => prev + 1); 
+    }, 5000); 
+
+  
+    timerRef.current = timer;
+
+
+    return () => {
+      if (timerRef.current) {
+        clearInterval(timerRef.current);
+      }
+    };
   }, [user]); 
+
+
+  const orderFetch = async (orderId: any | undefined) => {
+
+    try {
+      if (orderId) {
+        const fetchedOrder: any = await api.get(`${SERVER_URL}/orders?id=${orderId}`, user?.jwtToken);
+        const totalPrice = JSON.parse(fetchedOrder?.totalPrice);
+        const bills = JSON.parse(fetchedOrder?.bill).map((billItem: any) => ({
+          ...billItem,
+          product: products.current?.find((product) => product.id === billItem.productId)
+        }));
+    
+        const populatedOrders = {
+              ...fetchedOrder,
+              totalPrice,
+              bill: bills
+            };
+        const updatedOrders = data.map(order =>
+          order.id === orderId ? populatedOrders : order
+        );
+        setData(updatedOrders);
+
+      } else {
+        let ordersFetched: any = await api.get(`${SERVER_URL}/orders`, user?.jwtToken);
+        const orders = ordersFetched.map((item: any) => {
+          const totalPrice = JSON.parse(item.totalPrice);
+          const bills = JSON.parse(item.bill).map((billItem: any) => ({
+            ...billItem,
+            product: (products?.current as any[]).find((product) => product.id === billItem.productId)
+          }));
+  
+          return {
+            ...item,
+            totalPrice,
+            bill: bills
+          };
+        });
+
+        setData(orders as IOrder[]);
+      }
+
+    
+
+    } catch (error) {
+      console.error("Error:", error);
+    } 
+
+  }
+
+  const orderUpdate = async (order: any) => {
+
+    try {
+      order.productList = order.bill
+      await api.put(`${SERVER_URL}/orders`, order, user?.jwtToken);
+    } catch (error) {
+      console.error("Error:", error);
+    } 
+
+  }
+
+  const onUpdate = async (data: any, fun: () => void) => {
+    try {
+      await orderUpdate(data);
+      await orderFetch(data.id);
+    } catch (e) {
+      console.log('Error:', e);
+    } finally {
+      fun();
+      setIsModalOpen(false);
+    }
+  };
 
   const handleDateFilter = (dateFilter: IDateFilter) => {
     setDateFilter({
@@ -67,7 +183,7 @@ export default function OrderSuperAdminMain() {
     });
   };
 
-  console.log(data);
+
   const [globalFilterValue, setGlobalFilterValue] = useState('');
   const [filters, setFilters] = useState({
     global: {
@@ -99,16 +215,16 @@ export default function OrderSuperAdminMain() {
     if (!data) return [];
 
     return data.map(
-      (order: IOrder): IExtendedOrder => ({
+      (order: any): IExtendedOrder => ({
         ...order,
         itemsTitle:
-          order.items
-            .map((item) => item.title)
+          order?.bill
+            .map((item: any) => item.id)
             .join(', ')
             .slice(0, 15) + '...',
         OrderdeliveryAddress:
-          order.deliveryAddress.deliveryAddress.toString().slice(0, 15) + '...',
-        DateCreated: order.createdAt.toString().slice(0, 10),
+          order.userLocation.toString().slice(0, 15) + '...',
+        DateCreated: order.timestamp.toString().slice(0, 10),
       })
     );
   }, [data]);
@@ -162,6 +278,7 @@ export default function OrderSuperAdminMain() {
         visible={isModalOpen}
         onHide={() => setIsModalOpen(false)}
         restaurantData={selectedRestaurant}
+        onUpdate={(data: any, fun: () => void) => onUpdate(data, fun)}
       />
 
       {/* {error && (

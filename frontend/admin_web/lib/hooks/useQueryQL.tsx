@@ -1,6 +1,7 @@
 import { debounce } from 'lodash';
 import { useConfiguration } from './useConfiguration';
 import { useUserContext } from './useUser';
+import { useManagerContext } from './useManager';
 
 class RestApiHandler {
   private defaultHeaders: Record<string, string>;

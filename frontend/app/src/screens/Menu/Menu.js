@@ -426,18 +426,18 @@ function Menu({ route, props }) {
       style={[styles().flex, { backgroundColor: currentTheme.themeBackground }]}
     >
       <View style={[styles(currentTheme).container]}>
-      <View style={[styles(currentTheme).header,{padding: 10}]}>
+      {/* <View style={[styles(currentTheme).header,{padding: 10}]}>
                 <View>
                   <TextDefault bolder H2 isRTL>
                     {t(
                       routeData?.name === 'Restaurants'
                         ? 'Restaurants'
-                        : 'Stores'
+                        : 'Stors'
                     )}
                   </TextDefault>
         
                 </View>
-              </View>
+              </View> */}
               
           <Animated.FlatList
             contentInset={{ top: containerPaddingTop }}

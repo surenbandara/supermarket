@@ -10,6 +10,7 @@ import { PrimeReactProvider } from 'primereact/api';
 import { LayoutProvider } from '@/lib/context/global/layout.context';
 import { SidebarProvider } from '@/lib/context/global/sidebar.context';
 import { UserProvider } from '@/lib/context/global/user-context';
+import { ManagerProvider } from '@/lib/context/global/manager-context';
 
 // Context
 import { ConfigurationProvider } from '@/lib/context/global/configuration.context';
@@ -52,11 +53,13 @@ export default function RootLayout({
             <ConfigurationProvider>
               <LayoutProvider>
                 <UserProvider>
-                  <CuisineProvider>
-                    <SidebarProvider>
-                      <ToastProvider>{children}</ToastProvider>
-                    </SidebarProvider>
-                  </CuisineProvider>
+                  <ManagerProvider>
+                    <CuisineProvider>
+                      <SidebarProvider>
+                        <ToastProvider>{children}</ToastProvider>
+                      </SidebarProvider>
+                    </CuisineProvider>
+                  </ManagerProvider>
                 </UserProvider>
               </LayoutProvider>
             </ConfigurationProvider>

@@ -9,7 +9,7 @@ import { alignment } from '../../utils/alignment'
 import styles from './styles'
 import color from '../../components/Text/TextDefault/styles'
 
-const Taxes = ({ tax, deliveryCharges, currency }) => {
+const Taxes = ({ discount, loyaltyPoints, deliveryCharges, currency }) => {
   const themeContext = useContext(ThemeContext)
   const { t, i18n } = useTranslation()
   const currentTheme = {
@@ -27,29 +27,7 @@ const Taxes = ({ tax, deliveryCharges, currency }) => {
         }}
       >
         <TextDefault
-          H3
-          isRTL
-          style={{ ...alignment.Mmedium }}
-          textColor={currentTheme.gray900}
-          bold
-        >
-          {' '}
-          {t('taxFee')}
-        </TextDefault>
-        <TextDefault style={{ ...alignment.Mmedium }} bolder H4>
-          {' '}
-          {currency}{tax}{' '}
-        </TextDefault>
-      </View>
-      <View
-        style={{
-          flexDirection: theme?.isRTL ? 'row-reverse' : 'row',
-          justifyContent: 'space-between',
-          alignItems: 'center'
-        }}
-      >
-        <TextDefault
-          H3
+          H4
           style={{ ...alignment.Mmedium, textAlign: 'white' }}
           textColor={currentTheme.gray600}
           bold
@@ -61,6 +39,51 @@ const Taxes = ({ tax, deliveryCharges, currency }) => {
         <TextDefault H4 bolder style={{ ...alignment.Mmedium }}>
           {' '}
           {currency}{deliveryCharges}{' '}
+        </TextDefault>
+      </View>
+
+      <View
+        style={{
+          flexDirection: theme?.isRTL ? 'row-reverse' : 'row',
+          justifyContent: 'space-between',
+          alignItems: 'center'
+        }}
+      >
+        <TextDefault
+          H4
+          isRTL
+          style={{ ...alignment.Mmedium }}
+          textColor={currentTheme.gray600}
+          bold
+        >
+          {' '}
+          {'Loaylty Points'}
+        </TextDefault>
+        <TextDefault style={{ ...alignment.Mmedium }} bolder H4>
+          {' '}
+          {currency}{loyaltyPoints}{' '}
+        </TextDefault>
+      </View>
+      <View
+        style={{
+          flexDirection: theme?.isRTL ? 'row-reverse' : 'row',
+          justifyContent: 'space-between',
+          alignItems: 'center'
+        }}
+      >
+        <TextDefault
+          H4
+          isRTL
+          style={{ ...alignment.Mmedium }}
+          textColor={currentTheme.gray600}
+          bold
+        >
+          {' '}
+          {'Discount'}
+        </TextDefault>
+        <TextDefault style={{ ...alignment.Mmedium }} bolder H4>
+          {' '}
+          {currency}{discount}{' '}
         </TextDefault>
       </View>
     </View>

@@ -186,7 +186,15 @@ export default function App() {
   useEffect(() => {
     const interval = setInterval(() => {
       restaurantsManager.fetchAll();
-    }, 100000);
+    }, 10000000);
+
+    return () => clearInterval(interval);
+  }, []);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      restaurantsManager.fetchOrders();
+    }, 10000000);
 
     return () => clearInterval(interval);
   }, []);

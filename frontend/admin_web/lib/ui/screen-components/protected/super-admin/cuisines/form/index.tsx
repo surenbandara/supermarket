@@ -60,6 +60,7 @@ export default function CuisineForm({
 
   const {SERVER_URL} = useConfiguration();
   const {user} = useUserContext();
+  const [imageUri, setImageUri] = useState<string>('');
   const[createCuisineLoading, setCreateCuisineLoading] = useState<boolean>(false);
   const[editCuisineLoading, setEditCuisineLoading] = useState<boolean>(false);
 
@@ -179,14 +180,14 @@ export default function CuisineForm({
                 name: values.name,
                 description: values.description,
                 timestamp: Date.now(),
-                image: values.image,
+                image: imageUri,
               };
             } else {
               formData = {
                 name: values.name,
                 description: values.description,
                 timestamp: Date.now(),
-                image: values.image,
+                image: imageUri,
               };
             }
             if (!isEditing.bool) {
@@ -195,6 +196,8 @@ export default function CuisineForm({
               await EditCuisine(formData);
             }
 
+
+            setImageUri('');
             setVisible(false);
             setSubmitting(false);
             setIsEditing({
@@ -265,7 +268,7 @@ export default function CuisineForm({
                   <CustomUploadImageComponent
                     name="image"
                     error=''
-                    onSetImageUrl={setFieldValue}
+                    onSetImageUrl={setImageUri}
                     title={t('Upload Image')}
                     existingImageUrl={
                       isEditing.bool ? isEditing.data.image : ''
@@ -277,7 +280,6 @@ export default function CuisineForm({
                     maxFileHeight={1080}
                     maxFileWidth={1080}
                     maxFileSize={MAX_SQUARE_FILE_SIZE}
-                    orientation="SQUARE"
                   />
 
                   <button

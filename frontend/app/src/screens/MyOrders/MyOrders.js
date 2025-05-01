@@ -16,6 +16,7 @@ import OrdersContext from '../../context/Orders'
 import { HeaderBackButton } from '@react-navigation/elements'
 import { useTranslation } from 'react-i18next'
 import ReviewModal from '../../components/Review'
+import { restaurantsManager } from '../../ui/hooks'
 
 const orderStatusActive = ['PENDING', 'PICKED', 'ACCEPTED', 'ASSIGNED']
 const orderStatusInactive = ['DELIVERED', 'COMPLETED','CANCELLED','CANCELLEDBYREST']
@@ -33,16 +34,13 @@ function MyOrders(props) {
     fetchMoreOrdersFunc,
     networkStatusOrders
   } = useContext(OrdersContext)
+  
   const themeContext = useContext(ThemeContext)
   const currentTheme = {isRTL : i18n.dir() === 'rtl', ...theme[themeContext.ThemeValue]}
   const [selectedTab, setSelectedTab] = useState('current')
   const inset = useSafeAreaInsets()
-  const activeOrders = useMemo(() => {
-    return orders.filter(o => orderStatusActive.includes(o.orderStatus))
-  }, [orders])
-  const pastOrders = useMemo(() => {
-    return orders.filter(o => orderStatusInactive.includes(o.orderStatus))
-  }, [orders])
+  const activeOrders = restaurantsManager.getOrderByStatus(["INITIATED", "CONFIRMED", "PROCESSING", "SHIPPED", "DELIVERED"]);
+  const pastOrders = restaurantsManager.getOrderByStatus(["CANCELLED", "RETURNED", "COMPLETED"]);
   const openReviewModal = ()=>{
     reviewModalRef.current.open()
   }

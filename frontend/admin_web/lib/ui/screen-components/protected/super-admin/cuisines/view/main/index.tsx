@@ -161,10 +161,10 @@ export default function CuisinesMain({
 
   const onFetchCuisines = () => {
     setLoading(true);
+    console.log('uuuuuuuuuuuuuuuuuuuu ', user);
     const fetchData = async () => {
         try {
           const response = await api.get(`${SERVER_URL}/cusine`, user?.jwtToken);
-          console.log("66666666666666666666666");
           setData(response as ICuisine[]);
           setCuisines(response as ICuisine[]);
         } catch (error) {

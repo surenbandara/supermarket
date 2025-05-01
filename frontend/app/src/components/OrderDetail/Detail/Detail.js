@@ -32,14 +32,14 @@ export default function Detail({
 
   return (
     <View style={styles.container(theme)}>
-      {rider && orderStatus !== ORDER_STATUS_ENUM.DELIVERED && orderStatus !== ORDER_STATUS_ENUM.CANCELLED && (
+      {/* {rider && orderStatus !== ORDER_STATUS_ENUM.DELIVERED && orderStatus !== ORDER_STATUS_ENUM.CANCELLED && (
         <ChatButton
           onPress={() => navigation.navigate('ChatWithRider', { id, orderNo, total, riderPhone })}
           title={t('chatWithRider')}
           description={t('askContactlessDelivery')}
           theme={theme}
         />
-      )}
+      )} */}
       <TextDefault
         textColor={theme.gray500}
         bolder
@@ -66,7 +66,7 @@ export default function Detail({
           style={{ ...alignment.MBmedium }}
           isRTL
         >
-          #{orderNo.toLowerCase()}
+          #{orderNo.toString()}
         </TextDefault>
       </View>
       
@@ -93,16 +93,13 @@ export default function Detail({
       <View style={styles.itemsContainer}>
         {items.map((item) => (
           <ItemRow
-            key={item._id}
+            key={item.id}
             theme={theme}
             quantity={item.quantity}
-            title={`${item.title} ${item.variation.title}`}
+            title={`${item.product?.name}`}
             currency={currencySymbol}
-            price={item.variation.price}
-            options={item.addons.map((addon) =>
-              addon.options.map(({ title }) => title)
-            )}
-            image={item?.image}
+            price={item.truePrice}
+            image={item.product?.image}
           />
         ))}
       </View>
@@ -113,7 +110,7 @@ const ItemRow = ({
   theme,
   quantity,
   title,
-  options = ['raita', '7up'],
+  options = [],
   price,
   currency,
   image

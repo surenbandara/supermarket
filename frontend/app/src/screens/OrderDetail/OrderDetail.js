@@ -22,7 +22,8 @@ import { HelpButton } from '../../components/Header/HeaderIcons/HeaderIcons'
 
 import {
   ProgressBar,
-  checkStatus
+  checkStatus,
+  getOrderStatusMessage
 } from '../../components/Main/ActiveOrders/ProgressBar'
 import { useNavigation } from '@react-navigation/native'
 import { PriceRow } from '../../components/OrderDetail/PriceRow'
@@ -40,6 +41,8 @@ import useEnvVars from '../../../environment'
 import LottieView from 'lottie-react-native'
 import { clearLogEntriesAsync } from 'expo-updates'
 import Taxes from './Taxes'
+import { restaurantsManager } from '../../ui/hooks'
+import { err } from 'react-native-svg'
 const { height: HEIGHT, width: WIDTH } = Dimensions.get('screen')
 
 const CANCEL_ORDER = gql`
@@ -54,21 +57,15 @@ function OrderDetail(props) {
   const id = props?.route.params ? props?.route.params?._id : null
   const orderData = props?.route.params ? props?.route.params?.order : null
   // console.log('orderData',orderData)
-  const { loadingOrders, errorOrders, orders } = useContext(OrdersContext)
+  const loadingOrders = restaurantsManager.getLoading();
+  const errorOrders = restaurantsManager.getError();
+  const orders = restaurantsManager.getOrders();
   const configuration = useContext(ConfigurationContext)
   const themeContext = useContext(ThemeContext)
   const currentTheme = {isRTL : i18n.dir() === 'rtl', ...theme[themeContext.ThemeValue]}
   const navigation = useNavigation()
   const { GOOGLE_MAPS_KEY } = useEnvVars()
-  const mapView = useRef(null)
-  const [cancelOrder, { loading: loadingCancel }] = useMutation(CANCEL_ORDER, {
-    onError,
-    onCompleted:(data)=>
-    {
-      navigation.navigate("Main")
-    },
-    variables: { abortOrderId: id }
-  })
+  const mapView = useRef(null);
   // useEffect(() => {
   //   /* async function Track() {
   //     await Analytics.track(Analytics.events.NAVIGATE_TO_ORDER_DETAIL, {
@@ -88,7 +85,7 @@ function OrderDetail(props) {
   }
 let order=orders?.find((o)=>
 {
-  return o?._id === id
+  return o?.id === id
 })
 
 if(!order)
@@ -96,10 +93,24 @@ if(!order)
   order=orderData
 }
 
+
+const cancelOrder = async () => {
+  try {
+    order.status = ORDER_STATUS_ENUM.CANCELLED;
+    await restaurantsManager.cacelOrder(order);
+    
+  } catch (error) {
+     console.log(error);
+     
+  }  finally {
+    props?.navigation.navigate('MyOrders');
+  }
+};
+
   useEffect(() => {
     props?.navigation.setOptions({
       headerRight: () => HelpButton({ iconBackground: currentTheme.main, navigation, t }),
-      headerTitle: `${order ? order?.deliveryAddress?.deliveryAddress?.substr(0, 15) : ""}...`,
+      headerTitle: `${order ? order?.id?.substr(0, 15) : ""}...`,
       headerTitleStyle: { color: currentTheme.newFontcolor },
       headerStyle: { backgroundColor: currentTheme.newheaderBG }
     })
@@ -113,25 +124,20 @@ if(!order)
       />
     )
   }
-  if (errorOrders) {
-    console.log({errorOrders})
-    return <TextError text={JSON.stringify(errorOrders)} />}
+  // if (errorOrders) {
+  //   console.log({errorOrders})
+  //   return <TextError text={JSON.stringify(errorOrders)} />}
 
   const remainingTime = calulateRemainingTime(order)
   const {
-    _id,
-    id:orderId,
-    restaurant,
-    deliveryAddress,
-    items,
-    tipping: tip,
-    taxationAmount: tax,
-    orderAmount: total,
-    deliveryCharges
+    shop,
+    userLocation,
+    bill,
+    totalPrice
   } = order
   
 
-  const subTotal = (total) - (tip) - tax - deliveryCharges
+  const subTotal = totalPrice.payableAmount
   return (
     <View style={{ flex: 1 }}>
       <ScrollView
@@ -143,14 +149,13 @@ if(!order)
         showsVerticalScrollIndicator={false}
         overScrollMode='never'
       >
-        {order?.rider && (order?.orderStatus) === ORDER_STATUS_ENUM.PICKED && (
-          <MapView
+          {/* <MapView
             ref={(c) => (mapView.current = c)}
             style={{ flex: 1, height: HEIGHT * 0.6 }}
             showsUserLocation={false}
             initialRegion={{
-              latitude: +deliveryAddress.location.coordinates[1],
-              longitude: +deliveryAddress.location.coordinates[0],
+              latitude: 0,
+              longitude: 0,
               latitudeDelta: 0.0922,
               longitudeDelta: 0.0421
             }}
@@ -162,28 +167,28 @@ if(!order)
           >
             <Marker
               coordinate={{
-                longitude: +restaurant.location.coordinates[0],
-                latitude: +restaurant.location.coordinates[1]
+                longitude: 0,
+                latitude: 0
               }}
             >
               <RestaurantMarker />
             </Marker>
             <Marker
               coordinate={{
-                latitude: +deliveryAddress.location.coordinates[1],
-                longitude: +deliveryAddress.location.coordinates[0]
+                latitude: 0,
+                longitude: 0
               }}
             >
               <CustomerMarker />
             </Marker>
             <MapViewDirections
               origin={{
-                longitude: +restaurant.location.coordinates[0],
-                latitude: +restaurant.location.coordinates[1]
+                longitude: 0,
+                latitude: 0
               }}
               destination={{
-                latitude: +deliveryAddress.location.coordinates[1],
-                longitude: +deliveryAddress.location.coordinates[0]
+                latitude: 0,
+                longitude: 0
               }}
               apikey={GOOGLE_MAPS_KEY}
               strokeWidth={6}
@@ -206,9 +211,8 @@ if(!order)
                 console.log('onerror', error)
               }}
             />
-            {order?.rider && <TrackingRider id={order?.rider?._id} />}
-          </MapView>
-        )}
+          </MapView> */}
+    
         <View
           style={{
             justifyContent: 'center',
@@ -216,8 +220,7 @@ if(!order)
             ...alignment.Pmedium
           }}
         >
-          <OrderStatusImage status={order?.orderStatus} />
-          {(order?.orderStatus) !== ORDER_STATUS_ENUM.DELIVERED && (
+          <OrderStatusImage status={order?.status} />
             <View
               style={{
                 ...alignment.MTxSmall,
@@ -225,37 +228,7 @@ if(!order)
                 justifyContent: 'space-between'
               }}
             >
-              {![
-                ORDER_STATUS_ENUM.PENDING,
-                ORDER_STATUS_ENUM.CANCELLED,
-                ORDER_STATUS_ENUM.CANCELLEDBYREST
-              ].includes(order?.orderStatus) && (
-                  <>
-                    <TextDefault
-                      style={{ ...alignment.MTxSmall }}
-                      textColor={currentTheme.gray500}
-                      H5
-                    >
-                      {t('estimatedDeliveryTime')}
-                    </TextDefault>
-                    <TextDefault
-                      style={{ ...alignment.MTxSmall }}
-                      Regular
-                      textColor={currentTheme.gray900}
-                      H1
-                      bolder
-                    >
-                      {remainingTime}-{remainingTime + 5} {t('mins')}
-                    </TextDefault>
-                    <ProgressBar
-                      configuration={configuration}
-                      currentTheme={currentTheme}
-                      item={order}
-                      navigation={navigation}
-                      isPicked={order?.isPickedUp}
-                    />
-                  </>
-                )}
+             
               <TextDefault
                 H5
                 style={{ ...alignment.Mmedium, textAlign: 'center' }}
@@ -263,39 +236,38 @@ if(!order)
                 bold
               >
                 {' '}
-                {t(checkStatus(order?.orderStatus)?.statusText)}
+                {getOrderStatusMessage(order?.status)}
               </TextDefault>
             </View>
-          )}
+
         </View>
-        <Instructions title={'Instructions'} theme={currentTheme} message={order?.instructions} />
+        <Instructions title={'Instructions'} theme={currentTheme} message={order?.additionalNote} />
         <Detail
           navigation={props?.navigation}
           currencySymbol={configuration.currencySymbol}
-          items={items}
-          from={restaurant?.name}
-          orderNo={order?.orderId}
-          deliveryAddress={deliveryAddress?.deliveryAddress}
+          items={bill}
+          from={shop?.name}
+          orderNo={order?.id}
+          deliveryAddress={userLocation}
           subTotal={subTotal}
-          tip={tip}
-          tax={tax}
-          deliveryCharges={deliveryCharges}
-          total={total}
+          tip={0}
+          tax={0}
+          deliveryCharges={totalPrice.deliveryCost}
+          total={subTotal}
           theme={currentTheme}
           id={id}
           rider={order?.rider}
-          orderStatus={order?.orderStatus}
+          orderStatus={order?.status}
         />
-     <Taxes tax={tax} deliveryCharges={deliveryCharges} currency={configuration.currencySymbol}/>
+     <Taxes tax={0} discount={totalPrice.discount} loyaltyPoints={totalPrice.loyaltyPoints} deliveryCharges={totalPrice.deliveryCost} currency={configuration.currencySymbol}/>
       </ScrollView>
       <View style={styles().bottomContainer(currentTheme)}>
         <PriceRow
           theme={currentTheme}
           title={t('total')}
           currency={configuration.currencySymbol}
-          price={total.toFixed(2)}
+          price={subTotal.toFixed(2)}
         />
-        {(order?.orderStatus) === ORDER_STATUS_ENUM.PENDING && (
           <View style={{ margin: scale(20) }}>
             <Button
               text={t('cancelOrder')}
@@ -305,14 +277,12 @@ if(!order)
               textStyles={{ ...alignment.Pmedium }}
             />
           </View>
-        )}
       </View>
       <CancelModal
         theme={currentTheme}
         modalVisible={cancelModalVisible}
         setModalVisible={cancelModalToggle}
         cancelOrder={cancelOrder}
-        loading={loadingCancel}
         orderStatus={order?.orderStatus}
       />
     </View>
@@ -322,13 +292,14 @@ if(!order)
 export const OrderStatusImage = ({ status }) => {
   let imagePath = null;
   switch (status) {
-    case ORDER_STATUS_ENUM.PENDING:
+    case ORDER_STATUS_ENUM.INITIATED:
+    case ORDER_STATUS_ENUM.CONFIRMED:
       imagePath = require('../../assets/SVG/order-placed.json')
       break
-    case ORDER_STATUS_ENUM.ACCEPTED:
+    case ORDER_STATUS_ENUM.PROCESSING:
       imagePath = require('../../assets/SVG/order-tracking-preparing.json')
       break
-    case ORDER_STATUS_ENUM.ASSIGNED:
+    case ORDER_STATUS_ENUM.SHIPPED:
       imagePath = require('../../assets/SVG/food-picked.json')
       break
     case ORDER_STATUS_ENUM.COMPLETED:
@@ -338,6 +309,7 @@ export const OrderStatusImage = ({ status }) => {
       imagePath = require('../../assets/SVG/place-order.json')
       break
   }
+  console.log("imagePath",imagePath)
 
   if (!imagePath) return null
 

@@ -12,10 +12,12 @@ import styles from './styles'
 import { scale } from '../../utils/scaling'
 import { useTranslation } from 'react-i18next'
 import ConfigurationContext from '../../context/Configuration'
-import { ProgressBar } from '../Main/ActiveOrders/ProgressBar'
+import { ProgressBar, getOrderStatusMessage } from '../Main/ActiveOrders/ProgressBar'
 import { calulateRemainingTime } from '../../utils/customFunctions'
 import Spinner from '../Spinner/Spinner'
 import EmptyView from '../EmptyView/EmptyView'
+import { restaurantsManager } from '../../ui/hooks'
+import { order } from '../../apollo/queries'
 
 const ActiveOrders = ({ navigation, loading, error, activeOrders }) => {
   const { i18n } = useTranslation()
@@ -66,37 +68,27 @@ const ActiveOrders = ({ navigation, loading, error, activeOrders }) => {
 const getItems = items => {
   return items
     ?.map(
-      item =>
-        `${item.quantity}x ${item.title}${
-          item.variation.title ? `(${item.variation.title})` : ''
-        }`
+      item => {
+        return `${item.quantity} x ${item.product?.name}`
+      }
     )
     .join('\n')
 }
 
 const Item = ({ item, navigation, currentTheme, configuration }) => {
-  useSubscription(
-    gql`
-      ${subscriptionOrder}
-    `,
-    { variables: { id: item._id } }
-  )
+
+  
   const { t } = useTranslation()
   const remainingTime = calulateRemainingTime(item)
   return (
     <TouchableOpacity
       activeOpacity={0.7}
-      onPress={() => navigation.navigate('OrderDetail', { _id: item?._id })}>
+      onPress={() => navigation.navigate('OrderDetail', { _id: item?.id, order: item })}>
       <View style={{ flex: 1 }}>
         <View style={styles(currentTheme).subContainer}>
           <View style={styles().orderDescriptionContainer}>
-            <TextDefault h5 bold textColor={currentTheme.gray500} isRTL>
-              {t('estimatedDeliveryTime')}
-            </TextDefault>
-          </View>
-          <View style={styles().orderDescriptionContainer}>
-            <TextDefault Regular textColor={currentTheme.gray900} H1 bolder isRTL>
-              {remainingTime}-{remainingTime + 5} {t('mins')}
+            <TextDefault Regular textColor={currentTheme.gray900} H2 bolder isRTL>
+            {item.shop?.name}
             </TextDefault>
           </View>
           <View style={{ flex: 1 }}>
@@ -105,7 +97,7 @@ const Item = ({ item, navigation, currentTheme, configuration }) => {
               currentTheme={currentTheme}
               item={item}
               navigation={navigation}
-              customWidth={scale(65)}
+              customWidth={scale(40)}
               isPicked={item?.isPickedUp}
             />
           </View>
@@ -115,9 +107,7 @@ const Item = ({ item, navigation, currentTheme, configuration }) => {
               ...alignment.PTxSmall
             }}>
             <TextDefault h5 bold textColor={currentTheme.secondaryText} isRTL>
-              {item.orderStatus === 'PENDING'
-                ? t('PenddingText')
-                : t('PenddingText1')}
+              {getOrderStatusMessage(item.status) }
             </TextDefault>
           </View>
           <View
@@ -133,7 +123,7 @@ const Item = ({ item, navigation, currentTheme, configuration }) => {
             <Image
               style={styles(currentTheme).restaurantImage1}
               resizeMode="cover"
-              source={{ uri: item?.restaurant?.image }}
+              source={{ uri: item.shop?.image }}
             />
             <View style={styles(currentTheme).textContainer2}>
               <View style={styles().subContainerLeft}>
@@ -154,7 +144,7 @@ const Item = ({ item, navigation, currentTheme, configuration }) => {
                   bolder
                   small
                 isRTL>
-                  {getItems(item.items)}
+                  {getItems(item.bill)}
                 </TextDefault>
               </View>
             </View>
@@ -164,8 +154,7 @@ const Item = ({ item, navigation, currentTheme, configuration }) => {
                 textColor={currentTheme.fontMainColor}
                 bolder
               isRTL>
-                {configuration.currencySymbol}
-                {parseFloat(item.orderAmount).toFixed(2)}
+                {` Total cost ${configuration.currencySymbol}. ${parseFloat(item.totalPrice.totalCost).toFixed(2)}`}
               </TextDefault>
             </View>
           </View>

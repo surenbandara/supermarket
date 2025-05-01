@@ -379,9 +379,9 @@ function Main(props) {
                     />
                   }
                 >
-                  <View style={{ gap: 16 }}>
-                    <View style={{ padding: 15, gap: scale(8) }}>
-                      <TextDefault bolder H4 isRTL>
+                  <View >
+                    <View style={{ padding: 15 }}>
+                      <TextDefault bolder H3 isRTL>
                         {t('I feel like eating...')}
                       </TextDefault>
                       {loading ? (
@@ -434,7 +434,7 @@ function Main(props) {
                       )}
                     </View>
                     <View style={{ padding: 15, gap: scale(8) }}>
-                      <TextDefault bolder H4 isRTL>
+                      <TextDefault bolder H3 isRTL>
                         {t('Fresh finds await...')}
                       </TextDefault>
                       <FlatList

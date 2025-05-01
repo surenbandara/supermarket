@@ -16,11 +16,39 @@ export const ORDER_SUPER_ADMIN_COLUMNS = () => {
   return [
     {
       headerName: t('Order ID'),
-      propertyName: 'orderId',
+      propertyName: 'id',
+    },
+    {
+      headerName: t('Shop'),
+      propertyName: 'shop',
+      body: (rowData: any) => {
+        if (!rowData.bill || rowData.bill.length === 0) {
+          return <span>-</span>;
+        }
+        return (
+          <ul>
+              {rowData.bill[0]?.product?.shop}
+          </ul>
+        );
+      },
     },
     {
       headerName: t('Items'),
-      propertyName: 'itemsTitle',
+      propertyName: 'bill',
+      body: (rowData: any) => {
+        if (!rowData.bill || rowData.bill.length === 0) {
+          return <span>-</span>;
+        }
+        return (
+          <ul>
+            {rowData.bill.map((item: any, index: any) => (
+              <li key={index}>
+                {item.product?.name} x {item.quantity}
+              </li>
+            ))}
+          </ul>
+        );
+      },
     },
     {
       headerName: t('Payment'),
@@ -28,23 +56,13 @@ export const ORDER_SUPER_ADMIN_COLUMNS = () => {
     },
     {
       headerName: t('Order Status'),
-      propertyName: 'orderStatus',
-    },
-    {
-      headerName: t('Reason'),
-      propertyName: 'reason',
-      body: (rowData: IExtendedOrder) => {
-        if (!rowData.reason) {
-          return <span>-</span>;
-        }
-        return <span>{rowData.reason}</span>;
-      },
+      propertyName: 'status',
     },
     {
       headerName: t('Created At'),
-      propertyName: 'DateCreated',
-      body: (rowData: IExtendedOrder) => {
-        let date: string | number | Date = Number(rowData?.createdAt || null);
+      propertyName: 'timestamp',
+      body: (rowData: any) => {
+        let date: string | number | Date = Number(rowData?.timestamp || null);
         if (date) {
           const newDate = new Date(date).toLocaleDateString(
             'en-US',

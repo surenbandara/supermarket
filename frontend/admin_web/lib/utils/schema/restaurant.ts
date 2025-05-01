@@ -16,6 +16,5 @@ export const RestaurantSchema = Yup.object().shape({
     .matches(/^\+?[1-9]\d{1,14}$/, 'Invalid phone number')
     .required('Required'),
   vendorEmai: Yup.string().email('Invalid email').required('Required'),
-  category: Yup.mixed<IDropdownSelectItem>().nullable().required('Required'),
-  image: Yup.string().url('Invalid image URL'),
+  category: Yup.mixed<IDropdownSelectItem>().nullable().required('Required')
 });

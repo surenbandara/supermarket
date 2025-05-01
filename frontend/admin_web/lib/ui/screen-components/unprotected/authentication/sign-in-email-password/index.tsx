@@ -47,6 +47,9 @@ import { useRouter } from 'next/navigation';
 import { useUserContext } from '@/lib/hooks/useUser';
 import { DEFAULT_ROUTES } from '@/lib/utils/constants/routes';
 
+import restaurantManager from '@/lib/utils/RestuarentManger';
+import { useConfiguration } from '@/lib/hooks/useConfiguration';
+
 const initialValues: ISignInForm = {
   email: 'systemAdmin@gmail.com',
   password: 'admin@123',
@@ -56,6 +59,7 @@ export default function LoginEmailPasswordMain() {
   // Context
   const { showToast } = useContext(ToastContext);
   const [loading, setLoading] = useState<boolean>(false);
+  const { SERVER_URL } = useConfiguration();
   
 
   // Hooks
@@ -64,8 +68,11 @@ export default function LoginEmailPasswordMain() {
 
 
   // API Handlers
-  function onCompleted(ownerLogin: IUserLoginDataResponse) {
+  async function onCompleted(ownerLogin: IUserLoginDataResponse) {
     setUser(ownerLogin);
+    // restaurantManager.login(ownerLogin);
+    // restaurantManager.setServerUrl(SERVER_URL);
+    // await restaurantManager.fetchAll();
     let redirect_url = DEFAULT_ROUTES[ownerLogin.basicUserDetails.role as keyof typeof DEFAULT_ROUTES];
     router.replace(redirect_url);
 

@@ -22,7 +22,7 @@ function ActiveOrdersAndSections(props) {
         numberOfLines={1}
         textColor={currentTheme.fontFourthColor}
         bolder
-        H4
+        H3
         isRTL
       >
         {t(props?.menuPageHeading)}

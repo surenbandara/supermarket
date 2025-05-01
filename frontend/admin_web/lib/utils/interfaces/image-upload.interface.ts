@@ -18,7 +18,7 @@ export interface IImageUploadComponentProps extends IGlobalComponentProps {
   name: string;
   title: string;
   page?: string;
-  onSetImageUrl: (key: string, imageUrl: string) => void;
+  onSetImageUrl: (imageURI: string) => void;
   showExistingImage?: boolean;
   existingImageUrl?: string | null;
   style?: React.CSSProperties;

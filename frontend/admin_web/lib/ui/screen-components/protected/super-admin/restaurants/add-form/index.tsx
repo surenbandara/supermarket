@@ -28,6 +28,7 @@ import { useConfiguration } from '@/lib/hooks/useConfiguration';
 import { useUserContext } from '@/lib/hooks/useUser';
 import { RestaurantSchema } from '@/lib/utils/schema';
 import { RestaurantErrors, SHOP_TYPE } from '@/lib/utils/constants';
+import { useState } from 'react';
 
 export default function RestaurantAddForm({
   onHide,
@@ -51,6 +52,7 @@ export default function RestaurantAddForm({
 
   const {SERVER_URL} = useConfiguration();
   const {user} = useUserContext();
+  const [imageUri, setImageUri] = useState<string>('');
 
   // Form Submission
   const handleSubmit =  async (
@@ -62,6 +64,7 @@ export default function RestaurantAddForm({
         let response: any;
         const request: any = values;
         request.category = request.category.code;
+        request.image = imageUri;
         if (restaurant) {
           response = await api.put(`${SERVER_URL}/shop`, request, user?.jwtToken);
         } else {
@@ -230,7 +233,7 @@ export default function RestaurantAddForm({
                           placeholder={'Shop Category'}
                           selectedItem={values.category}
                           setSelectedItem={setFieldValue}
-                          options={SHOP_TYPE}
+                          options={SHOP_TYPE.map(item => ({ ...item, length: item.label.length }))}
                           showLabel={true}
                           style={{
                             borderColor: onErrorMessageMatcher(
@@ -249,10 +252,9 @@ export default function RestaurantAddForm({
                             key="image"
                             name="image"
                             title={'Upload Image'}
-                            onSetImageUrl={setFieldValue}
+                            onSetImageUrl={setImageUri}
                             style={{
-                              borderColor: 
-                                errors?.image 
+                              borderColor: errors?.image
                                 ? 'red'
                                 : '',
                             }}
@@ -261,7 +263,7 @@ export default function RestaurantAddForm({
                             fileTypes={['image/webp', 'image/jpg', 'image/jpeg']}
                             maxFileHeight={841}
                             maxFileWidth={1980}
-                            orientation="LANDSCAPE" maxFileSize={0}                      />
+                            orientation="LANDSCAPE" maxFileSize={0}                                                  />
                       </div>
                   
                       <div className="mt-4 flex justify-between">

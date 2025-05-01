@@ -85,7 +85,7 @@ export const RiderErrors: IRiderErrors = {
   available: ['Required']
 };
 
-export const ProductErrors: IProductErrors = {
+export const ProductErrors: any = {
   id: ['Required'],
   name: ['Required', 'Name cannot be only spaces', 'Name cannot be longer than 100 characters'],
   price: ['Required', 'Price must be a positive number'],

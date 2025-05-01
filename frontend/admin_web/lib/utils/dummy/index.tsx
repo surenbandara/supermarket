@@ -87,7 +87,7 @@ export const dummyOrderStatsData: IStatsCardProps[] = [
   },
 ];
 
-export const dummyCountriesData: IDropdownSelectItem[] = [
+export const dummyCountriesData: any[] = [
   { label: 'Australia', code: 'AU' },
   { label: 'Brazil', code: 'BR' },
   { label: 'China', code: 'CN' },
@@ -163,7 +163,7 @@ export const generateDummyRiders = (
 export const generateDummyProducts = (
   count: number = 10
 ): IProductResponse[] => {
-  const restaurants: IProductResponse[] = [];
+  const restaurants: any[] = [];
   for (let i = 0; i < count; i++) {
     restaurants.push({
       _id: `${i}`,
@@ -370,8 +370,8 @@ export const generateDummyDispatchOrders = (count: number = 10) => {
   return dispatchActiveOrders;
 };
 
-export const generateDummyFoods = (count: number = 10): IFoodNew[] => {
-  const foods: IFoodNew[] = [];
+export const generateDummyFoods = (count: number = 10): any[] => {
+  const foods: any[] = [];
 
   for (let i = 0; i < count; i++) {
     foods.push({

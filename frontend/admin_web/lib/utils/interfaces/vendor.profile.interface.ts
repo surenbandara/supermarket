@@ -1,7 +1,6 @@
 import { IGlobalComponentProps } from '@/lib/utils/interfaces';
 import {
   IQueryResult,
-  ISingleVendorResponseGraphQL,
 } from '@/lib/utils/interfaces';
 
 export interface IVendorProfileContextData extends IGlobalComponentProps {
@@ -9,7 +8,7 @@ export interface IVendorProfileContextData extends IGlobalComponentProps {
   setIsUpdateProfileVisible: React.Dispatch<React.SetStateAction<boolean>>;
   handleUpdateProfile: () => void;
   vendorProfileResponse: IQueryResult<
-    ISingleVendorResponseGraphQL | undefined,
+    any | undefined,
     undefined
   >;
   activeIndex: number;

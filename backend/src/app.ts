@@ -12,7 +12,7 @@ import authValidation from "./middleware/authentication";
 import starterPack from "./starter-pack/starter-pack";
 
 const app = express();
-app.use(express.json());
+app.use(express.json({ limit: '10mb' }));
 app.use(cors({
     origin: "http://localhost:3001",  // Allow your frontend domain
     methods: ["GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"],

@@ -8,46 +8,52 @@ import { ORDER_STATUS_ENUM } from '../../../utils/enums'
 
 export const orderStatuses = [
   {
-    key: 'PENDING',
+    key: 'INITIATED',
     status: 1,
-    statusText: 'pendingOrder'
+    statusText: 'Your order has been initiated.'
   },
   {
-    key: 'ACCEPTED',
+    key: 'CONFIRMED',
     status: 2,
-    statusText: 'acceptedOrder'
+    statusText: 'Your order is confirmed.'
   },
   {
-    key: 'ASSIGNED',
+    key: 'PROCESSING',
     status: 3,
-    statusText: 'assignedOrder'
+    statusText: 'Your order is being processed.'
   },
   {
-    key: 'PICKED',
+    key: 'SHIPPED',
     status: 4,
-    statusText: 'pickedOrder'
+    statusText: 'Your order has been shipped.'
   },
   {
     key: 'DELIVERED',
     status: 5,
-    statusText: 'deliveredOrder'
+    statusText: 'Your order has been delivered.'
   },
   {
     key: 'COMPLETED',
     status: 6,
-    statusText: 'completedOrder'
+    statusText: 'Your order is completed.'
   },
   {
     key: 'CANCELLED',
-    status: 6,
-    statusText: 'cancelledOrder'
+    status: 7,
+    statusText: 'Your order has been cancelled.'
   },
   {
-    key:'CANCELLEDBYREST',
-    status:7,
-    statusText:'cancelledOrder'
+    key: 'RETURNED',
+    status: 8,
+    statusText: 'Your order has been returned.'
   }
-]
+];
+
+export const getOrderStatusMessage = (statusKey) => {
+  const status = orderStatuses.find(s => s.key === statusKey);
+  return status ? status.statusText : 'Unknown order status.';
+};
+
 
 export const checkStatus = status => {
   const obj = orderStatuses.filter(x => {
@@ -57,26 +63,16 @@ export const checkStatus = status => {
 }
 
 export const ProgressBar = ({ currentTheme, item, customWidth, isPicked }) => {
-  if (item.orderStatus === ORDER_STATUS_ENUM.CANCELLED) return null
-  useSubscription(
-    gql`
-      ${subscriptionOrder}
-    `,
-    { variables: { id: item._id } }
-  )
+  if (item.status === ORDER_STATUS_ENUM.CANCELLED || item.status === ORDER_STATUS_ENUM.RE) return null
 
   const defaultWidth = scale(50)
   const width = customWidth !== undefined ? customWidth : defaultWidth
 
-  // Filter statuses if isPicked is true
-  const filteredStatuses = isPicked
-    ? orderStatuses.filter((s) => s.key !== 'ASSIGNED' && s.key !== 'PICKED')
-    : orderStatuses;
-
-  const currentStatus = filteredStatuses.find((x) => x.key === item.orderStatus) || { status: 0 };
+  
+  const currentStatus = orderStatuses.find((x) => x.key === item.status) || { status: 0 };
 
   // Set the total number of filled bars based on the isPicked prop
-  const totalBars = isPicked ? 3 : 4;
+  const totalBars = 6;
 
   return (
     <View style={{ marginTop: scale(10) }}>

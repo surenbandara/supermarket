@@ -26,7 +26,7 @@ const EmptyView = ({ title, description, buttonText }) => {
           </TextDefault>
           <TextDefault center textColor={currentTheme.newFontcolor}>{t(description)}</TextDefault>
         </View>
-        <TouchableOpacity
+        {/* <TouchableOpacity
           activeOpacity={0.7}
           style={styles(currentTheme).emptyButton}
           onPress={() =>
@@ -43,7 +43,7 @@ const EmptyView = ({ title, description, buttonText }) => {
             uppercase>
             {t(buttonText)}
           </TextDefault>
-        </TouchableOpacity>
+        </TouchableOpacity> */}
       </View>
     </View>
   )

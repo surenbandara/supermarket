@@ -10,6 +10,7 @@ import TextError from '../Text/TextError/TextError'
 import { alignment } from '../../utils/alignment'
 import styles from './styles'
 import SearchFood from '../../assets/SVG/imageComponents/SearchFood'
+import { getOrderStatusMessage } from '../Main/ActiveOrders/ProgressBar'
 import Spinner from '../../components/Spinner/Spinner'
 import OrdersContext from '../../context/Orders'
 import { useTranslation } from 'react-i18next'
@@ -118,51 +119,43 @@ const getItems = items => {
   return items
     .map(
       item =>
-        `${item.quantity}x ${item.title}${
-          item.variation.title ? `(${item.variation.title})` : ''
-        }`
+        `${item.quantity}x ${item.product?.name}`
     )
     .join('\n')
 }
 
 const Item = ({ item, navigation, currentTheme, configuration, onPressReview }) => {
-  useSubscription(
-    gql`
-      ${subscriptionOrder}
-    `,
-    { variables: { id: item._id }, skip:item.orderStatus===ORDER_STATUS_ENUM.DELIVERED }
-  )
   const { t } = useTranslation()
 
   return (
     <View style={{ ...alignment.MBsmall }}>
       <TouchableOpacity
         activeOpacity={0.7}
-        onPress={() =>
-          navigation.navigate('OrderDetail', {
-            _id: item._id,
-            currencySymbol: configuration.currencySymbol,
-            restaurant: item.restaurant,
-            user: item.user
-          })
+        onPress={() => {}
+        //   navigation.navigate('OrderDetail', {
+        //     _id: item.id,
+        //     currencySymbol: configuration.currencySymbol,
+        //     restaurant: item.shop?.name,
+        //     user: item.user
+        //   }
+        // )
         }>
         <View style={styles(currentTheme).subContainer}>
        
-          {(item.orderStatus =='CANCELLED' || item.orderStatus === 'CANCELLEDBYREST') &&
-                 <View style={ {display:'flex',paddingBottom:10}}>
-                 <View style={{borderRadius:14,alignSelf: 'flex-end',backgroundColor:currentTheme.statusBgColor,color:'black',padding:8}}>       
-                   <TextDefault
-                    textColor='black'
-                    uppercase
-                    bolder
-                    numberOfLines={2}
-                    style={[styles(currentTheme).restaurantName]}
-                  isRTL>
-                    {item.orderStatus}
-                  </TextDefault>
-                  </View>
-                  </View>
-                  }
+          <View style={ {display:'flex',paddingBottom:10}}>
+          <View style={{borderRadius:14,alignSelf: 'flex-end',backgroundColor:currentTheme.statusBgColor,color:'black',padding:8}}>       
+            <TextDefault
+            textColor='black'
+            uppercase
+            bolder
+            numberOfLines={2}
+            style={[styles(currentTheme).restaurantName]}
+          isRTL>
+            {item.status}
+          </TextDefault>
+          </View>
+          </View>
+                  
          
           <View
             style={{
@@ -172,7 +165,7 @@ const Item = ({ item, navigation, currentTheme, configuration, onPressReview }) 
             <Image
               style={styles(currentTheme).restaurantImage}
               resizeMode="cover"
-              source={{ uri: item?.restaurant?.image }}
+              source={{ uri: item?.shop?.image }}
             />
             <View style={styles(currentTheme).textContainer2}>
               <View style={{ flexDirection: currentTheme?.isRTL ? 'row-reverse' : 'row' }}>
@@ -184,70 +177,40 @@ const Item = ({ item, navigation, currentTheme, configuration, onPressReview }) 
                     numberOfLines={2}
                     style={styles(currentTheme).restaurantName}
                   isRTL>
-                    {item.restaurant.name}
+                    {item.shop?.name}
                   </TextDefault>
                 </View>
                 <View style={styles(currentTheme).subContainerRight}>
-                  <TextDefault textColor={currentTheme.fontMainColor} bolder isRTL>
+                  {/* <TextDefault textColor={currentTheme.fontMainColor} bolder isRTL>
                     {configuration.currencySymbol}
-                    {parseFloat(item.orderAmount).toFixed(2)}
                   </TextDefault>
+                  <TextDefault textColor={currentTheme.fontMainColor} bolder isRTL>
+                    {parseFloat(item.totalPrice.payableAmount).toFixed(2)}
+                  </TextDefault> */}
                 </View>
               </View>
+              <View
+            style={{
+              ...styles().orderDescriptionContainer,
+              ...alignment.PTxSmall
+            }}>
+            <TextDefault h5 bold textColor={currentTheme.secondaryText} isRTL>
+              {getOrderStatusMessage(item.status) }
+            </TextDefault>
+          </View>
               <View style={{marginTop: 'auto'}}>
-                <TextDefault
-                  numberOfLines={1}
-                  style={{
-                    ...alignment.MTxSmall,
-                    // width: '122%'
-                  }}
-                  textColor={currentTheme.secondaryText}
-                  isRTL
-                  >
-                  {t('deliveredOn')} {formatDeliveredAt(item.deliveredAt)}
-                </TextDefault>
                 <TextDefault
                   numberOfLines={1}
                   style={{ ...alignment.MTxSmall }}
                   textColor={currentTheme.secondaryText}
                   isRTL
                   >
-                  {getItems(item.items)}
+                  {getItems(item.bill)}
                 </TextDefault>
               </View>
             </View>
           </View>
-          <View style={styles().rateOrderContainer}>
-            <TouchableOpacity
-              activeOpacity={0.7}
-              style={styles(currentTheme).subContainerButton}
-              onPress={() => navigation.navigate('Reorder', { item })}>
-              <TextDefault textColor={currentTheme.black} H4 bolder B700 center>
-                {' '}
-                {t('reOrder')}
-              </TextDefault>
-            </TouchableOpacity>
-          </View>
-          {!(item.orderStatus === 'CANCELLED' || item.orderStatus === 'CANCELLEDBYREST') && 
-          <View style={styles(currentTheme).starsContainer}>
-            <View> 
-              <TextDefault H5 bolder textColor={currentTheme.newFontcolor} isRTL>
-                {t('tapToRate')}
-              </TextDefault>
-            </View>
-             
-            <View style={{ flexDirection: 'row', gap: 10 }}>
-                {[1, 2, 3, 4, 5].map(index => (
-                  <StarIcon
-                    disabled={Boolean(item?.review)}
-                    key={`star-icon-${index}`}
-                    isFilled={index <= item?.review?.rating}
-                    onPress={()=>onPressReview(item, index)}
-                  />
-                ))}
-            </View>
-          </View>
-          }
+        
         </View>
       </TouchableOpacity>
     </View>

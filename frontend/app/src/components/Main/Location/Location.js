@@ -9,6 +9,7 @@ import { useTranslation } from 'react-i18next'
 import { EvilIcons, Feather } from '@expo/vector-icons'
 import { alignment } from '../../../utils/alignment'
 import { scale } from '../../../utils/scaling'
+import { restaurantsManager } from '../../../ui/hooks'
 
 function Location({
   navigation,
@@ -32,11 +33,13 @@ function Location({
   }
 
   const onLocationPress = (event) => {
+     const locationParameter = restaurantsManager.getSystemParameterFromKey('Location').value;
+    const [latOrigin, lonOrigin] = locationParameter.split(',').map(coord => parseFloat(coord));
 
     navigation.navigate('AddNewAddress', {
             prevScreen: 'Checkout',
-            latitude: location.latitude,
-            longitude: location.longitude
+            latitude: location.latitude ?? latOrigin,
+            longitude: location.longitude ?? lonOrigin
           })
     // if (screenName === 'checkout') {
     //   if (addresses && !addresses.length) {

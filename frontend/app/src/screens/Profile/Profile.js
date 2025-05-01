@@ -42,6 +42,7 @@ import OrdersContext from '../../context/Orders'
 import useHomeRestaurants from '../../ui/hooks/useRestaurantOrderInfo'
 import { I18nManager } from 'react-native'
 import { isOpen, sortRestaurantsByOpenStatus } from '../../utils/customFunctions'
+import { restaurantsManager } from '../../ui/hooks'
 
 
 const RESTAURANTS = gql`
@@ -56,15 +57,13 @@ function Profile(props) {
   const [modelVisible, setModalVisible] = useState(false)
   const [showPass, setShowPass] = useState(false)
 
-  const { profile } = useContext(UserContext)
   const themeContext = useContext(ThemeContext)
   const currentTheme = { isRTL: i18n.dir() === "rtl", ...theme[themeContext.ThemeValue] }
-  const { orders } = useContext(OrdersContext)
 
   const activeOrders = useMemo(() => {
-    const orderStatusActive = ['PENDING', 'PICKED', 'ACCEPTED', 'ASSIGNED']
-    return orders.filter((o) => orderStatusActive.includes(o.orderStatus))
-  }, [orders])
+    const orderStatusActive = ["INITIATED", "CONFIRMED", "PROCESSING", "SHIPPED", "DELIVERED"]
+    return restaurantsManager.getOrders().filter((o) => orderStatusActive.includes(o.status))
+  }, [restaurantsManager.getOrders()])
 
   const { data, loading, refetch } = useQuery(RESTAURANTS, {
     variables: {
@@ -147,7 +146,7 @@ function Profile(props) {
               style={[{ fontSize: scale(30) }, styles().padding]}
               isRTL
             >
-              {t('Hi') + ' ' + profile?.name + '!'}
+              {t('Hi') + ' ' + restaurantsManager.user?.username + '!'}
             </TextDefault>
             <View style={styles(currentTheme).mainContainer}>
               <TouchableOpacity
@@ -184,7 +183,7 @@ function Profile(props) {
               <View style={styles(currentTheme).line} />
 
               {/* favourite section */}
-              {loading ? (
+              {/* {loading ? (
                 <Spinner
                   size={'small'}
                   backColor={currentTheme.themeBackground}
@@ -259,7 +258,7 @@ function Profile(props) {
                     />
                   </View>
                 )
-              )}
+              )} */}
 
               <View style={[styles().quickLinkView]}>
                 <TextDefault
@@ -291,7 +290,7 @@ function Profile(props) {
               </View>
 
               {/* order again */}
-              {orderLoading ? (
+              {/* {orderLoading ? (
                 <Spinner
                   size={'small'}
                   backColor={currentTheme.themeBackground}
@@ -336,7 +335,7 @@ function Profile(props) {
                     />
                   </View>
                 )
-              )}
+              )} */}
 
               <View style={styles().settingView}>
                 <TextDefault

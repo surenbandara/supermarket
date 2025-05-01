@@ -118,7 +118,7 @@ export const WITHDRAW_REQUESTS_TABLE_COLUMNS = () => {
     );
   };
   // Status dropdown options
-  const options: IDropdownSelectItem[] = useMemo(
+  const options: any[] = useMemo(
     () => [
       {
         code: 'REQUESTED',

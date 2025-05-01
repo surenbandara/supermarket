@@ -101,7 +101,7 @@ function Checkout(props) {
   const [tip, setTip] = useState(null)
   const [tipAmount, setTipAmount] = useState('')
   const modalRef = useRef(null)
-  const [paymentMode, setPaymentMode] = useState('COD')
+  const [paymentMode, setPaymentMode] = useState('CASH')
 
   const [loadingOrder, setLoadingOrder] = useState(false)
   const [initialRegion, setInitialRegion] = useState({
@@ -113,7 +113,7 @@ function Checkout(props) {
  
   const [isModalVisible, setisModalVisible] = useState(false)
   const [loading, setLoading] = useState(restaurantsManager.loading);
-  const [data, setData] = useState(restaurantsManager.getShopDataFromName(cartRestaurant)[0]);
+  const [data, setData] = useState(restaurantsManager.getShopDataFromName(cartRestaurant));
   const [inRange, setInRange] = useState(false);
   const [orderStep, setOrderStep] = useState(-1);
   const [orderSubmitting, setOrderSubmitting] = useState(false);
@@ -149,6 +149,9 @@ function Checkout(props) {
     icon: 'dollar'
   }
 
+
+  console.log('323323223232', props?.route.params);
+  const order = props?.route.params?.order;
   const paymentMethod =
     props?.route.params && props?.route.params.paymentMethod
       ? props?.route.params.paymentMethod
@@ -175,12 +178,14 @@ function Checkout(props) {
   }, [tip, data])
 
   useEffect(() => {
-
+    console.log('----------------------------------------------%%%%%%%%%%%%%%%%');
+    console.log(cartRestaurant)
+    console.log(restaurantsManager.getShopDataFromName(cartRestaurant));
     if (mapRef.current) {
       mapRef.current.animateToRegion(
         {
-          latitude: 0,
-          longitude: 0,
+          latitude: Number(location.latitude),
+          longitude: Number(location.longitude),
           latitudeDelta: 0.0922,
           longitudeDelta: 0.0421,
         },
@@ -201,6 +206,7 @@ function Checkout(props) {
           longDest
         )
 
+        console.log("ffdffdfdfdfdfd ", distance , "  ", parseFloat(restaurantsManager.getSystemParameterFromKey('Range').value))
         if (distance > parseFloat(restaurantsManager.getSystemParameterFromKey('Range').value)) {
           showOutOfRangeMessage();
           setInRange(false);
@@ -480,15 +486,16 @@ function Checkout(props) {
   }
 
   function calculatePrice(delivery = 0, withDiscount) {
-    let itemTotal = 0
-    cart.forEach((cartItem) => {
-      itemTotal += cartItem.price * cartItem.quantity
-    })
-    if (withDiscount && coupon && coupon.discount) {
-      itemTotal = itemTotal - (coupon.discount / 100) * itemTotal
-    }
-    const deliveryAmount = delivery > 0 ? deliveryCharges : 0
-    return (itemTotal + deliveryAmount).toFixed(2)
+    // let itemTotal = 0
+    // cart.forEach((cartItem) => {
+    //   itemTotal += cartItem.price * cartItem.quantity
+    // })
+    // if (withDiscount && coupon && coupon.discount) {
+    //   itemTotal = itemTotal - (coupon.discount / 100) * itemTotal
+    // }
+    // const deliveryAmount = delivery > 0 ? deliveryCharges : 0
+    // return (itemTotal + deliveryAmount).toFixed(2)
+    return order.totalPrice.totalCost
   }
 
   function calculateTotal() {
@@ -572,6 +579,19 @@ function Checkout(props) {
   async function buttonOnPress() {
     if (orderStep === 0) {
       setOrderSubmitting(true);
+      const date = Date.now();
+      order.paymentMethod = paymentMode;
+      order.timestamp = date;
+      order.userLocation = `${location.latitude},${location.longitude}`;
+      order.status = "CONFIRMED";
+
+      const resposne = await restaurantsManager.editOrder(order);
+      setOrderSubmitting(false);
+
+      if (resposne.status) {
+        props?.navigation.replace('MyOrders')
+      }
+      console.log('Order submitted')
     }
     setOrderStep(orderStep + 1);
   }
@@ -805,7 +825,7 @@ function Checkout(props) {
                     { width: '92%', alignSelf: 'center' }
                   ]}
                 />
-                  <View style={styles().voucherSec}>
+                  {/* <View style={styles().voucherSec}>
                     {!coupon ? (
                       <TouchableOpacity
                         activeOpacity={0.7}
@@ -897,7 +917,7 @@ function Checkout(props) {
                         </View>
                       </>
                     )}
-                  </View>
+                  </View> */}
 
                   <View style={[styles(currentTheme).priceContainer]}>
                     <TextDefault
@@ -926,7 +946,7 @@ function Checkout(props) {
                         bold
                       >
                         {configuration.currencySymbol}
-                        {calculatePrice(0, false)}
+                        {order.totalPrice.totalCost.toFixed(2)}
                       </TextDefault>
                     </View>
                     <View style={styles(currentTheme).horizontalLine2} />
@@ -949,13 +969,14 @@ function Checkout(props) {
                             bold
                           >
                             {configuration.currencySymbol}
-                            {deliveryCharges.toFixed(2)}
+                            {order.totalPrice.deliveryCost.toFixed(2)}
                           </TextDefault>
                         </View>
                         <View style={styles(currentTheme).horizontalLine2} />
                       </>
                     )}
 
+<>
                     <View style={styles(currentTheme).billsec}>
                       <TextDefault
                         numberOfLines={1}
@@ -963,7 +984,7 @@ function Checkout(props) {
                         normal
                         bold
                       >
-                        {t('taxFee')}
+                        {"Discount + Loayalty Points"}
                       </TextDefault>
                       <TextDefault
                         numberOfLines={1}
@@ -972,10 +993,11 @@ function Checkout(props) {
                         bold
                       >
                         {configuration.currencySymbol}
-                        {taxCalculation()}
+                        {`${order.totalPrice.discount.toFixed(2)} + ${order.totalPrice.loyaltyPoints.toFixed(2)}`}
                       </TextDefault>
                     </View>
-
+</>
+                 
                     <View style={styles(currentTheme).horizontalLine2} />
                     {/* {paymentMode === 'HYP' && (
                       <View style={styles(currentTheme).billsec}>
@@ -1042,7 +1064,7 @@ function Checkout(props) {
                         bold
                       >
                         {configuration.currencySymbol}
-                        {calculateTotal()}
+                        {order.totalPrice.payableAmount.toFixed(2)}
                       </TextDefault>
                     </View>
                   </View>
@@ -1096,28 +1118,28 @@ function Checkout(props) {
                       <PaymentModeOption
                         title={t('cod')}
                         icon={'shekel'}
-                        selected={paymentMode === 'COD'}
+                        selected={paymentMode === 'CASH'}
                         theme={currentTheme}
                         onSelect={() => {
-                          if (!orderSubmitting){setPaymentMode('COD')}
+                          if (!orderSubmitting){setPaymentMode('CASH')}
                         }}
                         />
                         <PaymentModeOption
-                        title={t('paypal')}
+                        title={'Card'}
                         icon={'credit-card'}
-                        selected={paymentMode === 'PAYPAL'}
+                        selected={paymentMode === 'CARD'}
                         theme={currentTheme}
                         onSelect={() => {
-                          // if (!orderSubmitting){setPaymentMode('PAYPAL')}
+                          if (!orderSubmitting){setPaymentMode('CARD')}
                         }}
                         />
                         <PaymentModeOption
-                        title={t('Stripe')}
-                        icon={'credit-card'}
-                        selected={paymentMode === 'STRIPE'}
+                        title={'Online Banking'}
+                        icon={'bank'}
+                        selected={paymentMode === 'ONLINE'}
                         theme={currentTheme}
                         onSelect={() => {
-                          // if (!orderSubmitting){setPaymentMode('STRIPE')}
+                          if (!orderSubmitting){setPaymentMode('ONLINE')}
                         }}
                         />
                       </View>
@@ -1143,7 +1165,7 @@ function Checkout(props) {
                     { opacity: !inRange ? 0.5 : loadingOrder ? 0.5 : 1 }
                   ]}
                 >
-                  {!loadingOrder && inRange && (
+                  {!loadingOrder && inRange &&  !orderSubmitting && (
                     <TextDefault
                       textColor={currentTheme.color4}
                       style={styles().checkoutBtn}

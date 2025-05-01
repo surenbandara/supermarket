@@ -18,6 +18,5 @@ export const ProductSchema = Yup.object().shape({
   brand: Yup.string().max(50, 'Brand cannot be longer than 50 characters').required('Required'),
   shop: Yup.string().max(50, 'Shop cannot be longer than 50 characters').required('Required'),
   timestamp: Yup.number().required('Required'),
-  image: Yup.string().url('Invalid image URL').optional(),
   discount: Yup.number().min(0, 'Discount must be a positive number').optional()
 });

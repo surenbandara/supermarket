@@ -21,6 +21,7 @@ import { scale } from '../../utils/scaling'
 import { useTranslation } from 'react-i18next'
 import Accordion from '../../components/Accordion/Accordion'
 import { FontAwesome } from '@expo/vector-icons'
+import { restaurantsManager } from '../../ui/hooks'
 
 const FAQs = [
   {
@@ -66,7 +67,7 @@ const Help = (props) => {
   const currentTheme = {isRTL: i18n.dir() === 'rtl', ...theme[themeContext.ThemeValue]}
 
   const openWhatsAppChat = async () => {
-    const phoneNumber = '+14232600408'
+    const phoneNumber = restaurantsManager.getSystemParameterFromKey("ContactNumber")
 
     if (Platform.OS === 'android') {
       const androidUrl = `whatsapp://send?phone=${phoneNumber}`
