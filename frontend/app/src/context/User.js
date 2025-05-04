@@ -187,7 +187,8 @@ export const UserProvider = props => {
     name,
     addons = [],
     clearFlag,
-    specialInstructions = ''
+    specialInstructions = '',
+    image
   ) => {
     const cartItems = clearFlag ? [] : cart
     cartItems.push({
@@ -200,7 +201,8 @@ export const UserProvider = props => {
         _id: variation
       },
       addons,
-      specialInstructions
+      specialInstructions,
+      image
     })
 
     await AsyncStorage.setItem('cartItems', JSON.stringify([...cartItems]))

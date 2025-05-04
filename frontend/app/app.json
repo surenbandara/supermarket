@@ -42,7 +42,7 @@
     "notification": {
       "iosDisplayInForeground": true,
       "color": "#90E36D",
-      "icon": "./assets/not-icon.png",
+      "icon": "./assets/notify-icon.png",
       "androidMode": "default",
       "androidCollapsedTitle": "Enatega Multivendor"
     },

@@ -43,6 +43,8 @@ import './i18next'
 import * as SplashScreen from 'expo-splash-screen'
 import TextDefault from './src/components/Text/TextDefault/TextDefault'
 import restaurantsManager from './src/ui/hooks/RestaurantsManager'
+import * as TaskManager from 'expo-task-manager';
+import * as BackgroundFetch from 'expo-background-fetch';
 
 LogBox.ignoreLogs([
   // 'Warning: ...',
@@ -91,6 +93,41 @@ export default function App() {
       console.log('Theme Error : ', error.message)
     }
   }, [systemTheme])
+
+  const BACKGROUND_FETCH_TASK = 'background-fetch-task';
+
+  TaskManager.defineTask(BACKGROUND_FETCH_TASK, async () => {
+    try {
+      console.log('🔁 Background fetch running...');
+      restaurantsManager.fetchOrders();
+      return BackgroundFetch.BackgroundFetchResult.NewData;
+    } catch (err) {
+      console.error('❌ Background fetch failed:', err);
+      return BackgroundFetch.BackgroundFetchResult.Failed;
+    }
+  });
+
+  useEffect(() => {
+    const initBackgroundFetch = async () => {
+      const status = await BackgroundFetch.getStatusAsync();
+      console.log('📦 Background fetch status:', status);
+
+      if (status === BackgroundFetch.BackgroundFetchStatus.Available) {
+        try {
+          await BackgroundFetch.registerTaskAsync(BACKGROUND_FETCH_TASK, {
+            minimumInterval: 60,
+            stopOnTerminate: true,
+            startOnBoot: true,
+          });
+          console.log('✅ Background fetch task registered');
+        } catch (err) {
+          console.error('❌ Failed to register task', err);
+        }
+      }
+    };
+
+    initBackgroundFetch();
+  }, []);
 
 
   // For Fonts, etc
@@ -181,12 +218,13 @@ export default function App() {
       }
     })()
   }, [])
+  
 
 
   useEffect(() => {
     const interval = setInterval(() => {
       restaurantsManager.fetchAll();
-    }, 10000000);
+    }, 1000*60);
 
     return () => clearInterval(interval);
   }, []);
@@ -194,7 +232,7 @@ export default function App() {
   useEffect(() => {
     const interval = setInterval(() => {
       restaurantsManager.fetchOrders();
-    }, 10000000);
+    }, 10000);
 
     return () => clearInterval(interval);
   }, []);
@@ -205,30 +243,30 @@ export default function App() {
 
     notificationListener.current =
       Notifications.addNotificationReceivedListener((notification) => {
-        if (
-          notification?.request?.content?.data?.type ===
-          NOTIFICATION_TYPES.REVIEW_ORDER
-        ) {
-          const id = notification?.request?.content?.data?._id
-          if (id) {
-            setOrderId(id)
-            reviewModalRef?.current?.open()
-          }
-        }
+        // if (
+        //   notification?.request?.content?.data?.type ===
+        //   NOTIFICATION_TYPES.REVIEW_ORDER
+        // ) {
+        //   const id = notification?.request?.content?.data?._id
+        //   if (id) {
+        //     setOrderId(id)
+        //     reviewModalRef?.current?.open()
+        //   }
+        // }
       })
 
     responseListener.current =
       Notifications.addNotificationResponseReceivedListener((response) => {
-        if (
-          response?.notification?.request?.content?.data?.type ===
-          NOTIFICATION_TYPES.REVIEW_ORDER
-        ) {
-          const id = response?.notification?.request?.content?.data?._id
-          if (id) {
-            setOrderId(id)
-            reviewModalRef?.current?.open()
-          }
-        }
+        // if (
+        //   response?.notification?.request?.content?.data?.type ===
+        //   NOTIFICATION_TYPES.REVIEW_ORDER
+        // ) {
+        //   const id = response?.notification?.request?.content?.data?._id
+        //   if (id) {
+        //     setOrderId(id)
+        //     reviewModalRef?.current?.open()
+        //   }
+        // }
       })
     return () => {
       Notifications.removeNotificationSubscription(notificationListener.current)
@@ -321,13 +359,14 @@ export default function App() {
               <AuthProvider>
                 <UserProvider>
                   <OrdersProvider>
-                    <AppContainer />
+                    <AppContainer >
                     <ReviewModal
                       ref={reviewModalRef}
                       onOverlayPress={onOverlayPress}
                       theme={Theme[theme]}
                       orderId={orderId}
                     />
+                    </AppContainer>
                   </OrdersProvider>
                 </UserProvider>
               </AuthProvider>

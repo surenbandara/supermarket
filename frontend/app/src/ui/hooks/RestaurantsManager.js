@@ -5,6 +5,8 @@ import { restaurant } from "../../apollo/queries";
 import { RestApiClient } from './RestApiClient';
 import { GoogleSignin, statusCodes } from '@react-native-google-signin/google-signin'
 import auth from '@react-native-firebase/auth';
+import { ToastAndroid } from "react-native";
+import * as Notifications from 'expo-notifications'
 
 class RestaurantManager {
   static instance;
@@ -42,12 +44,22 @@ class RestaurantManager {
     console.log("Logging in with email:", email);
     try {
       const data = await this.apiClient.query("LOGIN", "POST", {"email": email, "token": idToken});
+      ToastAndroid.showWithGravity(
+        `Login is Successfull `,
+        ToastAndroid.SHORT,
+        ToastAndroid.CENTER
+      )
       this.user = data.basicUserDetails
       this.token = data.jwtToken;
       console.log("Login successful:", this.user);
       console.log("Token received:", this.token);
       this.apiClient.setToken(this.token);
     } catch (err) {
+      ToastAndroid.showWithGravity(
+        `Login Failed`,
+        ToastAndroid.SHORT,
+        ToastAndroid.CENTER
+      )
       this.error = err;
     } 
   
@@ -123,6 +135,39 @@ class RestaurantManager {
     return this.networkStatus;
   }
 
+  checkStatusUpdates(oldOrders, newOrders) {
+    const statusMessages = {
+      INITIATED: "Your order has been initiated. The seller has acknowledged your order.",
+      CONFIRMED: "Your order has been confirmed. It will be prepared soon.",
+      PROCESSING: "Your order is now being processed.",
+      SHIPPED: "Your order has been shipped and is on the way.",
+      DELIVERED: "Your order has been delivered. Please check your items.",
+      COMPLETED: "Your order has been completed. Thank you for shopping!",
+      CANCELLED: "Your order has been cancelled.",
+      RETURNED: "Your order has been returned successfully.",
+    };
+  
+    newOrders.forEach((newOrder) => {
+      const oldOrder = oldOrders.find(o => o.id === newOrder.id);
+      if (oldOrder && oldOrder.status !== newOrder.status) {
+        const newStatus = newOrder.status;
+        if (newStatus === 'NEW') return;
+  
+        const message = statusMessages[newStatus];
+        if (!message) return;
+        Notifications.scheduleNotificationAsync({
+          content: {
+            title: `Order #${newOrder.id} Update`,
+            body: message,
+            data: { _id: newOrder.id }
+          },
+          trigger: { seconds: 1 },
+        });
+      }
+    });
+  }
+  
+
   async fetchOrders() {
     if (this.user !== null) {
       this.refetchOrders(false);
@@ -137,7 +182,6 @@ class RestaurantManager {
     await this.refetchSystemParamteres(false);
     await new Promise(resolve => setTimeout(resolve, 2000));
     await this.refetchOrders(false);
-    console.log("Fetched all data");
     // console.log("Shop data:", this.shopData);
     // console.log("Product data:", this.productData);
     console.log("System parameters:", this.systemParameters);
@@ -192,6 +236,7 @@ class RestaurantManager {
   }
 
   async refetchOrders(loadingEnable = true) {
+   
     try {
       if (loadingEnable) {
         this.loading = true;
@@ -214,6 +259,8 @@ class RestaurantManager {
       });
 
       this.orders = updatedOrders;
+      this.checkStatusUpdates(this.orders, updatedOrders);
+      
     } catch (err) {
       console.log("Error fetching orders:", err);
       this.error = err;
@@ -267,7 +314,7 @@ class RestaurantManager {
         // item.image =
         //   "https://fastly.picsum.photos/id/870/200/300.jpg?blur=2&grayscale&hmac=ujRymp644uYVjdKJM7kyLDSsrqNSMVRPnGU99cKl6Vs";
         item.isAvailable = true;
-        item.description = "DEcriprtion";
+        item.description = item.brand;
         item.title = item.name;
         return item;
       });

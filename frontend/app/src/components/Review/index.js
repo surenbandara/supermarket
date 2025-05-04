@@ -12,6 +12,7 @@ import gql from 'graphql-tag'
 import { useApolloClient, useMutation } from '@apollo/client'
 import { reviewOrder } from '../../apollo/mutations'
 import { useTranslation } from 'react-i18next'
+import { useNavigation } from '@react-navigation/native'
 
 const SCREEN_HEIGHT = Dimensions.get('screen').height
 const MODAL_HEIGHT = Math.floor(SCREEN_HEIGHT / 4)
@@ -22,14 +23,15 @@ const REVIEWORDER = gql`
   ${reviewOrder}
 `
 
-function Review({ onOverlayPress, theme, orderId, rating }, ref) {
+function Review({ onOverlayPress, theme, orderId, rating }, ref,) {
 
   const { t } = useTranslation()
 
   const ratingRef = useRef()
   const [description, setDescription] = useState('')
   const [mutate] = useMutation(REVIEWORDER, { variables: { order: orderId, description, rating: ratingRef.current }, onCompleted, onError })
- 
+  const navigation = useNavigation()
+
   function onCompleted() {
     setDescription('')
     ref?.current?.close()
@@ -52,6 +54,10 @@ function Review({ onOverlayPress, theme, orderId, rating }, ref) {
   useEffect(() => {
     if (!orderId) return
     fetchOrder()
+
+    navigation.navigate('OrderDetail', {
+      _id : orderId
+    })
   }, [orderId])
 
   const onSubmit = async () => {

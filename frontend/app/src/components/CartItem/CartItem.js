@@ -27,9 +27,7 @@ const CartItem = (props) => {
   }
   const [isDropdownOpen, setIsDropdownOpen] = useState(false)
   const imageUrl =
-    props?.itemImage && props?.itemImage.trim() !== ''
-      ? props?.itemImage
-      : IMAGE_LINK
+    props?.itemImage ?? IMAGE_LINK
   const toggleDropdown = () => {
     setIsDropdownOpen(!isDropdownOpen)
   }
@@ -74,7 +72,7 @@ const CartItem = (props) => {
       >
         <View style={styles().suggestItemImgContainer}>
           <Image
-            source={{ uri: imageUrl }}
+            source={{ uri: props?.itemImage }}
             style={styles().suggestItemImg}
             resizeMode='contain'
           />

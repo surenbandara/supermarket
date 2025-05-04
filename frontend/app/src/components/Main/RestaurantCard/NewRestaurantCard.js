@@ -125,20 +125,8 @@ function NewRestaurantCard(props) {
             >
               {props?.name}
             </TextDefault>
-          </View>
-          <TextDefault
-            textColor={currentTheme.gray600}
-            numberOfLines={1}
-            bold
-            Normal
-            style={styles(currentTheme).offerCategoty}
-          >
-            {props?.categories
-              ? props?.categories.map((category) => category?.title + ', ')
-              : props?.tags?.join(',')}
-          </TextDefault>
-          <View style={styles().border} />
-          <View style={styles(currentTheme).deliveryInfo}>
+
+
             <View style={styles(currentTheme).deliveryTime}>
               <AntDesign
                 name='clockcircleo'
@@ -151,8 +139,37 @@ function NewRestaurantCard(props) {
                 bold
                 Normal
               >
-                {props?.deliveryTime + ' '}
-                {t('min')}
+                {'Open'}
+              </TextDefault>
+            </View>
+
+          </View>
+          {/* <TextDefault
+            textColor={currentTheme.gray600}
+            numberOfLines={1}
+            bold
+            Normal
+            style={styles(currentTheme).offerCategoty}
+          >
+            {props?.categories
+              ? props?.categories.map((category) => category?.title + ', ')
+              : props?.tags?.join(',')}
+          </TextDefault> */}
+          {/* <View style={styles().border} /> */}
+          <View style={styles(currentTheme).deliveryInfo}>
+             {/*<View style={styles(currentTheme).deliveryTime}>
+              <AntDesign
+                name='clockcircleo'
+                size={15}
+                color={currentTheme.editProfileButton}
+              />
+              <TextDefault
+                textColor={currentTheme.editProfileButton}
+                numberOfLines={1}
+                bold
+                Normal
+              >
+                {'Open'}
               </TextDefault>
             </View>
             <View style={styles(currentTheme).deliveryTime}>
@@ -165,7 +182,7 @@ function NewRestaurantCard(props) {
               >
                 {configuration.currencySymbol} {configuration.deliveryRate}
               </TextDefault>
-            </View>
+            </View> */}
             {/* <View style={styles(currentTheme).aboutRestaurant}>
               <FontAwesome5
                 name='star'

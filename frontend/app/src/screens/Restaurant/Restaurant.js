@@ -471,7 +471,7 @@ function Restaurant(props) {
                           small
                           isRTL
                         >
-                          {configuration.currencySymbol}{' Rs : '}
+                          {configuration.currencySymbol}
                           {parseFloat(item?.price).toFixed(2)}
                         </TextDefault>
                           <TextDefault
@@ -481,7 +481,7 @@ function Restaurant(props) {
                             small
                             isRTL
                           >
-                            {configuration.currencySymbol}{' Quantity : '}
+                           {' Quantity : '}
                             {parseInt(item?.quantity)}
                           </TextDefault>
                       </View>

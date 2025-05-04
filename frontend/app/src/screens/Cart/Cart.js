@@ -286,7 +286,7 @@ function Cart(props) {
       paymentMethod: "CASH", 
       paymentStatus : "PENDING",
       userId: restaurantsManager.user.id, 
-      userLocation: `${location.latitude},${location.longitude}`,
+      userLocation: `${location?.latitude},${location?.longitude}`,
       timestamp: date
       }
 
@@ -563,6 +563,7 @@ function Cart(props) {
                   </TextDefault>
                   {cart?.map((cartItem, index) => {
                     const food = cartItem
+                    console.log("dssssssssssssss", food)
                     if (!food) return null
                     return (
                       <View

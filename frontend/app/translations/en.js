@@ -576,7 +576,7 @@ export const en = {
   yourEmail: 'Log in easily by entering your email!',
   yourEmailPassword: 'Please enter your passwords now for access!',
   brandName: 'AFM Delivery',
-  welcomeText: 'Welcome to AFM Delivery',
+  welcomeText: 'Welcome to AFSU Delivery',
   createAccountDesc:
     'Enjoy the best restaurants or get what you need from nearby stores, delivered',
   phoneNumber: 'Phone Number',

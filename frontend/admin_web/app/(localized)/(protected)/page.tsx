@@ -26,7 +26,7 @@ export default function RootPage() {
     const user = onUseLocalStorage('get', `user-${APP_NAME}`);
     if (user) {
       const userInfo: IUserLoginDataResponse = JSON.parse(user);
-      router.push(DEFAULT_ROUTES[userInfo.basicUserDetails.role as keyof typeof DEFAULT_ROUTES]);
+      router.push(DEFAULT_ROUTES.admin);
     } else {
       router.replace('/authentication/login');
     }

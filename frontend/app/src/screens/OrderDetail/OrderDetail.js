@@ -93,7 +93,6 @@ if(!order)
   order=orderData
 }
 
-
 const cancelOrder = async () => {
   try {
     order.status = ORDER_STATUS_ENUM.CANCELLED;
@@ -110,7 +109,7 @@ const cancelOrder = async () => {
   useEffect(() => {
     props?.navigation.setOptions({
       headerRight: () => HelpButton({ iconBackground: currentTheme.main, navigation, t }),
-      headerTitle: `${order ? order?.id?.substr(0, 15) : ""}...`,
+      headerTitle: `${order ? order?.id.toString()?.substr(0, 15) : ""}...`,
       headerTitleStyle: { color: currentTheme.newFontcolor },
       headerStyle: { backgroundColor: currentTheme.newheaderBG }
     })

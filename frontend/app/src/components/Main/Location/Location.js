@@ -38,8 +38,8 @@ function Location({
 
     navigation.navigate('AddNewAddress', {
             prevScreen: 'Checkout',
-            latitude: location.latitude ?? latOrigin,
-            longitude: location.longitude ?? lonOrigin
+            latitude: location?.latitude ?? latOrigin,
+            longitude: location?.longitude ?? lonOrigin
           })
     // if (screenName === 'checkout') {
     //   if (addresses && !addresses.length) {

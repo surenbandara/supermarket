@@ -184,8 +184,8 @@ function Checkout(props) {
     if (mapRef.current) {
       mapRef.current.animateToRegion(
         {
-          latitude: Number(location.latitude),
-          longitude: Number(location.longitude),
+          latitude: Number(location?.latitude ?? 0),
+          longitude: Number(location?.longitude  ?? 0),
           latitudeDelta: 0.0922,
           longitudeDelta: 0.0421,
         },

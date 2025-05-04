@@ -218,7 +218,6 @@ function ItemDetail(props) {
 
   // Add to cart
   const addToCart = async (quantity, clearFlag) => {
-    console.log('dddddddddddddgggggg');
     const addons = selectedAddons.map((addon) => ({
       ...addon,
       options: addon?.options?.map(({ _id }) => ({
@@ -270,7 +269,8 @@ function ItemDetail(props) {
         food.name,
         addons,
         clearFlag,
-        specialInstructions
+        specialInstructions,
+        food.image
       )
     // } else {
     //   await addQuantity(cartItem?.key, quantity)
@@ -495,7 +495,7 @@ function ItemDetail(props) {
               />
               <TextField
                 style={styles(currentTheme).input}
-                placeholder={t('noMayo')}
+                placeholder={'Description'}
                 textAlignVertical='center'
                 value={specialInstructions}
                 onChangeText={setSpecialInstructions}
