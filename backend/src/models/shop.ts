@@ -9,6 +9,7 @@ export interface IShop extends mongoose.Document {
     vendorPhoneNumber: string;
     timestamp: number;
     category: string;
+    available: boolean;
     image?: string;
     additionalData?: string;
 }
@@ -20,6 +21,7 @@ const shopSchema = new mongoose.Schema<IShop>(
         vendorName: { type: String, required: true },
         vendorEmai: { type: String, required: true },
         category: { type: String, required: true },
+        available: { type: Boolean, required: true },
         vendorPhoneNumber: { type: String, required: true },
         timestamp: { type: Number, required: true },
         image: { type: String, required: false },
@@ -35,6 +37,7 @@ shopSchema.index({ name: 1 }, { unique: true });
 // shopSchema.index({ vendorName: 1 });
 shopSchema.index({ category: 1 });
 shopSchema.index({ timestamp: -1 });
+shopSchema.index({ available: 1 });
 
 shopSchema.set('toJSON', {
     transform: (doc, ret, options) => {
