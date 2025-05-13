@@ -13,6 +13,7 @@ services:
     volumes:
       - ./backend:/app
       - /app/node_modules
+      - ./backend/src/config/serviceAccountKey.json:/app/src/config/serviceAccountKey.json
     restart: on-failure
 
   mongodb:

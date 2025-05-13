@@ -5,6 +5,9 @@ import log from '../../utils/logger';
 import ProductModel from "../../models/product";
 import { SysParaCache } from "../../models/sys-config";
 import mongoose from "mongoose";
+import admin from "../../controllers/handlers/authenticator";
+
+const firestore = admin.firestore();
 
 export const listOrders = async (req: Request, res: Response, next: NextFunction) => {
     try {
@@ -120,6 +123,21 @@ export const confirmOrder = async (req: Request, res: Response, next: NextFuncti
 
             await orderRecord.save();
             log.info(`confirmOrder:: Updated order db record successfully ${JSON.stringify(orderRecord.toJSON())}}`);
+
+            // Firestore Backup
+            try {
+                const docId = orderRecord.id.toString();
+                const data = {
+                    ...orderRecord.toObject(),
+                    bill: JSON.parse(orderRecord.bill),
+                    totalPrice: JSON.parse(orderRecord.totalPrice),
+                };
+
+                await firestore.collection("orders").doc(docId).set(data);
+                console.log(` Backed up order ${docId} to Firestore`);
+            } catch (error) {
+                log.error(`confirmOrder:: Failed to backup to Firestore: ${error}`);
+            }
 
             res.status(201).json(orderRecord.toJSON());
             return;
@@ -281,6 +299,22 @@ export const cancelOrder = async (req: Request, res: Response, next: NextFunctio
             log.info(`cancelOrder:: Canceled: ${JSON.stringify(orderRecord?.toJSON())} order successfully}`);
 
             res.status(201).json(orderRecord?.toJSON());
+
+            // Backup to Firestore
+            try {
+                const docId = orderRecord!.id.toString();
+                const data = {
+                    ...orderRecord!.toObject(),
+                    bill: JSON.parse(orderRecord!.bill),
+                    totalPrice: JSON.parse(orderRecord!.totalPrice),
+                };
+
+                await firestore.collection("orders").doc(docId).set(data);
+                log.info(`cancelOrder:: Firestore backup completed for order ${docId}`);
+            } catch (err) {
+                log.error(`cancelOrder:: Firestore backup failed: ${err}`);
+            }
+
             return;
 
         } else {
@@ -360,6 +394,21 @@ export const changeOrderStatus = async (req: Request, res: Response, next: NextF
         log.info(`changeOrderStatus:: Order status updated successfully for orderId: ${id}`);
 
         res.status(200).json({ message: "Order status updated successfully" });
+
+        // Backup to Firestore
+        try {
+            const docId = existingOrderRecord.id.toString();
+            const data = {
+                ...existingOrderRecord.toObject(),
+                bill: JSON.parse(existingOrderRecord.bill),
+                totalPrice: JSON.parse(existingOrderRecord.totalPrice),
+            };
+
+            await firestore.collection("orders").doc(docId).set(data);
+            log.info(`changeOrderStatus:: Firestore backup completed for order ${docId}`);
+        } catch (err) {
+            log.error(`changeOrderStatus:: Firestore backup failed: ${err}`);
+        }
         return;
 
     } catch (err: any) {
