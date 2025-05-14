@@ -192,6 +192,6 @@ next-env.d.ts
 
 *storybook.log
 
-./backend/logs/*.log
+/backend/logs/*.log
 
-./backend/node_modules
+/backend/node_modules/
