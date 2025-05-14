@@ -1,6 +1,9 @@
 import { Request, Response, NextFunction } from 'express';
 import RiderModel, { IRider } from '../../models/rider';
 import log from '../../utils/logger';
+import admin from "../../controllers/handlers/authenticator";
+
+const firestore = admin.firestore();
 
 export const listRiders = async (req: Request, res: Response, next: NextFunction) => {
     try {
@@ -28,6 +31,15 @@ export const createNewRider = async (req: Request, res: Response, next: NextFunc
         await rider.save();
         log.info(`createNewRider::Rider created successfully : ${JSON.stringify(rider.toJSON())}`);
         res.status(201).json(rider.toJSON());
+
+        // Firestore backup
+        try {
+            const docId = rider.name;
+            await firestore.collection("riders").doc(docId).set(rider.toObject());
+            log.info(`createNewRider:: Firestore backup successful for ${docId}`);
+        } catch (err) {
+            log.error(`createNewRider:: Firestore backup failed: ${err}`);
+        }
     }
     catch (err: any) {
         log.error(`createNewRider:: ${err}`);
@@ -55,6 +67,14 @@ export const updateRider = async (req: Request, res: Response, next: NextFunctio
         }
         log.info(`updateRider::Rider updated successfully : ${updatedRider.toJSON()}`);
         res.status(200).json(updatedRider);
+
+        // Firestore update
+        try {
+            await firestore.collection("riders").doc(riderName).set(updatedRider.toObject());
+            log.info(`updateRider:: Firestore sync successful for ${riderName}`);
+        } catch (err) {
+            log.error(`updateRider:: Firestore sync failed: ${err}`);
+        }
     }
     catch (err: any) {
         log.error(`updateRider:: ${err}`);
@@ -81,6 +101,14 @@ export const deleteRider = async (req: Request, res: Response, next: NextFunctio
             status: 200,
             message: `Rider ${riderName} deleted successfully`,
         });
+
+        // Firestore delete
+        try {
+            await firestore.collection("riders").doc(riderName).delete();
+            log.info(`deleteRider:: Firestore document deleted for ${riderName}`);
+        } catch (err) {
+            log.error(`deleteRider:: Firestore delete failed: ${err}`);
+        }
     }
     catch (err: any) {
         log.error(`deleteRider:: ${err}`);

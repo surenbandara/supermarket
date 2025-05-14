@@ -1,6 +1,9 @@
 import { Request, Response, NextFunction } from 'express';
 import VendorModel, { IVendor } from '../../models/vendor';
 import log from '../../utils/logger';
+import admin from "../../controllers/handlers/authenticator";
+
+const firestore = admin.firestore();
 
 export const listVendors = async (req: Request, res: Response, next: NextFunction) => {
     try {
@@ -29,6 +32,14 @@ export const createNewVendor = async (req: Request, res: Response, next: NextFun
         await vendor.save();
         log.info(`createNewVendor::Vendor created successfully : ${JSON.stringify(vendor.toJSON())}`);
         res.status(201).json(vendor.toJSON());
+
+        // Firestore backup
+        try {
+            await firestore.collection("vendors").doc(vendor.name).set(vendor.toObject());
+            log.info(`createNewVendor:: Firestore backup completed for ${vendor.name}`);
+        } catch (firestoreError) {
+            log.error(`createNewVendor:: Firestore backup failed: ${firestoreError}`);
+        }
     }
     catch (err: any) {
         log.error(`createNewVendor:: ${err}`);
@@ -56,6 +67,14 @@ export const updateVendor = async (req: Request, res: Response, next: NextFuncti
         }
         log.info(`updateVendor::Vendor updated successfully : ${updatedVendor}`);
         res.status(200).json(updatedVendor);
+
+        // Firestore sync
+        try {
+            await firestore.collection("vendors").doc(vendorName).set(updatedVendor.toObject());
+            log.info(`updateVendor:: Firestore sync completed for ${vendorName}`);
+        } catch (firestoreError) {
+            log.error(`updateVendor:: Firestore sync failed: ${firestoreError}`);
+        }
     }
     catch (err: any) {
         log.error(`updateVendor:: ${err}`);
@@ -84,6 +103,14 @@ export const deleteVendor = async (req: Request, res: Response, next: NextFuncti
             status: 200,
             message: `Vendor ${vendorName} deleted successfully`,
         });
+
+        // Firestore deletion
+        try {
+            await firestore.collection("vendors").doc(vendorName).delete();
+            log.info(`deleteVendor:: Firestore document deleted for ${vendorName}`);
+        } catch (firestoreError) {
+            log.error(`deleteVendor:: Firestore deletion failed: ${firestoreError}`);
+        }
     }
     catch (err: any) {
         log.error(`deleteVendor:: ${err}`);

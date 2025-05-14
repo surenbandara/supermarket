@@ -4,7 +4,6 @@ import { OrderStatus, PriceBag, TotalBill } from "../../models/common";
 import log from '../../utils/logger';
 import ProductModel from "../../models/product";
 import { SysParaCache } from "../../models/sys-config";
-import mongoose from "mongoose";
 import admin from "../../controllers/handlers/authenticator";
 
 const firestore = admin.firestore();

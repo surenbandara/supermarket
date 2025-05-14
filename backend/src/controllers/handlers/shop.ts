@@ -2,6 +2,9 @@ import { Request, Response, NextFunction } from 'express';
 import ShopModel, { IShop } from '../../models/shop';
 import log from '../../utils/logger';
 import VendorModel from '../../models/vendor';
+import admin from "../../controllers/handlers/authenticator";
+
+const firestore = admin.firestore();
 
 export const listShops = async (req: Request, res: Response, next: NextFunction) => {
     try {
@@ -28,13 +31,21 @@ export const createNewShop = async (req: Request, res: Response, next: NextFunct
     try {
         const shop: IShop = new ShopModel(req.body);
         // if (await updateVendor(shop)) {
-            await shop.save();
-            log.info(`createNewShop::Shop created successfully : ${JSON.stringify(shop.toJSON())}`);
-            res.status(201).json(shop.toJSON());
+        await shop.save();
+        log.info(`createNewShop::Shop created successfully : ${JSON.stringify(shop.toJSON())}`);
+        res.status(201).json(shop.toJSON());
         // } else {
         //     log.info(`createNewShop::Vendor is invalid : ${JSON.stringify(shop.toJSON())}`);
         //     res.status(400).json({ "message": "Vendor is invalid or not existing." });
         // }
+
+        // Firestore backup
+        try {
+            await firestore.collection("shops").doc(shop.name).set(shop.toObject());
+            log.info(`createNewShop:: Firestore backup completed for ${shop.name}`);
+        } catch (err) {
+            log.error(`createNewShop:: Firestore backup failed: ${err}`);
+        }
     }
     catch (err: any) {
         log.error(`createNewShop:: ${err}`);
@@ -63,6 +74,14 @@ export const updateShop = async (req: Request, res: Response, next: NextFunction
         }
         log.info(`updateShop::Shop updated successfully : ${updatedShop}`);
         res.status(200).json(updatedShop);
+
+        // Firestore sync
+        try {
+            await firestore.collection("shops").doc(shopName).set(updatedShop.toObject());
+            log.info(`updateShop:: Firestore sync completed for ${shopName}`);
+        } catch (err) {
+            log.error(`updateShop:: Firestore sync failed: ${err}`);
+        }
     }
     catch (err: any) {
         log.error(`updateShop:: ${err}`);
@@ -90,6 +109,14 @@ export const deleteShop = async (req: Request, res: Response, next: NextFunction
             status: 200,
             message: `Shop ${shopName} deleted successfully`,
         });
+
+        // Firestore delete
+        try {
+            await firestore.collection("shops").doc(shopName).delete();
+            log.info(`deleteShop:: Firestore document deleted for ${shopName}`);
+        } catch (err) {
+            log.error(`deleteShop:: Firestore deletion failed: ${err}`);
+        }
     }
     catch (err: any) {
         log.error(`deleteShop:: ${err}`);
