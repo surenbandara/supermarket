@@ -47,6 +47,15 @@ function MyOrders(props) {
   const closeReviewModal = ()=>{
     reviewModalRef.current.close()
   }
+  const [refresh, setRefresh] = useState(0)
+
+
+  useEffect(() => {
+    restaurantsManager.subscribe(() => {
+      setRefresh(refresh => refresh + 1)
+    })
+   
+  }, [])
 
   useEffect(() => {
     async function Track() {

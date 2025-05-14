@@ -56,6 +56,7 @@ export interface IRestaurantResponse {
   address: string;
   deliveryTime: number;
   minimumOrder: number;
+  available: boolean;
   isActive: boolean;
   tax: number;
   username: string;

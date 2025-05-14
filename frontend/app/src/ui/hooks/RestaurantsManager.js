@@ -23,6 +23,7 @@ class RestaurantManager {
   }
   token = null;
   user = null;
+  listeners = [];
 
   constructor() {
     this.apiClient = new RestApiClient(this.token);
@@ -64,6 +65,15 @@ class RestaurantManager {
     } 
   
   }
+
+  notifyChange() {
+    this.listeners.forEach(listener => listener());
+  }
+
+  subscribe(listener) {
+    this.listeners.push(listener);
+  }
+
 
   logout() {
     this.token = null;
@@ -171,6 +181,7 @@ class RestaurantManager {
   async fetchOrders() {
     if (this.user !== null) {
       this.refetchOrders(false);
+      this.notifyChange();
     }
   }
 
@@ -338,7 +349,7 @@ class RestaurantManager {
         item.id = index;
         // item.image =
         //   "https://fastly.picsum.photos/id/870/200/300.jpg?blur=2&grayscale&hmac=ujRymp644uYVjdKJM7kyLDSsrqNSMVRPnGU99cKl6Vs";
-        item.isAvailable = true;
+        item.isAvailable = item.available;
         item.description = "DEcriprtion";
         item.title = item.name;
         return item;

@@ -29,6 +29,7 @@ import { useUserContext } from '@/lib/hooks/useUser';
 import { RestaurantSchema } from '@/lib/utils/schema';
 import { RestaurantErrors, SHOP_TYPE } from '@/lib/utils/constants';
 import { useState } from 'react';
+import CustomInputSwitch from '@/lib/ui/useable-components/custom-input-switch';
 
 export default function RestaurantAddForm({
   onHide,
@@ -42,6 +43,7 @@ export default function RestaurantAddForm({
     vendorName: '',
     vendorPhoneNumber: '',
     vendorEmai: '',
+    available: false,
     timestamp: 0,
     category: null
   };
@@ -50,9 +52,10 @@ export default function RestaurantAddForm({
   const t = useTranslations();
   const { showToast } = useToast();
 
+  console.log('xxxxxxxxxRestaurant', restaurant);
   const {SERVER_URL} = useConfiguration();
   const {user} = useUserContext();
-  const [imageUri, setImageUri] = useState<string>('');
+  const [imageUri, setImageUri] = useState<string>(restaurant?.image ?? null);
 
   // Form Submission
   const handleSubmit =  async (
@@ -64,12 +67,14 @@ export default function RestaurantAddForm({
         let response: any;
         const request: any = values;
         request.category = request.category.code;
+        console.log("Imagee urrriii ", imageUri);
         request.image = imageUri;
         if (restaurant) {
           response = await api.put(`${SERVER_URL}/shop`, request, user?.jwtToken);
         } else {
           response= await api.post(`${SERVER_URL}/shop`, request, user?.jwtToken);
         }
+        console.log('Process ')
         
         if (Object.keys(response).length != 0 && response.status != 400) {
           showToast({
@@ -141,10 +146,23 @@ export default function RestaurantAddForm({
                   setFieldValue,
                   isSubmitting
                 }) => {
-                  console.log(errors);
                   return (
                     <Form onSubmit={handleSubmit}>
                     <div className="mb-2 space-y-3">
+
+                      <div>
+                        <CustomInputSwitch
+                          loading={false}
+                          isActive={values.available}
+                          label='Currently Available'
+                          onChange={async () => {
+                            setFieldValue('available', !values.available);
+                            console.log('Available', values.available);
+                          }}
+                        />
+                      </div>
+
+
                       <div>
                         <CustomTextField
                           type="text"
@@ -231,7 +249,19 @@ export default function RestaurantAddForm({
                         <CustomDropdownComponent
                           name="category"
                           placeholder={'Shop Category'}
-                          selectedItem={values.category}
+                          selectedItem={
+                            values.category
+                              ? typeof values.category === 'string'
+                                ? { 
+                                  ...SHOP_TYPE.find(item => item.code === values.category) ,
+                                  length: SHOP_TYPE.find(item => item.code === values.category)?.label.length ?? 0
+                                } 
+                                : values.category
+                              : {
+                                  ...SHOP_TYPE[0],
+                                  length: SHOP_TYPE[0].label.length,
+                                }
+                          }
                           setSelectedItem={setFieldValue}
                           options={SHOP_TYPE.map(item => ({ ...item, length: item.label.length }))}
                           showLabel={true}
@@ -246,7 +276,9 @@ export default function RestaurantAddForm({
                           }}
                         />
                       </div>
-                  
+
+
+
                       <div className="grid grid-cols-1 gap-4 rounded-lg border border-gray-200 p-4">
                         <CustomUploadImageComponent
                             key="image"
@@ -260,7 +292,7 @@ export default function RestaurantAddForm({
                             }}
                             existingImageUrl={values.image}
                             showExistingImage={true}
-                            fileTypes={['image/webp', 'image/jpg', 'image/jpeg']}
+                            fileTypes={['image/webp', 'image/jpg', 'image/jpeg', 'image/png']}
                             maxFileHeight={841}
                             maxFileWidth={1980}
                             orientation="LANDSCAPE" maxFileSize={0}                                                  />

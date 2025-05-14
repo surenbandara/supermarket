@@ -96,6 +96,16 @@ export const RESTAURANT_TABLE_COLUMNS = ({
       propertyName: 'vendorEmai',
     },
     {
+      headerName: t('Availability'),
+      propertyName: 'available',
+      body: (restaurant: IRestaurantResponse) => (
+        <span style={{ color: restaurant.available ? 'green' : 'red' }}>
+          {restaurant.available ? '✔️' : '❌'}
+        </span>
+      ),
+    },
+    
+    {
       headerName: t('Category'),
       propertyName: 'category',
     },

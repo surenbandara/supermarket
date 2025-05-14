@@ -23,6 +23,7 @@ import { useConfiguration } from '@/lib/hooks/useConfiguration';
 import { useUserContext } from '@/lib/hooks/useUser';
 import { AnyARecord } from 'dns';
 import { useManagerContext } from '@/lib/hooks/useManager';
+import { stat } from 'fs';
 
 export default function OrderSuperAdminMain() {
   // Hooks
@@ -157,7 +158,10 @@ export default function OrderSuperAdminMain() {
 
     try {
       order.productList = order.bill
-      await api.put(`${SERVER_URL}/orders`, order, user?.jwtToken);
+      await api.post(`${SERVER_URL}/order`, {
+        id : order.id,
+        status: order.status
+      }, user?.jwtToken);
     } catch (error) {
       console.error("Error:", error);
     } 

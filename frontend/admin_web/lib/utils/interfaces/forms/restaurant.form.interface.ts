@@ -19,6 +19,7 @@ export interface IRestaurantForm {
   vendorEmai: string;
   timestamp: number;
   category: IDropdownSelectItem | null;
+  available: boolean;
   image?: string;
 }
 

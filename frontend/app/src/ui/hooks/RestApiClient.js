@@ -11,7 +11,8 @@ export const API_ENDPOINTS = {
   
   export class RestApiClient {
     constructor(token) {
-      this.SERVER_URL = 'http://afmdelivery.lk:3000';
+      this.SERVER_URL = 'http://10.0.2.2:3000';
+      //this.SERVER_URL = 'http://afmdelivery.lk:3000';
       this.token = token;
       this.defaultHeaders = {
         'Content-Type': 'application/json',

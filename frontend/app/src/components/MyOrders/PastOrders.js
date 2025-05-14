@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext, useState, useEffect } from 'react'
 import { View, TouchableOpacity, Image, FlatList } from 'react-native'
 import { useSubscription } from '@apollo/client'
 import gql from 'graphql-tag'
@@ -19,6 +19,7 @@ import StarIcon from '../../../src/assets/SVG/imageComponents/starIcon'
 import { scale } from '../../utils/scaling'
 import EmptyView from '../EmptyView/EmptyView'
 import { ORDER_STATUS_ENUM } from '../../utils/enums'
+import { restaurantsManager } from '../../ui/hooks'
 
 function emptyViewPastOrders() {
   const orderStatusActive = ['PENDING', 'PICKED', 'ACCEPTED', 'ASSIGNED']
@@ -53,6 +54,18 @@ const PastOrders = ({ navigation, loading, error, pastOrders, onPressReview }) =
     fetchMoreOrdersFunc,
     networkStatusOrders
   } = useContext(OrdersContext)
+
+  const [version, setVersion] = useState(0);
+  
+  
+  useEffect(() => {
+    const unsubscribe = restaurantsManager.subscribe(() => {
+      setVersion(version + 1);
+    });
+
+    return unsubscribe;
+  }, []);
+
   const renderItem = ({ item }) => (
     <Item
       item={item}

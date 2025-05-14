@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { View, TouchableOpacity, Image, FlatList } from 'react-native'
 import { useSubscription } from '@apollo/client'
 import gql from 'graphql-tag'
@@ -24,6 +24,17 @@ const ActiveOrders = ({ navigation, loading, error, activeOrders }) => {
   const themeContext = useContext(ThemeContext)
   const currentTheme = {isRTL : i18n.dir() === 'rtl', ...theme[themeContext.ThemeValue]}
   const configuration = useContext(ConfigurationContext)
+
+  const [version, setVersion] = useState(0);
+    
+    
+  useEffect(() => {
+    const unsubscribe = restaurantsManager.subscribe(() => {
+      setVersion( version + 1);
+    });
+
+    return unsubscribe;
+  }, []);
 
   const emptyView = () => {
     return (
