@@ -21,6 +21,7 @@ firebase_admin_1.default.initializeApp({
     credential: firebase_admin_1.default.credential.cert("./src/config/serviceAccountKey.json"),
     // databaseURL: "https://test01-a1349-default-rtdb.asia-southeast1.firebasedatabase.app"
 });
+exports.default = firebase_admin_1.default;
 const register = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const { username, password, email, phoneNumber, profilePic } = req.body;

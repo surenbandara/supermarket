@@ -24,6 +24,7 @@
     "js-yaml": "^4.1.0",
     "jsonwebtoken": "^9.0.2",
     "mongoose": "^8.10.1",
+    "node-cron": "^4.0.5",
     "swagger-ui-express": "^5.0.1",
     "winston": "^3.17.0"
   },

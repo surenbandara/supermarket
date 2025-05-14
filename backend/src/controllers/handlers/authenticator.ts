@@ -9,6 +9,7 @@ admin.initializeApp({
     // databaseURL: "https://test01-a1349-default-rtdb.asia-southeast1.firebasedatabase.app"
 });
 
+export default admin;
 
 export const register = async (req: Request, res: Response): Promise<void> => {
     try {

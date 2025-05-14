@@ -12,9 +12,11 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.filterProducts = exports.deleteProduct = exports.updateProduct = exports.createNewProduct = exports.listProducts = void 0;
+exports.backupProducts = exports.filterProducts = exports.deleteProduct = exports.updateProduct = exports.createNewProduct = exports.listProducts = void 0;
 const product_1 = __importDefault(require("../../models/product"));
 const logger_1 = __importDefault(require("../../utils/logger"));
+const authenticator_1 = __importDefault(require("../../controllers/handlers/authenticator"));
+const firestore = authenticator_1.default.firestore();
 const listProducts = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const products = yield product_1.default.find();
@@ -148,3 +150,26 @@ const filterProducts = (req, res, next) => __awaiter(void 0, void 0, void 0, fun
     next();
 });
 exports.filterProducts = filterProducts;
+const backupProducts = () => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const products = yield product_1.default.find();
+        // Firestore Sync 
+        try {
+            const batch = firestore.batch();
+            const collectionRef = firestore.collection("products");
+            products.forEach(product => {
+                const docRef = collectionRef.doc(product.id.toString());
+                batch.set(docRef, product.toObject());
+            });
+            yield batch.commit();
+            logger_1.default.info(`listProducts:: Firestore backup completed for ${products.length} products`);
+        }
+        catch (firestoreError) {
+            logger_1.default.error(`listProducts:: Firestore backup failed: ${firestoreError}`);
+        }
+    }
+    catch (err) {
+        logger_1.default.error(`listProducts:: ${err}`);
+    }
+});
+exports.backupProducts = backupProducts;

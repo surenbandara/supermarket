@@ -1,6 +1,9 @@
 import { Request, Response, NextFunction } from 'express';
 import CuisineModel, { ICuisine } from '../../models/cusine';
 import log from '../../utils/logger';
+import admin from "../../controllers/handlers/authenticator";
+
+const firestore = admin.firestore();
 
 export const listCusines = async (req: Request, res: Response, next: NextFunction) => {
     try {
@@ -28,6 +31,15 @@ export const createNewCusine = async (req: Request, res: Response, next: NextFun
         await cuisine.save();
         log.info(`createNewCuisine::Cuisine created successfully : ${JSON.stringify(cuisine.toJSON())}`);
         res.status(201).json(cuisine.toJSON());
+
+        // Backup to Firestore
+        try {
+            const docId = cuisine.id.toString();
+            await firestore.collection("cuisines").doc(docId).set(cuisine.toObject());
+            log.info(`createNewCuisine:: Firestore backup completed for cuisine ${docId}`);
+          } catch (error) {
+            log.error(`createNewCuisine:: Firestore backup failed: ${error}`);
+          }
     }
     catch (err: any) {
         log.error(`createNewCuisine:: ${err}`);
@@ -55,6 +67,15 @@ export const updateCusine = async (req: Request, res: Response, next: NextFuncti
         }
         log.info(`updateCuisine::Cuisine updated successfully : ${updatedCuisine}`);
         res.status(200).json(updatedCuisine);
+
+        // Backup to Firestore
+        try {
+            const docId = updatedCuisine.name;
+            await firestore.collection("cuisines").doc(docId).set(updatedCuisine.toObject());
+            log.info(`updateCuisine:: Firestore backup completed for ${docId}`);
+          } catch (error) {
+            log.error(`updateCuisine:: Firestore backup failed: ${error}`);
+          }
     }
     catch (err: any) {
         log.error(`updateCuisine:: ${err}`);
@@ -81,6 +102,14 @@ export const deleteCusine = async (req: Request, res: Response, next: NextFuncti
             status: 200,
             message: `Cuisine ${cuisineName} deleted successfully`,
         });
+
+        // Backup to Firestore
+        try {
+            await firestore.collection("cuisines").doc(cuisineName).delete();
+            log.info(`deleteCuisine:: Firestore document deleted for ${cuisineName}`);
+          } catch (error) {
+            log.error(`deleteCuisine:: Firestore deletion failed: ${error}`);
+          }
     }
     catch (err: any) {
         log.error(`deleteCuisine:: ${err}`);

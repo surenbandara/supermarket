@@ -10,9 +10,11 @@ services:
       - mongodb
     environment:
       - MONGO_URI=mongodb://mongodb:27017/test-super-market-05
+      - TZ=Asia/Colombo
     volumes:
       - ./backend:/app
       - /app/node_modules
+      - ./backend/src/config/serviceAccountKey.json:/app/src/config/serviceAccountKey.json
     restart: on-failure
 
   mongodb:

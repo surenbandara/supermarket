@@ -1,6 +1,9 @@
 import { Request, Response, NextFunction } from 'express';
 import ProductModel, { IProduct } from '../../models/product';
 import log from '../../utils/logger';
+import admin from "../../controllers/handlers/authenticator";
+
+const firestore = admin.firestore();
 
 export const listProducts = async (req: Request, res: Response, next: NextFunction) => {
     try {
@@ -48,7 +51,7 @@ export const updateProduct = async (req: Request, res: Response, next: NextFunct
             { new: true, runValidators: true }
         );
         if (!updatedProduct) {
-            log.error(`updateProduct::Product not found : ${productId}` );
+            log.error(`updateProduct::Product not found : ${productId}`);
             return res.status(404).json({ message: "Product not found" });
         }
         log.info(`updateProduct::Product updated successfully : ${updatedProduct}`);
@@ -131,8 +134,8 @@ export const filterProducts = async (req: Request, res: Response, next: NextFunc
 
         const products = await ProductModel.find(filter)
             .sort({ timestamp: -1 }) // Sort by latest products
-            // .skip((page - 1) * limit)
-            // .limit(limit);
+        // .skip((page - 1) * limit)
+        // .limit(limit);
 
         log.info(`filterProducts::Products fetched successfully`);
         res.status(200).json(products);
@@ -145,3 +148,29 @@ export const filterProducts = async (req: Request, res: Response, next: NextFunc
     }
     next();
 };
+
+export const backupProducts = async () => {
+    try {
+        const products: IProduct[] = await ProductModel.find();
+
+        // Firestore Sync 
+        try {
+            const batch = firestore.batch();
+            const collectionRef = firestore.collection("products");
+
+            products.forEach(product => {
+                const docRef = collectionRef.doc(product.id.toString());
+                batch.set(docRef, product.toObject());
+            });
+
+            await batch.commit();
+            log.info(`listProducts:: Firestore backup completed for ${products.length} products`);
+        } catch (firestoreError) {
+            log.error(`listProducts:: Firestore backup failed: ${firestoreError}`);
+        }
+
+    } catch (err: any) {
+        log.error(`listProducts:: ${err}`);
+    }
+};
+
