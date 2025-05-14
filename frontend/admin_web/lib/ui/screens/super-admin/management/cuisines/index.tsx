@@ -12,6 +12,8 @@ import { useState } from 'react';
 export default function CuisinesScreen() {
   //states
   const [visible, setVisible] = useState(false);
+  const [cuisine, setCuisine] = useState<null | ICuisine>(null);
+  const [reload, setReaload] = useState<number>(0);
   //toggle visibility
   const handleButtonClick = () => {
     setVisible(true);
@@ -23,7 +25,6 @@ export default function CuisinesScreen() {
       __typename: '',
       description: '',
       name: '',
-      shopType: '',
       image: '',
     },
   });
@@ -34,12 +35,17 @@ export default function CuisinesScreen() {
       <CuisinesMain
         setVisible={setVisible}
         visible={visible}
+        cuisine={cuisine}
+        reload={reload}
         isEditing={isEditing}
         setIsEditing={setIsEditing}
+        setReaload={setReaload}
       />
       <CuisineForm
         isEditing={isEditing}
         setIsEditing={setIsEditing}
+        setCuisine={setCuisine}
+        setReaload={setReaload}
         setVisible={setVisible}
         visible={visible}
       />

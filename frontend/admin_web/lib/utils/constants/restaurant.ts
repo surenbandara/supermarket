@@ -1,11 +1,14 @@
+import _ from "lodash";
+
 export const SHOP_TYPE = [
   {
-    label: 'Grocery',
-    code: 'grocery',
+    _id: '1',
+    label: 'Supermarket',
+    code: 'super-market',
   },
-  {
-    label: 'Restaurant',
-    code: 'restaurant',
+  { _id: '2',
+    label: 'Restaurants',
+    code: 'restaurants',
   },
 ];
 

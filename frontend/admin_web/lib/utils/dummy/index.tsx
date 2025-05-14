@@ -9,18 +9,21 @@ import {
 // Interfaces
 import {
   ICategory,
+  IConfiguration,
+  IConfigurationResponse,
   IDropdownSelectItem,
   IFoodNew,
   IRestaurantResponse,
   IStatsCardProps,
+  IUserResponse,
   IVendorStoreDetails,
   IZoneResponse,
 } from '../interfaces';
 import { IRiderResponse } from '../interfaces/rider.interface';
 import { ICuisine } from '../interfaces/cuisine.interface';
-import { INotification } from '../interfaces/notification.interface';
 import { IWithDrawRequest } from '../interfaces/withdraw-request.interface';
 import { IActiveOrders } from '../interfaces/dispatch.interface';
+import { IProductResponse } from '../interfaces/product.interface';
 
 export const dummyStatsData: IStatsCardProps[] = [
   {
@@ -84,7 +87,7 @@ export const dummyOrderStatsData: IStatsCardProps[] = [
   },
 ];
 
-export const dummyCountriesData: IDropdownSelectItem[] = [
+export const dummyCountriesData: any[] = [
   { label: 'Australia', code: 'AU' },
   { label: 'Brazil', code: 'BR' },
   { label: 'China', code: 'CN' },
@@ -107,11 +110,101 @@ export const generateRandomUserCounts = () => {
   return Array.from(randomNumbers);
 };
 
+export const generateDummyUsers = (
+  count: number = 10
+): IUserResponse[] => {
+  const restaurants: IUserResponse[] = [];
+  for (let i = 0; i < count; i++) {
+    restaurants.push({
+      name: '',
+      phoneNumber: '',
+      role: '',
+      email: ''
+    });
+  }
+
+  return restaurants;
+};
+
+export const generateDummyCusines = (
+  count: number = 10
+): ICuisine[] => {
+  const restaurants: ICuisine[] = [];
+  for (let i = 0; i < count; i++) {
+    restaurants.push({
+      _id: `${i}`,
+      name: '',
+      __typename: ''
+    });
+  }
+
+  return restaurants;
+};
+
+export const generateDummyRiders = (
+  count: number = 10
+): IRiderResponse[] => {
+  const restaurants: IRiderResponse[] = [];
+  for (let i = 0; i < count; i++) {
+    restaurants.push({
+      _id: `${i}`,
+      name: '',
+      email: '',
+      phoneNumber: '',
+      vehicle: '',
+      available: false
+    });
+  }
+
+  return restaurants;
+};
+
+
+export const generateDummyProducts = (
+  count: number = 10
+): IProductResponse[] => {
+  const restaurants: any[] = [];
+  for (let i = 0; i < count; i++) {
+    restaurants.push({
+      _id: `${i}`,
+      id: 0,
+      name: '',
+      price: 0,
+      quantity: 0,
+      cuisine: [],
+      brand: '',
+      shop: '',
+      timestamp: 0,
+      image: '',
+      discount: 0
+    });
+  }
+
+  return restaurants;
+};
+
+export const generateDummyConfiguration = (
+  count: number = 10
+): IConfiguration[] => {
+  const restaurants: IConfiguration[] = [];
+  for (let i = 0; i < count; i++) {
+    restaurants.push({
+      _id: `${i}`,
+      deliveryRate: 0,
+      googleMapLibraries: '',
+      twilioEnabled: false,
+      name: ''
+    });
+  }
+
+  return restaurants;
+};
+
+
 export const generateDummyRestaurants = (
   count: number = 10
 ): IRestaurantResponse[] => {
   const restaurants: IRestaurantResponse[] = [];
-
   for (let i = 0; i < count; i++) {
     restaurants.push({
       unique_restaurant_id: `restaurant_${i + 1}`,
@@ -138,30 +231,6 @@ export const generateDummyRestaurants = (
   }
 
   return restaurants;
-};
-
-export const generateDummyRiders = (count: number = 10): IRiderResponse[] => {
-  const riders: IRiderResponse[] = [];
-
-  for (let i = 0; i < count; i++) {
-    riders.push({
-      _id: `rider_${i + 1}`,
-      name: `Rider ${i + 1}`,
-      username: `rider${i + 1}`,
-      password: `password${i + 1}`,
-      phone: `+1234567890${i}`,
-      zone: {
-        title: `Zone ${(i % 5) + 1}`,
-        _id: `zone_${(i % 5) + 1}`,
-        __typename: 'Zone',
-      },
-      available: Math.random() > 0.5,
-      __typename: 'Rider',
-      assigned: [''],
-    });
-  }
-
-  return riders;
 };
 
 export const generateDummyOrderVendor = (
@@ -237,26 +306,12 @@ export const generateDummyCuisines = (count: number = 10) => {
   for (let i = 0; i < count; i++) {
     cuisines.push({
       _id: `cuisine_${i + 1}`,
-      shopType: `cuisine_${i + 1}`,
       __typename: `cuisine_${i + 1}`,
       description: `cuisine_${i + 1}`,
       name: `cuisine_${i + 1}`,
     });
   }
   return cuisines;
-};
-
-export const generateDummyNotifications = (count: number = 10) => {
-  const notifications: INotification[] = [];
-  for (let i = 0; i < count; i++) {
-    notifications.push({
-      _id: `notification_${i + 1}`,
-      title: `notification_${i + 1}`,
-      createdAt: new Date().toDateString(),
-      body: `notification_${i + 1}`,
-    });
-  }
-  return notifications;
 };
 
 export const generateDummyWithdrawRequests = (count: number = 10) => {
@@ -315,8 +370,8 @@ export const generateDummyDispatchOrders = (count: number = 10) => {
   return dispatchActiveOrders;
 };
 
-export const generateDummyFoods = (count: number = 10): IFoodNew[] => {
-  const foods: IFoodNew[] = [];
+export const generateDummyFoods = (count: number = 10): any[] => {
+  const foods: any[] = [];
 
   for (let i = 0; i < count; i++) {
     foods.push({

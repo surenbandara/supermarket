@@ -19,9 +19,6 @@ import { GET_RESTAURANTS_BY_OWNER } from '@/lib/api/graphql';
 // Hooks
 import { useQueryGQL } from '@/lib/hooks/useQueryQL';
 
-// Context
-import { VendorContext } from './vendor.context';
-
 // Method
 import { onFilterObjects } from '@/lib/utils/methods';
 
@@ -32,9 +29,6 @@ export const RestaurantContext = createContext<IRestaurantContextProps>(
 );
 
 export const RestaurantProvider = ({ children }: IProvider) => {
-  // Context
-  const { vendorId } = useContext(VendorContext);
-  // States
   const [restaurantContextData, setRestaurantContextData] =
     useState<IRestaurantContextData>({
       id: '',
@@ -52,22 +46,22 @@ export const RestaurantProvider = ({ children }: IProvider) => {
   const [isRestaurantModifed, setRestaurantModifed] = useState<boolean>(false);
 
   // API
-  const restaurantByOwnerResponse = useQueryGQL(
-    GET_RESTAURANTS_BY_OWNER,
-    {
-      id: vendorId,
-    },
-    {
-      enabled: !!vendorId,
-      debounceMs: 300,
-      onCompleted: (data: unknown) => {
-        const _data = data as IRestaurantsByOwnerResponseGraphQL;
-        onSetRestaurantContextData({
-          id: _data?.restaurantByOwner?.restaurants[0]?._id ?? '',
-        });
-      },
-    }
-  ) as IQueryResult<IRestaurantsByOwnerResponseGraphQL | undefined, undefined>;
+  // const restaurantByOwnerResponse = useQueryGQL(
+  //   GET_RESTAURANTS_BY_OWNER,
+  //   {
+  //     id: vendorId,
+  //   },
+  //   {
+  //     enabled: !!vendorId,
+  //     debounceMs: 300,
+  //     onCompleted: (data: unknown) => {
+  //       const _data = data as IRestaurantsByOwnerResponseGraphQL;
+  //       onSetRestaurantContextData({
+  //         id: _data?.restaurantByOwner?.restaurants[0]?._id ?? '',
+  //       });
+  //     },
+  //   }
+  // ) as IQueryResult<IRestaurantsByOwnerResponseGraphQL | undefined, undefined>;
 
   const onActiveStepChange = (activeStep: number) => {
     setActiveIndex(activeStep);
@@ -92,7 +86,8 @@ export const RestaurantProvider = ({ children }: IProvider) => {
 
   const onHandlerFilterData = () => {
     const _filtered: IRestaurantByOwner[] = onFilterObjects(
-      restaurantByOwnerResponse?.data?.restaurantByOwner?.restaurants ?? [],
+      // restaurantByOwnerResponse?.data?.restaurantByOwner?.restaurants ?? 
+      [],
       restaurantContextData?.globalFilter ?? '',
       ['name', 'address', 'shopType', 'unique_restaurant_id']
     );
@@ -107,18 +102,10 @@ export const RestaurantProvider = ({ children }: IProvider) => {
     onHandlerFilterData();
   }, [restaurantContextData?.globalFilter, isRestaurantModifed]);
 
-  useEffect(() => {
-    restaurantByOwnerResponse.refetch();
-  }, [vendorId]);
-
   const value: IRestaurantContextProps = {
-    // Vendor Information
-    vendorId,
     // Form Visibility
     isRestaurantFormVisible,
     onSetRestaurantFormVisible,
-    // Restaurant Data
-    restaurantByOwnerResponse,
     restaurantContextData,
     onSetRestaurantContextData,
     // Navigation and State Management

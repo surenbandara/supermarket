@@ -1,7 +1,7 @@
 'use client';
 
 // Core
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
 
 // Formik
 import { Form, Formik } from 'formik';
@@ -11,7 +11,7 @@ import { Card } from 'primereact/card';
 
 // Interface
 import {
-  IOwnerLoginDataResponse,
+  IUserLoginDataResponse,
   ISignInForm,
 } from '@/lib/utils/interfaces/forms';
 
@@ -47,40 +47,33 @@ import { useRouter } from 'next/navigation';
 import { useUserContext } from '@/lib/hooks/useUser';
 import { DEFAULT_ROUTES } from '@/lib/utils/constants/routes';
 
+import restaurantManager from '@/lib/utils/RestuarentManger';
+import { useConfiguration } from '@/lib/hooks/useConfiguration';
+
 const initialValues: ISignInForm = {
-  email: 'admin@gmail.com',
-  password: '123123',
+  email: 'systemAdmin@gmail.com',
+  password: 'admin@123',
 };
 
 export default function LoginEmailPasswordMain() {
   // Context
   const { showToast } = useContext(ToastContext);
+  const [loading, setLoading] = useState<boolean>(false);
+  const { SERVER_URL } = useConfiguration();
+  
 
   // Hooks
   const router = useRouter();
-  const { setUser } = useUserContext();
+  const { setUser, onLogin } = useUserContext();
 
-  // API
-  const [onLogin, { loading }] = useMutation(OWNER_LOGIN, {
-    onError,
-    onCompleted,
-  });
 
   // API Handlers
-  function onCompleted({ ownerLogin }: IOwnerLoginDataResponse) {
-    onUseLocalStorage('save', `user-${APP_NAME}`, JSON.stringify(ownerLogin));
+  async function onCompleted(ownerLogin: IUserLoginDataResponse) {
     setUser(ownerLogin);
-    let redirect_url = DEFAULT_ROUTES[ownerLogin.userType];
-
-    if (ownerLogin?.userType === 'VENDOR') {
-      onUseLocalStorage('save', SELECTED_VENDOR, ownerLogin.userId);
-      onUseLocalStorage('save', SELECTED_VENDOR_EMAIL, ownerLogin.email);
-    }
-
-    if (ownerLogin?.userType === 'RESTAURANT') {
-      onUseLocalStorage('save', SELECTED_RESTAURANT, ownerLogin.userTypeId);
-    }
-
+    // restaurantManager.login(ownerLogin);
+    // restaurantManager.setServerUrl(SERVER_URL);
+    // await restaurantManager.fetchAll();
+    let redirect_url = DEFAULT_ROUTES[ownerLogin.basicUserDetails.role as keyof typeof DEFAULT_ROUTES];
     router.replace(redirect_url);
 
     showToast({
@@ -89,26 +82,15 @@ export default function LoginEmailPasswordMain() {
       message: 'User has been logged in successfully.',
     });
   }
-  function onError({ graphQLErrors, networkError }: ApolloError) {
-    showToast({
-      type: 'error',
-      title: 'Login',
-      message:
-        graphQLErrors[0]?.message ??
-        networkError?.message ??
-        `Something went wrong. Please try again`,
-    });
-  }
 
   // Handler
   const onSubmitHandler = async (data: ISignInForm) => {
     try {
-      await onLogin({
-        variables: {
-          ...data,
-        },
-      });
+      setLoading(false);
+      const user = await onLogin(data.email, data.password);
+      onCompleted(user)
     } catch (err) {
+      setLoading(false);
       showToast({
         type: 'error',
         title: 'Login',

@@ -6,17 +6,9 @@ export const RiderSchema = Yup.object().shape({
     .trim()
     .matches(/\S/, 'Name cannot be only spaces')
     .required('Required'),
-  username: Yup.string().min(2).max(35).required('Required'),
-  password: Yup.string().required('Required'),
-  confirmPassword: Yup.string()
-    .nullable()
-    .oneOf([Yup.ref('password'), null], 'Password must match')
-    .required('Required'),
-  zone: Yup.object()
-    .shape({
-      label: Yup.string().required('Required'),
-      code: Yup.string().required('Required'),
-    })
-    .required('Required'),
-  phone: Yup.string().required('Required'),
+  email: Yup.string().email('Invalid email').required('Required'),
+  phoneNumber: Yup.string()
+      .matches(/^\+?[1-9]\d{1,14}$/, 'Invalid phone number')
+      .required('Required'),
+  vehicle: Yup.string().required('Required'),
 });

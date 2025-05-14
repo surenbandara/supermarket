@@ -23,17 +23,22 @@ import { Sidebar } from 'primereact/sidebar';
 
 // Hooks
 import { ApolloError, useMutation } from '@apollo/client';
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
 import CustomUploadImageComponent from '@/lib/ui/useable-components/upload/upload-image';
 import { onErrorMessageMatcher } from '@/lib/utils/methods';
 import { CuisineErrors, MAX_SQUARE_FILE_SIZE, SHOP_TYPE } from '@/lib/utils/constants';
 import { useTranslations } from 'next-intl';
+import { api } from '@/lib/hooks/useQueryQL';
+import { useConfiguration } from '@/lib/hooks/useConfiguration';
+import { useUserContext } from '@/lib/hooks/useUser';
 
 export default function CuisineForm({
   setVisible,
   setIsEditing,
   isEditing,
   visible,
+  setCuisine,
+  setReaload
 }: IAddCuisineProps) {
   // Utility function to capitalize the first word of a string
   const capitalizeFirstWord = (str: string): string => {
@@ -50,60 +55,94 @@ export default function CuisineForm({
     _id: isEditing.bool ? isEditing?.data?._id : '',
     name: isEditing.bool ? isEditing?.data?.name : '',
     description: isEditing.bool ? isEditing?.data?.description : '',
-    shopType: {
-      label: capitalizeFirstWord(isEditing?.data?.shopType ?? ''),
-      code: isEditing?.data?.shopType.toLocaleLowerCase() ?? '',
-    },
     image: isEditing.bool ? isEditing.data.image : '',
   };
- 
 
-  // Mutations
-  const [CreateCuisine, { loading: createCuisineLoading }] = useMutation(
-    CREATE_CUISINE,
-    {
-      onError,
-      onCompleted: () => {
-        showToast({
-          title: `${!isEditing.bool ? t('New') : t('Edit')} ${t('Cuisine')}`,
-          type: 'success',
-          message: `${t('Cuisine has been')} ${!isEditing.bool ? t('Created') : t('edited')} ${t('successfully')}`,
-          duration: 2000,
-        });
-      },
-      refetchQueries: [{ query: GET_CUISINES }],
-    }
-  );
-  console.log(isEditing.data);
+  const {SERVER_URL} = useConfiguration();
+  const {user} = useUserContext();
+  const [imageUri, setImageUri] = useState<string>('');
+  const[createCuisineLoading, setCreateCuisineLoading] = useState<boolean>(false);
+  const[editCuisineLoading, setEditCuisineLoading] = useState<boolean>(false);
 
-  const [editCuisine, { loading: editCuisineLoading }] = useMutation(
-    EDIT_CUISINE,
-    {
-      onError,
-      onCompleted: () => {
-        showToast({
-          title: `${!isEditing.bool ? t('New') : t('Edit')} ${t('Cuisine')}`,
-          type: 'success',
-          message: `${t('Cuisine has been')} ${!isEditing.bool ? t('Created') : t('edited')} ${t('successfully')}`,
-          duration: 2000,
-        });
-      },
-      refetchQueries: [{ query: GET_CUISINES }],
-    }
-  );
+  const CreateCuisine =  async (
+      formData: any
+    ) => {
+        try {
+          setCreateCuisineLoading(true);
+          let response: any = await api.post(`${SERVER_URL}/cusine`, formData, user?.jwtToken);
+          
+          if (Object.keys(response).length != 0 && response.status != 400) {
+            showToast({
+              type: 'success',
+              title: t('Success'),
+              message:  `${t('New')} ${t('Cuisine')}`,
+              duration: 3000,
+            });
+            setReaload(Date.now()) 
+          } else {
+            const message = t('ActionFailedTryAgain');
+            showToast({
+              type: 'error',
+              title: t('Error'),
+              message,
+              duration: 3000,
+            });
+          }
+          
+        }  catch (error: any) {
+          const message = 'Cusine Creation Failed!';
+          showToast({
+            type: 'error',
+            title: t('Error'),
+            message,
+            duration: 3000,
+          });
+        } finally {
+          setCreateCuisineLoading(false);
+        }
+        
 
-  // API Handlers
-  function onError({ cause, networkError }: ApolloError) {
-    showToast({
-      type: 'error',
-      title: `${isEditing.bool ? t('Edit') : t('New')}  ${t('Cuisine')}`,
-      message:
-        cause?.message ??
-        networkError?.message ??
-        ` ${t('Cuisine')} ${isEditing.bool ? t('Edition') : t('Creation')}  ${t('Failed')}`,
-      duration: 2500,
-    });
-  }
+    };
+
+    const EditCuisine =  async (
+      formData: any
+    ) => {
+        try {
+          setEditCuisineLoading(true);
+          let response: any = await api.put(`${SERVER_URL}/cusine`, formData, user?.jwtToken);
+          
+          if (Object.keys(response).length != 0 && response.status != 400) {
+            showToast({
+              type: 'success',
+              title: t('Success'),
+              message:  `${t('Edit')} ${t('Cuisine')}`,
+              duration: 3000,
+            });
+            setReaload(Date.now()) 
+          } else {
+            const message = t('ActionFailedTryAgain');
+            showToast({
+              type: 'error',
+              title: t('Error'),
+              message,
+              duration: 3000,
+            });
+          }
+        }  catch (error: any) {
+          const message = 'Cusine Creation Failed!';
+          showToast({
+            type: 'error',
+            title: t('Error'),
+            message,
+            duration: 3000,
+          });
+        } finally {
+          setEditCuisineLoading(false);
+        }
+        
+
+    };
+
 
   return (
     <Sidebar
@@ -116,7 +155,6 @@ export default function CuisineForm({
             _id: '',
             description: '',
             name: '',
-            shopType: '',
             image: '',
           },
         });
@@ -141,32 +179,25 @@ export default function CuisineForm({
               formData = {
                 name: values.name,
                 description: values.description,
-                shopType: values.shopType.label,
-                image: values.image,
+                timestamp: Date.now(),
+                image: imageUri,
               };
             } else {
               formData = {
-                _id: values._id,
                 name: values.name,
                 description: values.description,
-                shopType: values.shopType.label,
-                image: values.image,
+                timestamp: Date.now(),
+                image: imageUri,
               };
             }
             if (!isEditing.bool) {
-              await CreateCuisine({
-                variables: {
-                  cuisineInput: formData,
-                },
-              });
+              await CreateCuisine(formData);
             } else {
-              await editCuisine({
-                variables: {
-                  cuisineInput: formData,
-                },
-              });
+              await EditCuisine(formData);
             }
 
+
+            setImageUri('');
             setVisible(false);
             setSubmitting(false);
             setIsEditing({
@@ -176,7 +207,6 @@ export default function CuisineForm({
                 _id: '',
                 description: '',
                 name: '',
-                shopType: '',
                 image: '',
               },
             });
@@ -235,28 +265,10 @@ export default function CuisineForm({
                     }}
                   />
 
-                  <CustomDropdownComponent
-                    name="shopType"
-                    options={SHOP_TYPE}
-                    selectedItem={values.shopType}
-                    setSelectedItem={setFieldValue}
-                    placeholder={t('Shop Category')}
-                    showLabel={true}
-                    style={{
-                      borderColor: onErrorMessageMatcher(
-                        'shopType',
-                        errors?.shopType?.code,
-                        CuisineErrors
-                      )
-                        ? 'red'
-                        : '',
-                    }}
-                  />
-
                   <CustomUploadImageComponent
                     name="image"
-                    error={touched.image && errors.image ? errors.image : ''}
-                    onSetImageUrl={setFieldValue}
+                    error=''
+                    onSetImageUrl={setImageUri}
                     title={t('Upload Image')}
                     existingImageUrl={
                       isEditing.bool ? isEditing.data.image : ''
@@ -268,7 +280,6 @@ export default function CuisineForm({
                     maxFileHeight={1080}
                     maxFileWidth={1080}
                     maxFileSize={MAX_SQUARE_FILE_SIZE}
-                    orientation="SQUARE"
                   />
 
                   <button

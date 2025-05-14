@@ -3,26 +3,24 @@ import { IDropdownSelectItem } from '../global.interface';
 // Errors
 export interface IRestaurantFormErrors {
   name: string[];
-  address: string[];
-  deliveryTime: string[];
-  minOrder: string[];
-  salesTax: string[];
-  shopType: string[];
-  cuisines: string[];
-  image: string[];
-  logo: string[];
+  vendorName: string[];
+  vendorPhoneNumber: string[];
+  vendorEmai: string[];
+  timestamp: string[];
+  category: string[];
+  image?: string[];
 }
+
 
 export interface IRestaurantForm {
   name: string;
-  address: string;
-  deliveryTime: number;
-  minOrder: number;
-  salesTax: number;
-  shopType: IDropdownSelectItem | null;
-  cuisines: IDropdownSelectItem[];
-  image: string;
-  logo: string;
+  vendorName: string;
+  vendorPhoneNumber: string;
+  vendorEmai: string;
+  timestamp: number;
+  category: IDropdownSelectItem | null;
+  available: boolean;
+  image?: string;
 }
 
 export interface IRestaurantDeliveryForm {

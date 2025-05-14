@@ -271,7 +271,8 @@ function CustomUploadImageComponent({
       if (file?.type.startsWith('video/')) {
         isValid = await validateVideo(file);
       } else {
-        isValid = await validateImage(file);
+        // isValid = await validateImage(file);
+        isValid = true;
       }
       if (!isValid) {
         setIsUploading(false);
@@ -284,34 +285,37 @@ function CustomUploadImageComponent({
             const uploadURL = file?.type.startsWith('video/')
               ? configuration?.cloudinaryUploadUrl?.replace('image', 'video')
               : (configuration?.cloudinaryUploadUrl ?? '');
-            await uploadImageToCloudinary(
-              fileReader.result as string,
-              uploadURL ?? '',
-              configuration?.cloudinaryApiKey ?? ''
-            )
-              .then((url) => {
-                isValid = false;
-                onSetImageUrl(name, url);
-                showToast({
-                  type: 'info',
-                  title: title,
-                  message: `${fileTypes.includes('video/webm') || fileTypes.includes('video/mp4') ? t('File') : t('Image')} ${t("has been uploaded successfully")}.`,
-                  duration: 2500,
-                });
-              })
-              .catch((err) => {
-                onSetImageUrl(name, '');
-                showToast({
-                  type: 'error',
-                  title: title,
-                  message: `${fileTypes.includes('video/webm') || fileTypes.includes('video/mp4') ? t('File') : t('Image')} ${t("Upload Failed")}`,
-                  duration: 2500,
-                });
-                console.log('errrror=====>', err);
-              })
-              .finally(() => {
-                setIsUploading(false);
-              });
+              console.log("Imageyaaa  ", fileReader.result)
+              onSetImageUrl(fileReader.result as string);
+              setIsUploading(false);
+            // await uploadImageToCloudinary(
+            //   fileReader.result as string,
+            //   uploadURL ?? '',
+            //   configuration?.cloudinaryApiKey ?? ''
+            // )
+            //   .then((url) => {
+            //     isValid = false;
+            //     onSetImageUrl(name, url);
+            //     showToast({
+            //       type: 'info',
+            //       title: title,
+            //       message: `${fileTypes.includes('video/webm') || fileTypes.includes('video/mp4') ? t('File') : t('Image')} ${t("has been uploaded successfully")}.`,
+            //       duration: 2500,
+            //     });
+            //   })
+            //   .catch((err) => {
+            //     onSetImageUrl(name, '');
+            //     showToast({
+            //       type: 'error',
+            //       title: title,
+            //       message: `${fileTypes.includes('video/webm') || fileTypes.includes('video/mp4') ? t('File') : t('Image')} ${t("Upload Failed")}`,
+            //       duration: 2500,
+            //     });
+            //     console.log('errrror=====>', err);
+            //   })
+            //   .finally(() => {
+            //     setIsUploading(false);
+            //   });
           }
         };
         fileReader.readAsDataURL(file);
@@ -345,12 +349,12 @@ function CustomUploadImageComponent({
   // Handle cancel click
   const handleCancelClick = (type: String) => {
     if (type === 'cancel') {
-      setImageFile('');
+      setImageFile("");
       setImageValidationErr({
         bool: false,
         msg: '',
       });
-      onSetImageUrl(name, '');
+      onSetImageUrl("");
     } else {
       return;
     }

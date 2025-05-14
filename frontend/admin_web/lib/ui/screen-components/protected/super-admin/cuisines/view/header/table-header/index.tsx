@@ -30,24 +30,6 @@ export default function CuisineTableHeader({
   // States
   const [searchValue, setSearchValue] = useState('');
 
-  // Handle checkbox toggle
-  const toggleAction = (action: string) => {
-    const updatedActions = selectedActions.includes(action)
-      ? selectedActions.filter((a) => a !== action)
-      : [...selectedActions, action];
-    setSelectedActions(updatedActions);
-  };
-
-  const menuItems = [
-    {
-      label: t('Store'),
-      value: 'restaurant',
-    },
-    {
-      label: t('Grocery'),
-      value: 'grocery',
-    },
-  ];
 
   return (
     <div className="mb-4 flex flex-col gap-6">
@@ -78,33 +60,6 @@ export default function CuisineTableHeader({
                 />
               </div>
 
-              <div className="border-b border-t py-1">
-                {menuItems
-                  .filter((item) =>
-                    item.label.toLowerCase().includes(searchValue.toLowerCase())
-                  )
-                  .map((item, index) => (
-                    <div
-                      key={index}
-                      className={`${classes.filter} my-2 flex items-center justify-between`}
-                    >
-                      <div className="flex">
-                        <Checkbox
-                          inputId={`action-${item.value}`}
-                          checked={selectedActions.includes(item.value)}
-                          onChange={() => toggleAction(item.value)}
-                          className={`${classes.checkbox}`}
-                        />
-                        <label
-                          htmlFor={`action-${item.value}`}
-                          className="ml-1 text-sm"
-                        >
-                          {item.label}
-                        </label>
-                      </div>
-                    </div>
-                  ))}
-              </div>
               <p
                 className="mt-3 cursor-pointer text-center text-sm"
                 onClick={() => setSelectedActions([])}
@@ -114,13 +69,6 @@ export default function CuisineTableHeader({
             </div>
           </OverlayPanel>
 
-          <TextIconClickable
-            className="w-20 rounded border border-dotted border-[#E4E4E7] text-black"
-            icon={faAdd}
-            iconStyles={{ color: 'black' }}
-            title={selectedActions.length > 0 ? t('Filter') : t('Actions')}
-            onClick={(e) => overlayPanelRef.current?.toggle(e)}
-          />
         </div>
       </div>
     </div>

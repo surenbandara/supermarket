@@ -1,40 +1,34 @@
 export const ROUTES = [
   {
     text: 'Configuration',
-    route: '/management/configurations',
+    route: '/configurations',
   },
   {
     text: 'Cuisine',
-    route: '/management/cuisines',
+    route: '/cuisines',
   },
   {
     text: 'Withdraw Request',
-    route: '/management/withdraw-requests',
-  },
-  {
-    text: 'Notification',
-    route: '/management/notifications',
-  },
-  {
-    text: 'Vendors',
-    route: '/general/vendors',
+    route: '/withdraw-requests',
   },
   {
     text: 'Stores',
-    route: '/general/stores',
+    route: '/stores',
   },
   {
     text: 'Riders',
-    route: '/general/riders',
+    route: '/riders',
   },
   {
     text: 'Users',
-    route: '/general/users',
+    route: '/users',
+  },
+  {
+    text: 'Products',
+    route: '/products',
   }
 ];
 
 export const DEFAULT_ROUTES = {
-  ADMIN: '/home',
-  VENDOR: '/admin/vendor/dashboard',
-  RESTAURANT: '/admin/store/dashboard',
+  admin: '/stores'
 };

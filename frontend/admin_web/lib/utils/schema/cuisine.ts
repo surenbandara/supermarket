@@ -11,9 +11,5 @@ export const CuisineFormSchema = Yup.object().shape({
     .trim()
     .matches(/\S/, 'Name cannot be only spaces')
     .required('Description is required'),
-  shopType: Yup.object({
-    label: Yup.string().required('Required'),
-    code: Yup.string().required('Required'),
-  }).required('Please choose one'),
-  image: Yup.string().url().required("Image is Required"),
+  image: Yup.string().url().notRequired(),
 });

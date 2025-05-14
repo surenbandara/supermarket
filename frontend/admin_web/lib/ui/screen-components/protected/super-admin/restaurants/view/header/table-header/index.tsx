@@ -1,14 +1,11 @@
 // Custom Components
 import CustomTextField from '@/lib/ui/useable-components/input-field';
-
-// Interfaces
-import { IRestaurantsTableHeaderProps } from '@/lib/utils/interfaces';
 import { useTranslations } from 'next-intl';
 
 export default function RestaurantsTableHeader({
   globalFilterValue,
   onGlobalFilterChange,
-}: IRestaurantsTableHeaderProps) {
+}: any) {
   // Hooks
   const t = useTranslations();
 
@@ -18,7 +15,7 @@ export default function RestaurantsTableHeader({
         <div className="w-60">
           <CustomTextField
             type="text"
-            name="vendorFilter"
+            name="riderFilter"
             maxLength={35}
             showLabel={false}
             value={globalFilterValue}

@@ -80,14 +80,6 @@ export default function GrowthOverView() {
           tension: 0.5,
         },
         {
-          label: t('Vendors'),
-          data: dashboardUsersByYear?.vendorsCount ?? [],
-          fill: false,
-          borderColor: documentStyle.getPropertyValue('--blue-500'),
-          backgroundColor: documentStyle.getPropertyValue('--blue-100'),
-          tension: 0.5,
-        },
-        {
           label: t('Riders'),
           data: dashboardUsersByYear?.ridersCount ?? [],
           fill: false,

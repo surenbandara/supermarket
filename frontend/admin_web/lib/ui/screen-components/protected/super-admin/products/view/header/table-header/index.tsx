@@ -1,0 +1,31 @@
+// Custom Components
+import CustomTextField from '@/lib/ui/useable-components/input-field';
+
+// Interfaces
+import { useTranslations } from 'next-intl';
+
+export default function ProductsTableHeader({
+  globalFilterValue,
+  onGlobalFilterChange,
+}: any) {
+  // Hooks
+  const t = useTranslations();
+
+  return (
+    <div className="mb-4 flex flex-col gap-6">
+      <div className="flex-colm:flex-row flex w-fit items-center gap-2">
+        <div className="w-60">
+          <CustomTextField
+            type="text"
+            name="productFilter"
+            maxLength={35}
+            showLabel={false}
+            value={globalFilterValue}
+            onChange={onGlobalFilterChange}
+            placeholder={t('Keyword Search for Products')}
+          />
+        </div>
+      </div>
+    </div>
+  );
+}

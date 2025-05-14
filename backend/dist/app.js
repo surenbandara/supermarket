@@ -47,13 +47,25 @@ const operationHandler_1 = require("./middleware/operationHandler");
 const authentication_1 = __importDefault(require("./middleware/authentication"));
 const starter_pack_1 = __importDefault(require("./starter-pack/starter-pack"));
 const app = (0, express_1.default)();
-app.use(express_1.default.json());
-app.use((0, cors_1.default)());
+app.use(express_1.default.json({ limit: '10mb' }));
+app.use((0, cors_1.default)({
+    origin: "http://localhost:3001", // Allow your frontend domain
+    methods: ["GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"],
+    allowedHeaders: ["Content-Type", "Authorization"], // REMOVE 'Access-Control-Allow-Credentials'
+    credentials: true
+}));
+app.options("*", (req, res) => {
+    res.header("Access-Control-Allow-Origin", "http://localhost:3001");
+    res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, PATCH, OPTIONS");
+    res.header("Access-Control-Allow-Headers", "Content-Type, Authorization");
+    res.header("Access-Control-Allow-Credentials", "true");
+    res.sendStatus(204);
+});
 const apiSpec = yaml.load(fs.readFileSync("./src/api.yaml", "utf8"));
 app.use("/api-docs", swagger_ui_express_1.default.serve, swagger_ui_express_1.default.setup(apiSpec));
 app.use(OpenApiValidator.middleware({
     apiSpec,
-    validateRequests: true,
+    validateRequests: false,
     validateResponses: true,
 }));
 (0, starter_pack_1.default)();

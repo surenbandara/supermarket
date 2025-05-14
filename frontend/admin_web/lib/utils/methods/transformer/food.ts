@@ -8,11 +8,11 @@ import {
 
 export const onTransformRetaurantsByIdToFoods = ({
   restaurant,
-}: IFoodByRestaurantResponse): IFoodNew[] => {
-  const foods: IFoodNew[] = [];
+}: IFoodByRestaurantResponse): any[] => {
+  const foods: any[] = [];
 
   restaurant.categories.map((category: IFoodCategory) => {
-    return category.foods.map((food: IFood) => {
+    return category.foods.map((food: any) => {
       foods.push({
         __typename: food.__typename,
         isActive: food.isActive,

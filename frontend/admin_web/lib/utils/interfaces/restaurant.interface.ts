@@ -12,13 +12,7 @@ export interface IRestaurantCardProps extends IGlobalComponentProps {
 }
 
 export interface IRestaurantContextProps {
-  // Vendor and Restaurant Data
-  vendorId: string | null;
   restaurantContextData: IVendorLayoutRestaurantContextData;
-  restaurantByOwnerResponse: IQueryResult<
-    IRestaurantsByOwnerResponseGraphQL | undefined,
-    undefined
-  >;
 
   // Form Visibility
   isRestaurantFormVisible: boolean;
@@ -62,6 +56,7 @@ export interface IRestaurantResponse {
   address: string;
   deliveryTime: number;
   minimumOrder: number;
+  available: boolean;
   isActive: boolean;
   tax: number;
   username: string;

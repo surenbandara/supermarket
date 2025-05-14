@@ -2,7 +2,6 @@ export * from './authentication';
 export * from './category';
 export * from './cuisines';
 export * from './dispatch';
-export * from './notifications';
 export * from './restaurant';
 export * from './riders';
 export * from './taxations';

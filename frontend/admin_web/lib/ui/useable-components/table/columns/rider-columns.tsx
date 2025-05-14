@@ -14,6 +14,9 @@ import { GET_RIDERS, TOGGLE_RIDER } from '@/lib/api/graphql';
 import { useMutation } from '@apollo/client';
 import { ToastContext } from '@/lib/context/global/toast.context';
 import { useTranslations } from 'next-intl';
+import { api } from '@/lib/hooks/useQueryQL';
+import { useConfiguration } from '@/lib/hooks/useConfiguration';
+import { useUserContext } from '@/lib/hooks/useUser';
 
 export const RIDER_TABLE_COLUMNS = ({
   menuItems,
@@ -23,6 +26,8 @@ export const RIDER_TABLE_COLUMNS = ({
   // Hooks
   const t = useTranslations();
 
+   const {SERVER_URL} = useConfiguration();
+  const {user} = useUserContext();
   // States
   const [selectedRider, setSelectedRider] = useState<{
     id: string;
@@ -31,25 +36,13 @@ export const RIDER_TABLE_COLUMNS = ({
 
   const { showToast } = useContext(ToastContext);
 
-  // GraphQL mutation hook
-  const [mutateToggle, { loading }] = useMutation(TOGGLE_RIDER, {
-    refetchQueries: [{ query: GET_RIDERS }],
-    awaitRefetchQueries: true,
-    onError: () => {
-      showToast({
-        type: 'error',
-        title: t('Banner Status'),
-        message: t('Status Change Failed'),
-      });
-    },
-  });
-
   // Handle availability toggle
-  const onHandleBannerStatusChange = async (isActive: boolean, id: string) => {
+  const onHandleBannerStatusChange = async (isActive: boolean, rider: IRiderResponse) => {
     try {
-      setSelectedRider({ id, isActive });
-      await mutateToggle({ variables: { id } });
+      rider.available = isActive
+      await api.put(`${SERVER_URL}/rider`, rider, user?.jwtToken);
     } catch (error) {
+      console.log(error)
       showToast({
         type: 'error',
         title: t('Banner Status'),
@@ -62,31 +55,27 @@ export const RIDER_TABLE_COLUMNS = ({
 
   return [
     { headerName: t('Name'), propertyName: 'name' },
-    { headerName: t('Username'), propertyName: 'username' },
-    { headerName: t('Phone'), propertyName: 'phone' },
-    {
-      headerName: t('Zone'),
-      propertyName: 'zone',
-      body: (rider: IRiderResponse) => rider.zone.title,
-    },
+    { headerName: t('Email'), propertyName: 'email' },
+    { headerName: t('Phone'), propertyName: 'phoneNumber' },
     {
       headerName: t('Available'),
       propertyName: 'available',
       body: (rider: IRiderResponse) => (
         <CustomInputSwitch
-          loading={rider._id === selectedRider.id && loading}
+          loading={rider.name === selectedRider.id }
           isActive={rider.available}
           onChange={async () => {
-            await onHandleBannerStatusChange(!rider.available, rider._id);
+            await onHandleBannerStatusChange(!rider.available, rider);
           }}
         />
       ),
     },
+    { headerName: t('Vehicle'), propertyName: 'vehicle' },
     {
       propertyName: 'actions',
       body: (rider: IRiderResponse) => (
         <ActionMenu items={menuItems} data={rider} />
       ),
-    },
+    }
   ];
 };

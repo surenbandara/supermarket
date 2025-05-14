@@ -9,16 +9,18 @@ export interface IUserResponseZone {
 }
 
 export interface IUserResponse {
-  __typename: 'User';
-  _id: string;
+  __typename?: 'User';
+  _id?: string;
   name: string;
-  username: string;
-  password: string;
-  phone: string;
-  createdAt: Date;
-  available: boolean;
-  assigned: string[];
-  zone: IUserResponseZone;
+  username?: string;
+  password?: string;
+  phoneNumber: string;
+  role: string;
+  email: string;
+  createdAt?: Date;
+  available?: boolean;
+  assigned?: string[];
+  zone?: IUserResponseZone;
 }
 
 // Define the structure of the query result object

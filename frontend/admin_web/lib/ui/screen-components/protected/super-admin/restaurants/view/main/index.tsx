@@ -1,195 +1,94 @@
-'use client';
-
 // Core
-import { useContext, useState } from 'react';
-import { useRouter } from 'next/navigation';
-import { ApolloCache, ApolloError, useMutation } from '@apollo/client';
+import { useMutation } from '@apollo/client';
+import { useContext, useEffect, useState } from 'react';
 
-// PrimeReact
+// Prime React
 import { FilterMatchMode } from 'primereact/api';
 
-// Context
-import { ToastContext } from '@/lib/context/global/toast.context';
-import { RestaurantsContext } from '@/lib/context/super-admin/restaurants.context';
-
-// Custom Hooks
-import { useQueryGQL } from '@/lib/hooks/useQueryQL';
-
-// Custom Components
-import RestaurantDuplicateDialog from '../duplicate-dialog';
-import RestaurantsTableHeader from '../header/table-header';
-import Table from '@/lib/ui/useable-components/table';
+// UI Components
 import CustomDialog from '@/lib/ui/useable-components/delete-dialog';
+import Table from '@/lib/ui/useable-components/table';
 
-// Constants and Interfaces
-import {
-  IActionMenuItem,
-  IQueryResult,
-  IRestaurantResponse,
-  IRestaurantsResponseGraphQL,
-} from '@/lib/utils/interfaces';
+// Utilities and Data
+import { IActionMenuItem } from '@/lib/utils/interfaces/action-menu.interface';
 
-// GraphQL Queries and Mutations
-import {
-  GET_CLONED_RESTAURANTS,
-  GET_RESTAURANTS,
-  HARD_DELETE_RESTAURANT,
-} from '@/lib/api/graphql';
+// Hooks
+import { api, useQueryGQL } from '@/lib/hooks/useQueryQL';
+import useToast from '@/lib/hooks/useToast';
 
-// Method
-import { onUseLocalStorage } from '@/lib/utils/methods';
+// GraphQL and Utilities
+import { IQueryResult, IRestaurantResponse, IUserDataResponse } from '@/lib/utils/interfaces';
 
-// Dummy
+// Data
 import { generateDummyRestaurants } from '@/lib/utils/dummy';
-import { DataTableRowClickEvent } from 'primereact/datatable';
 import { useTranslations } from 'next-intl';
+import { useConfiguration } from '@/lib/hooks/useConfiguration';
+import { useUserContext } from '@/lib/hooks/useUser';
 import { RESTAURANT_TABLE_COLUMNS } from '@/lib/ui/useable-components/table/columns/restaurant-column';
+import RestaurantsTableHeader from '../header/table-header';
 
-export default function RestaurantsMain() {
+export default function RestaurantsMain({
+  setIsAddRestaurantVisible,
+  setRestaurant,
+  reload
+}: any) {
   // Hooks
   const t = useTranslations();
+  const { showToast } = useToast();
 
-  // Context
-  const { showToast } = useContext(ToastContext);
-  const { currentTab } = useContext(RestaurantsContext);
-  // Hooks
-  const router = useRouter();
-
+  // State - Table
   const [deleteId, setDeleteId] = useState('');
-  const [duplicateId, setDuplicateId] = useState('');
-  const [selectedProducts, setSelectedProducts] = useState<
-    IRestaurantResponse[]
-  >([]);
-  const [globalFilterValue, setGlobalFilterValue] = useState('');
-  const [selectedActions, setSelectedActions] = useState<string[]>([]);
-  const filters = {
-    global: { value: globalFilterValue, matchMode: FilterMatchMode.CONTAINS },
-    action: {
-      value: selectedActions.length > 0 ? selectedActions : null,
-      matchMode: FilterMatchMode.IN,
-    },
-  };
-
-  //Query
-  const { data, loading } = useQueryGQL(
-    currentTab === 'Actual' ? GET_RESTAURANTS : GET_CLONED_RESTAURANTS,
-    {},
-    {
-      fetchPolicy: 'network-only',
-      debounceMs: 300,
-    }
-  ) as IQueryResult<IRestaurantsResponseGraphQL | undefined, undefined>;
-
-  // API
-  const [hardDeleteRestaurant, { loading: isHardDeleting }] = useMutation(
-    HARD_DELETE_RESTAURANT,
-    {
-      onCompleted: () => {
-        showToast({
-          type: 'success',
-          title: t('Store Delete'),
-          message: t(`Store has been deleted successfully`),
-          duration: 2000,
-        });
-        setDeleteId('');
-      },
-      onError: ({ networkError, graphQLErrors }: ApolloError) => {
-        showToast({
-          type: 'error',
-          title: t('Store Delete'),
-          message:
-            graphQLErrors[0]?.message ??
-            networkError?.message ??
-            t(`Store delete failed`),
-          duration: 2500,
-        });
-        setDeleteId('');
-      },
-      update: (cache: ApolloCache<unknown>): void => {
-        try {
-          const cachedRestaurants =
-            currentTab === 'Actual'
-              ? data?.restaurants
-              : data?.getClonedRestaurants;
-
-          if (currentTab === 'Actual') {
-            cache.writeQuery({
-              query: GET_RESTAURANTS,
-              data: {
-                restaurants: [
-                  ...(cachedRestaurants || []).filter(
-                    (restaurant: IRestaurantResponse) =>
-                      restaurant._id !== deleteId
-                  ),
-                ],
-              },
-            });
-          } else {
-            cache.writeQuery({
-              query: GET_CLONED_RESTAURANTS,
-              data: {
-                getClonedRestaurants: [
-                  ...(cachedRestaurants || []).filter(
-                    (restaurant: IRestaurantResponse) =>
-                      restaurant._id !== deleteId
-                  ),
-                ],
-              },
-            });
-          }
-        } finally {
-          setDeleteId('');
-        }
-      },
-    }
+  const [selectedProducts, setSelectedProducts] = useState<IRestaurantResponse[]>(
+    []
   );
+  const [globalFilterValue, setGlobalFilterValue] = useState('');
+  const [filters, setFilters] = useState({
+    global: { value: '' as string | null, matchMode: FilterMatchMode.CONTAINS },
+  });
 
-  const handleDelete = async (id: string) => {
-    try {
-      hardDeleteRestaurant({ variables: { id: id } });
-    } catch (err) {
-      showToast({
-        type: 'error',
-        title: t('Store Delete'),
-        message: t(`Store delete failed`),
-      });
-      setDeleteId('');
-    }
+  const [loading, setLoading] = useState<boolean>(false);
+  const [data, setData] = useState<IRestaurantResponse[]>([]);
+
+  const {SERVER_URL} = useConfiguration();
+  const {user} = useUserContext();
+
+  useEffect(() => {
+        if (!SERVER_URL || !user?.jwtToken) return;
+      
+        const fetchData = async () => {
+          setLoading(true);
+          try {
+            const response = await api.get(`${SERVER_URL}/shop`, user.jwtToken);
+            setData(response as IRestaurantResponse[]);
+          } catch (error) {
+          } finally {
+            setLoading(false);
+          }
+        };
+    
+        fetchData();
+      }, [user?.jwtToken, reload]);
+
+  // For global search
+  const onGlobalFilterChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value;
+    const _filters = { ...filters };
+    _filters['global'].value = value;
+    setFilters(_filters);
+    setGlobalFilterValue(value);
   };
 
-  // Constants
   const menuItems: IActionMenuItem<IRestaurantResponse>[] = [
     {
-      label: t('View'),
+      label: t('Edit'),
       command: (data?: IRestaurantResponse) => {
         if (data) {
-          onUseLocalStorage('save', 'restaurantId', data?._id);
-          const routeStack = ['Admin'];
-          onUseLocalStorage('save', 'routeStack', JSON.stringify(routeStack));
-          router.push(`/admin/store/`);
+          setIsAddRestaurantVisible(true);
+          setRestaurant(data);
         }
       },
-    },
-    {
-      label: t('Duplicate'),
-      command: (data?: IRestaurantResponse) => {
-        if (data) {
-          setDuplicateId(data._id);
-        }
-      },
-    },
-    {
-      label: t('Delete'),
-      command: (data?: IRestaurantResponse) => {
-        if (data) {
-          setDeleteId(data._id);
-        }
-      },
-    },
+    }
   ];
-
-  const _restaurants =
-    currentTab === 'Actual' ? data?.restaurants : data?.getClonedRestaurants;
 
   return (
     <div className="p-3">
@@ -197,49 +96,26 @@ export default function RestaurantsMain() {
         header={
           <RestaurantsTableHeader
             globalFilterValue={globalFilterValue}
-            onGlobalFilterChange={(e) => setGlobalFilterValue(e.target.value)}
-            selectedActions={selectedActions}
-            setSelectedActions={setSelectedActions}
+            onGlobalFilterChange={onGlobalFilterChange}
           />
         }
-        data={loading ? generateDummyRestaurants() : (_restaurants ?? [])}
+        data={loading ? generateDummyRestaurants() : data}
         filters={filters}
         setSelectedData={setSelectedProducts}
         selectedData={selectedProducts}
-        columns={RESTAURANT_TABLE_COLUMNS({ menuItems })}
         loading={loading}
-        handleRowClick={(event: DataTableRowClickEvent) => {
-          const target = event.originalEvent.target as HTMLElement | null;
-
-          if (target?.closest('.prevent-row-click')) {
-            return;
-          }
-
-          onUseLocalStorage('save', 'restaurantId', event.data._id);
-          const routeStack = ['Admin'];
-          onUseLocalStorage('save', 'routeStack', JSON.stringify(routeStack));
-          router.push(`/admin/store/`);
-        }}
+        columns={RESTAURANT_TABLE_COLUMNS({ menuItems })}
       />
-
       <CustomDialog
-        loading={isHardDeleting}
+        loading={loading}
         visible={!!deleteId}
         onHide={() => {
           setDeleteId('');
         }}
         onConfirm={() => {
-          handleDelete(deleteId);
+          
         }}
-        message={t('Are you sure you want to delete this store?')}
-      />
-
-      <RestaurantDuplicateDialog
-        restaurantId={duplicateId}
-        visible={!!duplicateId}
-        onHide={() => {
-          setDuplicateId('');
-        }}
+        message={t('Are you sure you want to delete this item?')}
       />
     </div>
   );

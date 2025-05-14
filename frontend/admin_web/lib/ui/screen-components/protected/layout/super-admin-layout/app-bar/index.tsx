@@ -22,6 +22,7 @@ import {
   faRightFromBracket,
   faBars,
   faGlobe,
+  faDumbbell,
 } from '@fortawesome/free-solid-svg-icons';
 // import { AppLogo } from '@/lib/utils/assets/svgs/logo';
 
@@ -58,6 +59,7 @@ import { AppLogo } from '@/lib/utils/assets/svgs/logo';
 import { useLocale, useTranslations } from 'next-intl';
 import { TLocale } from '@/lib/utils/types/locale';
 import { setUserLocale } from '@/lib/utils/methods/locale';
+import { faBell } from '@fortawesome/free-solid-svg-icons/faBell';
 
 const AppTopbar = () => {
   // States
@@ -141,7 +143,7 @@ const AppTopbar = () => {
             <FontAwesomeIcon icon={faBars} />
           </button>
         </div>
-        <div onClick={() => onRedirectToPage('/home')}>
+        <div onClick={() => onRedirectToPage('/stores')}>
           <AppLogo />
         </div>
       </div>
@@ -149,110 +151,14 @@ const AppTopbar = () => {
         <div className="hidden items-center space-x-3 md:flex">
           <div
             className="flex items-center space-x-2 rounded-md p-2 hover:bg-[#d8d8d837]"
-            onClick={(event) => languageMenuRef.current?.toggle(event)}
+            onClick={(event) => console.log("Notification clicked")}
             aria-controls="popup_menu_right"
             aria-haspopup
           >
-            <FontAwesomeIcon icon={faGlobe} />
+            <FontAwesomeIcon icon={faBell} />
 
             <Menu
               model={[
-                {
-                  label: 'ENGLISH',
-                  template(item) {
-                    return (
-                      <div
-                        className={`${currentLocale === 'en' ? 'bg-[#b1c748]' : ''} p-2  cursor-pointer`}
-                        onClick={() => onLocaleChange('en')}
-                      >
-                        {item.label}
-                      </div>
-                    );
-                  },
-                  command: () => {
-                    onLocaleChange('en');
-                  },
-                },
-                {
-                  label: 'ARABIC',
-                  template(item) {
-                    return (
-                      <div
-                        className={`${currentLocale === 'ar' ? 'bg-[#b1c748]' : ''} p-2  cursor-pointer`}
-                        onClick={() => onLocaleChange('ar')}
-                      >
-                        {item.label}
-                      </div>
-                    );
-                  },
-                  command: () => {
-                    onLocaleChange('ar');
-                  },
-                },
-                {
-                  label: 'FRENCH',
-                  template(item) {
-                    return (
-                      <div
-                        className={`${currentLocale === 'fr' ? 'bg-[#b1c748]' : ''} p-2  cursor-pointer`}
-                        onClick={() => onLocaleChange('fr')}
-                      >
-                        {item.label}
-                      </div>
-                    );
-                  },
-                  command: () => {
-                    onLocaleChange('fr');
-                  },
-                },
-                {
-                  label: 'KHMER',
-                  template(item) {
-                    return (
-                      <div
-                        className={`${currentLocale === 'km' ? 'bg-[#b1c748]' : ''} p-2  cursor-pointer`}
-                        onClick={() => onLocaleChange('km')}
-                      >
-                        {item.label}
-                      </div>
-                    );
-                  },
-                  command: () => {
-                    onLocaleChange('km');
-                  },
-                },
-                {
-                  label: 'CHINESE',
-                  template(item) {
-                    return (
-                      <div
-                        className={`${currentLocale === 'zh' ? 'bg-[#b1c748]' : ''} p-2  cursor-pointer`}
-                        onClick={() => onLocaleChange('zh')}
-                      >
-                        {item.label}
-                      </div>
-                    );
-                  },
-                  command: () => {
-                    onLocaleChange('zh');
-                  },
-                },
-                {
-                  label: 'HEBREW',
-                  template(item) {
-                    return (
-                      <div
-                        className={`${currentLocale === 'he' ? 'bg-[#b1c748]' : ''} p-2  cursor-pointer`}
-                        onClick={() => onLocaleChange('he')}
-                      >
-                        {item.label}
-                      </div>
-                    );
-                  },
-                  command: () => {
-                    onLocaleChange('he');
-                  },
-                },
               ]}
               popup
               ref={languageMenuRef}
@@ -267,13 +173,10 @@ const AppTopbar = () => {
             aria-controls="popup_menu_right"
             aria-haspopup
           >
-            <span>{user?.name ?? ''}</span>
+            <span>{user?.basicUserDetails.email ?? ''}</span>
 
             <Image
-              src={
-                user?.image
-                  ? user.image
-                  : 'https://upload.wikimedia.org/wikipedia/commons/8/89/Portrait_Placeholder.png'
+              src={'https://upload.wikimedia.org/wikipedia/commons/8/89/Portrait_Placeholder.png'
               }
               alt={t('profile-img')}
               height={32}

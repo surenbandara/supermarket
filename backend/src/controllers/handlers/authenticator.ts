@@ -62,11 +62,13 @@ export const login = async (req: Request, res: Response): Promise<void> => {
                 try {
                     decodedToken = await admin.auth().verifyIdToken(token);
                 } catch (error) {
+                    console.log(`login:: Error ${error} verifying token for user: ${email}`);
                     log.error(`login:: Error Invalid token verifying token for user: ${email}`);
                     res.status(401).json({ message: `Invalid token` });
                     return;
                 }
                 if (!decodedToken || !decodedToken.email) {
+                    console.log(`login:: Error ${decodedToken} verifying token for user: ${email}`);
                     log.error(`login:: Error Invalid token verifying token for user: ${email}`);
                     res.status(401).json({ message: `Invalid token` });
                     return;

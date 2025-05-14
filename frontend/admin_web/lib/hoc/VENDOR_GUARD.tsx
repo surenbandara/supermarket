@@ -23,7 +23,7 @@ const VENDOR_GUARD = <T extends object>(Component: React.ComponentType<T>) => {
       }
 
       // For RESTAURANT
-      if (user?.userType === 'RESTAURANT') {
+      if (user?.basicUserDetails.role === 'admin') {
         router.replace('/forbidden');
       }
     }, []);

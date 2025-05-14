@@ -17,7 +17,7 @@ import { GET_CONFIGURATION } from '@/lib/api/graphql';
 import { useLazyQueryQL } from '@/lib/hooks/useLazyQueryQL';
 
 export const ConfigurationContext = React.createContext<
-  IConfiguration | undefined
+  any | undefined
 >({
   _id: '',
   pushToken: '',
@@ -97,7 +97,7 @@ export const ConfigurationProvider: React.FC<IConfigurationProviderProps> = ({
 
   // Handlers
   const onFetchConfiguration = () => {
-    const configuration: IConfiguration | undefined =
+    const configuration: any | undefined =
       loading || error || !data
         ? {
             _id: '',

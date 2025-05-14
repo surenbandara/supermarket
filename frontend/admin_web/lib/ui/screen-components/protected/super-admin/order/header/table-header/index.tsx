@@ -34,13 +34,17 @@ const OrderSuperAdminTableHeader: React.FC<IOrderSuperAdminHeaderProps> = ({
   };
 
   const menuItems: IMenuItem[] = [
-    { label: t('PENDING'), value: 'PENDING' },
-    { label: t('ACCEPTED'), value: 'ACCEPTED' },
-    { label: t('ASSIGNED'), value: 'ASSIGNED' },
-    { label: t('PICKED'), value: 'PICKED' },
-    { label: t('DELIVERED'), value: 'DELIVERED' },
-    { label: t('CANCELLED'), value: 'CANCELLED' },
+    { label: 'NEW', value: 'NEW' },
+    { label: 'INITIATED', value: 'INITIATED' },
+    { label: 'CONFIRMED', value: 'CONFIRMED' },
+    { label: 'PROCESSING', value: 'PROCESSING' },
+    { label: 'SHIPPED', value: 'SHIPPED' },
+    { label: 'DELIVERED', value: 'DELIVERED' },
+    { label: 'COMPLETED', value: 'COMPLETED' },
+    { label: 'CANCELLED', value: 'CANCELLED' },
+    { label: 'RETURNED', value: 'RETURNED' },
   ];
+  
 
   return (
     <div className="mb-4 flex flex-col gap-6">

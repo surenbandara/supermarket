@@ -131,14 +131,14 @@ export const DISPATCH_TABLE_COLUMNS = (
   const { data: ridersData, loading: ridersLoading } = useQueryGQL(
     GET_RIDERS,
     {}
-  ) as IQueryResult<IRidersDataResponse | undefined, undefined>;
+  ) as IQueryResult<any | undefined, undefined>;
 
   // Side-Effects
   useEffect(() => {
     if (ridersData) {
       const newRiderOptions = ridersData.riders
-        .filter((_rider) => _rider.available)
-        .map((rider) => ({
+        .filter((_rider: any) => _rider.available)
+        .map((rider: any) => ({
           label: rider.name,
           code: rider.name.toUpperCase(),
           assignedOrders: rider.assigned,
@@ -339,9 +339,9 @@ export const DISPATCH_TABLE_COLUMNS = (
       propertyName: 'orderStatus',
       headerName: t('Status'),
 
-      body: (rowData: IActiveOrders) => {
+      body: (rowData: any) => {
         const currentStatus = actionStatusOptions.find(
-          (status: IDropdownSelectItem) => status.code === rowData?.orderStatus
+          (status: any) => status.code === rowData?.orderStatus
         );
 
         return (

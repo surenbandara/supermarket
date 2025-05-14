@@ -8,7 +8,7 @@ import { useContext, useEffect } from 'react';
 import { SidebarContext } from '@/lib/context/global/sidebar.context';
 
 // Interface & Types
-import { ILoginResponse, ISidebarContextProps } from '@/lib/utils/interfaces';
+import { IUserLoginDataResponse, ISidebarContextProps } from '@/lib/utils/interfaces';
 import { onUseLocalStorage } from '@/lib/utils/methods';
 import { APP_NAME } from '@/lib/utils/constants';
 import { DEFAULT_ROUTES } from '@/lib/utils/constants/routes';
@@ -25,8 +25,8 @@ export default function RootPage() {
     setSelectedItem({ screenName: 'Home' });
     const user = onUseLocalStorage('get', `user-${APP_NAME}`);
     if (user) {
-      const userInfo: ILoginResponse = JSON.parse(user);
-      router.push(DEFAULT_ROUTES[userInfo.userType]);
+      const userInfo: IUserLoginDataResponse = JSON.parse(user);
+      router.push(DEFAULT_ROUTES.admin);
     } else {
       router.replace('/authentication/login');
     }
