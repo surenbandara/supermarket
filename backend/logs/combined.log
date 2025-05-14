@@ -2419,3 +2419,37 @@
 2025-05-14T00:11:41.506Z info: Customer  suren user already exists
 2025-05-14T00:11:41.507Z info: starterPack added successfully
 2025-05-14T00:11:52.468Z info: listRiders::Riders fetched successfully : []
+2025-05-14T00:39:35.525Z info: MongoDB ::::: mongodb://mongodb:27017/test-super-market-05
+2025-05-14T00:39:35.751Z info: MongoDB connected
+2025-05-14T00:39:35.753Z info: Server running on port 3000
+2025-05-14T00:39:35.764Z info: Admin user already exists
+2025-05-14T00:39:35.838Z info: Customer  lakshan1 user already exists
+2025-05-14T00:39:35.911Z info: Customer  suren user already exists
+2025-05-14T00:39:35.912Z info: starterPack added successfully
+2025-05-14T00:48:14.339Z info: MongoDB ::::: mongodb://mongodb:27017/test-super-market-05
+2025-05-14T00:48:14.575Z info: MongoDB connected
+2025-05-14T00:48:14.577Z info: Server running on port 3000
+2025-05-14T00:48:14.586Z info: Admin user already exists
+2025-05-14T00:48:14.662Z info: Customer  lakshan1 user already exists
+2025-05-14T00:48:14.735Z info: Customer  suren user already exists
+2025-05-14T00:48:14.735Z info: starterPack added successfully
+2025-05-14T00:49:50.495Z info: MongoDB ::::: mongodb://mongodb:27017/test-super-market-05
+2025-05-14T00:49:50.732Z info: MongoDB connected
+2025-05-14T00:49:50.734Z info: Server running on port 3000
+2025-05-14T00:49:50.745Z info: Admin user already exists
+2025-05-14T00:49:50.819Z info: Customer  lakshan1 user already exists
+2025-05-14T00:49:50.900Z info: Customer  suren user already exists
+2025-05-14T00:49:50.901Z info: starterPack added successfully
+2025-05-14T00:50:00.012Z info: Scheduled job started: Product Firestore backup
+2025-05-14T00:50:00.602Z info: listProducts:: Firestore backup completed for 5 products
+2025-05-14T00:50:00.602Z info: Scheduled job completed: Product Firestore backup
+2025-05-14T00:55:00.024Z info: Scheduled job started: Product Firestore backup
+2025-05-14T00:55:00.273Z info: listProducts:: Firestore backup completed for 5 products
+2025-05-14T00:55:00.274Z info: Scheduled job completed: Product Firestore backup
+2025-05-14T00:55:56.972Z info: MongoDB ::::: mongodb://mongodb:27017/test-super-market-05
+2025-05-14T00:55:57.216Z info: MongoDB connected
+2025-05-14T00:55:57.219Z info: Server running on port 3000
+2025-05-14T00:55:57.238Z info: Admin user already exists
+2025-05-14T00:55:57.314Z info: Customer  lakshan1 user already exists
+2025-05-14T00:55:57.402Z info: Customer  suren user already exists
+2025-05-14T00:55:57.404Z info: starterPack added successfully
