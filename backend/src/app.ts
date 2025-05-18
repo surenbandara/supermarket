@@ -41,7 +41,8 @@ app.use(
 );
 starterPack();
 app.use(authValidation);
-app.use(operationHandler);
 app.use(apiValidationHandler);
+app.use(operationHandler);
+
 
 export default app;
