@@ -227,6 +227,7 @@ export const generateDummyRestaurants = (
       tax: 0,
       shopType: '',
       __typename: '',
+      available: false
     });
   }
 
@@ -259,9 +260,8 @@ export const generateDummyOrderVendor = (
         isActive: true,
         __typename: 'Owner',
       },
-      shopType: ['Fast Food', 'Casual Dining', 'Fine Dining'][
-        Math.floor(Math.random() * 3)
-      ],
+      shopType: ['Fast Food', 'Casual Dining', 'Fine Dining'][Math.floor(Math.random() * 3)],
+      available: false
     });
   }
 
