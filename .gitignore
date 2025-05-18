@@ -1,5 +1,10 @@
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
+/backend/node_modules/
+/backend/logs/
+/backend/dist/
+/backend/package-lock.json
+
 # dependencies
 /frontend/admin_web/node_modules/
 /frontend/admin_web/.next/

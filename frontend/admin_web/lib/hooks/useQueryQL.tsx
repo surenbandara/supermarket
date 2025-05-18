@@ -1,7 +1,4 @@
 import { debounce } from 'lodash';
-import { useConfiguration } from './useConfiguration';
-import { useUserContext } from './useUser';
-import { useManagerContext } from './useManager';
 
 class RestApiHandler {
   private defaultHeaders: Record<string, string>;
@@ -72,7 +69,7 @@ class RestApiHandler {
         const router = useRouter();
         router.push('/authentication/login')
       }
-    }
+    } 
 
     return await response.json();
   }
@@ -124,7 +121,7 @@ import {
 import { WatchQueryFetchPolicy } from '@apollo/client/core/watchQueryOptions';
 import { useCallback, useState } from 'react';
 import { retryQuery } from '../utils/methods';
-import { useRouter } from 'next/router';
+import { useRouter } from 'next/navigation';
 
 export const useQueryGQL = <
   T extends DocumentNode,

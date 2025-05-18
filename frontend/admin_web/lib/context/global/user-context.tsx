@@ -3,7 +3,7 @@ import { IUserLoginDataResponse } from '@/lib/utils/interfaces';
 import { APP_NAME } from '@/lib/utils/constants';
 import { useConfiguration } from '@/lib/hooks/useConfiguration';
 import { onUseLocalStorage } from '@/lib/utils/methods';
-import router from 'next/router';
+import { api, useQueryGQL } from '@/lib/hooks/useQueryQL';
 
 interface IUserContext {
   user: IUserLoginDataResponse | null;
@@ -27,21 +27,10 @@ export const UserProvider: React.FC<{ children: React.ReactNode }> = ({ children
 
   const validateToken = async (token: string) => {
     try {
-      const response = await fetch(`${SERVER_URL}/validate-token`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: `Bearer ${token}`,
-        },
-      });
-
-      if (!response.ok) {
-        throw new Error('Token is invalid');
-      }
+      await api.get(`${SERVER_URL}/shop`, token);
     } catch (error) {
       console.error('Token validation failed:', error);
       // Redirect to login page if token is invalid
-      //router.push('authentication/login');
     }
   };
 

@@ -14,7 +14,7 @@ import starterPack from "./starter-pack/starter-pack";
 const app = express();
 app.use(express.json({ limit: '10mb' }));
 app.use(cors({
-    origin: "http://localhost:3001",  // Allow your frontend domain
+    origin: ["http://localhost:3001", "http://localhost:37253"],  // Allow your frontend domain
     methods: ["GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"],
     allowedHeaders: ["Content-Type", "Authorization"],  // REMOVE 'Access-Control-Allow-Credentials'
     credentials: true

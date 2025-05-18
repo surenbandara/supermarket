@@ -1,56 +1,37 @@
 import createNextIntlPlugin from 'next-intl/plugin';
 
 const withNextIntl = createNextIntlPlugin();
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  output: 'export',
+  trailingSlash: true,
   images: {
     dangerouslyAllowSVG: true,
     remotePatterns: [
+      { protocol: 'https', hostname: 'placehold.co' },
+      { protocol: 'https', hostname: 'plus.unsplash.com' },
+      { protocol: 'https', hostname: 'res.cloudinary.com' },
+      { protocol: 'https', hostname: 'images.unsplash.com' },
+      { protocol: 'https', hostname: 'enatega.com' },
+      { protocol: 'https', hostname: 'www.lifcobooks.com' },
+      { protocol: 'https', hostname: 'images.pexels.com' },
+      { protocol: 'https', hostname: 'upload.wikimedia.org' },
+      { protocol: 'https', hostname: 'example.com' },
+      { protocol: 'https', hostname: 'encrypted-tbn0.gstatic.com' },
+      { protocol: 'https', hostname: 't4.ftcdn.net' },
+    ],
+  },
+
+  // 👇 Add redirect rules here
+  async redirects() {
+    return [
       {
-        protocol: 'https',
-        hostname: 'placehold.co',
+        source: '/',
+        destination: '/authentication/login',
+        permanent: false, // use true if this should be cached by browsers
       },
-      {
-        protocol: 'https',
-        hostname: 'plus.unsplash.com',
-      },
-      {
-        protocol: 'https',
-        hostname: 'res.cloudinary.com',
-      },
-      {
-        protocol: 'https',
-        hostname: 'images.unsplash.com',
-      },
-      {
-        protocol: 'https',
-        hostname: 'enatega.com',
-      },
-      {
-        protocol: 'https',
-        hostname: 'www.lifcobooks.com',
-      },
-      {
-        protocol: 'https',
-        hostname: 'images.pexels.com',
-      },
-      {
-        protocol: 'https',
-        hostname: 'upload.wikimedia.org',
-      },
-      {
-        hostname: 'example.com',
-        protocol: 'https',
-      },
-      {
-        protocol: 'https',
-        hostname: 'encrypted-tbn0.gstatic.com',
-      },
-      {
-        protocol: 'https',
-        hostname: 't4.ftcdn.net',
-      },
-    ], // Add placehold.co as an allowed domain
+    ];
   },
 };
 
