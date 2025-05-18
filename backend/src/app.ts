@@ -35,13 +35,13 @@ app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(apiSpec));
 app.use(
     OpenApiValidator.middleware({
         apiSpec,
-        validateRequests: false,
+        validateRequests: true,
         validateResponses: true,
     })
 );
 starterPack();
 app.use(authValidation);
-app.use(operationHandler);
 app.use(apiValidationHandler);
+app.use(operationHandler);
 
 export default app;
