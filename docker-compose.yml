@@ -1,4 +1,4 @@
-version: "3.8"
+# version: "3.8"  # Removed as it's obsolete
 
 services:
   backend:
@@ -36,24 +36,17 @@ services:
       - "443:443"
     volumes:
       - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
-      - ./certbot/webroot:/var/www/certbot
-      - ./certbot/letsencrypt:/etc/letsencrypt
+      - ./certbot/www:/var/www/certbot:ro
+      - ./certbot/conf:/etc/letsencrypt:ro
     restart: always
 
   certbot:
-    image: certbot/certbot
-    container_name: certbot
+    image: certbot/certbot:latest
+    container_name: certbot-sp
     volumes:
-      - ./certbot/webroot:/var/www/certbot
-      - ./certbot/letsencrypt:/etc/letsencrypt
-    entrypoint: ""
-    command: >
-      certbot certonly --webroot
-      --webroot-path=/var/www/certbot
-      --email groupathukorala@gmail.com
-      --agree-tos
-      --no-eff-email
-      -d afmdelivery.lk
+      - ./certbot/www:/var/www/certbot:rw
+      - ./certbot/conf:/etc/letsencrypt:rw
+    entrypoint: "/bin/sh -c 'trap exit TERM; while :; do certbot renew; sleep 12h & wait ${!}; done;'"
 
 volumes:
   mongodb_data:
