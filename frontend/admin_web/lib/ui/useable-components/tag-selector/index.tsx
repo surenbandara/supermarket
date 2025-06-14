@@ -8,36 +8,36 @@ const TagSelectorComponent = ({
   name,
   placeholder,
   options,
-  selectedItem,
-  setSelectedItem,
+  selectedItems = [],
+  setSelectedItems,
   showLabel,
   isLoading = false,
   filter = true,
   extraFooterButton,
   ...props
-}: IDropdownComponentProps) => {
-  const itemTemplate = (option: { label: string }) => {
-    return (
-      <div className="align-items-center flex">
-        <div>{option.label}</div>
-      </div>
-    );
-  };
+}: any) => {
+  const itemTemplate = (option: { label: string }) => (
+    <div className="align-items-center flex">
+      <div>{option.label}</div>
+    </div>
+  );
 
-  const panelFooterTemplate = () => {
-    return (
-      <div className="flex justify-between space-x-2">
-        {extraFooterButton?.title && (
-          <TextIconClickable
-            className="w-full h-fit rounded text-black"
-            icon={faAdd}
-            iconStyles={{ color: 'black' }}
-            title={extraFooterButton.title}
-            onClick={extraFooterButton.onChange}
-          />
-        )}
-      </div>
-    );
+  const panelFooterTemplate = () => (
+    <div className="flex justify-between space-x-2">
+      {extraFooterButton?.title && (
+        <TextIconClickable
+          className="w-full h-fit rounded text-black"
+          icon={faAdd}
+          iconStyles={{ color: 'black' }}
+          title={extraFooterButton.title}
+          onClick={extraFooterButton.onChange}
+        />
+      )}
+    </div>
+  );
+
+  const handleRemoveItem = (itemToRemove: any) => {
+    setSelectedItems(name, selectedItems.filter((item: any) => item !== itemToRemove.value));
   };
 
   return !isLoading ? (
@@ -49,32 +49,38 @@ const TagSelectorComponent = ({
       )}
 
       <Dropdown
-        value={selectedItem}
+        value={selectedItems}
         options={options}
-        onChange={(e: DropdownChangeEvent) => setSelectedItem(name, e.value)}
+        onChange={(e: DropdownChangeEvent) => setSelectedItems(name, e.value)}
         optionLabel="label"
         placeholder={placeholder}
         itemTemplate={itemTemplate}
         className="md:w-20rem p-dropdown-no-box-shadow m-0 h-10 w-full border border-gray-300 p-0 align-middle text-sm focus:shadow-none focus:outline-none"
         panelClassName="border-gray-200 border-2"
         filter={filter}
-        checkmark={true}
+        checkmark
         panelFooterTemplate={panelFooterTemplate}
+        multiple
         {...props}
       />
 
-      {selectedItem && selectedItem.label && (
-        <div className="mt-2 flex items-center gap-2">
-          <span className="bg-green-500 text-white px-3 py-1 rounded-full text-sm">
-            {selectedItem.label}
-            <button
-              type="button"
-              className="ml-2 text-white"
-              onClick={() => {}}
+      {selectedItems.length > 0 && (
+        <div className="mt-2 flex flex-wrap gap-2">
+          {selectedItems.map((item: any) => (
+            <span
+              key={item}
+              className="bg-green-500 text-white px-3 py-1 rounded-full text-sm flex items-center"
             >
-              &#10005;
-            </button>
-          </span>
+              {item}
+              <button
+                type="button"
+                className="ml-2 text-white"
+                onClick={() => handleRemoveItem(item)}
+              >
+                &#10005;
+              </button>
+            </span>
+          ))}
         </div>
       )}
     </div>

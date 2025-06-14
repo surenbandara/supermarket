@@ -158,13 +158,13 @@ class RestaurantManager {
     };
   
     newOrders.forEach((newOrder) => {
-      const oldOrder = oldOrders.find(o => o.id === newOrder.id);
-      if (oldOrder && oldOrder.status !== newOrder.status) {
+      const oldOrder = oldOrders.find(o => o.id == newOrder.id);
+      if (oldOrder && oldOrder.status != newOrder.status) {
         const newStatus = newOrder.status;
         if (newStatus === 'NEW') return;
   
         const message = statusMessages[newStatus];
-        if (!message) return;
+        //if (!message) return;
         Notifications.scheduleNotificationAsync({
           content: {
             title: `Order #${newOrder.id} Update`,
@@ -269,8 +269,8 @@ class RestaurantManager {
         return item;
       });
 
-      this.orders = updatedOrders;
       this.checkStatusUpdates(this.orders, updatedOrders);
+      this.orders = updatedOrders;
       
     } catch (err) {
       console.log("Error fetching orders:", err);

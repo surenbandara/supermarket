@@ -40,25 +40,26 @@ export const PRODUCT_TABLE_COLUMNS = ({
             );
           },
         },
+    { headerName: "Shop", propertyName: 'shop' },
     { headerName: t('Price'), propertyName: 'price' }, 
     { headerName: t('Quantity'), propertyName: 'quantity' }, 
     { headerName: t('Brand'), propertyName: 'brand' },
-    {
-      headerName: t('Cusine'), 
-      propertyName: 'cusine',
-      body: (product: IProductResponse) => (
-        <div className="flex flex-wrap gap-2">
-          {product.cusine.map((cuisineItem, index) => (
-            <span 
-              key={index} 
-              className="bg-green-200 text-green-800 px-2 py-1 rounded-full text-sm"
-            >
-              {cuisineItem}
-            </span>
-          ))}
-        </div>
-      ),
-    },
+    // {
+    //   headerName: t('Cusine'), 
+    //   propertyName: 'cusine',
+    //   body: (product: IProductResponse) => (
+    //     <div className="flex flex-wrap gap-2">
+    //       {product.cusine.map((cuisineItem, index) => (
+    //         <span 
+    //           key={index} 
+    //           className="bg-green-200 text-green-800 px-2 py-1 rounded-full text-sm"
+    //         >
+    //           {cuisineItem}
+    //         </span>
+    //       ))}
+    //     </div>
+    //   ),
+    // },
     {
       propertyName: 'actions',
       body: (product: IProductResponse) => (

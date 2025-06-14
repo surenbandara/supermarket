@@ -132,6 +132,7 @@ export default function ConfigurationAddForm({
                   values,
                   errors,
                   handleChange,
+                  isSubmitting,
                   handleSubmit
                 }) => {
                   console.log(errors);
@@ -181,7 +182,7 @@ export default function ConfigurationAddForm({
                             className="h-10 w-fit border-gray-300 bg-black px-8 text-white"
                             label={configuration ? t('Update') : t('Add')}
                             type="submit"
-                            loading={loading}
+                            loading={isSubmitting}
                           />
                         </div>
                       </div>
