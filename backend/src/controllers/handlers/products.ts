@@ -5,6 +5,8 @@ import admin from "../../controllers/handlers/authenticator";
 
 const firestore = admin.firestore();
 
+const bucket = admin.storage().bucket();
+
 export const listProducts = async (req: Request, res: Response, next: NextFunction) => {
     try {
         const products: IProduct[] = await ProductModel.find();
@@ -21,15 +23,54 @@ export const listProducts = async (req: Request, res: Response, next: NextFuncti
     next();
 };
 
+// export const createNewProduct = async (req: Request, res: Response, next: NextFunction) => {
+//     try {
+//         const product: IProduct = new ProductModel(req.body);
+//         product.id = Date.now();
+//         await product.save();
+//         log.info(`createNewProduct::Product created successfully : ${product}`);
+//         res.status(201).json(product);
+//     }
+//     catch (err: any) {
+//         log.error(`createNewProduct:: ${err}`);
+//         res.status(500).json({
+//             status: 500,
+//             message: "Internal Server Error",
+//         });
+//     }
+//     next();
+// };
+
 export const createNewProduct = async (req: Request, res: Response, next: NextFunction) => {
     try {
+        let imageUrl: string | undefined = undefined;
+
+        if (req.body.image) {
+            const base64Image = req.body.image.replace(/^data:image\/\w+;base64,/, "");;
+            const buffer = Buffer.from(base64Image, "base64");
+
+            const filename = `products/${Date.now()}_${Math.random().toString(36).substring(2)}.jpg`;
+            const file = bucket.file(filename);
+
+            await file.save(buffer, {
+                metadata: {
+                    contentType: "image/jpeg",
+                },
+                public: true,
+            });
+
+            imageUrl = `https://storage.googleapis.com/${bucket.name}/${filename}`;
+            req.body.image = imageUrl; // Replace with the download URL
+        }
+
         const product: IProduct = new ProductModel(req.body);
         product.id = Date.now();
+        product.timestamp = Date.now();
         await product.save();
+
         log.info(`createNewProduct::Product created successfully : ${product}`);
         res.status(201).json(product);
-    }
-    catch (err: any) {
+    } catch (err: any) {
         log.error(`createNewProduct:: ${err}`);
         res.status(500).json({
             status: 500,
@@ -39,25 +80,80 @@ export const createNewProduct = async (req: Request, res: Response, next: NextFu
     next();
 };
 
+// export const updateProduct = async (req: Request, res: Response, next: NextFunction) => {
+//     try {
+//         const product = req.body;
+//         const productId = req.body.id;
+//         const updateData = req.body;
+
+//         const updatedProduct = await ProductModel.findOneAndUpdate(
+//             { id: Number(productId) },
+//             updateData,
+//             { new: true, runValidators: true }
+//         );
+//         if (!updatedProduct) {
+//             log.error(`updateProduct::Product not found : ${productId}`);
+//             return res.status(404).json({ message: "Product not found" });
+//         }
+//         log.info(`updateProduct::Product updated successfully : ${updatedProduct}`);
+//         res.status(200).json(updatedProduct);
+//     }
+//     catch (err: any) {
+//         log.error(`updateProduct:: ${err}`);
+//         res.status(500).json({
+//             status: 500,
+//             message: "Internal Server Error",
+//         });
+//     }
+//     next();
+// };
+
 export const updateProduct = async (req: Request, res: Response, next: NextFunction) => {
     try {
-        const product = req.body;
         const productId = req.body.id;
-        const updateData = req.body;
+        const updateData = { ...req.body };
+
+        const existingProduct = await ProductModel.findOne({ id: Number(productId) });
+        if (!existingProduct) {
+            log.error(`updateProduct::Product not found : ${productId}`);
+            return res.status(404).json({ message: "Product not found" });
+        }
+
+        // Check if image has changed
+        if (updateData.image && updateData.image !== existingProduct.image) {
+            if (existingProduct.image?.includes("https://storage.googleapis.com/")) {
+                const filePath = existingProduct.image.split(`https://storage.googleapis.com/${bucket.name}/`)[1];
+                if (filePath) {
+                    await bucket.file(filePath).delete().catch(err => {
+                        log.warn(`updateProduct::Failed to delete old image: ${filePath} - ${err.message}`);
+                    });
+                }
+            }
+
+            const base64Data = updateData.image.replace(/^data:image\/\w+;base64,/, "");
+            const buffer = Buffer.from(base64Data, "base64");
+
+            const filename = `products/${Date.now()}_${Math.random().toString(36).substring(2)}.jpg`;
+            const file = bucket.file(filename);
+
+            await file.save(buffer, {
+                metadata: { contentType: "image/jpeg" },
+                public: true,
+            });
+
+            const imageUrl = `https://storage.googleapis.com/${bucket.name}/${filename}`;
+            updateData.image = imageUrl;
+        }
 
         const updatedProduct = await ProductModel.findOneAndUpdate(
             { id: Number(productId) },
             updateData,
             { new: true, runValidators: true }
         );
-        if (!updatedProduct) {
-            log.error(`updateProduct::Product not found : ${productId}`);
-            return res.status(404).json({ message: "Product not found" });
-        }
+
         log.info(`updateProduct::Product updated successfully : ${updatedProduct}`);
         res.status(200).json(updatedProduct);
-    }
-    catch (err: any) {
+    } catch (err: any) {
         log.error(`updateProduct:: ${err}`);
         res.status(500).json({
             status: 500,
