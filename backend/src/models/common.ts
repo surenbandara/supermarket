@@ -46,19 +46,22 @@ export class PriceBag {
     requestedPrice: number;
     truePrice: number;
     availableQuantity: number;
+    description?: string;
 
     constructor(
         productId: number,
         quantity: number,
         requestedPrice: number,
         truePrice: number,
-        availableQuantity: number
+        availableQuantity: number,
+        description?: string 
     ) {
         this.productId = productId;
         this.quantity = quantity;
         this.requestedPrice = requestedPrice;
         this.truePrice = truePrice;
         this.availableQuantity = availableQuantity;
+        this.description = description ? description : "";
     }
     public static toString(priceBags: PriceBag[]): string {
         // return priceBags.map(priceBag =>
@@ -84,7 +87,8 @@ export class PriceBag {
                         obj.quantity,
                         obj.requestedPrice,
                         obj.truePrice,
-                        obj.availableQuantity
+                        obj.availableQuantity,
+                        obj.description ? obj.description : ""
                     )
             );
         } catch (error) {

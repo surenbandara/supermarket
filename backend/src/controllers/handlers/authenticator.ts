@@ -6,7 +6,8 @@ import admin from "firebase-admin";
 
 admin.initializeApp({
     credential: admin.credential.cert("./src/config/serviceAccountKey.json"),
-    // databaseURL: "https://test01-a1349-default-rtdb.asia-southeast1.firebasedatabase.app"
+    // databaseURL: "https://test01-a1349-default-rtdb.asia-southeast1.firebasedatabase.app",
+    storageBucket: "supermarket-afm.firebasestorage.app"
 });
 
 export default admin;

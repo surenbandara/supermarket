@@ -2115,6 +2115,9 @@ components:
           type: number
           format: float
           description: Difference between requested price and true price
+        disctipion:
+          type: string
+          description: Description of the product
     TotalBill:
       type: object
       required:
