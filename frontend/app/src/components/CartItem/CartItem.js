@@ -60,8 +60,6 @@ const CartItem = (props) => {
     animateQuantityChange()
   }, [props?.quantity])
 
-  console.log("XXXXXXXXXXXXXXX ",props)
-
   return (
     <View style={styles(currentTheme).itemContainer}>
       <View

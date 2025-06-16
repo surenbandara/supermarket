@@ -29,7 +29,7 @@ function Location({
   if (location?.label === 'Current Location') {
     translatedLabel = t('currentLocation')
   } else {
-    translatedLabel = t(location?.label)
+    translatedLabel = t('currentLocation')
   }
 
   const onLocationPress = (event) => {
@@ -64,7 +64,7 @@ function Location({
           <View style={[styles().locationIcon, locationIconGray]}>
             <EvilIcons
               name="location"
-              size={scale(30)}
+              size={scale(20)}
               color={currentTheme.secondaryText}
             />
           </View>

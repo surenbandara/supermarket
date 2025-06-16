@@ -34,6 +34,7 @@ import analytics from '../../utils/analytics'
 import { MaterialIcons, Entypo, Foundation } from '@expo/vector-icons'
 import { HeaderBackButton } from '@react-navigation/elements'
 import navigationService from '../../routes/navigationService'
+import { useNavigation } from '@react-navigation/native';
 import { useTranslation } from 'react-i18next'
 
 const CREATE_ADDRESS = gql`
@@ -68,6 +69,7 @@ function NewAddress(props) {
 
   const { t } = useTranslation()
   const addressRef = useRef()
+  const navigation = useNavigation();
   const inset = useSafeAreaInsets()
   const [modalVisible, setModalVisible] = useState(false)
   const location = props?.route.params ? props?.route.params.location : null
@@ -123,7 +125,7 @@ function NewAddress(props) {
             </View>
           )}
           onPress={() => {
-            navigationService.goBack()
+            navigation.goBack();
           }}
         />
       )

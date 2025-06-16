@@ -42,7 +42,6 @@ class RestaurantManager {
   }
 
   async login(email, idToken) {
-    console.log("Logging in with email:", email);
     try {
       const data = await this.apiClient.query("LOGIN", "POST", {"email": email, "token": idToken});
       ToastAndroid.showWithGravity(
@@ -52,8 +51,6 @@ class RestaurantManager {
       )
       this.user = data.basicUserDetails
       this.token = data.jwtToken;
-      console.log("Login successful:", this.user);
-      console.log("Token received:", this.token);
       this.apiClient.setToken(this.token);
     } catch (err) {
       ToastAndroid.showWithGravity(

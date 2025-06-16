@@ -5,7 +5,6 @@ const useGeocoding = () => {
   const { GOOGLE_MAPS_KEY } = useEnvVars()
 
   const getAddress = async (latitude, longitude) => {
-    console.log('9999999999999999999999999999999')
     return { formattedAddress:"ssssss", city:"Kandy" }
     try {
       const response = await axios.get(

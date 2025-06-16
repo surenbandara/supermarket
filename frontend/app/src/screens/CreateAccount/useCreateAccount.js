@@ -70,13 +70,9 @@ export const useCreateAccount = () => {
 
   const signIn = async () => {
     try {
-      console.log("IIIIIIIIIIIIIII");
       loginButtonSetter('Google')
-       console.log("OOOOOOOOOOOOOOOOO");
       await GoogleSignin.hasPlayServices() 
-      console.log("PPPPPPPPPPPPPPPPPPPp");
       const userInfo = await GoogleSignin.signIn();
-      console.log("ddddd",userInfo);
       const googleCredential = auth.GoogleAuthProvider.credential(userInfo.data.idToken);
       const userCredential = await auth().signInWithCredential(googleCredential);
       const firebaseIdToken = await userCredential.user.getIdToken();

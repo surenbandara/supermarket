@@ -443,7 +443,7 @@ function ItemDetail(props) {
         >
           <View>
           {food?.image ? <ImageHeader image={food?.image} /> : <Text>No image to display</Text>}
-          <HeadingComponent title={food?.title} price={calculatePrice()}  /> 
+          <HeadingComponent title={food?.title} price={calculatePrice()} brand={food?.description} /> 
           </View>
           <View style={[styles(currentTheme).subContainer,]}>
 
@@ -456,10 +456,12 @@ function ItemDetail(props) {
                 descriptionDetails={food?.additionalData?.description}
                 color={"Color "}
                 colorDetails={food?.additionalData?.color}
+                brand={"Brand "}
+                brandDetails={food?.description}
               />
               <TextField
                 style={styles(currentTheme).input}
-                placeholder={'Description'}
+                placeholder={'Add Description'}
                 textAlignVertical='center'
                 value={specialInstructions}
                 onChangeText={setSpecialInstructions}

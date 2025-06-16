@@ -21,7 +21,6 @@ export const API_ENDPOINTS = {
     }
 
     setToken(token) {
-      console.log('Setting token:', token);
       this.token = token;
       this.defaultHeaders = {
         'Content-Type': 'application/json',
@@ -43,7 +42,6 @@ export const API_ENDPOINTS = {
       if (method == 'GET' && body) {
         const queryParams = new URLSearchParams(body).toString();
         finalUrl += `?${queryParams}`;
-        console.log('final url ', finalUrl)
       } else if (body) {
         options.body = JSON.stringify(body);
       }

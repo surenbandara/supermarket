@@ -104,8 +104,8 @@ function Checkout(props) {
 
   const [loadingOrder, setLoadingOrder] = useState(false)
   const [initialRegion, setInitialRegion] = useState({
-    latitude: 0,
-    longitude: 0,
+    latitude: Number(location?.latitude ?? 0),
+    longitude: Number(location?.longitude  ?? 0),
     latitudeDelta: 0.4,
     longitudeDelta: 0.5
   });
@@ -149,7 +149,6 @@ function Checkout(props) {
   }
 
 
-  console.log('323323223232', props?.route.params);
   const order = props?.route.params?.order;
   const paymentMethod =
     props?.route.params && props?.route.params.paymentMethod
@@ -202,7 +201,6 @@ function Checkout(props) {
           longDest
         )
 
-        console.log("ffdffdfdfdfdfd ", distance , "  ", parseFloat(restaurantsManager.getSystemParameterFromKey('Range').value))
         if (distance > parseFloat(restaurantsManager.getSystemParameterFromKey('Range').value)) {
           showOutOfRangeMessage();
           setInRange(false);
@@ -454,7 +452,6 @@ function Checkout(props) {
       })
     }
     if (error?.networkError) {
-      console.log(`Network Error: ${networkError.message}`);
       if (error?.networkError.statusCode === 502) {
         FlashMessage({
           message: "Server is currently unavailable. Please try again later."
@@ -491,7 +488,7 @@ function Checkout(props) {
     // }
     // const deliveryAmount = delivery > 0 ? deliveryCharges : 0
     // return (itemTotal + deliveryAmount).toFixed(2)
-    return order.totalPrice.totalCost
+    return order?.totalPrice?.totalCost
   }
 
   function calculateTotal() {
@@ -588,7 +585,6 @@ function Checkout(props) {
       if (resposne.status) {
         props?.navigation.replace('MyOrders')
       }
-      console.log('Order submitted')
     }
     setOrderStep(orderStep + 1);
   }
@@ -943,7 +939,7 @@ function Checkout(props) {
                         bold
                       >
                         {configuration.currencySymbol}
-                        {order.totalPrice.totalCost.toFixed(2)}
+                        {order?.totalPrice?.totalCost.toFixed(2)}
                       </TextDefault>
                     </View>
                     <View style={styles(currentTheme).horizontalLine2} />
@@ -966,7 +962,7 @@ function Checkout(props) {
                             bold
                           >
                             {configuration.currencySymbol}
-                            {order.totalPrice.deliveryCost.toFixed(2)}
+                            {order?.totalPrice?.deliveryCost.toFixed(2)}
                           </TextDefault>
                         </View>
                         <View style={styles(currentTheme).horizontalLine2} />
@@ -990,7 +986,7 @@ function Checkout(props) {
                         bold
                       >
                         {configuration.currencySymbol}
-                        {`${order.totalPrice.discount.toFixed(2)} + ${order.totalPrice.loyaltyPoints.toFixed(2)}`}
+                        {`${order?.totalPrice?.discount.toFixed(2)} + ${order?.totalPrice?.loyaltyPoints.toFixed(2)}`}
                       </TextDefault>
                     </View>
 </>
@@ -1061,7 +1057,7 @@ function Checkout(props) {
                         bold
                       >
                         {configuration.currencySymbol}
-                        {order.totalPrice.payableAmount.toFixed(2)}
+                        {order?.totalPrice?.payableAmount.toFixed(2)}
                       </TextDefault>
                     </View>
                   </View>

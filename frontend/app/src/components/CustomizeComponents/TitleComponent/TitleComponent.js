@@ -14,6 +14,7 @@ function TitleComponent(props) {
 
   return (
     <>
+    {(props?.descriptionDetails && props?.descriptionDetails != "" ) ?
     <View style={styles(currentTheme).mainContainer}>
       <View>
         <TextDefault
@@ -35,8 +36,8 @@ function TitleComponent(props) {
           {props?.descriptionDetails}
         </TextDefault>
       </View>
-    </View>
-    {(props?.sizeDetails || props?.sizeDetails == "" ) ?
+    </View> : <></>}
+    {(props?.sizeDetails && props?.sizeDetails != "" ) ?
     <View style={styles(currentTheme).mainContainer}>
       <View>
         <TextDefault
@@ -60,7 +61,7 @@ function TitleComponent(props) {
       </View>
     </View> : <></>
     }
-    {(props?.colorDetails || props?.colorDetails == "" ) ?
+    {(props?.colorDetails && props?.colorDetails != "" ) ?
     <View style={styles(currentTheme).mainContainer}>
       <View>
         <TextDefault
@@ -80,6 +81,30 @@ function TitleComponent(props) {
           H6
           center>
           {props?.colorDetails}
+        </TextDefault>
+      </View>
+    </View> : <></>
+    }
+    {(props?.brandDetails && props?.brandDetails != "" ) ?
+    <View style={styles(currentTheme).mainContainer}>
+      <View>
+        <TextDefault
+          numberOfLines={1}
+          textColor={currentTheme.fontMainColor}
+          H6
+          bolder
+          isRTL>
+          {props?.brand}
+        </TextDefault>
+      </View>
+      <View style={styles(currentTheme).rightContainer}>
+        <TextDefault
+          textColor={
+            currentTheme.fontMainColor
+          }
+          H6
+          center>
+          {props?.brandDetails}
         </TextDefault>
       </View>
     </View> : <></>

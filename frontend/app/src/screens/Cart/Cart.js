@@ -297,11 +297,8 @@ function Cart(props) {
       timestamp: date
       }
 
-      console.log('Order submitted');
-
       const response = await restaurantsManager.submitOrder(order);
       setOrderSubmitting(false);
-      console.log('Order response:', response);
       if (response.status === true) {
         let availability = true;
         for(let i of response.payload.productList) {
@@ -569,7 +566,6 @@ function Cart(props) {
                     {t('yourOrder')} ({cartLength})
                   </TextDefault>
                   {cart?.map((cartItem, index) => {
-                    console.log("NBCX ", cartItem)
                     const food = cartItem
                     if (!food) return null
                     return (

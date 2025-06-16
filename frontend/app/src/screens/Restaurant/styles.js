@@ -74,7 +74,7 @@ const styles = (props = null) =>
     searchDealSection: {
       // position: 'relative',
       backgroundColor: props != null ? props?.themeBackground : 'white',
-      paddingVertical: scale(10),
+      paddingVertical: scale(0),
       ...alignment.PRmedium,
       ...alignment.PLsmall
     },
@@ -91,7 +91,7 @@ const styles = (props = null) =>
     priceText: {
       color: props != null ? props?.darkBgFont : 'white',
       fontSize: 13,
-      paddingTop: scale(10),
+      paddingTop: scale(3),
       maxWidth: '100%',
       ...alignment.MRxSmall
     },
