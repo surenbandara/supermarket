@@ -19,7 +19,7 @@ class RestaurantManager {
   networkStatus = false;
   apiClient;
   fireBaseConfig = {
-    webClientId: '805680858281-nqkvefqrc0rfr31855c7he8oj4f9b1j6.apps.googleusercontent.com',
+    webClientId: '992013307518-j4veri5p3gr28kaf6ghethq1cvv7g7ql.apps.googleusercontent.com',
   }
   token = null;
   user = null;
@@ -187,15 +187,11 @@ class RestaurantManager {
 
   async fetchAll() {
     await this.refetchProducts(false);
-    await new Promise(resolve => setTimeout(resolve, 2000));
     await this.refetchShop(false);
-    await new Promise(resolve => setTimeout(resolve, 2000));
     await this.refetchSystemParamteres(false);
-    await new Promise(resolve => setTimeout(resolve, 2000));
     await this.refetchOrders(false);
     // console.log("Shop data:", this.shopData);
     // console.log("Product data:", this.productData);
-    console.log("System parameters:", this.systemParameters);
     //console.log("Orders:", this.orders);
   }
 
@@ -221,7 +217,6 @@ class RestaurantManager {
       return {status: true, payload:data};
     } catch (err) {
       this.error = err;
-      console.log('Error editing order:', err);
       this.loading = false;
       return {status: false, error: err};
     } finally { 
@@ -273,7 +268,6 @@ class RestaurantManager {
       this.orders = updatedOrders;
       
     } catch (err) {
-      console.log("Error fetching orders:", err);
       this.error = err;
     } finally {
       if (loadingEnable) {

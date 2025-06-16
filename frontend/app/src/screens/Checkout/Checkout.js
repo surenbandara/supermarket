@@ -59,7 +59,6 @@ import { WrongAddressModal } from '../../components/Checkout/WrongAddressModal'
 import { useCallback } from "react";
 import { restaurantsManager } from '../../ui/hooks'
 
-
 const { height: HEIGHT } = Dimensions.get('window')
 
 function Checkout(props) {
@@ -178,9 +177,6 @@ function Checkout(props) {
   }, [tip, data])
 
   useEffect(() => {
-    console.log('----------------------------------------------%%%%%%%%%%%%%%%%');
-    console.log(cartRestaurant)
-    console.log(restaurantsManager.getShopDataFromName(cartRestaurant));
     if (mapRef.current) {
       mapRef.current.animateToRegion(
         {
@@ -587,6 +583,7 @@ function Checkout(props) {
 
       const resposne = await restaurantsManager.editOrder(order);
       setOrderSubmitting(false);
+      await clearCart();
 
       if (resposne.status) {
         props?.navigation.replace('MyOrders')

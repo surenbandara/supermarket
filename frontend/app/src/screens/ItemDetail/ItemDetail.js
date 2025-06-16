@@ -118,7 +118,6 @@ function ItemDetail(props) {
   })
 
   useEffect(() => {
-    console.log('777777777777777777777777');
     async function Track() {
       try {
         await Analytics.track(Analytics.events.OPENED_RESTAURANT_ITEM, {
@@ -444,54 +443,19 @@ function ItemDetail(props) {
         >
           <View>
           {food?.image ? <ImageHeader image={food?.image} /> : <Text>No image to display</Text>}
-          <Text style={{ color: 'white', width: '100%', height: 'auto', fontSize: 14 }}>
-            {food?.description}
-          </Text>
           <HeadingComponent title={food?.title} price={calculatePrice()}  /> 
           </View>
           <View style={[styles(currentTheme).subContainer,]}>
-            <View>
-              {food?.variations?.length > 1 && (
-                <View>
-                  <TitleComponent
-                    title={t('SelectVariation')}
-                    subTitle={t('SelectOne')}
-                    status={t('Required')}
-                  />
-                  <RadioComponent
-                    options={food?.variations}
-                    selected={selectedVariation}
-                    onPress={(e) => {
-                      onSelectVariation(food?.variations.find((v) => v._id === e._id))
-                    }}
-                    setSelectedVariation={onSelectVariation}
-                    selectedVariation={selectedVariation}
-                  />
-                </View>
-              )}
-              {selectedVariation?.addons?.map((addon) => (
-                <View key={addon?._id}>
-                  <TitleComponent
-                    title={addon?.title}
-                    subTitle={addon?.description}
-                    error={addon.error}
-                    status={
-                      addon?.quantityMinimum === 0
-                        ? t('optional')
-                        : `${addon?.quantityMinimum} ${t('Required')}`
-                    }
-                  />
-                  <Options addon={addon} onSelectOption={onSelectOption} addonRefs={addonRefs} />
-                </View>
-              ))}
-            </View>
 
             <View style={styles(currentTheme).line}></View>
             <View style={styles(currentTheme).inputContainer}>
               <TitleComponent
-                title={t('specialInstructions')}
-                subTitle={t('anySpecificPreferences')}
-                status={t('optional')}
+                description={"Features "}
+                size={"Size "}
+                sizeDetails={food?.additionalData?.size}
+                descriptionDetails={food?.additionalData?.description}
+                color={"Color "}
+                colorDetails={food?.additionalData?.color}
               />
               <TextField
                 style={styles(currentTheme).input}

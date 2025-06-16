@@ -95,8 +95,6 @@ function Restaurant(props) {
   const navigation = useNavigation()
   const route = useRoute()
   const propsData = route.params
-  console.log('propsData', propsData)
-  console.log(propsData);
   const translationY = useSharedValue(0)
   const circle = useSharedValue(0)
 

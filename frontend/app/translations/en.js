@@ -129,7 +129,7 @@ export const en = {
   error: 'Error',
   noMoreItems: 'No more items in stock',
   hungry: 'Hungry',
-  emptyCartBtn: 'Back to Food',
+  emptyCartBtn: 'Back to Shopping',
   emptyFavBtn: "Let's find some favourites",
   subTotal: 'Subtotal',
   deliveryFee: 'Delivery Fee',
@@ -576,7 +576,7 @@ export const en = {
   yourEmail: 'Log in easily by entering your email!',
   yourEmailPassword: 'Please enter your passwords now for access!',
   brandName: 'AFM Delivery',
-  welcomeText: 'Welcome to AFSU Delivery',
+  welcomeText: 'Welcome to AFM Delivery',
   createAccountDesc:
     'Enjoy the best restaurants or get what you need from nearby stores, delivered',
   phoneNumber: 'Phone Number',

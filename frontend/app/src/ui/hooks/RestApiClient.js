@@ -34,7 +34,6 @@ export const API_ENDPOINTS = {
     }
   
     async makeRequest(url, method, body) {
-      console.log('Making request with headers:', this.defaultHeaders);
       let finalUrl = `${this.SERVER_URL}${url}`;
       const options = {
         method,

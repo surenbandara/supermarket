@@ -102,7 +102,7 @@ const Item = ({ item, navigation, currentTheme, configuration }) => {
             {item.shop?.name}
             </TextDefault>
             <TextDefault h3 bold textColor={currentTheme.secondaryText} isRTL>
-            {item?.id}
+            #{item?.id}
             </TextDefault>
           </View>
           <View style={{ flex: 1 }}>
@@ -168,7 +168,7 @@ const Item = ({ item, navigation, currentTheme, configuration }) => {
                 textColor={currentTheme.fontMainColor}
                 bolder
               isRTL>
-                {` Total cost ${configuration.currencySymbol}. ${parseFloat(item.totalPrice.totalCost).toFixed(2)}`}
+                {` Total cost ${configuration.currencySymbol} ${parseFloat(item.totalPrice.totalCost).toFixed(2)}`}
               </TextDefault>
             </View>
           </View>

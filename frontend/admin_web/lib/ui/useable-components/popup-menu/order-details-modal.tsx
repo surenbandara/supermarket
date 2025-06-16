@@ -33,7 +33,8 @@ const OrderDetailModal: React.FC<any> = ({
     onUpdate(restuarent, () => setShowLoading(false));
   }
 
-  if (!restaurantData) return null;
+  console.log("IIIIIIIIIIIIII ", restaurantData);
+  if (restaurantData == null) return null;
 
   return (
     <Dialog
@@ -46,7 +47,7 @@ const OrderDetailModal: React.FC<any> = ({
       <div className="order-details-container">
         <div className="order-section">
             <h3 className="section-header">Shop</h3>
-            <p>{restaurantData.bill[0].product.shop}</p>
+            <p>{restaurantData.bill[0].product?.shop}</p>
           </div>
         {/* Items Section */}
         <div className="order-section">
@@ -56,7 +57,10 @@ const OrderDetailModal: React.FC<any> = ({
               {restaurantData.bill.map((item: any, index: any) => (
                 <div key={index} className="item-row">
                   <span>
-                    {item.product.name}  x  {item.quantity}
+                    {item.product?.name ?? "Undeffined"}  x  {item.quantity}
+                  </span>
+                  <span className="item-price">
+                    {(item.disctipion ?? "-")}
                   </span>
                   <span className="item-price">
                     Rs. {(item.truePrice ?? 0).toFixed(2)}

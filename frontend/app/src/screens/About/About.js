@@ -112,44 +112,6 @@ function About(props) {
               </View>
             </View>
 
-            {/* <View style={alignment.MTxSmall}>
-              {todayOpeningTimes && (
-                <View style={styles(currentTheme).timingRow}>
-                  <View>
-                    <AntDesign
-                      name='clockcircle'
-                      size={12}
-                      color={
-                        !IsOpen
-                          ? currentTheme.red600
-                          : currentTheme.main
-                      }
-                    />
-                  </View>
-                  <TextDefault isRTL textColor={currentTheme.fontThirdColor} H5 bold>
-                    {t(todayOpeningTimes?.day)}{' '}
-                  </TextDefault>
-                  {todayOpeningTimes?.times?.length < 1 ? (
-                    <TextDefault isRTL small bold center>
-                      {t('ClosedAllDay')}
-                    </TextDefault>
-                  ) : (
-                    todayOpeningTimes?.times?.map((timing, index) => (
-                      <TextDefault isRTL
-                        key={index}
-                        textColor={currentTheme.fontThirdColor}
-                        H5
-                        bold
-                      >
-                        {timing.startTime[0]}:{timing.startTime[1]} -{' '}
-                        {timing.endTime[0]}:{timing.endTime[1]}
-                      </TextDefault>
-                    ))
-                  )}
-                </View>
-              )}
-            </View> */}
-
             <View style={alignment.MTsmall}>
               <TextDefault isRTL textColor={currentTheme.fontThirdColor} H5 bold>
                 {t('preservationText')}
@@ -157,7 +119,7 @@ function About(props) {
             </View>
           </View>
 
-          <View>
+          {/* <View>
             <View style={alignment.MTlarge}>
               <TextDefault isRTL H3 bolder textColor={currentTheme.fontThirdColor}>
                 {t('location')}
@@ -168,9 +130,9 @@ function About(props) {
                 {restaurantObject.address}
               </TextDefault>
             </View>
-          </View>
+          </View> */}
 
-          <View>
+          {/* <View>
             <View style={alignment.MTlarge}>
               <TextDefault isRTL H3 textColor={currentTheme.fontThirdColor} bolder>
                 {t('openingHours')}
@@ -178,40 +140,11 @@ function About(props) {
             </View>
 
             <View style={styles().timingContainer}>
-              {/* {restaurantObject.openingTimes.map((v, index) => (
-                <View key={index} style={styles(currentTheme).timingRowMain}>
-                  <TextDefault isRTL
-                    style={styles().timingText}
-                    textColor={currentTheme.fontThirdColor}
-                    bolder
-                    large
-                  >
-                    {t(v.day)}{' '}
-                  </TextDefault>
-                  {v?.times?.length < 1 ? (
-                    <TextDefault isRTL key={index + 8} small bold center>
-                      {t('ClosedAllDay')}
-                    </TextDefault>
-                  ) : (
-                    v?.times?.map((t) => (
-                      <TextDefault isRTL
-                        key={index + 8}
-                        textColor={currentTheme.fontThirdColor}
-                        large
-                      >
-                        {t.startTime[0]}:{t.startTime[1]}
-                        {' - '}
-                        {t.endTime[0]}:{t.endTime[1]}
-                      </TextDefault>
-                    ))
-                  )}
-                </View>
-              ))} */}
             </View>
-          </View>
+          </View> */}
 
          
-          <View>
+          {/* <View>
             <View style={[alignment.MTlarge]}>
               <TextDefault isRTL H3 bolder textColor={currentTheme.fontThirdColor}>
                 {t('deliveryInformation')}
@@ -247,7 +180,7 @@ function About(props) {
                 {restaurantObject.restaurantTax}
               </TextDefault>
             </View>
-          </View>
+          </View> */}
 
           <View>
             <View style={alignment.MTlarge}>

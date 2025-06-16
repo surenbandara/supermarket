@@ -13,7 +13,7 @@ const styles = (props = null) =>
   rightContainer: {
     justifyContent: 'center',
     alignItems: 'center',
-    width: '25%',
+    width: '80%',
     backgroundColor: '#F3F4F6',
     borderRadius: scale(20),
     borderWidth:scale(1),

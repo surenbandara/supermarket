@@ -11,6 +11,14 @@ export interface IProductForm {
   timestamp: number;
   image: string;
   discount: number;
+  additionalData: IProductAdditionalForm;
+}
+
+export interface IProductAdditionalForm {
+  color: string;
+  expirationDate: number;
+  size: string;
+  description: string;
 }
 
 export interface IProductErrors {

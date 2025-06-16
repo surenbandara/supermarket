@@ -289,6 +289,43 @@ export default function ProductAddForm({
           }}
         />
 
+         <CustomTextField
+          type="text"
+          name="additionalData.description"
+          placeholder={'Description'}
+          value={String(values.additionalData?.description || '')}
+          onChange={handleChange}
+          showLabel={true}
+          style={{
+            borderColor: ''
+          }}
+        />
+
+         <CustomTextField
+          type="text"
+          name="additionalData.size"
+          placeholder={'Size'}
+          value={String(values.additionalData?.size || '')}
+          onChange={handleChange}
+          showLabel={true}
+          style={{
+            borderColor: ''
+          }}
+        />
+
+
+        <CustomTextField
+          type="text"
+          name="additionalData.color"
+          placeholder={'Color'}
+          value={String(values.additionalData?.color || '')}
+          onChange={handleChange}
+          showLabel={true}
+          style={{
+            borderColor: ''
+          }}
+        />
+
       <CustomUploadImageComponent
           name="image"
           error=''
@@ -308,15 +345,15 @@ export default function ProductAddForm({
         />
 
 
-  <div className="mt-4 flex justify-end">
-    <CustomButton
-      className="h-10 w-fit border-gray-300 bg-black px-8 text-white"
-      label={product ? t('Update') : t('Add')}
-      type="submit"
-      loading={isSubmitting}
-    />
-  </div>
-</div>
+      <div className="mt-4 flex justify-end">
+        <CustomButton
+          className="h-10 w-fit border-gray-300 bg-black px-8 text-white"
+          label={product ? t('Update') : t('Add')}
+          type="submit"
+          loading={isSubmitting}
+        />
+      </div>
+    </div>
 
 
                     </Form>

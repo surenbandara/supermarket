@@ -60,6 +60,8 @@ const CartItem = (props) => {
     animateQuantityChange()
   }, [props?.quantity])
 
+  console.log("XXXXXXXXXXXXXXX ",props)
+
   return (
     <View style={styles(currentTheme).itemContainer}>
       <View
@@ -90,7 +92,7 @@ const CartItem = (props) => {
               : props?.name}
           </TextDefault>
 
-          {props?.itemAddons?.length > 0 && (
+          {props?.descriptions!= "" && (
             <View style={styles().additionalItem}>
               <View>
                 <TouchableOpacity
@@ -107,8 +109,7 @@ const CartItem = (props) => {
                     Normal
                     isRTL
                   >
-                    {props?.name?.slice(0, 3)?.length}{' '}
-                    {t('additionalItems')}
+                    {"Descriptions"}
                   </TextDefault>
                   <Feather
                     name={isDropdownOpen ? 'chevron-up' : 'chevron-down'}
@@ -118,16 +119,13 @@ const CartItem = (props) => {
                 </TouchableOpacity>
                 {isDropdownOpen && (
                   <View style={styles().itemsDropdown}>
-                    {props?.name?.slice(0, 3)?.map((item, index) => (
-                      <TextDefault
-                        key={index}
+                    <TextDefault
                         textColor={currentTheme.secondaryText}
                         Normal
                         isRTL
                       >
-                        {item}
+                        {props?.descriptions}
                       </TextDefault>
-                    ))}
                   </View>
                 )}
               </View>
