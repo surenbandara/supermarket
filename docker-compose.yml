@@ -37,6 +37,7 @@ services:
     volumes:
       - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
       - ./nginx/certs:/etc/nginx/certs:ro
+      - ./frontend/admin_web/out:/usr/share/nginx/html:ro
     restart: always
 
 
