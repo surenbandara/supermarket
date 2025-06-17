@@ -28,7 +28,7 @@ import { useConfiguration } from '@/lib/hooks/useConfiguration';
 import { useUserContext } from '@/lib/hooks/useUser';
 import { RestaurantSchema } from '@/lib/utils/schema';
 import { RestaurantErrors, SHOP_TYPE } from '@/lib/utils/constants';
-import { useState } from 'react';
+import { use, useEffect, useState } from 'react';
 import CustomInputSwitch from '@/lib/ui/useable-components/custom-input-switch';
 
 export default function RestaurantAddForm({
@@ -57,6 +57,10 @@ export default function RestaurantAddForm({
   const {user} = useUserContext();
   const [imageUri, setImageUri] = useState<string>(restaurant?.image ?? null);
 
+  useEffect(() => {
+    setImageUri(restaurant?.image ?? null)
+  }, [restaurant]);
+
   // Form Submission
   const handleSubmit =  async (
     values: IRestaurantForm,
@@ -67,8 +71,9 @@ export default function RestaurantAddForm({
         let response: any;
         const request: any = values;
         request.category = request.category.code;
-        console.log("Imagee urrriii ", imageUri);
-        request.image = imageUri;
+        if (imageUri != null){
+          request.image = imageUri;
+        }
         if (restaurant) {
           response = await api.put(`${SERVER_URL}/shop`, request, user?.jwtToken);
         } else {

@@ -31,7 +31,7 @@ import { useCusineContext } from '@/lib/hooks/useCuisine';
 import { IDropdownSelectItem } from '@/lib/utils/interfaces';
 import { SelectItem } from 'primereact/selectitem';
 import TagSelectorComponent from '@/lib/ui/useable-components/tag-selector';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 export default function ProductAddForm({
   onHide,
@@ -40,12 +40,12 @@ export default function ProductAddForm({
   isAddProductVisible,
   setReload
 }: any) {
-  const initialValues: IProductForm =  product ?? {
+  const initialValues: any =  product ?? {
     id: 0,
     name: '',
     price: 0,
     quantity: 0,
-    cusine: '',
+    cusine: [],
     brand: '',
     shop: '',
     timestamp: 0
@@ -58,9 +58,18 @@ export default function ProductAddForm({
   const {SERVER_URL} = useConfiguration();
   const {user} = useUserContext();
   const {cusines} = useCusineContext();
-  const [imageUri, setImageUri] = useState<string>('');
+  const [cusineList, setCusineList] = useState<string[]>(product?.cusine ?? []); 
+  const [imageUri, setImageUri] = useState<string>(product?.image ?? null);
 
+  console.log('Cusineeee  ', cusines);
+  console.log('initialValues  ', initialValues);
 
+  useEffect(() => {
+      setImageUri(product?.image ?? null)
+      setCusineList(product?.cusine ?? [])
+    }, [product]);
+
+    
   // Form Submission
   const handleSubmit =  async (
     values: IProductForm,
@@ -71,9 +80,11 @@ export default function ProductAddForm({
       let message = '';
       try {
         let payload: any = values;
-        payload.cusine = [(values?.cusine as any).code]
-        payload.image = imageUri;
-        let response: any;
+        // payload.cusine = cusineList
+        if (imageUri != null){
+          payload.image = imageUri;
+        }
+        let response: any; 
         if (product) {
           response = await api.put(`${SERVER_URL}/product`, payload, user?.jwtToken);
         } else {
@@ -146,6 +157,7 @@ export default function ProductAddForm({
                   errors,
                   handleChange,
                   handleSubmit,
+                  isSubmitting,
                   setFieldValue
                 }) => {
                   console.log(errors);
@@ -207,12 +219,12 @@ export default function ProductAddForm({
           }}
         />
 
-        <div>
+        {/* <div>
           <TagSelectorComponent
             name="cusine"
             placeholder={'Cuisine Category'}
-            selectedItem={values.cusine}
-            setSelectedItem={setFieldValue}
+            selectedItems={cusineList}
+            setSelectedItems={setCusineList}
             options={cusines?.map((cusine) => {return {code: cusine.name, label: cusine.name}}) as IDropdownSelectItem[]}
             showLabel={true}
             style={{
@@ -225,7 +237,7 @@ export default function ProductAddForm({
                 : '',
             }}
           />
-        </div>
+        </div> */}
 
         <CustomTextField
           type="text"
@@ -277,6 +289,43 @@ export default function ProductAddForm({
           }}
         />
 
+         <CustomTextField
+          type="text"
+          name="additionalData.description"
+          placeholder={'Description'}
+          value={String(values.additionalData?.description || '')}
+          onChange={handleChange}
+          showLabel={true}
+          style={{
+            borderColor: ''
+          }}
+        />
+
+         <CustomTextField
+          type="text"
+          name="additionalData.size"
+          placeholder={'Size'}
+          value={String(values.additionalData?.size || '')}
+          onChange={handleChange}
+          showLabel={true}
+          style={{
+            borderColor: ''
+          }}
+        />
+
+
+        <CustomTextField
+          type="text"
+          name="additionalData.color"
+          placeholder={'Color'}
+          value={String(values.additionalData?.color || '')}
+          onChange={handleChange}
+          showLabel={true}
+          style={{
+            borderColor: ''
+          }}
+        />
+
       <CustomUploadImageComponent
           name="image"
           error=''
@@ -296,14 +345,15 @@ export default function ProductAddForm({
         />
 
 
-  <div className="mt-4 flex justify-end">
-    <CustomButton
-      className="h-10 w-fit border-gray-300 bg-black px-8 text-white"
-      label={product ? t('Update') : t('Add')}
-      type="submit"
-    />
-  </div>
-</div>
+      <div className="mt-4 flex justify-end">
+        <CustomButton
+          className="h-10 w-fit border-gray-300 bg-black px-8 text-white"
+          label={product ? t('Update') : t('Add')}
+          type="submit"
+          loading={isSubmitting}
+        />
+      </div>
+    </div>
 
 
                     </Form>

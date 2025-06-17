@@ -273,15 +273,22 @@ function Cart(props) {
       setOrderSubmitting(true);
       const date = Date.now();
       const order = {
-        id: `${date}`, 
+        id: date, 
         productList: cart.map((item) => ({
           productId: item._id,
           quantity: item.quantity,
           requestedPrice: item.price,
           truePrice: item.price,
-          availableQuantity: 0
+          availableQuantity: 0,
+          disctipion: item.specialInstructions
         })),
-      totalPrice: calculateTotal(), 
+      totalPrice: {
+        "totalCost": parseFloat(calculateTotal()),
+        "deliveryCost": 0,
+        "loyaltyPoints": 0,
+        "discount": 0,
+        "payableAmount": 0
+      }, 
       status: "NEW", 
       paymentMethod: "CASH", 
       paymentStatus : "PENDING",
@@ -290,11 +297,8 @@ function Cart(props) {
       timestamp: date
       }
 
-      console.log('Order submitted');
-
       const response = await restaurantsManager.submitOrder(order);
       setOrderSubmitting(false);
-      console.log('Order response:', response);
       if (response.status === true) {
         let availability = true;
         for(let i of response.payload.productList) {
@@ -353,7 +357,7 @@ function Cart(props) {
         </View>
         <View style={styles().descriptionEmpty}>
           <TextDefault textColor={currentTheme.fontMainColor} bolder center>
-            {t('hungry')}?
+            Need Anything?
           </TextDefault>
           <TextDefault textColor={currentTheme.fontSecondColor} bold center>
             {t('emptyCart')}
@@ -563,7 +567,6 @@ function Cart(props) {
                   </TextDefault>
                   {cart?.map((cartItem, index) => {
                     const food = cartItem
-                    console.log("dssssssssssssss", food)
                     if (!food) return null
                     return (
                       <View
@@ -575,7 +578,7 @@ function Cart(props) {
                           name={food.name}
                           optionsTitle={food.name}
                           itemImage={food.image}
-                          itemAddons={food.addons}
+                          descriptions={food.specialInstructions}
                           itemShop={food.shop}
                           dealPrice={(
                             parseFloat(food.price) * food.quantity

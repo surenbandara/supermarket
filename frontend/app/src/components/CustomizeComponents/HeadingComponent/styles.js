@@ -25,7 +25,8 @@ const styles = (props = null) =>
       ...alignment.MBsmall
     },
     descContainer: {
-      width: '100%',
+      width: 'auto',
+      ...alignment.MTsmall,
       ...alignment.MBsmall
     }
   })

@@ -33,18 +33,12 @@ export default function AnimatedSplashScreen({ children }) {
     try {
 
       let userInfo = await GoogleSignin.signInSilently();
-      console.log('Is user signed in:', userInfo);
       if (userInfo) {
-        console.log('User is signed in:', userInfo);
         const googleCredential = auth.GoogleAuthProvider.credential(userInfo.data.idToken);
         const userCredential = await auth().signInWithCredential(googleCredential);
         const firebaseIdToken = await userCredential.user.getIdToken();
-        console.log('Firebase ID Token:', firebaseIdToken);
-        console.log('User email:', userInfo.data.user.email);
-        console.log('User info:', userInfo);
         await restaurantsManager.login(userInfo.data.user.email, firebaseIdToken);
         await restaurantsManager.fetchAll();
-        console.log('Ovverrrrr');
       }
     } catch (e) {
       console.error(e)

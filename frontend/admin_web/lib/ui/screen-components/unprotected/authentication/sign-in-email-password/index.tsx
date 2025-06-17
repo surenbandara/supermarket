@@ -51,8 +51,8 @@ import restaurantManager from '@/lib/utils/RestuarentManger';
 import { useConfiguration } from '@/lib/hooks/useConfiguration';
 
 const initialValues: ISignInForm = {
-  email: 'systemAdmin@gmail.com',
-  password: 'admin@123',
+  email: '',
+  password: '',
 };
 
 export default function LoginEmailPasswordMain() {

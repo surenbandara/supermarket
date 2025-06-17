@@ -192,6 +192,15 @@ const Item = ({ item, navigation, currentTheme, configuration, onPressReview }) 
                   isRTL>
                     {item.shop?.name}
                   </TextDefault>
+                   <TextDefault
+                    textColor={currentTheme.fontMainColor}
+                    uppercase
+                    bolder
+                    numberOfLines={2}
+                    style={styles(currentTheme).restaurantName}
+                  isRTL>
+                    #{item.id}
+                  </TextDefault>
                 </View>
                 <View style={styles(currentTheme).subContainerRight}>
                   {/* <TextDefault textColor={currentTheme.fontMainColor} bolder isRTL>

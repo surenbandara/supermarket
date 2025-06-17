@@ -15,7 +15,7 @@ function HeadingComponent(props) {
   const currentTheme = {isRTL: i18n.dir() === 'rtl', ...theme[themeContext.ThemeValue]}
 
   return (
-    <View style={{marginTop:15}}>
+    <View style={{marginTop:1}}>
       <View style={styles(currentTheme).topContainer}>
         <View style={styles().titleContainer}>
           <TextDefault
@@ -23,7 +23,7 @@ function HeadingComponent(props) {
             textColor={currentTheme.fontMainColor}
             H4
             bolder>
-            {props?.title}
+            {props?.title} ({props?.brand})
           </TextDefault>
         </View>
         <View style={styles.priceContainer}>
@@ -33,15 +33,15 @@ function HeadingComponent(props) {
             bolder>{`${configuration.currencySymbol}${formatNumber(props?.price)}`}</TextDefault>
         </View>
       </View>
-      <View style={styles().descContainer}>
+      {/* <View style={styles().descContainer}>
         <TextDefault
           numberOfLines={1}
           textColor={currentTheme.fontSecondColor}
           H4
           bold>
-          {props?.desc}
+          {props?.brand}
         </TextDefault>
-      </View>
+      </View> */}
     </View>
   )
 }

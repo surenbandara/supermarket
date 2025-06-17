@@ -19,7 +19,7 @@ class RestaurantManager {
   networkStatus = false;
   apiClient;
   fireBaseConfig = {
-    webClientId: '805680858281-nqkvefqrc0rfr31855c7he8oj4f9b1j6.apps.googleusercontent.com',
+    webClientId: '992013307518-j4veri5p3gr28kaf6ghethq1cvv7g7ql.apps.googleusercontent.com',
   }
   token = null;
   user = null;
@@ -42,7 +42,6 @@ class RestaurantManager {
   }
 
   async login(email, idToken) {
-    console.log("Logging in with email:", email);
     try {
       const data = await this.apiClient.query("LOGIN", "POST", {"email": email, "token": idToken});
       ToastAndroid.showWithGravity(
@@ -52,8 +51,6 @@ class RestaurantManager {
       )
       this.user = data.basicUserDetails
       this.token = data.jwtToken;
-      console.log("Login successful:", this.user);
-      console.log("Token received:", this.token);
       this.apiClient.setToken(this.token);
     } catch (err) {
       ToastAndroid.showWithGravity(
@@ -158,13 +155,13 @@ class RestaurantManager {
     };
   
     newOrders.forEach((newOrder) => {
-      const oldOrder = oldOrders.find(o => o.id === newOrder.id);
-      if (oldOrder && oldOrder.status !== newOrder.status) {
+      const oldOrder = oldOrders.find(o => o.id == newOrder.id);
+      if (oldOrder && oldOrder.status != newOrder.status) {
         const newStatus = newOrder.status;
         if (newStatus === 'NEW') return;
   
         const message = statusMessages[newStatus];
-        if (!message) return;
+        //if (!message) return;
         Notifications.scheduleNotificationAsync({
           content: {
             title: `Order #${newOrder.id} Update`,
@@ -187,15 +184,11 @@ class RestaurantManager {
 
   async fetchAll() {
     await this.refetchProducts(false);
-    await new Promise(resolve => setTimeout(resolve, 2000));
     await this.refetchShop(false);
-    await new Promise(resolve => setTimeout(resolve, 2000));
     await this.refetchSystemParamteres(false);
-    await new Promise(resolve => setTimeout(resolve, 2000));
     await this.refetchOrders(false);
     // console.log("Shop data:", this.shopData);
     // console.log("Product data:", this.productData);
-    console.log("System parameters:", this.systemParameters);
     //console.log("Orders:", this.orders);
   }
 
@@ -221,7 +214,6 @@ class RestaurantManager {
       return {status: true, payload:data};
     } catch (err) {
       this.error = err;
-      console.log('Error editing order:', err);
       this.loading = false;
       return {status: false, error: err};
     } finally { 
@@ -269,11 +261,10 @@ class RestaurantManager {
         return item;
       });
 
-      this.orders = updatedOrders;
       this.checkStatusUpdates(this.orders, updatedOrders);
+      this.orders = updatedOrders;
       
     } catch (err) {
-      console.log("Error fetching orders:", err);
       this.error = err;
     } finally {
       if (loadingEnable) {

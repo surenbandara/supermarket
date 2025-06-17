@@ -416,7 +416,7 @@ function Account(props) {
 
               <View style={styles(currentTheme).subContainer}>
                 <View>
-                  <ButtonContainer
+                  {/* <ButtonContainer
                     title={t('email')}
                     detail={profile?.email}
                     status={
@@ -449,7 +449,7 @@ function Account(props) {
                       })
                     }
                   />
-                  <View style={styles(currentTheme).line} />
+                  <View style={styles(currentTheme).line} /> */}
 
                   <View style={[styles().padding]}>
                     <TextDefault
@@ -510,115 +510,12 @@ function Account(props) {
                   </View>
                   <View style={styles(currentTheme).line} />
 
-                  <ButtonContainer
-                    title={t('DeleteAccount')}
-                    detail={''}
-                    status='null'
-                    onPress={() => setDeleteModalVisible(true)}
-                  />
+                
                   <View style={styles(currentTheme).line} />
                 </View>
 
                 <View style={styles(currentTheme).mainContainerArea}>
-                  <View
-                    style={[
-                      styles(currentTheme).languageContainer,
-                      styles().checkboxSettings,
-                      styles().padding
-                    ]}
-                  >
-                    <View>
-                      <CheckboxBtn
-                        checked={orderNotification}
-                        onPress={() => {
-                          updateNotificationStatus('order')
-                          setBtnText('order')
-                        }}
-                      />
-                    </View>
-                    <TouchableOpacity
-                      activeOpacity={0.7}
-                      onPress={() => {
-                        updateNotificationStatus('order')
-                        setBtnText('order')
-                      }}
-                    >
-                      <View
-                        style={
-                          styles(currentTheme).notificationChekboxContainer
-                        }
-                      >
-                        <TextDefault
-                          // numberOfLines={1}
-                          textColor={currentTheme.darkBgFont}
-                          style={alignment.MLsmall}
-                          isRTL
-                        >
-                          {' '}
-                          {t('receivePushNotification')}{' '}
-                        </TextDefault>
-                      </View>
-                      {loading && btnText === 'order' && (
-                        <View>
-                          <Spinner
-                            size='small'
-                            backColor='transparent'
-                            spinnerColor={currentTheme.main}
-                          />
-                        </View>
-                      )}
-                    </TouchableOpacity>
-                  </View>
-
-                  <View
-                    style={[
-                      styles(currentTheme).languageContainer,
-                      styles().checkboxSettings,
-                      styles().padding
-                    ]}
-                  >
-                    <View>
-                      <CheckboxBtn
-                        checked={offerNotification}
-                        onPress={() => {
-                          updateNotificationStatus('offer')
-                          setBtnText('offer')
-                        }}
-                      />
-                    </View>
-                    <TouchableOpacity
-                      activeOpacity={0.7}
-                      onPress={() => {
-                        updateNotificationStatus('offer')
-                        setBtnText('offer')
-                      }}
-                    >
-                      <View
-                        style={
-                          styles(currentTheme).notificationChekboxContainer
-                        }
-                      >
-                        <TextDefault
-                          // numberOfLines={1}
-                          textColor={currentTheme.darkBgFont}
-                          style={alignment.MLsmall}
-                          isRTL
-                        >
-                          {' '}
-                          {t('receiveOfferByEmail')}{' '}
-                        </TextDefault>
-                      </View>
-                      {loading && btnText === 'offer' && (
-                        <View>
-                          <Spinner
-                            size='small'
-                            backColor='transparent'
-                            spinnerColor={currentTheme.main}
-                          />
-                        </View>
-                      )}
-                    </TouchableOpacity>
-                  </View>
+                
 
                   <View
                     style={[
@@ -656,7 +553,7 @@ function Account(props) {
                   </View>
                 </View>
 
-                <View>
+                {/* <View>
                   <TextDefault
                     H2
                     bolder
@@ -686,7 +583,7 @@ function Account(props) {
                       )
                     }}
                   />
-                </View>
+                </View> */}
 
                 {/* <View style={styles().padding}>
                   <TextDefault

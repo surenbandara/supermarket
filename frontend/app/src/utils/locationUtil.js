@@ -33,7 +33,6 @@ export const isPointInPolygon = (point, polygon) => {
         );
         
         if (isInside) {
-          console.log('Found matching city:', city.name); // For debugging
           return city;
         }
       }

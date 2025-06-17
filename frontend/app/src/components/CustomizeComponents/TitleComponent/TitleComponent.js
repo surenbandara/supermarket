@@ -13,6 +13,8 @@ function TitleComponent(props) {
 
 
   return (
+    <>
+    {(props?.descriptionDetails && props?.descriptionDetails != "" ) ?
     <View style={styles(currentTheme).mainContainer}>
       <View>
         <TextDefault
@@ -21,28 +23,93 @@ function TitleComponent(props) {
           H6
           bolder
           isRTL>
-          {props?.title}
-        </TextDefault>
-        <TextDefault
-          numberOfLines={1}
-          textColor={currentTheme.fontSecondColor}
-          small
-          isRTL
-        >
-          {props?.subTitle}
+          {props?.description}
         </TextDefault>
       </View>
       <View style={styles(currentTheme).rightContainer}>
         <TextDefault
           textColor={
-            currentTheme.color2
+            currentTheme.fontMainColor
           }
           H6
           center>
-          {props?.status}
+          {props?.descriptionDetails}
         </TextDefault>
       </View>
-    </View>
+    </View> : <></>}
+    {(props?.sizeDetails && props?.sizeDetails != "" ) ?
+    <View style={styles(currentTheme).mainContainer}>
+      <View>
+        <TextDefault
+          numberOfLines={1}
+          textColor={currentTheme.fontMainColor}
+          H6
+          bolder
+          isRTL>
+          {props?.size}
+        </TextDefault>
+      </View>
+      <View style={styles(currentTheme).rightContainer}>
+        <TextDefault
+          textColor={
+            currentTheme.fontMainColor
+          }
+          H6
+          center>
+          {props?.sizeDetails}
+        </TextDefault>
+      </View>
+    </View> : <></>
+    }
+    {(props?.colorDetails && props?.colorDetails != "" ) ?
+    <View style={styles(currentTheme).mainContainer}>
+      <View>
+        <TextDefault
+          numberOfLines={1}
+          textColor={currentTheme.fontMainColor}
+          H6
+          bolder
+          isRTL>
+          {props?.color}
+        </TextDefault>
+      </View>
+      <View style={styles(currentTheme).rightContainer}>
+        <TextDefault
+          textColor={
+            currentTheme.fontMainColor
+          }
+          H6
+          center>
+          {props?.colorDetails}
+        </TextDefault>
+      </View>
+    </View> : <></>
+    }
+    {(props?.brandDetails && props?.brandDetails != "" ) ?
+    <View style={styles(currentTheme).mainContainer}>
+      <View>
+        <TextDefault
+          numberOfLines={1}
+          textColor={currentTheme.fontMainColor}
+          H6
+          bolder
+          isRTL>
+          {props?.brand}
+        </TextDefault>
+      </View>
+      <View style={styles(currentTheme).rightContainer}>
+        <TextDefault
+          textColor={
+            currentTheme.fontMainColor
+          }
+          H6
+          center>
+          {props?.brandDetails}
+        </TextDefault>
+      </View>
+    </View> : <></>
+    }
+    </>
   )
 }
 

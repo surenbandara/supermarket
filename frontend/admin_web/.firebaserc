@@ -1,5 +1,8 @@
 {
   "projects": {
-    "default": "test01-a1349"
-  }
+    "default": "supermarket-afm",
+    "staging": "supermarket-afm"
+  },
+  "targets": {},
+  "etags": {}
 }

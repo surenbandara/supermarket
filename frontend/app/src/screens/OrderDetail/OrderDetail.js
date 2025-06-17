@@ -95,6 +95,8 @@ if(!order)
 
 const cancelOrder = async () => {
   try {
+    order.bill = order.bill.toString();
+    order.totalPrice = order.totalPrice.toString();
     order.status = ORDER_STATUS_ENUM.CANCELLED;
     await restaurantsManager.cacelOrder(order);
     
@@ -308,7 +310,6 @@ export const OrderStatusImage = ({ status }) => {
       imagePath = require('../../assets/SVG/place-order.json')
       break
   }
-  console.log("imagePath",imagePath)
 
   if (!imagePath) return null
 

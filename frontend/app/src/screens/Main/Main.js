@@ -96,7 +96,9 @@ function Main(props) {
   }
   const handleRefresh = async () => {
     setIsRefreshing(true);
-    setIsRefreshing(false)
+    await restaurantsManager.refetchShop();
+    await restaurantsManager.refetchProducts();
+    setIsRefreshing(false);
   }
 
   const [loading, setLoading] = useState(true);
