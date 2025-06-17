@@ -96,6 +96,7 @@ export default function Detail({
             key={item.id}
             theme={theme}
             quantity={item.quantity}
+            description={item.disctipion}
             title={`${item.product?.name}`}
             currency={currencySymbol}
             price={item.truePrice}
@@ -109,6 +110,7 @@ export default function Detail({
 const ItemRow = ({
   theme,
   quantity,
+  description,
   title,
   options = [],
   price,
@@ -160,14 +162,16 @@ const ItemRow = ({
         <TextDefault Regular left bolder textColor={theme.gray900} isRTL>
           x{quantity}
         </TextDefault>
+        <TextDefault Regular left bolder textColor={theme.gray900} isRTL>
+          {description}
+        </TextDefault>
       </View>
       <TextDefault
-        right
-        style={{ width: '20%' }}
-        bolder
-        textColor={theme.gray900}
-        H5
-        isRTL
+         textColor={theme.gray500}
+          bolder
+          H5
+          bold
+          isRTL
       >
         {currency}
         {formatNumber(price)}

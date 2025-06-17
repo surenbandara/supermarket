@@ -153,7 +153,8 @@ export default function RiderAddForm({
                   values,
                   errors,
                   handleChange,
-                  handleSubmit
+                  handleSubmit,
+                  isSubmitting
                 }) => {
                   console.log(errors);
                   return (
@@ -240,7 +241,7 @@ export default function RiderAddForm({
                             className="h-10 w-fit border-gray-300 bg-black px-8 text-white"
                             label={rider ? t('Update') : t('Add')}
                             type="submit"
-                            loading={mutationLoading}
+                            loading={isSubmitting}
                           />
                         </div>
                       </div>

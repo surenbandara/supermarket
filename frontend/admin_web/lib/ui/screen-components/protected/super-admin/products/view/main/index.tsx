@@ -36,7 +36,7 @@ export default function ProductsMain({
   const { showToast } = useToast();
 
   // State - Table
-  const [deleteId, setDeleteId] = useState('');
+  const [deleteId, setDeleteId] = useState<number>();
   const [selectedProducts, setSelectedProducts] = useState<IProductResponse[]>(
     []
   );
@@ -97,7 +97,7 @@ export default function ProductsMain({
       label: t('Delete'),
       command: (data?: IProductResponse) => {
         if (data) {
-          setDeleteId(String(data.id));
+          setDeleteId(data.id);
         }
       },
     },
@@ -123,7 +123,7 @@ export default function ProductsMain({
         loading={loading}
         visible={!!deleteId}
         onHide={() => {
-          setDeleteId('');
+          setDeleteId(0);
         }}
         onConfirm={async () => {
           const response: any = await api.delete(`${SERVER_URL}/product`, {id: deleteId}, user?.jwtToken);
@@ -144,7 +144,7 @@ export default function ProductsMain({
               duration: 3000,
             });
           }
-          setDeleteId('');
+          setDeleteId(0);
         }}
         message={t('Are you sure you want to delete this product?')}
       />

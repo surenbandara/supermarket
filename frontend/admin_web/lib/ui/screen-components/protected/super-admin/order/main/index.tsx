@@ -234,10 +234,10 @@ export default function OrderSuperAdminMain() {
   }, [data]);
 
   const filteredData = useMemo(() => {
-    return tableData.filter((order: IExtendedOrder) => {
+    return tableData.filter((order: any) => {
       const statusFilter =
         selectedActions.length === 0 ||
-        selectedActions.includes(order.orderStatus);
+        selectedActions.includes(order.status);
       return statusFilter;
     });
   }, [tableData, selectedActions, searchTerm]);

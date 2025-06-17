@@ -66,7 +66,7 @@ const { height } = Dimensions.get('screen')
 
 // Animated Section List component
 const AnimatedSectionList = Animated.createAnimatedComponent(SectionList)
-const TOP_BAR_HEIGHT = height * 0.05
+const TOP_BAR_HEIGHT = height * 0.10
 const HEADER_MAX_HEIGHT =
   Platform.OS === 'android' ? height * 0.65 : height * 0.61
 const HEADER_MIN_HEIGHT = height * 0.07 + TOP_BAR_HEIGHT
@@ -95,8 +95,6 @@ function Restaurant(props) {
   const navigation = useNavigation()
   const route = useRoute()
   const propsData = route.params
-  console.log('propsData', propsData)
-  console.log(propsData);
   const translationY = useSharedValue(0)
   const circle = useSharedValue(0)
 
@@ -456,11 +454,18 @@ function Restaurant(props) {
                         {item?.name}
                       </TextDefault>
                       <TextDefault
-                        style={styles(currentTheme).priceText}
                         small
+                        bolder
                         isRTL
                       >
                         {wrapContentAfterWords(item?.description, 5)}
+                      </TextDefault>
+                      <TextDefault
+                        small
+                        isRTL
+                      >
+                        {' Available : '}
+                        {parseInt(item?.quantity)}
                       </TextDefault>
                       <View style={styles(currentTheme).dealPrice}>
                         <TextDefault
@@ -474,16 +479,7 @@ function Restaurant(props) {
                           {configuration.currencySymbol}
                           {parseFloat(item?.price).toFixed(2)}
                         </TextDefault>
-                          <TextDefault
-                            numberOfLines={1}
-                            textColor={currentTheme.fontSecondColor}
-                            style={styles(currentTheme).priceText}
-                            small
-                            isRTL
-                          >
-                           {' Quantity : '}
-                            {parseInt(item?.quantity)}
-                          </TextDefault>
+                        
                       </View>
                     </View>
                   </View>

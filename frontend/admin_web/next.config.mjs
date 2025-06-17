@@ -5,6 +5,7 @@ const withNextIntl = createNextIntlPlugin();
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   output: 'export',
+  unoptimized: true,
   trailingSlash: true,
   images: {
     dangerouslyAllowSVG: true,
@@ -20,6 +21,7 @@ const nextConfig = {
       { protocol: 'https', hostname: 'example.com' },
       { protocol: 'https', hostname: 'encrypted-tbn0.gstatic.com' },
       { protocol: 'https', hostname: 't4.ftcdn.net' },
+      { protocol: 'https', hostname: 'storage.googleapis.com' }
     ],
   },
 

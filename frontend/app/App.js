@@ -98,7 +98,6 @@ export default function App() {
 
   TaskManager.defineTask(BACKGROUND_FETCH_TASK, async () => {
     try {
-      console.log('🔁 Background fetch running...');
       restaurantsManager.fetchOrders();
       return BackgroundFetch.BackgroundFetchResult.NewData;
     } catch (err) {
@@ -110,7 +109,6 @@ export default function App() {
   useEffect(() => {
     const initBackgroundFetch = async () => {
       const status = await BackgroundFetch.getStatusAsync();
-      console.log('📦 Background fetch status:', status);
 
       if (status === BackgroundFetch.BackgroundFetchStatus.Available) {
         try {
@@ -119,7 +117,6 @@ export default function App() {
             stopOnTerminate: true,
             startOnBoot: true,
           });
-          console.log('✅ Background fetch task registered');
         } catch (err) {
           console.error('❌ Failed to register task', err);
         }

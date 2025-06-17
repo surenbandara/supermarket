@@ -11,8 +11,8 @@ export const API_ENDPOINTS = {
   
   export class RestApiClient {
     constructor(token) {
-      this.SERVER_URL = 'http://10.0.2.2:3000';
-      //this.SERVER_URL = 'http://afmdelivery.lk:3000';
+      //this.SERVER_URL = 'http://10.0.2.2:3000';
+      this.SERVER_URL = 'https://afmdelivery.lk/api';
       this.token = token;
       this.defaultHeaders = {
         'Content-Type': 'application/json',
@@ -21,7 +21,6 @@ export const API_ENDPOINTS = {
     }
 
     setToken(token) {
-      console.log('Setting token:', token);
       this.token = token;
       this.defaultHeaders = {
         'Content-Type': 'application/json',
@@ -34,7 +33,6 @@ export const API_ENDPOINTS = {
     }
   
     async makeRequest(url, method, body) {
-      console.log('Making request with headers:', this.defaultHeaders);
       let finalUrl = `${this.SERVER_URL}${url}`;
       const options = {
         method,
@@ -44,7 +42,6 @@ export const API_ENDPOINTS = {
       if (method == 'GET' && body) {
         const queryParams = new URLSearchParams(body).toString();
         finalUrl += `?${queryParams}`;
-        console.log('final url ', finalUrl)
       } else if (body) {
         options.body = JSON.stringify(body);
       }

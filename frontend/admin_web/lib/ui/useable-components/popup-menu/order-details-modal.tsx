@@ -33,7 +33,8 @@ const OrderDetailModal: React.FC<any> = ({
     onUpdate(restuarent, () => setShowLoading(false));
   }
 
-  if (!restaurantData) return null;
+  console.log("IIIIIIIIIIIIII ", restaurantData);
+  if (restaurantData == null) return null;
 
   return (
     <Dialog
@@ -46,7 +47,7 @@ const OrderDetailModal: React.FC<any> = ({
       <div className="order-details-container">
         <div className="order-section">
             <h3 className="section-header">Shop</h3>
-            <p>{restaurantData.bill[0].product.shop}</p>
+            <p>{restaurantData.bill[0].product?.shop}</p>
           </div>
         {/* Items Section */}
         <div className="order-section">
@@ -56,10 +57,13 @@ const OrderDetailModal: React.FC<any> = ({
               {restaurantData.bill.map((item: any, index: any) => (
                 <div key={index} className="item-row">
                   <span>
-                    {item.product.name}  x  {item.quantity}
+                    {item.product?.name ?? "Undeffined"}  x  {item.quantity}
                   </span>
                   <span className="item-price">
-                    ${(item.truePrice ?? 0).toFixed(2)}
+                    {(item.disctipion ?? "-")}
+                  </span>
+                  <span className="item-price">
+                    Rs. {(item.truePrice ?? 0).toFixed(2)}
                   </span>
                 </div>
               ))}
@@ -75,24 +79,24 @@ const OrderDetailModal: React.FC<any> = ({
           <div className="charges-table">
             <div className="charges-row">
               <span>Subtotal</span>
-              <span>+ ${restaurantData?.totalPrice?.totalCost?.toFixed(2)}</span>
+              <span>+ Rs. {restaurantData?.totalPrice?.totalCost?.toFixed(2)}</span>
             </div>
             <div className="charges-row">
               <span>Delivery Fee</span>
-              <span>+ ${(restaurantData?.totalPrice?.deliveryCost ?? 0)?.toFixed(2)}</span>
+              <span>+ Rs. {(restaurantData?.totalPrice?.deliveryCost ?? 0)?.toFixed(2)}</span>
             </div>
             <div className="charges-row">
               <span>Discount</span>
-              <span> - ${(restaurantData?.totalPrice?.discount ?? 0)?.toFixed(2)}</span>
+              <span> - Rs. {(restaurantData?.totalPrice?.discount ?? 0)?.toFixed(2)}</span>
             </div>
             <div className="charges-row">
               <span>Loyality </span>
-              <span> - ${(restaurantData?.totalPrice?.loyaltyPoints ?? 0)?.toFixed(2)}</span>
+              <span> - Rs. {(restaurantData?.totalPrice?.loyaltyPoints ?? 0)?.toFixed(2)}</span>
             </div>
             <div className="charges-row total-row">
               <strong>Total</strong>
               <strong>
-                $
+                Rs. 
                 {restaurantData?.totalPrice?.payableAmount?.toFixed(2)}
               </strong>
             </div>
@@ -108,7 +112,7 @@ const OrderDetailModal: React.FC<any> = ({
           <div className="paid-amount">
             <span className="paid-label">Paid Amount</span>
             <span className="paid-value">
-              ${(restaurantData.paidAmount ?? 0)?.toFixed(2)}
+            Rs. {(restaurantData.paidAmount ?? 0)?.toFixed(2)}
             </span>
           </div>
         </div>

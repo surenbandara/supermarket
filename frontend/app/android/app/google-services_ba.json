@@ -1,0 +1,114 @@
+{
+  "project_info": {
+    "project_number": "805680858281",
+    "firebase_url": "https://test01-a1349-default-rtdb.asia-southeast1.firebasedatabase.app",
+    "project_id": "test01-a1349",
+    "storage_bucket": "test01-a1349.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:805680858281:android:ceabffbaf9f87f61d6d5b8",
+        "android_client_info": {
+          "package_name": "com.enatega.multirider"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "805680858281-7oh2fug2ha1tpn1h8pafs0l4vh5542ib.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.enatega.multirider",
+            "certificate_hash": "fa967443027ef89ff1db77a792148a003fda9f56"
+          }
+        },
+        {
+          "client_id": "805680858281-nqkvefqrc0rfr31855c7he8oj4f9b1j6.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDlC46JumcZJb_quntiOtep4nE0s2wPxKk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "805680858281-nqkvefqrc0rfr31855c7he8oj4f9b1j6.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:805680858281:android:5075a897633198cfd6d5b8",
+        "android_client_info": {
+          "package_name": "com.enatega.multivendor"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "805680858281-h88jiqdh5bo9ihimuqor6uud47shrpn0.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.enatega.multivendor",
+            "certificate_hash": "5e8f16062ea3cd2c4a0d547876baa6f38cabf625"
+          }
+        },
+        {
+          "client_id": "805680858281-nqkvefqrc0rfr31855c7he8oj4f9b1j6.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDlC46JumcZJb_quntiOtep4nE0s2wPxKk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "805680858281-nqkvefqrc0rfr31855c7he8oj4f9b1j6.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:805680858281:android:1f20a039ff8819dad6d5b8",
+        "android_client_info": {
+          "package_name": "com.kraken.supermarket"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "805680858281-nqkvefqrc0rfr31855c7he8oj4f9b1j6.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDlC46JumcZJb_quntiOtep4nE0s2wPxKk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "805680858281-nqkvefqrc0rfr31855c7he8oj4f9b1j6.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
