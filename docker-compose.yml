@@ -1,4 +1,4 @@
-version: "3.8"
+# version: "3.8"  # Removed as it's obsolete
 
 services:
   backend:
@@ -25,6 +25,21 @@ services:
     volumes:
       - mongodb_data:/data/db
     restart: always
+
+  nginx:
+    image: nginx:latest
+    container_name: nginx-sp
+    depends_on:
+      - backend
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./nginx/certs:/etc/nginx/certs:ro
+      - ./frontend/admin_web/out:/usr/share/nginx/html:ro
+    restart: always
+
 
 volumes:
   mongodb_data:
