@@ -99,6 +99,8 @@ paths:
                   type: string
                 phoneNumber:
                   type: string
+                address:
+                  type: string
                 profilePic:
                   type: string
       responses:
@@ -1835,6 +1837,8 @@ components:
         email:
           type: string
         phoneNumber:
+          type: string
+        address:
           type: string
         profilePic:
           type: string
