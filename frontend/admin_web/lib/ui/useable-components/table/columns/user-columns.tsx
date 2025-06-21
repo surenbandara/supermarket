@@ -16,6 +16,7 @@ export const USERS_TABLE_COLUMNS = () => {
     },
     { headerName: t('Email'), propertyName: 'email' },
     { headerName: t('Phone'), propertyName: 'phoneNumber' },
+    { headerName: "Address", propertyName: 'address' },
     { headerName: t('Role'), propertyName: 'role' },
     
   ];
