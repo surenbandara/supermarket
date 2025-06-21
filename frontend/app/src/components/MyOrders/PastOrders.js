@@ -20,6 +20,7 @@ import { scale } from '../../utils/scaling'
 import EmptyView from '../EmptyView/EmptyView'
 import { ORDER_STATUS_ENUM } from '../../utils/enums'
 import { restaurantsManager } from '../../ui/hooks'
+import { formatTimestamp } from '../../screens/MyOrders/MyOrders'
 
 function emptyViewPastOrders() {
   const orderStatusActive = ['PENDING', 'PICKED', 'ACCEPTED', 'ASSIGNED']
@@ -219,6 +220,7 @@ const Item = ({ item, navigation, currentTheme, configuration, onPressReview }) 
             <TextDefault h5 bold textColor={currentTheme.secondaryText} isRTL>
               {getOrderStatusMessage(item.status) }
             </TextDefault>
+            
           </View>
               <View style={{marginTop: 'auto'}}>
                 <TextDefault
@@ -230,9 +232,17 @@ const Item = ({ item, navigation, currentTheme, configuration, onPressReview }) 
                   {getItems(item.bill)}
                 </TextDefault>
               </View>
+           <TextDefault
+              h5
+              textColor={currentTheme.secondaryText}
+              small
+              isRTL
+              style={{ marginTop: 8 }}
+            >
+              {`Last update ${formatTimestamp(item.timestamp)}`}
+            </TextDefault>
             </View>
           </View>
-        
         </View>
       </TouchableOpacity>
     </View>

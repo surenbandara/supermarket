@@ -18,6 +18,7 @@ import Spinner from '../Spinner/Spinner'
 import EmptyView from '../EmptyView/EmptyView'
 import { restaurantsManager } from '../../ui/hooks'
 import { order } from '../../apollo/queries'
+import { formatTimestamp } from '../../screens/MyOrders/MyOrders'
 
 const ActiveOrders = ({ navigation, loading, error, activeOrders }) => {
   const { i18n } = useTranslation()
@@ -172,6 +173,14 @@ const Item = ({ item, navigation, currentTheme, configuration }) => {
               </TextDefault>
             </View>
           </View>
+           <TextDefault
+            h5
+            textColor={currentTheme.secondaryText}
+            small
+            isRTL
+          >
+            {`Updated on ${formatTimestamp(item.timestamp)}`}
+          </TextDefault>
         </View>
       </View>
     </TouchableOpacity>

@@ -21,6 +21,48 @@ import { restaurantsManager } from '../../ui/hooks'
 const orderStatusActive = ['PENDING', 'PICKED', 'ACCEPTED', 'ASSIGNED']
 const orderStatusInactive = ['DELIVERED', 'COMPLETED','CANCELLED','CANCELLEDBYREST']
 
+export function formatTimestamp(inputTimestamp) {
+  const timestamp = new Date(inputTimestamp);
+  const now = new Date();
+
+  const isSameDay = (d1, d2) =>
+    d1.getFullYear() === d2.getFullYear() &&
+    d1.getMonth() === d2.getMonth() &&
+    d1.getDate() === d2.getDate();
+
+  const isToday = isSameDay(timestamp, now);
+
+  const yesterday = new Date();
+  yesterday.setDate(now.getDate() - 1);
+  const isYesterday = isSameDay(timestamp, yesterday);
+
+  if (isToday) {
+    return `Today at ${timestamp.toLocaleTimeString('en-US', {
+      hour: 'numeric',
+      minute: 'numeric',
+      hour12: true
+    })}`;
+  }
+
+  if (isYesterday) {
+    return `Yesterday at ${timestamp.toLocaleTimeString('en-US', {
+      hour: 'numeric',
+      minute: 'numeric',
+      hour12: true
+    })}`;
+  }
+
+  return timestamp.toLocaleString('en-US', {
+    hour: 'numeric',
+    minute: 'numeric',
+    hour12: true,
+    day: '2-digit',
+    month: 'short',
+    year: 'numeric'
+  });
+}
+
+
 function MyOrders(props) {
   const reviewModalRef = useRef()
   const [reviewInfo, setReviewInfo] = useState()

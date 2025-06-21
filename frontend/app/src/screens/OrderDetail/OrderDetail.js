@@ -42,6 +42,7 @@ import LottieView from 'lottie-react-native'
 import { clearLogEntriesAsync } from 'expo-updates'
 import Taxes from './Taxes'
 import { restaurantsManager } from '../../ui/hooks'
+import { formatTimestamp } from '../../screens/MyOrders/MyOrders'
 import { err } from 'react-native-svg'
 const { height: HEIGHT, width: WIDTH } = Dimensions.get('screen')
 
@@ -217,10 +218,19 @@ const cancelOrder = async () => {
         <View
           style={{
             justifyContent: 'center',
-            alignItems: 'center',
-            ...alignment.Pmedium
+            alignItems: 'center'
           }}
         >
+          <View style={{flexDirection: theme?.isRTL ? 'row-reverse' : 'row' , alignItems: 'center', gap: 0}}>
+                  <TextDefault
+                    textColor={theme.gray500}
+                    H8
+                    style={{ ...alignment.MBmedium }}
+                    isRTL
+                  >
+                    {`Updated On ${formatTimestamp(order?.timestamp)}`}
+                  </TextDefault>
+                </View>
           <OrderStatusImage status={order?.status} />
             <View
               style={{

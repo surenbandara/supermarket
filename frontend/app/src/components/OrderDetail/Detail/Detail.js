@@ -43,7 +43,7 @@ export default function Detail({
       <TextDefault
         textColor={theme.gray500}
         bolder
-        H4
+        H3
         style={{ ...alignment.MBsmall }}
         isRTL
       >
