@@ -148,7 +148,7 @@ const CartItem = (props) => {
               {configuration.currencySymbol}
               {parseFloat(props?.dealPrice).toFixed(2)}
             </TextDefault>
-            <View style={styles().divider} />
+            {/* <View style={styles().divider} />
             <TouchableOpacity onPress={navigateBack}>
               <TextDefault
                 textColor={currentTheme.fontFourthColor}
@@ -158,7 +158,7 @@ const CartItem = (props) => {
               >
                 {t('edit')}
               </TextDefault>
-            </TouchableOpacity>
+            </TouchableOpacity> */}
           </View>
         </View>
       </View>

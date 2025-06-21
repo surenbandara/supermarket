@@ -36,7 +36,11 @@ function BackButton(props) {
         color={props?.iconColor}
         onPress={() => {
           if (props?.prevScreen) {
-            navigation.navigate(props?.prevScreen)
+            if (props?.prevScreen == "GOBACK") {
+              navigation.navigate(props?.prevScreen)
+            } else {
+              navigation.goBack();
+            }
           } else {
             console.warn('No prevScreen prop provided')
           }

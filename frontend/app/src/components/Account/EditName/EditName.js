@@ -14,6 +14,9 @@ import gql from 'graphql-tag'
 import { useMutation } from '@apollo/client'
 import { useRoute } from '@react-navigation/native'
 import { FlashMessage } from '../../../ui/FlashMessage/FlashMessage.js'
+import { restaurantsManager } from '../../../ui/hooks'
+import { ToastAndroid } from "react-native";
+import Spinner from '../../../components/Spinner/Spinner'
 
 const UPDATEUSER = gql`
   ${updateUser}
@@ -29,9 +32,10 @@ const EditName = (props) => {
     onCompleted,
     onError
   })
-  const [name, setName] = useState(initialName)
+  const [name, setName] = useState(restaurantsManager.user?.address)
   const [nameError, setNameError] = useState('')
   const [isNameChanged, setIsNameChanged] = useState(false)
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     props?.navigation.setOptions({
@@ -155,7 +159,28 @@ const EditName = (props) => {
   }
 
   const handleNamePressUpdate = async () => {
-    await updateName()
+    setLoading(true);
+    const response = await restaurantsManager.registerUserData({
+      "address": name,
+      "email": restaurantsManager.user?.email
+    });
+
+    if (response.status) {
+      restaurantsManager.setUserData({"address": response.payload?.address});
+       ToastAndroid.showWithGravity(
+              `Address is Saved.`,
+              ToastAndroid.SHORT,
+              ToastAndroid.CENTER
+            )
+       navigationService.goBack();
+    } else {
+      ToastAndroid.showWithGravity(
+              `Address is Invalid.`,
+              ToastAndroid.SHORT,
+              ToastAndroid.CENTER
+            )
+    }
+    setLoading(false);
   }
 
   return (
@@ -197,7 +222,11 @@ const EditName = (props) => {
             >
               <View style={styles(currentTheme).contentContainer}>
                 <TextDefault bold H5>
-                  {t('saveBtn')}
+                  {loading ? (
+                    <Spinner size="small" backColor="transparent" spinnerColor={currentTheme.white} />
+                  ) : (
+                  t('saveBtn')
+                  )}
                 </TextDefault>
               </View>
             </TouchableOpacity>
