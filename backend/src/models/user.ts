@@ -7,6 +7,7 @@ export interface IUser extends mongoose.Document {
     role: string;
     email: string;
     phoneNumber?: string;
+    address?: string;
     profilePic?: string;
     emailVerified?: boolean;
 }
@@ -19,6 +20,7 @@ const userSchema = new mongoose.Schema<IUser>(
         role: { type: String, required: true },
         email: { type: String, required: true },
         phoneNumber: { type: String, required: false },
+        address: { type: String, required: false },
         profilePic: { type: String, required: false },
         emailVerified: { type: Boolean, required: false, default: false }
     },

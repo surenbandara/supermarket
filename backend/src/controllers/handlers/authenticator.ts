@@ -14,7 +14,7 @@ export default admin;
 
 export const register = async (req: Request, res: Response): Promise<void> => {
     try {
-        const { username, password, email, phoneNumber, profilePic } = req.body;
+        const { username, password, email, phoneNumber, address, profilePic } = req.body;
 
         const existingUser = await User.findOne({ email });
         if (!existingUser) {
@@ -36,7 +36,15 @@ export const register = async (req: Request, res: Response): Promise<void> => {
             user.password = await hashPassword(password);
         }
         if (phoneNumber !== undefined && phoneNumber !== null && phoneNumber !== "") {
+            if (!/^\d{10}$/.test(phoneNumber)) {
+                log.error(`register:: Invalid phone number format: ${phoneNumber}`);
+                res.status(400).json({ message: "Invalid phone number format" });
+                return;
+            }
             user.phoneNumber = phoneNumber;
+        }
+        if (address !== undefined && address !== null && address !== "") {
+            user.address = address;
         }
         if (profilePic !== undefined && profilePic !== null && profilePic !== "") {
             user.profilePic = profilePic;
@@ -44,7 +52,7 @@ export const register = async (req: Request, res: Response): Promise<void> => {
 
         await User.updateOne({ email: user.email }, user, { upsert: true });
         log.info(`register:: User ${username} updated successfully`);
-        res.status(200).json({ message: "User updated successfully" });
+        res.status(200).json({ message: "User updated successfully", phoneNumber:user.phoneNumber, address:user.address });
 
     } catch (error: any) {
         log.error(`register:: error: ${error.message}`);
@@ -84,7 +92,7 @@ export const login = async (req: Request, res: Response): Promise<void> => {
                 basicUserDetails.email = decodedToken.email;
                 basicUserDetails.role = "user";
                 basicUserDetails.emailVerified = decodedToken.email_verified;
-                basicUserDetails.phoneNumber = decodedToken?.phone_number;
+                // basicUserDetails.phoneNumber = decodedToken?.phone_number;
                 basicUserDetails.profilePic = decodedToken?.picture;
 
             } catch (error: any) {
@@ -131,8 +139,8 @@ export const login = async (req: Request, res: Response): Promise<void> => {
             newUser = new User(basicUserDetails);
         } else if (basicUserDetails.role === "user") {
             log.info(`login:: User with email ${basicUserDetails.email} is found`);
-            newUser = new User(basicUserDetails);
-            await User.updateOne({ email: basicUserDetails.email }, basicUserDetails, { upsert: true });
+            // newUser = new User(basicUserDetails);
+            newUser = await User.findOneAndUpdate({ email: basicUserDetails.email }, basicUserDetails, { upsert: true, new: true });
         } else {
             log.error(`login:: User with email ${basicUserDetails.email} role is invalid`);
             res.status(400).json({ message: "User role invalid" });
