@@ -59,6 +59,7 @@ class RestaurantManager {
         ToastAndroid.CENTER
       )
       this.error = err;
+      throw err;
     } 
   
   }
