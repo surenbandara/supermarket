@@ -10,7 +10,7 @@ const bucket = admin.storage().bucket();
 export const listProducts = async (req: Request, res: Response, next: NextFunction) => {
     try {
         const products: IProduct[] = await ProductModel.find();
-        log.info(`listProducts::Products fetched successfully : ${products}`);
+        // log.info(`listProducts::Products fetched successfully : ${products}`);
         res.status(200).json(products);
     }
     catch (err: any) {

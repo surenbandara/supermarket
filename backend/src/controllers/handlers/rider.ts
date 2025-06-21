@@ -12,7 +12,7 @@ export const listRiders = async (req: Request, res: Response, next: NextFunction
         const riders: IRider[] = await RiderModel.find(filter);
         const riderModels = riders.map(rider => new RiderModel(rider));
         const ridersJson = riderModels.map(riderModel => riderModel.toJSON());
-        log.info(`listRiders::Riders fetched successfully : ${JSON.stringify(ridersJson)}`);
+        // log.info(`listRiders::Riders fetched successfully : ${JSON.stringify(ridersJson)}`);
         res.status(200).json(ridersJson);
     }
     catch (err: any) {

@@ -25,7 +25,7 @@ export const listUsers = async (req: Request, res: Response, next: NextFunction)
 
         const userModels = users.map(user => new UserModel(user));
         const userJson = userModels.map(userModel => userModel.toJSON());
-        log.info(`listUsers::Users fetched successfully: ${JSON.stringify(userJson)}`);
+        // log.info(`listUsers::Users fetched successfully: ${JSON.stringify(userJson)}`);
         res.status(200).json(userJson);
     }
     catch (err: any) {

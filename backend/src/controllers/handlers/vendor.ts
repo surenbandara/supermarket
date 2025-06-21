@@ -12,7 +12,7 @@ export const listVendors = async (req: Request, res: Response, next: NextFunctio
         const vendors: IVendor[] = await VendorModel.find(filter);
         const vendorModels = vendors.map(vendor => new VendorModel(vendor));
         const vendorsJson = vendorModels.map(vendorModel => vendorModel.toJSON());
-        log.info(`listVendors::Vendors fetched successfully : ${JSON.stringify(vendorsJson)}`);
+        // log.info(`listVendors::Vendors fetched successfully : ${JSON.stringify(vendorsJson)}`);
         res.status(200).json(vendorsJson);
     }
     catch (err: any) {

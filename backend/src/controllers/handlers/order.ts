@@ -20,7 +20,7 @@ export const listOrders = async (req: Request, res: Response, next: NextFunction
 
         const orders = await OrderModel.find(filter).sort({ timestamp: -1 });
 
-        log.info(`listOrders::Orders fetched successfully`);
+        // log.info(`listOrders::Orders fetched successfully`);
         res.status(200).json(orders);
     } catch (err: any) {
         log.error(`listOrders:: ${err}`);

@@ -14,7 +14,7 @@ export const listShops = async (req: Request, res: Response, next: NextFunction)
         const shops: IShop[] = await ShopModel.find(filter);
         const shopModels = shops.map(shop => new ShopModel(shop));
         const shopsJson = shopModels.map(shopModel => shopModel.toJSON());
-        log.info(`listShops::Shops fetched successfully : ${JSON.stringify(shopsJson)}`);
+        // log.info(`listShops::Shops fetched successfully : ${JSON.stringify(shopsJson)}`);
         res.status(200).json(shopsJson);
     }
     catch (err: any) {

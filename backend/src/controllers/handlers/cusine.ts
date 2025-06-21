@@ -12,7 +12,7 @@ export const listCusines = async (req: Request, res: Response, next: NextFunctio
         const cuisines: ICuisine[] = await CuisineModel.find(filter);
         const cuisineModels = cuisines.map(cuisine => new CuisineModel(cuisine));
         const cuisinesJson = cuisineModels.map(cuisineModel => cuisineModel.toJSON());
-        log.info(`listCuisines::Cuisines fetched successfully : ${JSON.stringify(cuisinesJson)}`);
+        // log.info(`listCuisines::Cuisines fetched successfully : ${JSON.stringify(cuisinesJson)}`);
         res.status(200).json(cuisinesJson);
     }
     catch (err: any) {
