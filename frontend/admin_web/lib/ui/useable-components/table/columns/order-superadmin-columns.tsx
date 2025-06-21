@@ -1,5 +1,8 @@
 import { IExtendedOrder } from '@/lib/utils/interfaces';
 import { useTranslations } from 'next-intl';
+import { faAdd, faMapLocation } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+
 const dateOptions: Intl.DateTimeFormatOptions = {
   year: 'numeric',
   month: 'short',
@@ -75,6 +78,20 @@ export const ORDER_SUPER_ADMIN_COLUMNS = () => {
     {
       headerName: t('Delivery Address'),
       propertyName: 'OrderdeliveryAddress',
+      body:  (rowData: any) => { 
+        
+        return (
+  <div style={{ textAlign: 'center' }}>
+    <a
+      href={`https://www.google.com/maps?q=${rowData.userLocation.split(",")[0]},${rowData.userLocation.split(",")[1]}`}
+      target="_blank"
+      rel="noopener noreferrer"
+      style={{ color: '#1a73e8', fontSize: '20px', display: 'inline-block' }}
+    >
+      <FontAwesomeIcon icon={faMapLocation} />
+    </a>
+  </div>
+);}
     },
   ];
 };

@@ -3,7 +3,8 @@ import { Dialog } from 'primereact/dialog';
 import { IExtendedOrder } from '@/lib/utils/interfaces';
 import './order-detail-modal.css';
 import TextIconClickable from '../text-icon-clickable';
-import { faAdd } from '@fortawesome/free-solid-svg-icons';
+import { faAdd, faMapLocation } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { GoogleMap, LoadScript, Marker } from '@react-google-maps/api';
 
 
@@ -19,6 +20,18 @@ const OrderDetailModal: React.FC<any> = ({
   const [showUpdate, setShowUpdate] = useState<boolean>(false);
   const [showLoading, setShowLoading] = useState<boolean>(false);
 
+  const statusSteps = [
+    'NEW',
+    'INITIATED',
+    'CONFIRMED',
+    'PROCESSING',
+    'SHIPPED',
+    'DELIVERED',
+    'COMPLETED',
+    'CANCELLED',
+    'RETURNED',
+  ];
+
   const onHideInModal = () => {
     setShowUpdate(false);
     setShowLoading(false);
@@ -33,8 +46,10 @@ const OrderDetailModal: React.FC<any> = ({
     onUpdate(restuarent, () => setShowLoading(false));
   }
 
-  console.log("IIIIIIIIIIIIII ", restaurantData);
   if (restaurantData == null) return null;
+
+  const currentStatus = restaurantData.status;
+  const currentIndex = statusSteps.indexOf(currentStatus);
 
   return (
     <Dialog
@@ -120,7 +135,18 @@ const OrderDetailModal: React.FC<any> = ({
         {/* Delivery Address Section */}
         <div className="order-section">
             <h3 className="section-header">Delivery Address</h3>
-            <p>{restaurantData.userLocation}</p>
+              <p style={{ textAlign: 'center' }}>
+                <a
+                  href={`https://www.google.com/maps?q=${restaurantData.userLocation.split(",")[0]},${restaurantData.userLocation.split(",")[1]}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  style={{ color: '#1a73e8', fontSize: '20px', display: 'inline-block' }}
+                >
+                  <FontAwesomeIcon icon={faMapLocation} />
+                </a>
+              </p>
+
+            {/* <p>{restaurantData.userLocation}</p>
               <LoadScript googleMapsApiKey="YOUR_GOOGLE_MAPS_API_KEY">
                   <GoogleMap
                     mapContainerStyle={containerStyle}
@@ -129,35 +155,102 @@ const OrderDetailModal: React.FC<any> = ({
                   >
                     <Marker position={{ lat: 0, lng: 0 }} />
                   </GoogleMap>
-              </LoadScript>
+              </LoadScript> */}
         </div>
 
         <div className="order-section">
           <h3 className="section-header">Order Status</h3>
 
         
-          <div className="payment-section">
-            <select
-              className="payment-type"
-              value={selectedStatus ?? restaurantData.status}
-              onChange={(e) => {
-                setSelectedStatus(e.target.value); 
-                if (restaurantData.status != e.target.value) {
-                  setShowUpdate(true);
-                }
-              }}
-            >
-               <option value="NEW">NEW</option>
-              <option value="INITIATED">INITIATED</option>
-              <option value="CONFIRMED">CONFIRMED</option>
-              <option value="PROCESSING">PROCESSING</option>
-              <option value="SHIPPED">SHIPPED</option>
-              <option value="DELIVERED">DELIVERED</option>
-              <option value="COMPLETED">COMPLETED</option>
-              <option value="CANCELLED">CANCELLED</option>
-              <option value="RETURNED">RETURNED</option>
-            </select>
+       <div
+            className="status-progress"
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+              gap: '1px',
+              flexWrap: 'wrap', // allow wrapping
+              padding: '8px 12px',
+              userSelect: 'none',
+              fontFamily: 'Arial, sans-serif',
+              fontSize: '14px',
+              maxWidth: '100%',
+              boxSizing: 'border-box'
+            }}
+          >
+            {statusSteps.map((status, index) => {
+                const isDone = index <= currentIndex;
+                const isSelected = selectedStatus === status;
+                const isPending = index > currentIndex || index === currentIndex;
+
+                let circleColor = '#ccc'; // pending gray
+                if (isSelected) circleColor = '#ff9800'; // orange selected
+                else if (isDone) circleColor = '#4caf50'; // green done
+
+                return (
+                  <React.Fragment key={status}>
+                    {/* Wrap circle + button */}
+                    <div
+                      style={{
+                        display: 'inline-flex',
+                        alignItems: 'center',
+                        gap: 1,
+                        whiteSpace: 'nowrap',  // keep circle+button on same line
+                        marginBottom: 4,
+                        marginRight: 12
+                      }}
+                    >
+                      {/* Circle indicator */}
+                      <div
+                        style={{
+                          width: 16,
+                          height: 16,
+                          borderRadius: '50%',
+                          backgroundColor: circleColor,
+                          flexShrink: 0,
+                          border: isSelected ? '3px solid #ff9800' : 'none',
+                          transition: 'background-color 0.3s, border 0.3s',
+                        }}
+                        title={status}
+                      />
+
+                      {/* Status button */}
+                      <button
+                        disabled={index <= currentIndex}
+                        style={{
+                          backgroundColor: isSelected
+                            ? '#ff9800'
+                            : isDone
+                            ? '#e0f2f1'
+                            : '#f0f0f0',
+                          color: isSelected || isDone ? '#000' : '#666',
+                          border: 'none',
+                          borderRadius: '12px',
+                          padding: '6px 12px',
+                          cursor: isPending ? 'pointer' : 'default',
+                          fontWeight: isPending ? 'bold' : 'normal',
+                          fontSize: '10px',
+                          userSelect: 'none',
+                          transition: 'background-color 0.3s',
+                          whiteSpace: 'nowrap',
+                        }}
+                        onClick={() => {
+                          if (isPending) {
+                            setSelectedStatus(status);
+                            setShowUpdate(true);
+                          }
+                        }}
+                      >
+                        {status}
+                      </button>
+                    </div>
+
+                    
+                  </React.Fragment>
+                );
+              })}
+
           </div>
+
 
           { showUpdate &&
           <TextIconClickable
