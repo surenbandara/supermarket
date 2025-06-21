@@ -269,6 +269,9 @@ const cancelOrder = async () => {
           currency={configuration.currencySymbol}
           price={subTotal.toFixed(2)}
         />
+        {  (order?.status == ORDER_STATUS_ENUM.INITIATED 
+          ||  order?.status == ORDER_STATUS_ENUM.CONFIRMED 
+          || order?.status == ORDER_STATUS_ENUM.PROCESSING ) && 
           <View style={{ margin: scale(20) }}>
             <Button
               text={t('cancelOrder')}
@@ -278,6 +281,7 @@ const cancelOrder = async () => {
               textStyles={{ ...alignment.Pmedium }}
             />
           </View>
+}
       </View>
       <CancelModal
         theme={currentTheme}

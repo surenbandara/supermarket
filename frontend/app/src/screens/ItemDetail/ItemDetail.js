@@ -257,8 +257,6 @@ function ItemDetail(props) {
         return false
       })
 
-      console.log('fooodd ', food)
-      console.log('food ', food)
       await setCartRestaurant(restaurant)
       await addCartItem(
         food?.id,

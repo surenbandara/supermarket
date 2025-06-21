@@ -1,4 +1,4 @@
-import React, { useLayoutEffect, useRef, useState } from 'react'
+import React, { useEffect, useLayoutEffect, useRef, useState } from 'react'
 import {
   View,
   TouchableOpacity,
@@ -22,6 +22,9 @@ import { useTranslation } from 'react-i18next'
 import { Ionicons } from '@expo/vector-icons'
 import { scale } from '../../utils/scaling'
 import SignUpSvg from '../../assets/SVG/imageComponents/SignUpSvg'
+import { restaurantsManager } from '../../ui/hooks'
+import { ToastAndroid } from "react-native";
+import navigationService from '../../routes/navigationService.js'
 
 function PhoneNumber(props) {
   const {
@@ -32,12 +35,13 @@ function PhoneNumber(props) {
     countryCode,
     registerAction,
     onCountrySelect,
-    currentTheme,
-    loading
+    currentTheme
   } = usePhoneNumber()
 
   const { t } = useTranslation()
-
+  const [phoneNumber, setPhoneNumber] = useState(restaurantsManager.user?.phoneNumber);
+  const [loading, setLoading] = useState(false);
+  
   useLayoutEffect(() => {
     props?.navigation.setOptions(
       screenOptions({
@@ -50,7 +54,31 @@ function PhoneNumber(props) {
   }, [props?.navigation])
   const phoneInput = useRef < PhoneInput > null
 
-  console.log("code", country.callingCode[0]);
+  const submitPhoneNumber = async () => {
+    setLoading(true);
+    const response = await restaurantsManager.registerUserData({
+      "phoneNumber": phoneNumber,
+      "email": restaurantsManager.user?.email
+    });
+
+    if (response.status) {
+      restaurantsManager.setUserData({"phoneNumber": response.payload?.phoneNumber});
+      ToastAndroid.showWithGravity(
+              `Phone number is Saved.`,
+              ToastAndroid.SHORT,
+              ToastAndroid.CENTER
+            )
+       navigationService.goBack()
+    } else {
+      ToastAndroid.showWithGravity(
+              `Phone number is invalid.`,
+              ToastAndroid.SHORT,
+              ToastAndroid.CENTER
+            )
+    }
+    setLoading(false);
+  }
+
   return (
     <SafeAreaView
       edges={['bottom', 'left', 'right']}
@@ -125,11 +153,11 @@ function PhoneNumber(props) {
                       <TextInput style={styles(currentTheme).phoneNo}
                         placeholder={t('phoneNumber')}
                         placeholderTextColor={currentTheme.color6}
-                        value={phone}
+                        value={phoneNumber}
                         maxLength={16}
                         onChangeText={e => {
                           if (e >= 0 || e <= 9) {
-                            setPhone(e)
+                            setPhoneNumber(e)
                           }
                         }}
                         keyboardType="numeric"
@@ -152,14 +180,14 @@ function PhoneNumber(props) {
             </View>
             <View style={{ width: '100%', marginBottom: 20 }}>
               <TouchableOpacity
-                onPress={() => registerAction()}
+                onPress={async () => {await submitPhoneNumber()}}
                 activeOpacity={0.7}
                 style={styles(currentTheme).btn}>
                 <TextDefault H4 textColor={currentTheme.color4} bold>
                   {loading ? (
                     <Spinner size="small" backColor="transparent" spinnerColor={currentTheme.white} />
                   ) : (
-                    t('textWithCodeBtn')
+                    t("Submit phone number")
                   )}
                 </TextDefault>
               </TouchableOpacity>

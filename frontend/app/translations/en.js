@@ -197,7 +197,7 @@ export const en = {
   enterPass: 'Kindly enter your password',
   confirmPassRequired: 'Confirm password is required!',
   yourPhoneNumber: "Enter Phone Number",
-  secureAccountWithPhone: 'We’ll use your number only if we need to contact you about your order. Next we’ll text you a code to make sure we got the right number.',
+  secureAccountWithPhone: 'We’ll use your number only if we need to contact you about your order.',
   Home: 'Home',
   Work: 'Work',
   Other: 'Other',
@@ -293,7 +293,7 @@ export const en = {
   forYourOrder: ' for your order has not been reached.',
   setPaymentMethod: 'Set payment method before checkout',
   numberVerificationAlert:
-    'Phone number is not verified. Kindly verify phone number.',
+    'Phone number is not entered. Kindly enter phone number.',
   numberVerified: 'Phone number has been verified successfully!.',
   numberAddedAlert: 'Phone number has been added successfully!.',
   itemNotAvailable: 'One or more item is not available',

@@ -73,7 +73,15 @@ export default function AddNewAddress(props) {
         iconColor: currentTheme.newIconColor,
         lineColor: currentTheme.newIconColor,
         setCurrentLocation,
-        locationPrevScreen : prevScreen
+        locationPrevScreen : {prevScreen : 'SaveAddress', args:
+          {
+        locationData: {
+          id,
+          label: 'Location',
+          prevScreen: "GOBACK"
+        }
+      }
+        }
       })
     )
   }, [prevScreen])

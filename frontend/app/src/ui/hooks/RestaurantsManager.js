@@ -45,7 +45,7 @@ class RestaurantManager {
     try {
       const data = await this.apiClient.query("LOGIN", "POST", {"email": email, "token": idToken});
       ToastAndroid.showWithGravity(
-        `Login is Successfull `,
+        `Welcome to AFMDelivery`,
         ToastAndroid.SHORT,
         ToastAndroid.CENTER
       )
@@ -70,6 +70,13 @@ class RestaurantManager {
 
   subscribe(listener) {
     this.listeners.push(listener);
+  }
+
+  setUserData(data) {
+    this.user = {
+      ...this.user,
+      ...data
+    }
   }
 
 
@@ -353,6 +360,19 @@ class RestaurantManager {
       if (loadingEnable) {
         this.loading = false;
       }
+    }
+  }
+
+  async registerUserData(userData) {
+    try {
+      this.loading = true;
+      const data = await this.apiClient.query("USER_DATA", "POST", userData);
+      return {status: true, payload:data};
+    } catch (err) {
+      this.error = err;
+      return {status: false, error: err};
+    } finally {
+      this.loading = false;
     }
   }
 }

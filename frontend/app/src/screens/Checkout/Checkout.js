@@ -529,18 +529,24 @@ function Checkout(props) {
     //   })
     //   return false
     // }
-    // if (profile.phone.length < 1) {
-    //   props?.navigation.navigate('PhoneNumber', { name: profile?.name })
-    //   return false
-    // }
-    // if (profile.phone.length > 0 && !profile.phoneIsVerified) {
-    //   FlashMessage({
-    //     message: t('numberVerificationAlert')
-    //   })
-    //   props?.navigation.navigate('PhoneNumber', { name: profile?.name })
-    //   return false
-    // }
-    return true
+    
+    if (restaurantsManager.user?.phoneNumber == null) {
+      FlashMessage({
+        message: t('numberVerificationAlert')
+      })
+      props?.navigation.navigate('PhoneNumber', { name: profile?.name })
+      return false
+    }
+
+    if (restaurantsManager.user?.address == null) {
+      FlashMessage({
+        message: t('addressNotSaved')
+      })
+      props?.navigation.navigate('EditName', { name: profile?.name })
+      return false
+    }
+
+    return true;
   }
 
   function checkPaymentMethod(currency) {

@@ -41,6 +41,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage'
 import * as Localization from 'expo-localization'
 import { languageTypes } from '../../components/LanguageModalize/LanguageModal'
 import { useCreateAccount } from '../CreateAccount/useCreateAccount'
+import { restaurantsManager } from '../../ui/hooks'
 
 const PUSH_TOKEN = gql`
   ${pushToken}
@@ -416,20 +417,11 @@ function Account(props) {
 
               <View style={styles(currentTheme).subContainer}>
                 <View>
-                  {/* <ButtonContainer
-                    title={t('email')}
-                    detail={profile?.email}
-                    status={
-                      profile?.emailIsVerified ? 'verified' : 'notVerified'
-                    }
-                    onPress='null'
-                  />
-                  <View style={styles(currentTheme).line} />
                   <ButtonContainer
                     title={t('phone')}
                     detail={profile?.phone}
                     status={
-                      profile?.phoneIsVerified ? 'verified' : 'notVerified'
+                      restaurantsManager.user?.phoneNumber ? 'verified' : 'notVerified'
                     }
                     onPress={() =>
                       navigation.navigate('PhoneNumber', {
@@ -439,9 +431,11 @@ function Account(props) {
                   />
                   <View style={styles(currentTheme).line} />
                   <ButtonContainer
-                    title={t('name')}
+                    title={"Address"}
                     detail={profile?.name}
-                    status='null'
+                    status={
+                      restaurantsManager.user?.address ? 'verified' : 'notVerified'
+                    }
                     onPress={() =>
                       navigation.navigate('EditName', {
                         name: profile?.name,
@@ -449,7 +443,7 @@ function Account(props) {
                       })
                     }
                   />
-                  <View style={styles(currentTheme).line} /> */}
+                  <View style={styles(currentTheme).line} /> 
 
                   <View style={[styles().padding]}>
                     <TextDefault
@@ -608,6 +602,7 @@ function Account(props) {
                     </View>
                   </TouchableOpacity>
                 </View>
+
               </View>
             </View>
           </ScrollView>

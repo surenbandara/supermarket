@@ -6,7 +6,8 @@ export const API_ENDPOINTS = {
     GET_SYSTEM_PARAMETERS: '/system-parameters',
     GET_PRODUCTS: '/products',
     GET_SYSTEM_PARAMETERS: '/system-parameters',
-    LOGIN: '/login'
+    LOGIN: '/login',
+    USER_DATA: '/register'
   };
   
   export class RestApiClient {
