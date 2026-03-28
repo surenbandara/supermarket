@@ -187,6 +187,7 @@ yarn-error.log*
 
 # local env files
 .env*.local
+backend/.env
 
 # vercel
 .vercel
@@ -200,3 +201,5 @@ next-env.d.ts
 /backend/logs/*.log
 
 /backend/node_modules/
+/backend/src/config/*
+/nginx/certs/self.*
