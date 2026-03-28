@@ -201,5 +201,5 @@ next-env.d.ts
 /backend/logs/*.log
 
 /backend/node_modules/
-/backend/src/config/*
-/nginx/certs/self.*
+backend/src/config/*
+nginx/certs/self.*
