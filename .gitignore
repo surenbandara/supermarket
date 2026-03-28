@@ -203,3 +203,5 @@ next-env.d.ts
 /backend/node_modules/
 backend/src/config/*
 nginx/certs/self.*
+
+frontend/app/google-services.json
